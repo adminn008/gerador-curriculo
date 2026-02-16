@@ -1,41 +1,27 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background: #f4f7f6; color: #333; padding: 20px; }
+/* ... (Mantenha o básico do anterior) ... */
 
-.container { max-width: 700px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+.model-selector { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
+.btn-model { padding: 8px 15px; border-radius: 5px; border: 1px solid #ddd; cursor: pointer; background: #fff; }
+.btn-model.active { background: #27ae60; color: #fff; border-color: #27ae60; }
 
-header { text-align: center; margin-bottom: 30px; }
-h3 { margin-bottom: 15px; color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 5px; }
+/* MODELO MODERNO (Azul e Branco) */
+.modelo-moderno .section-title { color: #2980b9; border-bottom: 2px solid #2980b9; text-transform: uppercase; margin-bottom: 10px; }
+.modelo-moderno .cv-header { background: #2c3e50; color: white; padding: 30px; margin: -20mm -20mm 20px -20mm; }
 
-.form-section { margin-bottom: 25px; }
+/* MODELO CLÁSSICO (Serifado, estilo Advogado/Executivo) */
+.modelo-classico { font-family: 'Playfair Display', serif; }
+.modelo-classico .cv-header { border-bottom: 3px double #000; text-align: center; }
+.modelo-classico .section-title { text-align: center; border: none; text-decoration: underline; }
 
-input, textarea { 
-    width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; 
-    border-radius: 6px; font-size: 1rem; outline: none;
-}
+/* MODELO MINIMALISTA (Clean) */
+.modelo-minimalista { font-family: 'Inter', sans-serif; color: #444; }
+.modelo-minimalista .cv-header h1 { font-weight: 400; color: #000; }
 
-textarea { height: 100px; resize: vertical; }
+/* CHAT IA */
+.ai-assistant { position: fixed; bottom: 20px; right: 20px; width: 280px; background: #fff; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); z-index: 100; overflow: hidden; }
+.ai-header { background: #8e44ad; color: #fff; padding: 10px; cursor: pointer; display: flex; justify-content: space-between; }
+.ai-body { padding: 15px; font-size: 0.85rem; background: #f9f0ff; max-height: 150px; overflow-y: auto; }
 
-.btn-gerar { 
-    width: 100%; padding: 15px; background: #27ae60; color: white; 
-    border: none; border-radius: 8px; font-size: 1.1rem; font-weight: bold; cursor: pointer;
-}
+.text-block { white-space: pre-wrap; margin-top: 10px; }
 
-/* ESTILO DO CURRÍCULO PRONTO */
-.cv-page { background: white; width: 210mm; min-height: 297mm; padding: 20mm; margin: 20px auto; color: #000; }
-.hidden { display: none; }
-
-.cv-header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 20px; margin-bottom: 20px; }
-.cv-header h1 { font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; }
-.cv-header h2 { font-size: 1.2rem; color: #666; margin-top: 5px; }
-.cv-contact { margin-top: 10px; font-size: 0.9rem; }
-
-.cv-section { margin-bottom: 20px; }
-.cv-section h4 { border-bottom: 1px solid #ccc; margin-bottom: 8px; font-size: 1rem; color: #2c3e50; }
-.white-space-pre { white-space: pre-wrap; font-size: 0.95rem; line-height: 1.6; }
-
-/* REGRA DE OURO PARA PDF */
-@media print {
-    .no-print { display: none !important; }
-    .cv-page { display: block !important; margin: 0; border: none; width: 100%; }
-    body { background: white; padding: 0; }
-}
+@media print { .no-print, .ai-assistant { display: none !important; } }
