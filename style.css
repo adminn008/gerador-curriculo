@@ -1,27 +1,48 @@
-/* ... (Mantenha o básico do anterior) ... */
+:root { --primary: #2563eb; --bg: #f8fafc; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: #1e293b; line-height: 1.6; }
 
-.model-selector { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
-.btn-model { padding: 8px 15px; border-radius: 5px; border: 1px solid #ddd; cursor: pointer; background: #fff; }
-.btn-model.active { background: #27ae60; color: #fff; border-color: #27ae60; }
+.main-wrapper { padding: 40px 20px; max-width: 900px; margin: 0 auto; }
+.top-header { text-align: center; margin-bottom: 30px; }
+.top-header h1 span { color: var(--primary); }
 
-/* MODELO MODERNO (Azul e Branco) */
-.modelo-moderno .section-title { color: #2980b9; border-bottom: 2px solid #2980b9; text-transform: uppercase; margin-bottom: 10px; }
-.modelo-moderno .cv-header { background: #2c3e50; color: white; padding: 30px; margin: -20mm -20mm 20px -20mm; }
+/* Seletor de Modelo */
+.model-picker { text-align: center; margin-bottom: 20px; }
+.btn-group { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
+.btn-opt { padding: 10px 20px; border: 1px solid #ddd; background: #white; border-radius: 8px; cursor: pointer; font-weight: 600; }
+.btn-opt.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-/* MODELO CLÁSSICO (Serifado, estilo Advogado/Executivo) */
-.modelo-classico { font-family: 'Playfair Display', serif; }
-.modelo-classico .cv-header { border-bottom: 3px double #000; text-align: center; }
-.modelo-classico .section-title { text-align: center; border: none; text-decoration: underline; }
+.container { background: white; padding: 30px; border-radius: 15px; shadow: 0 10px 25px rgba(0,0,0,0.05); }
+.form-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; }
+h3 { font-size: 1.1rem; margin-bottom: 15px; color: #334155; }
 
-/* MODELO MINIMALISTA (Clean) */
-.modelo-minimalista { font-family: 'Inter', sans-serif; color: #444; }
-.modelo-minimalista .cv-header h1 { font-weight: 400; color: #000; }
+input, textarea { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #e2e8f0; border-radius: 8px; outline: none; }
+textarea { height: 120px; font-family: inherit; }
 
-/* CHAT IA */
-.ai-assistant { position: fixed; bottom: 20px; right: 20px; width: 280px; background: #fff; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); z-index: 100; overflow: hidden; }
-.ai-header { background: #8e44ad; color: #fff; padding: 10px; cursor: pointer; display: flex; justify-content: space-between; }
-.ai-body { padding: 15px; font-size: 0.85rem; background: #f9f0ff; max-height: 150px; overflow-y: auto; }
+.main-btn { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 800; cursor: pointer; margin-top: 20px; }
 
-.text-block { white-space: pre-wrap; margin-top: 10px; }
+.site-footer { text-align: center; margin-top: 40px; font-size: 0.9rem; color: #64748b; }
+.site-footer a { color: #64748b; text-decoration: none; margin: 0 10px; }
 
-@media print { .no-print, .ai-assistant { display: none !important; } }
+/* REGRAS DO CURRÍCULO (O QUE VAI NO PDF) */
+.print-only { display: none; } /* Esconde no site para não ficar "feio" */
+
+@media print {
+    .no-print { display: none !important; }
+    .print-only { display: block !important; padding: 0; margin: 0; }
+    body { background: white; }
+}
+
+/* Estilos de Modelos */
+.modelo-moderno { color: #000; }
+.modelo-moderno .cv-head { background: #f1f5f9; padding: 30px; border-left: 10px solid var(--primary); }
+.modelo-moderno h3 { color: var(--primary); text-transform: uppercase; border-bottom: 1fr solid #eee; margin-top: 20px; }
+
+.modelo-classico { font-family: serif; text-align: center; }
+.modelo-classico .cv-head { border-bottom: 2px solid #000; margin-bottom: 20px; }
+.modelo-classico .cv-sec { text-align: left; }
+
+.modelo-limpo { padding: 40px; }
+.modelo-limpo .cv-head h1 { font-size: 3rem; font-weight: 900; }
+
+.pre-wrap { white-space: pre-wrap; margin-top: 10px; }
