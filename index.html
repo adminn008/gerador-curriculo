@@ -14,6 +14,49 @@
             <p>Preencha os dados e escolha o estilo do seu novo currículo.</p>
         </header>
 
+        <div class="alert-banner">
+    <span class="alert-icon">💡</span>
+    <div class="alert-content">
+        <strong>Dica importante:</strong> Preencha todos os campos e clique no botão azul para baixar seu currículo em PDF na hora!
+    </div>
+</div>
+
+<div class="model-picker">
+    <p>Escolha o Modelo:</p>
+    ```
+
+---
+
+### O CSS para deixar bonito (Cole no seu `style.css` ou dentro da tag `<style>`):
+Para esse aviso não parecer um erro, vamos dar um visual de "Dica do Sistema":
+
+```css
+.alert-banner {
+    background-color: #e7f3ff; /* Azul clarinho */
+    border-left: 5px solid #007bff; /* Barra lateral azul */
+    color: #0c5460;
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 900px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.alert-icon {
+    font-size: 1.5rem;
+}
+
+.alert-content strong {
+    color: #0056b3;
+    display: block;
+    margin-bottom: 2px;
+}
+
+
         <div class="model-picker">
             <p>Escolha o Modelo:</p>
             <div class="btn-group">
