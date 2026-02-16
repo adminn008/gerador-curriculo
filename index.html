@@ -3,75 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Master | Gerador Profissional</title>
+    <title>CV Express | Gerador de Currículo Grátis</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="no-print container">
-        <header>
-            <h1>CV <span>MASTER</span></h1>
-            <p>Escolha um modelo e preencha seus dados.</p>
+    <div class="no-print main-wrapper">
+        <header class="top-header">
+            <h1>CV <span>EXPRESS</span></h1>
+            <p>Preencha os dados e escolha o estilo do seu novo currículo.</p>
         </header>
 
-        <div class="model-selector">
-            <button onclick="changeModel('moderno')" class="btn-model active">Moderno</button>
-            <button onclick="changeModel('classico')" class="btn-model">Clássico (Elegante)</button>
-            <button onclick="changeModel('minimalista')" class="btn-model">Minimalista</button>
+        <div class="model-picker">
+            <p>Escolha o Modelo:</p>
+            <div class="btn-group">
+                <button class="btn-opt active" onclick="setModelo('moderno', this)">Moderno</button>
+                <button class="btn-opt" onclick="setModelo('classico', this)">Executivo</button>
+                <button class="btn-opt" onclick="setModelo('limpo', this)">Mínimo</button>
+            </div>
         </div>
 
-        <section class="form-grid">
-            <div class="form-section">
-                <h3><i class="icon">👤</i> Dados Pessoais</h3>
-                <input type="text" id="in-nome" placeholder="Nome Completo">
-                <input type="text" id="in-cargo" placeholder="Cargo Pretendido">
-                <input type="email" id="in-email" placeholder="E-mail">
-                <input type="tel" id="in-tel" placeholder="WhatsApp">
-                <input type="text" id="in-cidade" placeholder="Cidade - UF">
+        <div class="container">
+            <div class="form-grid">
+                <div class="box">
+                    <h3>Dados Contato</h3>
+                    <input type="text" id="in-nome" placeholder="Nome Completo">
+                    <input type="text" id="in-cargo" placeholder="Seu Cargo/Profissão">
+                    <input type="email" id="in-email" placeholder="E-mail">
+                    <input type="tel" id="in-tel" placeholder="Telefone">
+                    <input type="text" id="in-cidade" placeholder="Cidade/UF">
+                </div>
+                <div class="box">
+                    <h3>Texto e Histórico</h3>
+                    <textarea id="in-resumo" placeholder="Resumo Profissional (Breve texto sobre você)"></textarea>
+                    <textarea id="in-exp" placeholder="Experiências Profissionais..."></textarea>
+                    <textarea id="in-edu" placeholder="Educação e Cursos..."></textarea>
+                </div>
             </div>
+            <button class="main-btn" onclick="gerar()">GERAR E SALVAR EM PDF</button>
+        </div>
 
-            <div class="form-section">
-                <h3><i class="icon">📝</i> Experiência e Resumo</h3>
-                <textarea id="in-resumo" placeholder="Resumo: 'Profissional com 5 anos de experiência em...'"></textarea>
-                <textarea id="in-exp" placeholder="Experiências (Empresa, Cargo, Período e Atividades)"></textarea>
-                <textarea id="in-edu" placeholder="Educação (Curso, Instituição e Ano)"></textarea>
-            </div>
-        </section>
-
-        <button onclick="gerarCurriculo()" class="btn-gerar">BAIXAR CURRÍCULO EM PDF</button>
+        <footer class="site-footer">
+            <a href="mailto:seuemail@gmail.com?subject=Sugestão de Melhoria">Sugerir Melhoria</a> | 
+            <a href="#" onclick="alert('Políticas: Seus dados não são salvos em nosso servidor. O processamento é feito localmente no seu navegador.')">Privacidade</a>
+        </footer>
     </div>
 
-    <div class="ai-assistant" id="ai-chat">
-        <div class="ai-header" onclick="toggleAI()">
-            <span>🤖 Assistente de Carreira</span>
-            <button>_</button>
+    <div id="cv-render" class="modelo-moderno print-only">
+        <div class="cv-head">
+            <h1 id="out-nome">NOME</h1>
+            <h2 id="out-cargo">CARGO</h2>
+            <p id="out-contato">email | tel | cidade</p>
         </div>
-        <div class="ai-body" id="ai-body">
-            <p><strong>Dica da IA:</strong> No resumo, foque em resultados! Use números, como: "Aumentei as vendas em 20%".</p>
-        </div>
-    </div>
-
-    <div id="cv-preview" class="cv-page modelo-moderno">
-        <div class="cv-sidebar"></div> <div class="cv-content">
-            <div class="cv-header">
-                <h1 id="cv-nome">NOME DO CANDIDATO</h1>
-                <h2 id="cv-cargo">CARGO PRETENDIDO</h2>
+        <div class="cv-body">
+            <div class="cv-sec">
+                <h3>Resumo Profissional</h3>
+                <p id="out-resumo"></p>
             </div>
-            <div class="cv-contact-bar">
-                <span id="cv-email"></span> • <span id="cv-tel"></span> • <span id="cv-cidade"></span>
+            <div class="cv-sec">
+                <h3>Experiência</h3>
+                <div id="out-exp" class="pre-wrap"></div>
             </div>
-            <div class="cv-body-section">
-                <h4 class="section-title">PERFIL</h4>
-                <p id="cv-resumo"></p>
-            </div>
-            <div class="cv-body-section">
-                <h4 class="section-title">EXPERIÊNCIA</h4>
-                <div id="cv-exp" class="text-block"></div>
-            </div>
-            <div class="cv-body-section">
-                <h4 class="section-title">FORMAÇÃO</h4>
-                <div id="cv-edu" class="text-block"></div>
+            <div class="cv-sec">
+                <h3>Formação</h3>
+                <div id="out-edu" class="pre-wrap"></div>
             </div>
         </div>
     </div>
