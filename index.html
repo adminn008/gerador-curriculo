@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Currículo Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="no-print container">
+        <header>
+            <h1>Criador de Currículo 📄</h1>
+            <p>Preencha os campos abaixo e salve seu currículo em PDF.</p>
+        </header>
+
+        <section class="form-section">
+            <h3>Dados Pessoais</h3>
+            <input type="text" id="in-nome" placeholder="Nome Completo">
+            <input type="text" id="in-cargo" placeholder="Cargo Pretendido (ex: Vendedor, Desenvolvedor)">
+            <input type="email" id="in-email" placeholder="E-mail">
+            <input type="tel" id="in-tel" placeholder="Telefone/WhatsApp">
+            <input type="text" id="in-cidade" placeholder="Cidade - UF">
+        </section>
+
+        <section class="form-section">
+            <h3>Resumo Profissional</h3>
+            <textarea id="in-resumo" placeholder="Conte um pouco sobre sua experiência e objetivos..."></textarea>
+        </section>
+
+        <section class="form-section">
+            <h3>Experiência e Formação</h3>
+            <textarea id="in-exp" placeholder="Experiências Profissionais (Nome da empresa, cargo e data)"></textarea>
+            <textarea id="in-edu" placeholder="Formação Acadêmica (Curso, Instituição e data)"></textarea>
+        </section>
+
+        <button onclick="gerarCurriculo()" class="btn-gerar">Visualizar e Salvar PDF</button>
+    </div>
+
+    <div id="cv-preview" class="cv-page hidden">
+        <div class="cv-header">
+            <h1 id="cv-nome">NOME DO CANDIDATO</h1>
+            <h2 id="cv-cargo">CARGO PRETENDIDO</h2>
+            <div class="cv-contact">
+                <span id="cv-email">email@teste.com</span> | 
+                <span id="cv-tel">(00) 00000-0000</span> | 
+                <span id="cv-cidade">Cidade - UF</span>
+            </div>
+        </div>
+
+        <div class="cv-body">
+            <div class="cv-section">
+                <h4>RESUMO</h4>
+                <p id="cv-resumo">Resumo profissional aqui...</p>
+            </div>
+
+            <div class="cv-section">
+                <h4>EXPERIÊNCIA PROFISSIONAL</h4>
+                <div id="cv-exp" class="white-space-pre">Experiências...</div>
+            </div>
+
+            <div class="cv-section">
+                <h4>FORMAÇÃO ACADÊMICA</h4>
+                <div id="cv-edu" class="white-space-pre">Educação...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
