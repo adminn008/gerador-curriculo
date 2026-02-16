@@ -6,14 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>CV Express | Gerador de Currículo Grátis e Rápido</title>
-    <meta name="description" content="Crie seu currículo profissional grátis em minutos. Modelos modernos, download em PDF e totalmente seguro.">
-    <meta name="keywords" content="gerador de curriculo, curriculo gratis, fazer cv, curriculo pdf, currículo online">
+    <title>CV Express | Gerador de Currículo Grátis e Rápido em PDF</title>
+    <meta name="description" content="Crie seu currículo profissional grátis em minutos. Modelos modernos, download em PDF pronto para imprimir e totalmente seguro.">
+    <meta name="keywords" content="gerador de curriculo, curriculo gratis, fazer cv, curriculo pdf pronto, currículo online rápido">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://adminn008.github.io/gerador-curriculo/">
 
     <link rel="stylesheet" href="style.css">
     <style>
+        /* Estilos para o painel de PIX e SEO */
         .pix-container {
             text-align: center; 
             margin-top: 30px; 
@@ -35,6 +36,15 @@
             word-break: break-all;
             color: #333;
         }
+        .seo-content {
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: left;
+            color: #444;
+            font-family: sans-serif;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
     </style>
 </head>
 <body>
@@ -42,18 +52,18 @@
     <div class="no-print main-wrapper">
         <header class="top-header">
             <h1>CV <span>EXPRESS</span></h1>
-            <p>Preencha os dados e escolha o estilo do seu novo currículo.</p>
+            <p>Preencha os dados e escolha o estilo do seu novo currículo profissional.</p>
         </header>
 
         <div class="alert-banner" style="background: #e7f3ff; border-left: 5px solid #007bff; padding: 15px; margin: 10px auto 25px; border-radius: 8px; max-width: 800px; display: flex; align-items: center; gap: 10px; color: #0056b3; font-family: sans-serif; font-size: 14px;">
             <span style="font-size: 20px;">💡</span>
             <div>
-                <strong>Segurança:</strong> Seus dados não são salvos em nosso servidor. Tudo acontece no seu navegador.
+                <strong>Segurança Garantida:</strong> Seus dados pessoais não saem do seu computador. O PDF é gerado localmente.
             </div>
         </div>
 
         <div class="model-picker">
-            <p>Escolha o Modelo:</p>
+            <p>Escolha o Modelo de Currículo:</p>
             <div class="btn-group">
                 <button class="btn-opt active" onclick="setModelo('moderno', this)">Moderno</button>
                 <button class="btn-opt" onclick="setModelo('classico', this)">Executivo</button>
@@ -64,36 +74,49 @@
         <div class="container">
             <div class="form-grid">
                 <div class="box">
-                    <h3>Dados Contato</h3>
+                    <h3>Dados de Contato</h3>
                     <input type="text" id="in-nome" placeholder="Nome Completo">
-                    <input type="text" id="in-cargo" placeholder="Seu Cargo/Profissão">
-                    <input type="email" id="in-email" placeholder="E-mail">
-                    <input type="tel" id="in-tel" placeholder="Telefone">
-                    <input type="text" id="in-cidade" placeholder="Cidade/UF">
+                    <input type="text" id="in-cargo" placeholder="Seu Cargo ou Profissão">
+                    <input type="email" id="in-email" placeholder="E-mail de contato">
+                    <input type="tel" id="in-tel" placeholder="Telefone / WhatsApp">
+                    <input type="text" id="in-cidade" placeholder="Cidade e Estado (Ex: São Paulo - SP)">
                 </div>
                 <div class="box">
-                    <h3>Texto e Histórico</h3>
-                    <textarea id="in-resumo" placeholder="Resumo Profissional (Breve texto sobre você)"></textarea>
-                    <textarea id="in-exp" placeholder="Experiências Profissionais..."></textarea>
-                    <textarea id="in-edu" placeholder="Educação e Cursos..."></textarea>
+                    <h3>Experiência e Resumo</h3>
+                    <textarea id="in-resumo" placeholder="Resumo Profissional: Fale brevemente sobre seus objetivos e qualificações."></textarea>
+                    <textarea id="in-exp" placeholder="Experiências Profissionais: Liste as empresas e atividades anteriores."></textarea>
+                    <textarea id="in-edu" placeholder="Formação Acadêmica: Inclua cursos, faculdade e certificações."></textarea>
                 </div>
             </div>
             
             <button class="main-btn" onclick="gerar()">GERAR E SALVAR EM PDF</button>
 
+            <article class="seo-content">
+                <h2 style="color: #222;">Como criar um currículo profissional de sucesso</h2>
+                <p>Ter um currículo bem estruturado é o primeiro passo para conquistar a vaga dos seus sonhos. Nosso <strong>gerador de currículo online</strong> foi desenvolvido para facilitar esse processo, criando um documento limpo e profissional em poucos minutos.</p>
+                
+                <h3 style="font-size: 1.1em; margin-top: 20px;">Dicas para um bom currículo:</h3>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Seja objetivo:</strong> Recrutadores gastam poucos segundos na primeira leitura.</li>
+                    <li><strong>Palavras-chave:</strong> Use termos comuns na sua área de atuação.</li>
+                    <li><strong>Ordem Cronológica:</strong> Comece sempre pela sua experiência mais recente.</li>
+                    <li><strong>Revisão:</strong> Evite erros de português para passar mais credibilidade.</li>
+                </ul>
+            </article>
+
             <div class="pix-container">
-                <p style="margin-bottom: 5px; color: #2d6a4f; font-family: sans-serif; font-weight: bold;">🚀 Gostou do Gerador?</p>
-                <p style="font-size: 13px; color: #555; font-family: sans-serif;">Contribua com qualquer valor para manter o site gratuito.</p>
+                <p style="margin-bottom: 5px; color: #2d6a4f; font-family: sans-serif; font-weight: bold;">🚀 Gostou da ferramenta?</p>
+                <p style="font-size: 13px; color: #555; font-family: sans-serif;">Ajude a manter o projeto gratuito com qualquer valor via PIX.</p>
                 <span class="pix-key" id="chavePix">0df8fcd3-dffc-4265-8464-5a60badef88c</span>
-                <button onclick="copiarPix()" style="background: #28a745; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                <button onclick="copiarPix()" style="background: #28a745; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; max-width: 250px;">
                     COPIAR CHAVE PIX
                 </button>
             </div>
         </div>
 
-        <footer class="site-footer">
+        <footer class="site-footer" style="margin-top: 40px; text-align: center; padding-bottom: 20px;">
             <a href="mailto:suporte.portalpr@gmail.com">Sugerir Melhoria</a> | 
-            <a href="privacy.html" target="_blank">Privacidade</a>
+            <a href="privacy.html" target="_blank">Política de Privacidade</a>
         </footer>
     </div>
 
@@ -109,21 +132,24 @@
                 <p id="out-resumo"></p>
             </div>
             <div class="cv-sec">
-                <h3>Experiência</h3>
+                <h3>Experiência Profissional</h3>
                 <div id="out-exp" class="pre-wrap"></div>
             </div>
             <div class="cv-sec">
-                <h3>Formação</h3>
+                <h3>Educação e Formação</h3>
                 <div id="out-edu" class="pre-wrap"></div>
             </div>
         </div>
     </div>
 
     <script>
+        // Função para copiar a chave PIX para o teclado
         function copiarPix() {
             const chave = document.getElementById('chavePix').innerText;
             navigator.clipboard.writeText(chave).then(() => {
-                alert("Chave PIX copiada! Obrigado pelo apoio! 🙏");
+                alert("Chave PIX copiada! Obrigado pelo seu apoio. 🙏");
+            }).catch(err => {
+                alert("Erro ao copiar. Use a chave: " + chave);
             });
         }
     </script>
