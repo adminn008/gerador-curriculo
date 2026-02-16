@@ -1,46 +1,36 @@
-let currentModel = 'moderno';
+let modeloSelecionado = 'modelo-moderno';
 
-function changeModel(model) {
-    currentModel = model;
-    // Remove classes antigas e adiciona a nova
-    const cv = document.getElementById('cv-preview');
-    cv.className = 'cv-page modelo-' + model;
+function setModelo(tipo, btn) {
+    // Atualiza o visual dos botões
+    document.querySelectorAll('.btn-opt').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
     
-    // Atualiza botões
-    document.querySelectorAll('.btn-model').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
+    // Salva a escolha
+    modeloSelecionado = 'modelo-' + tipo;
+    document.getElementById('cv-render').className = modeloSelecionado + ' print-only';
 }
 
-function gerarCurriculo() {
-    // Transferência de dados (mesma lógica do anterior)
-    document.getElementById('cv-nome').textContent = document.getElementById('in-nome').value || "NOME COMPLETO";
-    document.getElementById('cv-cargo').textContent = document.getElementById('in-cargo').value;
-    document.getElementById('cv-email').textContent = document.getElementById('in-email').value;
-    document.getElementById('cv-tel').textContent = document.getElementById('in-tel').value;
-    document.getElementById('cv-cidade').textContent = document.getElementById('in-cidade').value;
-    document.getElementById('cv-resumo').textContent = document.getElementById('in-resumo').value;
-    document.getElementById('cv-exp').textContent = document.getElementById('in-exp').value;
-    document.getElementById('cv-edu').textContent = document.getElementById('in-edu').value;
+function gerar() {
+    // Pegar dados
+    const nome = document.getElementById('in-nome').value;
+    const cargo = document.getElementById('in-cargo').value;
+    const email = document.getElementById('in-email').value;
+    const tel = document.getElementById('in-tel').value;
+    const cidade = document.getElementById('in-cidade').value;
+    const resumo = document.getElementById('in-resumo').value;
+    const exp = document.getElementById('in-exp').value;
+    const edu = document.getElementById('in-edu').value;
 
-    document.getElementById('cv-preview').classList.remove('hidden');
+    if(!nome) { alert("Por favor, digite seu nome."); return; }
+
+    // Preencher o CV oculto
+    document.getElementById('out-nome').innerText = nome;
+    document.getElementById('out-cargo').innerText = cargo;
+    document.getElementById('out-contato').innerText = `${email} | ${tel} | ${cidade}`;
+    document.getElementById('out-resumo').innerText = resumo;
+    document.getElementById('out-exp').innerText = exp;
+    document.getElementById('out-edu').innerText = edu;
+
+    // Disparar impressão
     window.print();
 }
-
-// LÓGICA DA IA (Dicas que mudam conforme o campo focado)
-const dicas = [
-    "Dica: Use um e-mail profissional (nome.sobrenome@email.com).",
-    "Dica: Liste suas experiências da mais recente para a mais antiga.",
-    "Dica: Não é necessário colocar CPF ou RG no currículo.",
-    "Dica: Se você não tem experiência, foque em cursos e projetos voluntários."
-];
-
-function toggleAI() {
-    const body = document.getElementById('ai-body');
-    body.style.display = body.style.display === 'none' ? 'block' : 'none';
-}
-
-// Muda a dica a cada 10 segundos
-setInterval(() => {
-    const dicaAleatoria = dicas[Math.floor(Math.random() * dicas.length)];
-    document.getElementById('ai-body').innerHTML = `<p><strong>Dica da IA:</strong> ${dicaAleatoria}</p>`;
-}, 10000);
