@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://adminn008.github.io/gerador-curriculo/sitemap.xml
