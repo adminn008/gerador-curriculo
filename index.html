@@ -11,6 +11,30 @@
     <link rel="canonical" href="https://adminn008.github.io/gerador-curriculo/">
 
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilo extra para o botão de PIX não bugar */
+        .pix-container {
+            text-align: center; 
+            margin-top: 30px; 
+            padding: 20px; 
+            background: #f0fff4; 
+            border-radius: 10px; 
+            border: 2px dashed #28a745;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .pix-key {
+            background: #fff;
+            padding: 10px;
+            border: 1px solid #ddd;
+            display: block;
+            margin: 10px 0;
+            font-family: monospace;
+            word-break: break-all;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
 
@@ -23,7 +47,7 @@
         <div class="alert-banner" style="background: #e7f3ff; border-left: 5px solid #007bff; padding: 15px; margin: 10px auto 25px; border-radius: 8px; max-width: 800px; display: flex; align-items: center; gap: 10px; color: #0056b3; font-family: sans-serif; font-size: 14px;">
             <span style="font-size: 20px;">💡</span>
             <div>
-                <strong>Aviso:</strong> Seus dados são processados localmente e não são salvos em nosso sistema. Pode preencher com tranquilidade!
+                <strong>Segurança:</strong> Seus dados não são salvos em nosso servidor. Tudo acontece no seu navegador.
             </div>
         </div>
 
@@ -56,11 +80,15 @@
             
             <button class="main-btn" onclick="gerar()">GERAR E SALVAR EM PDF</button>
 
-            <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 10px; border: 1px dashed #ccc;">
-                <p style="margin-bottom: 10px; color: #555; font-family: sans-serif;">Gostou da ferramenta? Ajude a manter o site no ar!</p>
-                <a 0df8fcd3-dffc-4265-8464-5a60badef88c" target="_blank" style="display: inline-block; background: #25d366; color: white; padding: 12px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; font-family: sans-serif;">
-                    ☕ APOIAR O PROJETO (PIX)
-                </a>
+            <div class="pix-container">
+                <p style="margin-bottom: 5px; color: #2d6a4f; font-family: sans-serif; font-weight: bold;">🚀 Gostou do Gerador?</p>
+                <p style="font-size: 13px; color: #555; font-family: sans-serif;">Contribua com qualquer valor para manter o site gratuito e sem anúncios chatos.</p>
+                
+                <span class="pix-key" id="chavePix">0df8fcd3-dffc-4265-8464-5a60badef88c</span>
+                
+                <button onclick="copiarPix()" style="background: #28a745; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                    COPIAR CHAVE PIX
+                </button>
             </div>
         </div>
 
@@ -92,6 +120,15 @@
         </div>
     </div>
 
+    <script>
+        // Função para copiar o PIX automaticamente
+        function copiarPix() {
+            const chave = document.getElementById('chavePix').innerText;
+            navigator.clipboard.writeText(chave).then(() => {
+                alert("Chave PIX copiada! Agora é só colar no seu banco. Obrigado pelo apoio! 🙏");
+            });
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
