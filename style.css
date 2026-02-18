@@ -34,13 +34,20 @@ textarea { height: 120px; font-family: inherit; }
 .pix-container { text-align: center; margin-top: 30px; padding: 20px; background: #f0fff4; border-radius: 10px; border: 2px dashed #28a745; max-width: 800px; margin-left: auto; margin-right: auto; }
 .pix-key { background: #fff; padding: 10px; border: 1px solid #ddd; display: block; margin: 10px 0; font-family: monospace; word-break: break-all; color: #333; }
 
-.print-only { display: none; }
+/* Garante que o currículo não apareça no ecrã e estrague o layout */
+.print-only { 
+    display: none !important; 
+}
 
 @media print {
-    .no-print, .site-footer, .pix-container, .alert-banner, #dark-mode-toggle { display: none !important; }
-    .print-only { display: block !important; padding: 0; margin: 0; }
-    body { background: white !important; color: black !important; }
+    .no-print { display: none !important; }
+    .print-only { 
+        display: block !important; 
+        position: static;
+        width: 100%;
+    }
 }
+
 
 /* ESTILOS DOS MODELOS */
 .modelo-moderno { color: #000; padding: 40px; background: white; }
