@@ -37,19 +37,6 @@
     <div class="no-print main-wrapper">
         <header class="top-header">
             <h1>CV <span>FLASH</span></h1>
-
-            <div style="margin: 15px auto; max-width: 500px; font-family: sans-serif; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 10px;">
-                <p style="margin: 0; color: #fff; font-weight: bold; font-size: 14px;">
-                    🚀 Meta Manutenção: R$ 0,00 / R$ 50,00
-                </p>
-                <div style="background-color: rgba(255,255,255,0.3); border-radius: 10px; height: 10px; width: 90%; margin: 8px auto; overflow: hidden;">
-                    <div style="background: #28a745; height: 100%; width: 2%; transition: width 0.5s ease;"></div>
-                </div>
-                <p style="margin: 0; color: #fff; font-size: 12px; opacity: 0.9;">
-                    Contribua para manter o site sem anúncios: <strong>[0df8fcd3-dffc-4265-8464-5a60badef88c]</strong>
-                </p>
-            </div>
-
             <p>Preencha os dados e escolha o estilo do seu novo currículo profissional.</p>
         </header>
 
@@ -66,3 +53,105 @@
                 <button class="btn-opt" onclick="setModelo('limpo', this)">Mínimo</button>
             </div>
         </div>
+
+        <div class="container">
+            <div class="form-grid">
+                <div class="box">
+                    <h3>Dados de Contato</h3>
+                    <input type="text" id="in-nome" placeholder="Nome Completo">
+                    <input type="text" id="in-cargo" placeholder="Seu Cargo ou Profissão">
+                    <input type="email" id="in-email" placeholder="E-mail de contato">
+                    <input type="tel" id="in-tel" placeholder="Telefone / WhatsApp">
+                    <input type="text" id="in-cidade" placeholder="Cidade e Estado">
+                </div>
+                <div class="box">
+                    <h3>Experiência e Resumo</h3>
+                    <textarea id="in-resumo" placeholder="Resumo Profissional..."></textarea>
+                    <textarea id="in-exp" placeholder="Experiências Profissionais..."></textarea>
+                    <textarea id="in-edu" placeholder="Formação Acadêmica..."></textarea>
+                </div>
+            </div>
+            
+            <button class="main-btn" onclick="gerar()">GERAR E SALVAR EM PDF</button>
+
+            <article class="seo-content">
+                <h2 style="color: #222;">Como criar um currículo profissional de sucesso</h2>
+                <p>Use este <strong>gerador de currículo online</strong> para facilitar o processo, criando um documento profissional em poucos minutos.</p>
+            </article>
+
+            <div class="pix-container">
+                <p style="margin-bottom: 5px; color: #2d6a4f; font-family: sans-serif; font-weight: bold;">🚀 Gostou da ferramenta?</p>
+                <p style="font-size: 13px; color: #555; font-family: sans-serif;">Ajude a manter o projeto com qualquer valor via PIX.</p>
+                <span class="pix-key" id="chavePix">0df8fcd3-dffc-4265-8464-5a60badef88c</span>
+                <button onclick="copiarPix()" style="background: #28a745; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; max-width: 250px;">COPIAR CHAVE PIX</button>
+            </div>
+        </div>
+
+        <footer class="site-footer" style="margin-top: 40px; text-align: center; padding-bottom: 40px; font-family: sans-serif;">
+    
+    <!-- Frase de convite acima do botão -->
+        <p style="margin-bottom: 40px; font-size: 16px; color: #555;">
+         Tem alguma ideia para deixar nosso gerador ainda melhor?
+      <!--  <p><strong>Importante:</strong> Em <strong>'assunto' (no e-mail)</strong> deixe algo como: <strong>Sugestão Melhoria.</strong></p>
+
+    </p> -->
+
+    <!-- Botão Sugerir Melhoria -->
+    <div style="margin-top: 30px; margin-bottom: 5px; text-align: center;">
+    <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão para o CV Flash" 
+       style="
+          display: inline-block; 
+          padding: 12px 24px; 
+          font-size: 18px; 
+          font-weight: bold; 
+          color: #ffffff; 
+          background-color: #007bff; 
+          border-radius: 8px; 
+          text-decoration: none; 
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+          border: none;
+          cursor: pointer;
+       ">
+       Sugerir Melhoria
+    </a>
+</div>
+
+</a>
+    <!-- Copyright e Políticas abaixo -->
+  <!--  <p style="margin-top: 30px; font-size: 14px; color: #888;">
+        &copy; 2026 Seu Site. Todos os direitos reservados.
+        <br>
+        <a href="sua-pagina-politicas.html" style="text-decoration: underline; color: #888;">Políticas de Privacidade</a>
+    </p> -->
+
+</footer>
+
+
+    </div>
+
+    <div id="cv-render" class="modelo-moderno print-only">
+        <div class="cv-head"><h1 id="out-nome">NOME</h1><h2 id="out-cargo">CARGO</h2><p id="out-contato">email | tel | cidade</p></div>
+        <div class="cv-body">
+            <div class="cv-sec"><h3>Resumo Profissional</h3><p id="out-resumo"></p></div>
+            <div class="cv-sec"><h3>Experiência Profissional</h3><div id="out-exp" class="pre-wrap"></div></div>
+            <div class="cv-sec"><h3>Educação e Formação</h3><div id="out-edu" class="pre-wrap"></div></div>
+        </div>
+    </div>
+    <script>
+        function copiarPix() {
+            const chave = document.getElementById('chavePix').innerText;
+            navigator.clipboard.writeText(chave).then(() => { alert("Chave PIX copiada! 🙏"); });
+        }
+    </script>
+    <script src="script.js"></script>
+
+<footer style="text-align: center; width: 100%; padding: 20px 0;">
+  <p>
+    &copy; 2026 CV Flash. Todos os direitos reservados.
+    <br> <!-- Isso faz o que vem abaixo descer -->
+    <a href="privacy.html" style="text-decoration: underline;">Políticas de Privacidade</a>
+  </p>
+</footer>
+
+</body>
+                </html>
