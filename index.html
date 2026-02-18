@@ -2,12 +2,9 @@
 <html lang="pt-br">
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7811150237322772" crossorigin="anonymous"></script>
-
     <meta name="google-site-verification" content="HK2BDXPIDVlkbhjXylKVSRBBvqajRkJHAatHOZsiaZQ" />
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 
     <title>CV Flash | Gerador de Currículo Grátis e Rápido em PDF</title>
     <meta name="description" content="Crie seu currículo profissional grátis em minutos. Modelos modernos, download em PDF pronto para imprimir e totalmente seguro.">
@@ -21,16 +18,11 @@
         .pix-container { text-align: center; margin-top: 30px; padding: 20px; background: #f0fff4; border-radius: 10px; border: 2px dashed #28a745; max-width: 800px; margin-left: auto; margin-right: auto; }
         .pix-key { background: #fff; padding: 10px; border: 1px solid #ddd; display: block; margin: 10px 0; font-family: monospace; word-break: break-all; color: #333; }
         .seo-content { max-width: 800px; margin: 40px auto; text-align: left; color: #444; font-family: sans-serif; line-height: 1.6; padding: 0 20px; }
-
-    /* Isso só funciona na hora de gerar o PDF/Imprimir */
-@media print {
-    footer, 
-    .no-print, 
-    #botoes-acao, 
-    a[href*="privacidade"] { 
-        display: none !important; 
-    }
-}
+        
+        /* Ajuste para impressão */
+        @media print {
+            .no-print, .site-footer, .pix-container, .alert-banner { display: none !important; }
+        }
     </style>
 </head>
 <body>
@@ -40,9 +32,11 @@
             <p>Preencha os dados e escolha o estilo do seu novo currículo profissional.</p>
         </header>
 
-        <div class="alert-banner" style="background: #e7f3ff; border-left: 5px solid #007bff; padding: 15px; margin: 10px auto 25px; border-radius: 8px; max-width: 800px; display: flex; align-items: center; gap: 10px; color: #0056b3; font-family: sans-serif; font-size: 14px;">
-            <span style="font-size: 20px;">💡</span>
-            <div><strong>Segurança:</strong> Este gerador utiliza criptografia para proteger suas informações. Seus dados serão excluídos automaticamente após o encerramento da sessão. Revise sempre antes de baixar.</div>
+        <div class="alert-banner" style="background: #e7f3ff; border-left: 5px solid #007bff; padding: 15px; margin: 10px auto 25px; border-radius: 8px; max-width: 800px; display: flex; align-items: center; gap: 15px; color: #0056b3; font-family: sans-serif; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <span style="font-size: 24px;">🛡️</span>
+            <div>
+                <strong>Sua privacidade é prioridade:</strong> Os dados preenchidos aqui permanecem apenas no seu navegador. Não armazenamos informações pessoais em nossos servidores. Ao fechar a página, os dados são limpos.
+            </div>
         </div>
 
         <div class="model-picker">
@@ -87,56 +81,37 @@
             </div>
         </div>
 
-        <footer class="site-footer" style="margin-top: 40px; text-align: center; padding-bottom: 40px; font-family: sans-serif;">
-    
-    <!-- Frase de convite acima do botão -->
-        <p style="margin-bottom: 40px; font-size: 16px; color: #555;">
-         Tem alguma ideia para deixar nosso gerador ainda melhor?
-      <!--  <p><strong>Importante:</strong> Em <strong>'assunto' (no e-mail)</strong> deixe algo como: <strong>Sugestão Melhoria.</strong></p>
+        <footer class="site-footer" style="margin-top: 50px; text-align: center; padding: 40px 20px; font-family: sans-serif; background-color: #f9f9f9; border-top: 1px solid #eee;">
+            <div style="margin-bottom: 30px;">
+                <p style="margin-bottom: 15px; font-size: 16px; color: #444; font-weight: 500;">
+                    💡 Tem alguma ideia para deixar o CV Flash ainda melhor?
+                </p>
+                <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão de Melhoria - CV Flash" 
+                   style="display: inline-block; padding: 12px 28px; font-size: 16px; font-weight: bold; color: #ffffff; background-color: #007bff; border-radius: 50px; text-decoration: none; transition: background 0.3s; box-shadow: 0 4px 12px rgba(0,123,255,0.2);">
+                   Sugerir Melhoria
+                </a>
+            </div>
 
-    </p> -->
-
-    <!-- Botão Sugerir Melhoria -->
-    <div style="margin-top: 30px; margin-bottom: 5px; text-align: center;">
-    <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão para o CV Flash" 
-       style="
-          display: inline-block; 
-          padding: 12px 24px; 
-          font-size: 18px; 
-          font-weight: bold; 
-          color: #ffffff; 
-          background-color: #007bff; 
-          border-radius: 8px; 
-          text-decoration: none; 
-          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-          border: none;
-          cursor: pointer;
-       ">
-       Sugerir Melhoria
-    </a>
-</div>
-
-</a>
-    <!-- Copyright e Políticas abaixo -->
-  <!--  <p style="margin-top: 30px; font-size: 14px; color: #888;">
-        &copy; 2026 Seu Site. Todos os direitos reservados.
-        <br>
-        <a href="sua-pagina-politicas.html" style="text-decoration: underline; color: #888;">Políticas de Privacidade</a>
-    </p> -->
-
-</footer>
-
-
+            <p style="font-size: 14px; color: #888; border-top: 1px solid #ddd; pt-4; padding-top: 20px;">
+                &copy; 2026 <strong>CV Flash</strong>. Todos os direitos reservados.<br>
+                <a href="privacy.html" style="color: #007bff; text-decoration: none; font-weight: bold;">Políticas de Privacidade</a>
+            </p>
+        </footer>
     </div>
 
     <div id="cv-render" class="modelo-moderno print-only">
-        <div class="cv-head"><h1 id="out-nome">NOME</h1><h2 id="out-cargo">CARGO</h2><p id="out-contato">email | tel | cidade</p></div>
+        <div class="cv-head">
+            <h1 id="out-nome">NOME</h1>
+            <h2 id="out-cargo">CARGO</h2>
+            <p id="out-contato">email | tel | cidade</p>
+        </div>
         <div class="cv-body">
             <div class="cv-sec"><h3>Resumo Profissional</h3><p id="out-resumo"></p></div>
             <div class="cv-sec"><h3>Experiência Profissional</h3><div id="out-exp" class="pre-wrap"></div></div>
             <div class="cv-sec"><h3>Educação e Formação</h3><div id="out-edu" class="pre-wrap"></div></div>
         </div>
     </div>
+
     <script>
         function copiarPix() {
             const chave = document.getElementById('chavePix').innerText;
@@ -144,14 +119,5 @@
         }
     </script>
     <script src="script.js"></script>
-
-<footer style="text-align: center; width: 100%; padding: 20px 0;">
-  <p>
-    &copy; 2026 CV Flash. Todos os direitos reservados.
-    <br> <!-- Isso faz o que vem abaixo descer -->
-    <a href="privacy.html" style="text-decoration: underline;">Políticas de Privacidade</a>
-  </p>
-</footer>
-
 </body>
 </html>
