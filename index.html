@@ -30,6 +30,16 @@
         .pix-container { text-align: center; margin-top: 30px; padding: 20px; background: #f0fff4; border-radius: 10px; border: 2px dashed #28a745; max-width: 800px; margin-left: auto; margin-right: auto; }
         .pix-key { background: #fff; padding: 10px; border: 1px solid #ddd; display: block; margin: 10px 0; font-family: monospace; word-break: break-all; color: #333; }
         .seo-content { max-width: 800px; margin: 40px auto; text-align: left; color: #444; font-family: sans-serif; line-height: 1.6; padding: 0 20px; }
+
+    /* Isso só funciona na hora de gerar o PDF/Imprimir */
+@media print {
+    footer, 
+    .no-print, 
+    #botoes-acao, 
+    a[href*="privacidade"] { 
+        display: none !important; 
+    }
+}
     </style>
 </head>
 <body>
