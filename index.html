@@ -8,31 +8,72 @@
 
     <title>CV Flash | Gerador de Currículo Grátis e Rápido em PDF</title>
     <meta name="description" content="Crie seu currículo profissional grátis em minutos. Modelos modernos, download em PDF pronto para imprimir e totalmente seguro.">
-    <meta name="keywords" content="gerador de curriculo, curriculo gratis, fazer cv, curriculo pdf pronto, currículo online rápido">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://adminn008.github.io/gerador-curriculo/">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
-  
-    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* --- ESTILOS GERAIS --- */
+        :root { --primary: #2563eb; --bg: #f8fafc; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: #1e293b; line-height: 1.6; transition: 0.3s; }
+
+        /* MODO NOTURNO */
+        body.dark-theme { background-color: #121212; color: #e2e8f0; }
+        body.dark-theme .container { background: #1e1e1e; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        body.dark-theme input, body.dark-theme textarea { background: #2d2d2d; border-color: #444; color: white; }
+        body.dark-theme .pix-container { background: #1a2e1a; border-color: #2d6a4f; }
+        body.dark-theme .site-footer { background-color: #1a1a1a !important; border-top: 1px solid #333; }
+
+        #dark-mode-toggle { position: fixed; top: 20px; right: 20px; z-index: 1000; padding: 10px; border-radius: 50%; border: none; background: var(--primary); color: white; cursor: pointer; font-size: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+
+        .main-wrapper { padding: 40px 20px; max-width: 900px; margin: 0 auto; }
+        .top-header { text-align: center; margin-bottom: 30px; }
+        .top-header h1 span { color: var(--primary); }
+
+        .container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .form-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; }
+        
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #e2e8f0; border-radius: 8px; outline: none; }
+        textarea { height: 120px; font-family: inherit; }
+
+        .model-picker { text-align: center; margin-bottom: 20px; }
+        .btn-group { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
+        .btn-opt { padding: 10px 20px; border: 1px solid #ddd; background: white; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .btn-opt.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        .main-btn { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 800; cursor: pointer; margin-top: 20px; }
+
+        .pix-container { text-align: center; margin-top: 30px; padding: 20px; background: #f0fff4; border-radius: 10px; border: 2px dashed #28a745; }
+        .pix-key { background: #fff; padding: 10px; border: 1px solid #ddd; display: block; margin: 10px 0; font-family: monospace; word-break: break-all; }
+
+        /* --- IMPRESSÃO --- */
+        .print-only { display: none; }
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white !important; color: black !important; }
+        }
+
+        /* MODELOS CV */
+        .modelo-moderno .cv-head { background: #f1f5f9; padding: 30px; border-left: 10px solid var(--primary); }
+        .modelo-moderno h3 { color: var(--primary); text-transform: uppercase; border-bottom: 1px solid #eee; margin-top: 20px; }
+        .pre-wrap { white-space: pre-wrap; margin-top: 10px; }
+    </style>
 </head>
 <body>
+
     <button id="dark-mode-toggle" class="no-print" onclick="toggleDarkMode()">🌙</button>
 
     <div class="no-print main-wrapper">
         <header class="top-header">
             <h1>CV <span>FLASH</span></h1>
-            <p>Preencha os dados e escolha o estilo do seu novo currículo profissional.</p>
+            <p>Preencha os dados e veja seu currículo pronto na hora.</p>
         </header>
 
-        <div class="alert-banner" style="background: #e7f3ff; border-left: 5px solid #007bff; padding: 15px; margin: 10px auto 25px; border-radius: 8px; max-width: 800px; display: flex; align-items: center; gap: 15px; color: #0056b3; font-family: sans-serif; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <span style="font-size: 24px;">🛡️</span>
-            <div>
-                <strong>Sua privacidade é prioridade:</strong> Os dados preenchidos aqui permanecem apenas no seu navegador. Não armazenamos informações pessoais em nossos servidores. Ao fechar a página, os dados são limpos.
-            </div>
+        <div class="alert-banner" style="background: #e7f3ff; border-left: 5px solid #007bff; padding: 15px; margin-bottom: 25px; border-radius: 8px; color: #0056b3; font-size: 14px;">
+            <strong>🛡️ Segurança:</strong> Seus dados não saem do seu navegador.
         </div>
 
         <div class="model-picker">
-            <p>Escolha o Modelo de Currículo:</p>
+            <p>Escolha o Estilo:</p>
             <div class="btn-group">
                 <button class="btn-opt active" onclick="setModelo('moderno', this)">Moderno</button>
                 <button class="btn-opt" onclick="setModelo('classico', this)">Executivo</button>
@@ -43,67 +84,79 @@
         <div class="container">
             <div class="form-grid">
                 <div class="box">
-                    <h3>Dados de Contato</h3>
+                    <h3>Contato</h3>
                     <input type="text" id="in-nome" placeholder="Nome Completo" oninput="atualizar()">
-                    <input type="text" id="in-cargo" placeholder="Seu Cargo ou Profissão" oninput="atualizar()">
-                    <input type="email" id="in-email" placeholder="E-mail de contato" oninput="atualizar()">
-                    <input type="tel" id="in-tel" placeholder="Telefone / WhatsApp" oninput="atualizar()">
-                    <input type="text" id="in-cidade" placeholder="Cidade e Estado" oninput="atualizar()">
+                    <input type="text" id="in-cargo" placeholder="Cargo" oninput="atualizar()">
+                    <input type="email" id="in-email" placeholder="E-mail" oninput="atualizar()">
+                    <input type="tel" id="in-tel" placeholder="Telefone" oninput="atualizar()">
+                    <input type="text" id="in-cidade" placeholder="Cidade/Estado" oninput="atualizar()">
                 </div>
                 <div class="box">
-                    <h3>Experiência e Resumo</h3>
-                    <textarea id="in-resumo" placeholder="Resumo Profissional..." oninput="atualizar()"></textarea>
-                    <textarea id="in-exp" placeholder="Experiências Profissionais..." oninput="atualizar()"></textarea>
-                    <textarea id="in-edu" placeholder="Formação Acadêmica..." oninput="atualizar()"></textarea>
+                    <h3>Conteúdo</h3>
+                    <textarea id="in-resumo" placeholder="Resumo..." oninput="atualizar()"></textarea>
+                    <textarea id="in-exp" placeholder="Experiência..." oninput="atualizar()"></textarea>
+                    <textarea id="in-edu" placeholder="Educação..." oninput="atualizar()"></textarea>
                 </div>
             </div>
             
             <button class="main-btn" onclick="gerar()">GERAR E SALVAR EM PDF</button>
 
-            <article class="seo-content">
-                <h2 style="color: #222;">Como criar um currículo profissional de sucesso</h2>
-                <p>Use este <strong>gerador de currículo online</strong> para facilitar o processo, criando um documento profissional em poucos minutos.</p>
-            </article>
-
             <div class="pix-container">
-                <p style="margin-bottom: 5px; color: #2d6a4f; font-family: sans-serif; font-weight: bold;">🚀 Gostou da ferramenta?</p>
-                <p style="font-size: 13px; color: #555; font-family: sans-serif;">Ajude a manter o projeto com qualquer valor via PIX.</p>
+                <p>🚀 Ajude o projeto via PIX:</p>
                 <span class="pix-key" id="chavePix">0df8fcd3-dffc-4265-8464-5a60badef88c</span>
-                <button onclick="copiarPix()" style="background: #28a745; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; max-width: 250px;">COPIAR CHAVE PIX</button>
+                <button onclick="copiarPix()" style="background: #28a745; color: white; border: none; padding: 8px; border-radius: 5px; cursor: pointer;">COPIAR CHAVE</button>
             </div>
         </div>
 
-        <footer class="site-footer" style="margin-top: 50px; text-align: center; padding: 40px 20px; font-family: sans-serif; background-color: #f9f9f9; border-top: 1px solid #eee;">
-            <div style="margin-bottom: 30px;">
-                <p style="margin-bottom: 15px; font-size: 16px; color: #444; font-weight: 500;">
-                    💡 Tem alguma ideia para deixar o CV Flash ainda melhor?
-                </p>
-                <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão de Melhoria - CV Flash" 
-                   style="display: inline-block; padding: 12px 28px; font-size: 16px; font-weight: bold; color: #ffffff; background-color: #007bff; border-radius: 50px; text-decoration: none; transition: background 0.3s; box-shadow: 0 4px 12px rgba(0,123,255,0.2);">
-                   Sugerir Melhoria
-                </a>
-            </div>
-
-            <p style="font-size: 14px; color: #888; border-top: 1px solid #ddd; padding-top: 20px;">
-                &copy; 2026 <strong>CV Flash</strong>. Todos os direitos reservados.<br>
-                <a href="privacy.html" style="color: #007bff; text-decoration: none; font-weight: bold;">Políticas de Privacidade</a>
-            </p>
+        <footer class="site-footer" style="margin-top: 50px; text-align: center; padding: 20px; border-top: 1px solid #eee;">
+            <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão" style="color: var(--primary); font-weight: bold; text-decoration: none;">Sugerir Melhoria</a>
+            <p style="font-size: 12px; color: #888; margin-top: 10px;">&copy; 2026 CV Flash | <a href="privacy.html">Privacidade</a></p>
         </footer>
     </div>
 
-    <div id="cv-render" class="modelo-moderno print-only">
+    <div id="cv-render" class="modelo-moderno print-only" style="padding: 40px; background: white;">
         <div class="cv-head">
-            <h1 id="out-nome">NOME</h1>
-            <h2 id="out-cargo">CARGO</h2>
-            <p id="out-contato">email | tel | cidade</p>
+            <h1 id="out-nome" style="font-size: 28px;">NOME</h1>
+            <h2 id="out-cargo" style="font-size: 18px; color: #666;">CARGO</h2>
+            <p id="out-contato" style="margin-top: 10px; font-size: 14px;"></p>
         </div>
         <div class="cv-body">
-            <div class="cv-sec"><h3>Resumo Profissional</h3><p id="out-resumo"></p></div>
-            <div class="cv-sec"><h3>Experiência Profissional</h3><div id="out-exp" class="pre-wrap"></div></div>
-            <div class="cv-sec"><h3>Educação e Formação</h3><div id="out-edu" class="pre-wrap"></div></div>
+            <div class="cv-sec"><h3>Resumo</h3><p id="out-resumo" class="pre-wrap"></p></div>
+            <div class="cv-sec"><h3>Experiência</h3><div id="out-exp" class="pre-wrap"></div></div>
+            <div class="cv-sec"><h3>Educação</h3><div id="out-edu" class="pre-wrap"></div></div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-theme');
+            document.getElementById('dark-mode-toggle').innerText = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+        }
+
+        function atualizar() {
+            document.getElementById('out-nome').innerText = document.getElementById('in-nome').value || "NOME";
+            document.getElementById('out-cargo').innerText = document.getElementById('in-cargo').value || "CARGO";
+            document.getElementById('out-contato').innerText = `${document.getElementById('in-email').value} | ${document.getElementById('in-tel').value} | ${document.getElementById('in-cidade').value}`;
+            document.getElementById('out-resumo').innerText = document.getElementById('in-resumo').value;
+            document.getElementById('out-exp').innerText = document.getElementById('in-exp').value;
+            document.getElementById('out-edu').innerText = document.getElementById('in-edu').value;
+        }
+
+        function setModelo(tipo, btn) {
+            document.querySelectorAll('.btn-opt').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('cv-render').className = 'modelo-' + tipo + ' print-only';
+        }
+
+        function gerar() {
+            if(!document.getElementById('in-nome').value) { alert("Digite seu nome!"); return; }
+            window.print();
+        }
+
+        function copiarPix() {
+            navigator.clipboard.writeText(document.getElementById('chavePix').innerText);
+            alert("PIX copiado!");
+        }
+    </script>
 </body>
 </html>
