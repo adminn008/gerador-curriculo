@@ -1,43 +1,67 @@
 let modeloSelecionado = 'modelo-moderno';
 
 function setModelo(tipo, btn) {
-    document.querySelectorAll('.btn-opt').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    modeloSelecionado = 'modelo-' + tipo;
-    document.getElementById('cv-render').className = modeloSelecionado + ' print-only';
+    const render = document.getElementById('cv-render');
+    if (render) {
+        document.querySelectorAll('.btn-opt').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        modeloSelecionado = 'modelo-' + tipo;
+        render.className = modeloSelecionado + ' print-only';
+    }
 }
 
 function atualizar() {
-    const nome = document.getElementById('in-nome').value;
-    const cargo = document.getElementById('in-cargo').value;
-    const email = document.getElementById('in-email').value;
-    const tel = document.getElementById('in-tel').value;
-    const cidade = document.getElementById('in-cidade').value;
-    const resumo = document.getElementById('in-resumo').value;
-    const exp = document.getElementById('in-exp').value;
-    const edu = document.getElementById('in-edu').value;
+    // Função auxiliar para evitar erros de "null"
+    const preencher = (idIn, idOut, fallback = "") => {
+        const input = document.getElementById(idIn);
+        const output = document.getElementById(idOut);
+        if (input && output) {
+            output.innerText = input.value || fallback;
+        }
+    };
 
-    document.getElementById('out-nome').innerText = nome || "NOME";
-    document.getElementById('out-cargo').innerText = cargo || "CARGO";
-    document.getElementById('out-contato').innerText = `${email} | ${tel} | ${cidade}`;
-    document.getElementById('out-resumo').innerText = resumo;
-    document.getElementById('out-exp').innerText = exp;
-    document.getElementById('out-edu').innerText = edu;
+    preencher('in-nome', 'out-nome', "NOME");
+    preencher('in-cargo', 'out-cargo', "CARGO");
+    preencher('in-resumo', 'out-resumo');
+    preencher('in-exp', 'out-exp');
+    preencher('in-edu', 'out-edu');
+
+    // Atualização especial para a linha de contacto
+    const email = document.getElementById('in-email')?.value || "";
+    const tel = document.getElementById('in-tel')?.value || "";
+    const cidade = document.getElementById('in-cidade')?.value || "";
+    const outContato = document.getElementById('out-contato');
+    
+    if (outContato) {
+        outContato.innerText = [email, tel, cidade].filter(Boolean).join(' | ');
+    }
 }
 
 function gerar() {
-    if(!document.getElementById('in-nome').value) { alert("Por favor, digite seu nome."); return; }
+    const nomeInput = document.getElementById('in-nome');
+    if (nomeInput && !nomeInput.value) {
+        alert("Por favor, digite o seu nome.");
+        return;
+    }
     atualizar();
     window.print();
 }
 
 function copiarPix() {
-    const chave = document.getElementById('chavePix').innerText;
-    navigator.clipboard.writeText(chave).then(() => { alert("Chave PIX copiada! 🙏"); });
+    const chave = document.getElementById('chavePix')?.innerText;
+    if (chave) {
+        navigator.clipboard.writeText(chave).then(() => {
+            alert("Chave PIX copiada! 🙏");
+        }).catch(() => {
+            alert("Erro ao copiar. Tente selecionar o texto.");
+        });
+    }
 }
 
 function toggleDarkMode() {
     document.body.classList.toggle('dark-theme');
     const btn = document.getElementById('dark-mode-toggle');
-    btn.innerText = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+    if (btn) {
+        btn.innerText = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+    }
 }
