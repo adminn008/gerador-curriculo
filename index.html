@@ -14,18 +14,10 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
   
     <link rel="stylesheet" href="style.css">
-    <style>
-        .pix-container { text-align: center; margin-top: 30px; padding: 20px; background: #f0fff4; border-radius: 10px; border: 2px dashed #28a745; max-width: 800px; margin-left: auto; margin-right: auto; }
-        .pix-key { background: #fff; padding: 10px; border: 1px solid #ddd; display: block; margin: 10px 0; font-family: monospace; word-break: break-all; color: #333; }
-        .seo-content { max-width: 800px; margin: 40px auto; text-align: left; color: #444; font-family: sans-serif; line-height: 1.6; padding: 0 20px; }
-        
-        /* Ajuste para impressão */
-        @media print {
-            .no-print, .site-footer, .pix-container, .alert-banner { display: none !important; }
-        }
-    </style>
 </head>
 <body>
+    <button id="dark-mode-toggle" class="no-print" onclick="toggleDarkMode()">🌙</button>
+
     <div class="no-print main-wrapper">
         <header class="top-header">
             <h1>CV <span>FLASH</span></h1>
@@ -52,17 +44,17 @@
             <div class="form-grid">
                 <div class="box">
                     <h3>Dados de Contato</h3>
-                    <input type="text" id="in-nome" placeholder="Nome Completo">
-                    <input type="text" id="in-cargo" placeholder="Seu Cargo ou Profissão">
-                    <input type="email" id="in-email" placeholder="E-mail de contato">
-                    <input type="tel" id="in-tel" placeholder="Telefone / WhatsApp">
-                    <input type="text" id="in-cidade" placeholder="Cidade e Estado">
+                    <input type="text" id="in-nome" placeholder="Nome Completo" oninput="atualizar()">
+                    <input type="text" id="in-cargo" placeholder="Seu Cargo ou Profissão" oninput="atualizar()">
+                    <input type="email" id="in-email" placeholder="E-mail de contato" oninput="atualizar()">
+                    <input type="tel" id="in-tel" placeholder="Telefone / WhatsApp" oninput="atualizar()">
+                    <input type="text" id="in-cidade" placeholder="Cidade e Estado" oninput="atualizar()">
                 </div>
                 <div class="box">
                     <h3>Experiência e Resumo</h3>
-                    <textarea id="in-resumo" placeholder="Resumo Profissional..."></textarea>
-                    <textarea id="in-exp" placeholder="Experiências Profissionais..."></textarea>
-                    <textarea id="in-edu" placeholder="Formação Acadêmica..."></textarea>
+                    <textarea id="in-resumo" placeholder="Resumo Profissional..." oninput="atualizar()"></textarea>
+                    <textarea id="in-exp" placeholder="Experiências Profissionais..." oninput="atualizar()"></textarea>
+                    <textarea id="in-edu" placeholder="Formação Acadêmica..." oninput="atualizar()"></textarea>
                 </div>
             </div>
             
@@ -92,7 +84,7 @@
                 </a>
             </div>
 
-            <p style="font-size: 14px; color: #888; border-top: 1px solid #ddd; pt-4; padding-top: 20px;">
+            <p style="font-size: 14px; color: #888; border-top: 1px solid #ddd; padding-top: 20px;">
                 &copy; 2026 <strong>CV Flash</strong>. Todos os direitos reservados.<br>
                 <a href="privacy.html" style="color: #007bff; text-decoration: none; font-weight: bold;">Políticas de Privacidade</a>
             </p>
@@ -112,12 +104,6 @@
         </div>
     </div>
 
-    <script>
-        function copiarPix() {
-            const chave = document.getElementById('chavePix').innerText;
-            navigator.clipboard.writeText(chave).then(() => { alert("Chave PIX copiada! 🙏"); });
-        }
-    </script>
     <script src="script.js"></script>
 </body>
 </html>
