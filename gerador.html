@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Currículo | CV Flash</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button id="dark-mode-toggle" class="no-print" onclick="toggleDarkMode()">🌙</button>
+
+    <div class="no-print main-wrapper">
+        <header class="top-header">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <a href="index.html" style="text-decoration: none; font-weight: bold; color: #2563eb;">⬅ Voltar ao Início</a>
+                <h2 style="margin: 0;">CV <span class="highlight-blue">FLASH</span></h2>
+            </div>
+            <p>Preencha os campos abaixo para gerar seu PDF.</p>
+        </header>
+
+        <div class="meta-container">
+            <p>🚀 Meta Manutenção (v.2.0.0): <strong>R$ 0,00 / R$ 50,00</strong></p>
+            <div class="meta-bar-bg"><div class="meta-bar-fill" style="width: 5%;"></div></div>
+        </div>
+
+        <div class="model-picker">
+            <p>Escolha o Modelo:</p>
+            <div class="btn-group">
+                <button class="btn-opt active" onclick="setModelo('moderno', this)">Moderno</button>
+                <button class="btn-opt" onclick="setModelo('classico', this)">Executivo</button>
+                <button class="btn-opt" onclick="setModelo('limpo', this)">Mínimo</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="form-grid">
+                <div class="box" style="text-align: left;">
+                    <h3>Dados de Contato</h3>
+                    <div class="input-group">
+                        <label>Nome Completo <span class="required">*</span></label>
+                        <input type="text" id="in-nome" placeholder="Seu nome" oninput="atualizar()">
+                    </div>
+                    <div class="input-group">
+                        <label>Nascimento <span class="required">*</span></label>
+                        <div class="date-row">
+                            <input type="number" id="dia-nasc" placeholder="Dia" oninput="atualizar()">
+                            <input type="number" id="mes-nasc" placeholder="Mês" oninput="atualizar()">
+                            <input type="number" id="ano-nasc" placeholder="Ano" oninput="atualizar()">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Cargo Desejado <span class="required">*</span></label>
+                        <input type="text" id="in-cargo" placeholder="Ex: Vendedor" oninput="atualizar()">
+                    </div>
+                    <div class="input-group">
+                        <label>E-mail <span class="required">*</span></label>
+                        <input type="email" id="in-email" placeholder="email@email.com" oninput="atualizar()">
+                    </div>
+                    <div class="input-group">
+                        <label>WhatsApp / Tel <span class="required">*</span></label>
+                        <input type="tel" id="in-tel" placeholder="(00) 00000-0000" oninput="formatarTel(this)">
+                    </div>
+                    <div class="input-group">
+                        <label>Cidade e Estado <span class="required">*</span></label>
+                        <input type="text" id="in-cidade" placeholder="Cidade - UF" oninput="atualizar()">
+                    </div>
+                </div>
+
+                <div class="box" style="text-align: left;">
+                    <h3>Experiência e Resumo</h3>
+                    <div class="input-group">
+                        <div style="display: flex; justify-content: space-between;">
+                            <label>Resumo Profissional <span class="required">*</span></label>
+                            <button onclick="sugerirResumo()" class="btn-sugerir" style="background:none; border:none; color:#2563eb; cursor:pointer; font-weight:bold;">💡 Sugerir</button>
+                        </div>
+                        <textarea id="in-resumo" placeholder="Conte sobre você..." oninput="atualizar()" rows="4"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Experiências Profissionais</label>
+                        <textarea id="in-exp" placeholder="Empresas e cargos..." oninput="atualizar()" rows="5"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <label>Formação Acadêmica</label>
+                        <textarea id="in-edu" placeholder="Cursos e escolas..." oninput="atualizar()" rows="4"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="main-btn-lg" style="width: 100%; margin-top: 20px;" onclick="gerar()">GERAR E SALVAR EM PDF</button>
+
+            <div class="pix-card" style="margin-top: 30px; border: 2px dashed #28a745; padding: 20px; border-radius: 15px;">
+                <p>🚀 Ajude o CV Flash a continuar gratuito!</p>
+                <span id="chavePix" style="display:block; margin: 10px 0; font-family: monospace; font-size: 12px;">0df8fcd3-dffc-4265-8464-5a60badef88c</span>
+                <button onclick="copiarPix()" style="background:#28a745; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:bold;">COPIAR PIX</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cv-render" class="modelo-moderno print-only">
+        <div class="cv-head">
+            <h1 id="out-nome">NOME</h1>
+            <h2 id="out-cargo">CARGO</h2>
+            <p id="out-contato">contato</p>
+        </div>
+        <div class="cv-body">
+            <div class="cv-sec"><h3>Resumo Profissional</h3><p id="out-resumo"></p></div>
+            <div class="cv-sec"><h3>Experiência Profissional</h3><div id="out-exp" class="pre-wrap"></div></div>
+            <div class="cv-sec"><h3>Educação e Formação</h3><div id="out-edu" class="pre-wrap"></div></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
