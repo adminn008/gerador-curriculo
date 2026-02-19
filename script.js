@@ -10,11 +10,14 @@ function formatarTel(input) {
 
 function atualizar() {
     const v = (id) => document.getElementById(id).value;
-    document.getElementById('out-nome').innerText = v('in-nome') || "";
-    document.getElementById('out-cargo').innerText = v('in-cargo') || "";
+    // Preenche o currículo invisível para o PDF
+    document.getElementById('out-nome').innerText = v('in-nome').toUpperCase() || "NOME COMPLETO";
+    document.getElementById('out-cargo').innerText = v('in-cargo').toUpperCase() || "CARGO";
+    
     const nasc = (v('dia-nasc') && v('mes-nasc') && v('ano-nasc')) ? `${v('dia-nasc')}/${v('mes-nasc')}/${v('ano-nasc')}` : "";
     const info = [nasc, v('in-civil'), v('in-email'), v('in-tel'), v('in-cidade')].filter(Boolean);
     document.getElementById('out-contato').innerText = info.join(' | ');
+    
     document.getElementById('out-resumo').innerText = v('in-resumo');
     document.getElementById('out-exp').innerText = v('in-exp');
     document.getElementById('out-edu').innerText = v('in-edu');
@@ -27,8 +30,8 @@ function setModelo(tipo, btn) {
 }
 
 function gerar() {
-    atualizar();
-    window.print();
+    atualizar(); // Garante que os dados vão pro PDF antes de abrir a janela
+    setTimeout(() => { window.print(); }, 500); // Dá um tempo pro navegador processar
 }
 
 function toggleDarkMode() {
@@ -37,6 +40,6 @@ function toggleDarkMode() {
 
 function sugerirResumo() {
     const cargo = document.getElementById('in-cargo').value || "profissional";
-    document.getElementById('in-resumo').value = `Profissional focado na área de ${cargo}, com grande capacidade de aprendizado e comprometimento com resultados.`;
+    document.getElementById('in-resumo').value = `Sou um ${cargo} dedicado, com foco em resultados e excelente trabalho em equipe.`;
     atualizar();
 }
