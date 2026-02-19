@@ -9,6 +9,19 @@
     --toggle-bg: #e2e8f0;
 }
 
+.site-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 20px 0;
+    width: 100%;
+    display: block;
+    color: var(--text);
+}
+.site-title span { color: var(--primary); }
+
+
 /* TEMA DARK (PADRÃO) */
 body.dark-theme {
     --bg: #0f172a;
