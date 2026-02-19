@@ -1,40 +1,34 @@
-// 1. Atualizar em tempo real
 function atualizar() {
-    const nome = document.getElementById('in-nome').value || "NOME";
-    const cargo = document.getElementById('in-cargo').value || "CARGO";
-    const email = document.getElementById('in-email').value || "";
-    const tel = document.getElementById('in-tel').value || "";
-    const cidade = document.getElementById('in-cidade').value || "";
-
-    document.getElementById('out-nome').innerText = nome;
-    document.getElementById('out-cargo').innerText = cargo;
-    document.getElementById('out-contato').innerText = `${email} | ${tel} | ${cidade}`;
+    document.getElementById('out-nome').innerText = document.getElementById('in-nome').value || "NOME";
+    document.getElementById('out-cargo').innerText = document.getElementById('in-cargo').value || "CARGO";
     
+    const email = document.getElementById('in-email').value;
+    const tel = document.getElementById('in-tel').value;
+    const cidade = document.getElementById('in-cidade').value;
+    document.getElementById('out-contato').innerText = [email, tel, cidade].filter(Boolean).join(' | ');
+
     document.getElementById('out-resumo').innerText = document.getElementById('in-resumo').value;
     document.getElementById('out-exp').innerText = document.getElementById('in-exp').value;
     document.getElementById('out-edu').innerText = document.getElementById('in-edu').value;
 }
 
-// 12. Sugestões de texto
 function sugerirTexto() {
     const frases = [
-        "Profissional focado em resultados com vasta experiência na área.",
-        "Busco novos desafios onde possa aplicar minhas habilidades técnicas.",
-        "Destaque em trabalho em equipe e resolução de problemas complexos.",
-        "Especialista em atendimento e gestão de processos otimizados.",
-        "Comprometido com a evolução constante e entrega de alta performance."
+        "Profissional dedicado com foco em resultados e otimização de processos.",
+        "Busco oportunidade para aplicar meus conhecimentos técnicos e evoluir.",
+        "Experiência em liderança de equipes e gestão de prazos.",
+        "Especialista em atendimento com foco total na satisfação do cliente.",
+        "Habilidade em resolução de problemas e excelente comunicação."
     ];
+    // Agora ele apaga o anterior e coloca o novo
     const sorteio = frases[Math.floor(Math.random() * frases.length)];
-    const resumo = document.getElementById('in-resumo');
-    resumo.value += (resumo.value ? " " : "") + sorteio;
+    document.getElementById('in-resumo').value = sorteio;
     atualizar();
 }
 
-// 11. Modo Dark
 function toggleDarkMode() {
     document.body.classList.toggle('dark-theme');
-    const btn = document.getElementById('dark-mode-toggle');
-    btn.innerText = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
+    document.getElementById('dark-mode-toggle').innerText = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
 }
 
 function setModelo(tipo, btn) {
@@ -44,15 +38,11 @@ function setModelo(tipo, btn) {
 }
 
 function gerar() {
-    if(!document.getElementById('in-nome').value) {
-        alert("Digite seu nome para gerar o PDF.");
-        return;
-    }
-    atualizar();
+    if(!document.getElementById('in-nome').value) { alert("Preencha o nome!"); return; }
     window.print();
 }
 
 function copiarPix() {
-    const chave = document.getElementById('chavePix').innerText;
-    navigator.clipboard.writeText(chave).then(() => alert("PIX Copiado! 🙏"));
+    navigator.clipboard.writeText(document.getElementById('chavePix').innerText);
+    alert("PIX Copiado! 🙏");
 }
