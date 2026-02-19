@@ -1,9 +1,20 @@
-function iniciarGerador() {
-    document.getElementById('home-section').style.display = 'none';
-    document.getElementById('gerador-section').style.display = 'block';
+// Navegação entre "Páginas"
+function navegar(pagina) {
+    if (pagina === 'gerador') {
+        document.getElementById('home-page').style.display = 'none';
+        document.getElementById('gerador-page').style.display = 'block';
+    } else {
+        document.getElementById('home-page').style.display = 'block';
+        document.getElementById('gerador-page').style.display = 'none';
+    }
     window.scrollTo(0, 0);
 }
 
+// Modal de Termos
+function abrirTermos() { document.getElementById('termos-modal').style.display = 'flex'; }
+function fecharTermos() { document.getElementById('termos-modal').style.display = 'none'; }
+
+// Máscara de Telefone
 function formatarTel(input) {
     let v = input.value.replace(/\D/g, "");
     if (v.length > 11) v = v.slice(0, 11);
@@ -15,12 +26,7 @@ function formatarTel(input) {
     atualizar();
 }
 
-function setModelo(tipo, btn) {
-    document.querySelectorAll('.btn-opt').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('cv-render').className = 'modelo-' + tipo + ' print-only';
-}
-
+// Atualização do CV
 function atualizar() {
     const v = (id) => document.getElementById(id).value;
     document.getElementById('out-nome').innerText = v('in-nome') || "NOME COMPLETO";
@@ -33,21 +39,18 @@ function atualizar() {
     document.getElementById('out-edu').innerText = v('in-edu');
 }
 
-function gerar() {
-    atualizar();
-    window.print();
+function setModelo(tipo, btn) {
+    document.querySelectorAll('.btn-opt').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('cv-render').className = 'modelo-' + tipo + ' print-only';
 }
 
 function sugerirResumo() {
     const cargo = document.getElementById('in-cargo').value || "profissional";
-    document.getElementById('in-resumo').value = `Sou um ${cargo} dedicado, focado em resultados e com facilidade para trabalhar em equipe.`;
+    document.getElementById('in-resumo').value = `Sou um ${cargo} focado em resultados, com facilidade de aprendizado e ótima comunicação.`;
     atualizar();
 }
 
-function copiarPix() {
-    navigator.clipboard.writeText(document.getElementById('chavePix').innerText).then(() => alert("PIX Copiado! 🙏"));
-}
-
-function toggleDarkMode() {
-    document.body.classList.toggle('dark-theme');
-}
+function gerar() { atualizar(); window.print(); }
+function copiarPix() { navigator.clipboard.writeText(document.getElementById('chavePix').innerText).then(() => alert("PIX Copiado! 🙏")); }
+function toggleDarkMode() { document.body.classList.toggle('dark-theme'); }
