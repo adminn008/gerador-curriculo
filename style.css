@@ -59,7 +59,7 @@ background:#020617;
 color:white;
 }
 
-input.error,textarea.error{
+input.error,textarea.error,select.error{
 border:2px solid var(--danger);
 }
 
@@ -84,12 +84,17 @@ background:linear-gradient(90deg,#3b82f6,#22c55e);
 transition:.4s;
 }
 
+.status-ok{color:var(--success);font-weight:600}
+.status-warn{color:var(--danger);font-weight:600}
+
 .sugestoes button{
 margin:4px;
 padding:6px 10px;
 border-radius:6px;
 border:none;
 cursor:pointer;
+background:#334155;
+color:white;
 }
 
 footer{
@@ -98,4 +103,14 @@ padding:20px;
 text-align:center;
 border-top:1px solid var(--border);
 color:var(--muted);
+}
+
+footer a{color:var(--primary);text-decoration:none}
+
+.print-area{display:none}
+
+@media print{
+body *{visibility:hidden}
+.print-area, .print-area *{visibility:visible}
+.print-area{display:block;position:absolute;left:0;top:0;width:100%}
 }
