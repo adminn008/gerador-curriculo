@@ -1,92 +1,74 @@
-function atualizar() {
-    const preencher = (idIn, idOut, fallback = "") => {
-        const input = document.getElementById(idIn);
-        const output = document.getElementById(idOut);
-        if (input && output) output.innerText = input.value || fallback;
-    };
+// CORREÇÃO: Função de trocar modelos agora funciona
+function setModelo(tipo, btn) {
+    const render = document.getElementById('cv-render');
+    // Remove classe ativa dos botões
+    document.querySelectorAll('.btn-opt').forEach(b => b.classList.remove('active'));
+    // Adiciona ao clicado
+    btn.classList.add('active');
+    // Muda a classe do currículo (modelo-moderno, modelo-classico, etc)
+    render.className = 'modelo-' + tipo + ' print-only';
+    atualizar();
+}
 
-    preencher('in-nome', 'out-nome', "NOME COMPLETO");
-    preencher('in-cargo', 'out-cargo', "CARGO DESEJADO");
-    preencher('in-resumo', 'out-resumo');
-    preencher('in-exp', 'out-exp');
-    preencher('in-edu', 'out-edu');
+function atualizar() {
+    const p = (inId, outId) => {
+        const i = document.getElementById(inId);
+        const o = document.getElementById(outId);
+        if(i && o) o.innerText = i.value;
+    };
+    p('in-nome', 'out-nome');
+    p('in-cargo', 'out-cargo');
+    p('in-resumo', 'out-resumo');
+    p('in-exp', 'out-exp');
+    p('in-edu', 'out-edu');
 
     const dia = document.getElementById('dia-nasc').value;
     const mes = document.getElementById('mes-nasc').value;
     const ano = document.getElementById('ano-nasc').value;
-    const nascimento = (dia && mes && ano) ? `${dia}/${mes}/${ano}` : "";
-
-    const email = document.getElementById('in-email').value;
-    const tel = document.getElementById('in-tel').value;
-    const cidade = document.getElementById('in-cidade').value;
-    const civil = document.getElementById('in-civil').value;
-    const linkedin = document.getElementById('in-linkedin').value;
-    const extra = document.getElementById('in-extra-info').value;
-
-    const outContato = document.getElementById('out-contato');
-    if (outContato) {
-        const partes = [nascimento, civil, email, tel, cidade, linkedin, extra].filter(Boolean);
-        outContato.innerText = partes.join(' | ');
-    }
+    const nasc = (dia && mes && ano) ? `${dia}/${mes}/${ano}` : "";
+    
+    const partes = [nasc, document.getElementById('in-civil').value, document.getElementById('in-email').value, document.getElementById('in-tel').value, document.getElementById('in-cidade').value, document.getElementById('in-linkedin').value, document.getElementById('in-extra-info').value].filter(Boolean);
+    document.getElementById('out-contato').innerText = partes.join(' | ');
 }
 
 function gerar() {
-    const obrigatorios = ['in-nome', 'in-cargo', 'in-email', 'in-tel', 'in-cidade', 'dia-nasc', 'mes-nasc', 'ano-nasc', 'in-resumo'];
-    let faltantes = false;
-
-    obrigatorios.forEach(id => {
-        const el = document.getElementById(id);
-        if (!el.value) {
-            el.style.borderColor = "red";
-            faltantes = true;
-        } else {
-            el.style.borderColor = "#e2e8f0";
-        }
-    });
-
-    if (faltantes) {
-        alert("⚠️ Por favor, preencha todos os campos obrigatórios (*)");
-        return;
-    }
-
+    if(!document.getElementById('in-nome').value) return alert("Digite seu nome!");
     atualizar();
     window.print();
-}
-
-function sugerirResumo() {
-    const cargo = document.getElementById('in-cargo').value || "profissional";
-    const frases = [
-        `Sou um ${cargo} dedicado, focado em resultados e com facilidade para trabalhar em equipe.`,
-        `Procuro oportunidade como ${cargo} para aplicar minhas habilidades e crescer profissionalmente.`,
-        `Profissional com experiência em ${cargo}, organizado e comprometido com a qualidade.`
-    ];
-    document.getElementById('in-resumo').value = frases[Math.floor(Math.random() * frases.length)];
-    atualizar();
 }
 
 function baixarImagemReal() {
     atualizar();
     const cv = document.getElementById('cv-render');
-    cv.classList.remove('print-only');
-    html2canvas(cv, { scale: 2 }).then(canvas => {
+    
+    // Deixa visível mas fora da tela para capturar
+    cv.style.display = "block";
+    cv.style.position = "absolute";
+    cv.style.left = "-9999px";
+    
+    html2canvas(cv, { 
+        scale: 2,
+        backgroundColor: "#ffffff", // Garante fundo branco
+        logging: false,
+        useCORS: true 
+    }).then(canvas => {
         const link = document.createElement('a');
-        link.download = 'meu-curriculo.png';
-        link.href = canvas.toDataURL();
+        link.download = 'meu-curriculo-flash.png';
+        link.href = canvas.toDataURL("image/png");
         link.click();
-        cv.classList.add('print-only');
+        
+        // Esconde de novo
+        cv.style.display = "none";
+        cv.style.position = "static";
     });
+}
+
+function sugerirResumo() {
+    const c = document.getElementById('in-cargo').value || "profissional";
+    document.getElementById('in-resumo').value = `Sou um ${c} dedicado, buscando contribuir para o sucesso da empresa com foco e organização.`;
+    atualizar();
 }
 
 function copiarPix() {
     navigator.clipboard.writeText(document.getElementById('chavePix').innerText).then(() => alert("Copiado! 🙏"));
-}
-
-function toggleDarkMode() {
-    document.body.classList.toggle('dark-theme');
-}
-
-function setModelo(tipo, btn) {
-    document.querySelectorAll('.btn-opt').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('cv-render').className = 'modelo-' + tipo + ' print-only';
 }
