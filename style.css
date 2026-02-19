@@ -1,56 +1,43 @@
-// Navegação entre "Páginas"
-function navegar(pagina) {
-    if (pagina === 'gerador') {
-        document.getElementById('home-page').style.display = 'none';
-        document.getElementById('gerador-page').style.display = 'block';
-    } else {
-        document.getElementById('home-page').style.display = 'block';
-        document.getElementById('gerador-page').style.display = 'none';
-    }
-    window.scrollTo(0, 0);
-}
+:root { --primary: #2563eb; --success: #10b981; --bg: #f8fafc; --text: #1e293b; --card: #ffffff; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); transition: 0.3s; }
+body.dark-theme { --bg: #0f172a; --text: #f1f5f9; --card: #1e293b; }
 
-// Modal de Termos
-function abrirTermos() { document.getElementById('termos-modal').style.display = 'flex'; }
-function fecharTermos() { document.getElementById('termos-modal').style.display = 'none'; }
+.main-wrapper { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
 
-// Máscara de Telefone
-function formatarTel(input) {
-    let v = input.value.replace(/\D/g, "");
-    if (v.length > 11) v = v.slice(0, 11);
-    if (v.length >= 11) v = v.replace(/^(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
-    else if (v.length >= 7) v = v.replace(/^(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
-    else if (v.length >= 3) v = v.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
-    else if (v.length > 0) v = v.replace(/^(\d*)/, "($1");
-    input.value = v;
-    atualizar();
-}
+/* BOTÃO DARK MODE */
+#dark-mode-toggle { position: fixed; top: 20px; right: 20px; width: 45px; height: 45px; border-radius: 50%; border: none; background: var(--primary); color: white; cursor: pointer; z-index: 1000; }
 
-// Atualização do CV
-function atualizar() {
-    const v = (id) => document.getElementById(id).value;
-    document.getElementById('out-nome').innerText = v('in-nome') || "NOME COMPLETO";
-    document.getElementById('out-cargo').innerText = v('in-cargo') || "CARGO";
-    const nasc = (v('dia-nasc') && v('mes-nasc') && v('ano-nasc')) ? `${v('dia-nasc')}/${v('mes-nasc')}/${v('ano-nasc')}` : "";
-    const info = [nasc, v('in-civil'), v('in-email'), v('in-tel'), v('in-cidade')].filter(Boolean);
-    document.getElementById('out-contato').innerText = info.join(' | ');
-    document.getElementById('out-resumo').innerText = v('in-resumo');
-    document.getElementById('out-exp').innerText = v('in-exp');
-    document.getElementById('out-edu').innerText = v('in-edu');
-}
+/* ESTILO DA LANDING PAGE (HOME) */
+.hero { text-align: center; padding: 60px 0; }
+.highlight-blue { color: var(--primary); font-weight: 800; }
+.hero h1 { font-size: 3rem; margin-bottom: 10px; }
+.hero-features { display: flex; justify-content: center; gap: 20px; margin: 20px 0; font-weight: 600; color: var(--success); }
 
-function setModelo(tipo, btn) {
-    document.querySelectorAll('.btn-opt').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('cv-render').className = 'modelo-' + tipo + ' print-only';
-}
+/* BALÕES / CARDS */
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
+.feature-card { background: var(--card); padding: 25px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: left; border: 1px solid rgba(0,0,0,0.05); }
+.feature-card h4 { color: var(--primary); margin-bottom: 10px; }
+.feature-card p { font-size: 14px; color: #64748b; line-height: 1.6; }
 
-function sugerirResumo() {
-    const cargo = document.getElementById('in-cargo').value || "profissional";
-    document.getElementById('in-resumo').value = `Sou um ${cargo} focado em resultados, com facilidade de aprendizado e ótima comunicação.`;
-    atualizar();
-}
+/* BOTÕES */
+.cta-button, .main-btn { background: var(--primary); color: white; padding: 18px 35px; border-radius: 12px; border: none; font-weight: 700; cursor: pointer; font-size: 1.1rem; transition: 0.3s; }
+.cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3); }
 
-function gerar() { atualizar(); window.print(); }
-function copiarPix() { navigator.clipboard.writeText(document.getElementById('chavePix').innerText).then(() => alert("PIX Copiado! 🙏")); }
-function toggleDarkMode() { document.body.classList.toggle('dark-theme'); }
+/* FORMULÁRIO (GERADOR) */
+.container { background: var(--card); padding: 30px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-top: 20px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 20px; text-align: left; }
+@media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
+input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #e2e8f0; border-radius: 8px; background: var(--bg); color: var(--text); }
+.date-row { display: flex; gap: 5px; }
+
+/* MODAL / BALÃO DE TERMOS */
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
+.modal-content { background: var(--card); padding: 30px; border-radius: 20px; max-width: 500px; width: 100%; position: relative; }
+
+/* RENDER PDF */
+.print-only { display: none !important; }
+@media print { .print-only { display: block !important; } .no-print, .main-wrapper { display: none !important; } }
+#cv-render { background: white !important; color: black !important; padding: 40px; width: 800px; font-family: serif; }
+.cv-sec { margin-bottom: 20px; }
+.pre-wrap { white-space: pre-wrap; }
