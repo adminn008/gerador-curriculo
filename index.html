@@ -3,117 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Flash | Profissional & Gratuito</title>
+    <title>CV Flash | Grátis e Rápido</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <button id="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
 
-    <div id="home-page" class="main-wrapper">
+    <div class="main-wrapper">
         <header class="hero">
-            <div class="badge">🚀 v1.1.0 Disponível</div>
             <h1>CV <span class="highlight-blue">FLASH</span></h1>
-            <p class="subtitle">O jeito mais rápido de conseguir seu próximo emprego.</p>
+            <p class="subtitle">Seu currículo profissional em minutos, não em horas.</p>
             
-            <div class="trust-bar">
-                <span>⚡ Criações Ilimitadas</span>
-                <span>💎 100% Gratuito</span>
-                <span>📥 Download em PDF</span>
+            <div class="hero-features">
+                <span class="badge-green">✅ Criações Ilimitadas</span>
+                <span class="badge-green">✅ 100% Downloads Gratuitos</span>
             </div>
 
-            <button class="cta-button" onclick="navegar('gerador')">CRIAR MEU CURRÍCULO AGORA</button>
+            <a href="gerador.html" class="main-btn-lg">CRIAR MEU CURRÍCULO AGORA</a>
         </header>
 
         <section class="features-grid">
             <div class="feature-card">
-                <div class="icon">🛡️</div>
+                <div class="icon">💎</div>
                 <h4>Por que nos escolher?</h4>
-                <p>Diferente de outros sites, não pedimos cadastro nem vendemos seus dados. É preencher e baixar.</p>
+                <p>Nós não vendemos seus dados. O CV Flash é focado em ajudar quem precisa de emprego rápido, sem enrolação e sem pagar mensalidade.</p>
             </div>
             <div class="feature-card">
-                <div class="icon">⏱️</div>
+                <div class="icon">⚡</div>
                 <h4>Tempo de Resposta</h4>
-                <p>Nosso gerador é instantâneo. O tempo médio para criar um CV completo aqui é de apenas 3 minutos.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon">❓</div>
-                <h4>FAQ</h4>
-                <p>Preciso pagar? Não. Posso criar quantos eu quiser? Sim. Os modelos são aceitos pelo RH? Com certeza.</p>
+                <p>O download é instantâneo. Assim que você termina de preencher, seu PDF está pronto para ser enviado às empresas.</p>
             </div>
         </section>
 
-        <footer class="lp-footer">
+        <footer class="site-footer">
             <div class="footer-links">
-                <a href="#" onclick="alert('Termos: Uso gratuito para fins pessoais. Seus dados ficam no navegador.')">Termos & Condições</a>
-                <a href="mailto:suporte.cvflash@gmail.com">Suporte</a>
+                <a href="termos.html" class="footer-item">Termos e Condições</a>
+                <a href="mailto:suporte.cvflash@gmail.com" class="footer-item">Suporte</a>
             </div>
-            <p>© 2026 CV Flash - Feito para acelerar sua carreira.</p>
+            <p class="copyright">© 2026 CV Flash v1.1.0</p>
         </footer>
     </div>
-
-    <div id="gerador-page" class="main-wrapper" style="display: none;">
-        <nav class="nav-gerador">
-            <button onclick="navegar('home')" class="btn-back">⬅ Voltar</button>
-            <div class="logo-small">CV <span>FLASH</span></div>
-        </nav>
-
-        <div class="meta-container">
-            <p>🚀 Meta Manutenção (v.2.0.0): <strong>R$ 0,00 / R$ 50,00</strong></p>
-            <div class="meta-bar-bg"><div class="meta-bar-fill" style="width: 5%;"></div></div>
-        </div>
-
-        <div class="model-picker">
-            <div class="btn-group">
-                <button class="btn-opt active" onclick="setModelo('moderno', this)">Moderno</button>
-                <button class="btn-opt" onclick="setModelo('classico', this)">Executivo</button>
-                <button class="btn-opt" onclick="setModelo('limpo', this)">Mínimo</button>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="form-grid">
-                <div class="box">
-                    <h3>Identificação</h3>
-                    <input type="text" id="in-nome" placeholder="Nome Completo *" oninput="atualizar()">
-                    <div class="date-row">
-                        <input type="number" id="dia-nasc" placeholder="Dia">
-                        <input type="number" id="mes-nasc" placeholder="Mês">
-                        <input type="number" id="ano-nasc" placeholder="Ano">
-                    </div>
-                    <input type="text" id="in-civil" placeholder="Estado Civil" oninput="atualizar()">
-                    <input type="text" id="in-cargo" placeholder="Cargo Pretendido *" oninput="atualizar()">
-                    <input type="email" id="in-email" placeholder="Seu E-mail *" oninput="atualizar()">
-                    <input type="tel" id="in-tel" placeholder="Telefone (00) 00000-0000 *" oninput="formatarTel(this)">
-                    <input type="text" id="in-cidade" placeholder="Cidade / UF *" oninput="atualizar()">
-                </div>
-                <div class="box">
-                    <h3>Experiência</h3>
-                    <button onclick="sugerirResumo()" class="btn-sugerir">💡 Sugerir Texto</button>
-                    <textarea id="in-resumo" placeholder="Breve resumo sobre você *" oninput="atualizar()"></textarea>
-                    <textarea id="in-exp" placeholder="Experiências Profissionais" oninput="atualizar()" rows="5"></textarea>
-                    <textarea id="in-edu" placeholder="Educação / Cursos" oninput="atualizar()" rows="4"></textarea>
-                </div>
-            </div>
-            <button class="main-btn" onclick="gerar()">GERAR E BAIXAR PDF</button>
-
-            <div class="pix-card">
-                <p>🙏 Ajude a manter o projeto online</p>
-                <span class="pix-key" id="chavePix">0df8fcd3-dffc-4265-8464-5a60badef88c</span>
-                <button onclick="copiarPix()" class="btn-copy-pix">COPIAR PIX</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="cv-render" class="modelo-moderno print-only">
-        <div class="cv-head"><h1 id="out-nome"></h1><h2 id="out-cargo"></h2><p id="out-contato"></p></div>
-        <div class="cv-body">
-            <div class="cv-sec"><h3>Resumo Profissional</h3><p id="out-resumo"></p></div>
-            <div class="cv-sec"><h3>Experiência Profissional</h3><div id="out-exp" class="pre-wrap"></div></div>
-            <div class="cv-sec"><h3>Educação e Formação</h3><div id="out-edu" class="pre-wrap"></div></div>
-        </div>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
