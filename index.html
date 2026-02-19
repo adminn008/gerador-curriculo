@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7811150237322772" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Flash | Gerador de Currículo v2.0</title>
+    <title>CV Flash | Gerador de Currículo v1.1.0</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
     <button id="dark-mode-toggle" class="no-print" onclick="toggleDarkMode()">🌙</button>
@@ -20,8 +18,9 @@
         <div class="meta-container">
             <p>🚀 Meta Manutenção (v2.0): <strong>R$ 0,00 / R$ 50,00</strong></p>
             <div class="meta-bar-bg">
-                <div class="meta-bar-fill" style="width: 5%;"></div> </div>
-            <p><small>Já somos <strong>53 usuários</strong> hoje!</small></p>
+                <div class="meta-bar-fill" style="width: 5%;"></div>
+            </div>
+            <p><small>Já somos <strong>77 usuários</strong> hoje!</small></p>
         </div>
 
         <div class="model-picker">
@@ -41,7 +40,6 @@
                         <label>Nome Completo <span class="required">*</span></label>
                         <input type="text" id="in-nome" placeholder="Seu nome" oninput="atualizar()">
                     </div>
-
                     <div class="input-group">
                         <label>Data de Nascimento <span class="required">*</span></label>
                         <div class="date-row">
@@ -50,74 +48,60 @@
                             <input type="number" id="ano-nasc" placeholder="Ano" oninput="atualizar()">
                         </div>
                     </div>
-
                     <div class="input-group">
                         <label>Estado Civil</label>
                         <input type="text" id="in-civil" placeholder="Ex: Solteiro" oninput="atualizar()">
                     </div>
-
                     <div class="input-group">
                         <label>Cargo Desejado <span class="required">*</span></label>
                         <input type="text" id="in-cargo" placeholder="Ex: Vendedor" oninput="atualizar()">
                     </div>
-
                     <div class="input-group">
                         <label>E-mail <span class="required">*</span></label>
-                        <input type="email" id="in-email" placeholder="nome@email.com" oninput="atualizar()">
+                        <input type="email" id="in-email" placeholder="email@email.com" oninput="atualizar()">
                     </div>
-
                     <div class="input-group">
                         <label>WhatsApp / Tel <span class="required">*</span></label>
                         <input type="tel" id="in-tel" placeholder="(00) 00000-0000" oninput="atualizar()">
                     </div>
-
                     <div class="input-group">
                         <label>Cidade e Estado <span class="required">*</span></label>
                         <input type="text" id="in-cidade" placeholder="Cidade - UF" oninput="atualizar()">
                     </div>
-
                     <div class="input-group">
                         <label>LinkedIn / Portfólio</label>
-                        <input type="text" id="in-linkedin" placeholder="link do perfil" oninput="atualizar()">
+                        <input type="text" id="in-linkedin" placeholder="Link do perfil" oninput="atualizar()">
                     </div>
-
                     <div class="input-group">
-                        <label>Idiomas / CNH / Outros</label>
-                        <input type="text" id="in-extra-info" placeholder="Ex: Inglês Básico / CNH B" oninput="atualizar()">
+                        <label>Idiomas / CNH / Extras</label>
+                        <input type="text" id="in-extra-info" placeholder="Ex: Inglês / CNH B" oninput="atualizar()">
                     </div>
                 </div>
 
                 <div class="box">
                     <h3>Experiência e Resumo</h3>
                     <div class="input-group">
-                        <div class="label-row">
+                        <div style="display: flex; justify-content: space-between;">
                             <label>Resumo Profissional <span class="required">*</span></label>
                             <button onclick="sugerirResumo()" class="btn-sugerir">💡 Sugerir Texto</button>
                         </div>
-                        <textarea id="in-resumo" placeholder="Conte sobre suas habilidades..." oninput="atualizar()"></textarea>
+                        <textarea id="in-resumo" placeholder="Sobre você..." oninput="atualizar()"></textarea>
                     </div>
-
                     <div class="input-group">
                         <label>Experiências Profissionais</label>
-                        <textarea id="in-exp" placeholder="Empresa, Cargo e Datas..." oninput="atualizar()"></textarea>
+                        <textarea id="in-exp" placeholder="Empresas e cargos..." oninput="atualizar()"></textarea>
                     </div>
-
                     <div class="input-group">
                         <label>Formação Acadêmica</label>
-                        <textarea id="in-edu" placeholder="Cursos e Escolas..." oninput="atualizar()"></textarea>
+                        <textarea id="in-edu" placeholder="Cursos e escolas..." oninput="atualizar()"></textarea>
                     </div>
                 </div>
             </div>
             
             <button class="main-btn" onclick="gerar()">GERAR E SALVAR EM PDF</button>
 
-            <div class="extra-actions">
-                <button onclick="alert('Em breve!')" class="btn-secondary">📄 CARTA DE APRESENTAÇÃO</button>
-                <button onclick="baixarImagemReal()" class="btn-secondary green">🖼️ BAIXAR COMO IMAGEM</button>
-            </div>
-
             <div class="pix-card">
-                <p>🚀 Gostou do CV Flash? Ajude o projeto a continuar online!</p>
+                <p>🚀 Gostou do CV Flash? Ajude o projeto!</p>
                 <span class="pix-key" id="chavePix">0df8fcd3-dffc-4265-8464-5a60badef88c</span>
                 <button onclick="copiarPix()" class="btn-copy-pix">COPIAR CHAVE PIX</button>
             </div>
@@ -125,7 +109,7 @@
 
         <footer class="site-footer">
             <a href="mailto:suporte.cvflash@gmail.com" class="btn-sugestao-real">💡 Sugerir Melhoria</a>
-            <p class="copyright-text">&copy; 2026 <strong>CV Flash v2.0</strong> | <a href="privacy.html">Privacidade</a></p>
+            <p class="copyright-text">&copy; 2026 <strong>CV Flash v1.1.0</strong> | <a href="privacy.html">Políticas de Privacidade</a></p>
         </footer>
     </div>
 
