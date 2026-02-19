@@ -3,73 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Flash | Gerador de Currículo Profissional Grátis</title>
-    <meta name="description" content="Crie seu currículo profissional em minutos com o CV Flash. Grátis, rápido e sem cadastro.">
-    <link rel="canonical" href="https://seusite.com/">
+    <title>CVFlash | Gerador de Currículo Profissional</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
-<body class="dark-theme"> <nav class="navbar">
-        <div class="container nav-content">
-            <div class="logo">CV<span>FLASH</span></div>
-            <div id="theme-switch" class="theme-toggle" onclick="toggleTheme()">
-                <span class="sun">☀️</span>
-                <div class="toggle-track"><div class="toggle-ball"></div></div>
-                <span class="moon">🌙</span>
-            </div>
-        </div>
-    </nav>
-
-    <main class="container">
-        <header class="hero">
-            <h1>O jeito mais rápido de criar seu <span class="highlight">Currículo.</span></h1>
-            <p>Layouts profissionais aprovados por recrutadores, agora com suporte a múltiplos idiomas e certificações.</p>
+<body>
+    <div class="container">
+        <h1 class="site-title">CV<span>FLASH</span></h1>
+        
+        <header style="text-align: center; margin-bottom: 50px;">
+            <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px;">O jeito mais rápido e gratuito de criar seu currículo profissional em 2026.</p>
             <a href="gerador.html" class="btn-primary btn-lg">Começar meu currículo</a>
+            <br><br>
+            <button onclick="toggleNovidades()" style="background:none; border:none; color:var(--primary); cursor:pointer; font-weight:600;">✨ Ver Novidades v2.0.0</button>
         </header>
 
-        <section class="meta-financeira card">
-            <h3>Apoio para Desenvolvimento v2.0.0</h3>
-            <p>Ajude-nos a manter o servidor e lançar novas funções!</p>
-            <div class="progress-container">
-                <div class="progress-bar-bg">
-                    <div id="meta-fill" class="progress-bar-fill"></div>
-                </div>
-                <div class="meta-values">
-                    <span id="arrecadado">R$ 0,00</span>
-                    <span>Meta: R$ 50,00</span>
-                </div>
+        <section class="card">
+            <h3 style="margin-bottom: 15px;">Apoio para desenvolvimento da v2.0.0</h3>
+            <div class="meta-bar-bg">
+                <div id="meta-bar-fill" class="meta-bar-fill"></div>
             </div>
-            <div class="pix-box">
-                <small>Chave PIX (E-mail):</small>
-                <code id="pix-key">0df8fcd3-dffc-4265-8464-5a60badef88c</code>
-                <button onclick="copyPix()" class="btn-copy">Copiar Chave</button>
+            <div style="display:flex; justify-content:space-between; font-weight:600;">
+                <span id="valor-arrecadado">R$ 0,00</span>
+                <span>Meta: R$ 50,00</span>
             </div>
+            <p style="margin-top:15px; font-size:0.9rem;">Chave PIX (Apoie o projeto): <br>
+                <code style="background:var(--bg); padding:5px; border-radius:5px; color:var(--primary);">0df8fcd3-dffc-4265-8464-5a60badef88c</code>
+            </p>
         </section>
-    </main>
+    </div>
 
-    <footer class="main-footer">
-        <div class="container footer-content">
-            <p>© 2026 Gerador de Currículo — Todos os direitos reservados</p>
-            <nav class="footer-links">
-                <a href="javascript:void(0)" onclick="openModal('termos')">Termos</a>
-                <a href="javascript:void(0)" onclick="openModal('privacidade')">Privacidade</a>
-                <a href="javascript:void(0)" onclick="openModal('contato')">Contato</a>
-                <a href="mailto:suporte.cvflash@gmail.com">Suporte</a>
-            </nav>
+    <footer class="footer-premium">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4>Empresa</h4>
+                <a href="index.html">Página Inicial</a>
+                <a href="gerador.html">Gerador</a>
+            </div>
+            <div class="footer-col">
+                <h4>Ajuda e Suporte</h4>
+                <a href="suporte.html">Central de Suporte</a>
+                <a href="suporte.html">Perguntas Frequentes</a>
+                <a href="mailto:suporte.cvflash@gmail.com">Contato Direto</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="privacidade.html">Política de Privacidade</a>
+                <a href="termos.html">Termos e Condições</a>
+            </div>
+            <div class="footer-col">
+                <h4>Sistema</h4>
+                <span>Versão 1.2.1</span>
+                <span>Status: Estável</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 CVFlash — versão 1.2.1 — Todos os direitos reservados</p>
         </div>
     </footer>
 
-    <div id="modal-container" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div id="modal-body"></div>
-        </div>
+    <div id="pop-novidades" class="modal-news">
+        <h3>Novidades v2.0.0</h3>
+        <ul>
+            <li>📄 Carta de Apresentação</li>
+            <li>🎨 +10 Modelos Premium</li>
+            <li>📸 Currículo com Foto</li>
+            <li>💡 Dicas Inteligentes</li>
+            <li>💾 Salvar Rascunho</li>
+        </ul>
+        <button onclick="toggleNovidades()" class="btn-primary" style="width:100%">Entendi!</button>
     </div>
 
     <script src="script.js"></script>
-    <script>
-        // Configuração da Meta Financeira (v1.0.0)
-        updateMetaProgress(12.50); // Altere aqui o valor arrecadado
-    </script>
 </body>
 </html>
