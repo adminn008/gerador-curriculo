@@ -1,104 +1,40 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CVFlash | Gerador de Currículo Profissional</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>CVFlash</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <button class="theme-toggle" onclick="toggleTheme()">🌙 / ☀</button>
+<div class="container">
 
-    <div class="container">
-        <h1 class="site-title">CV<span>FLASH</span></h1>
-        <header style="text-align: center; margin-bottom: 50px;">
-            <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px;">
-                O jeito mais rápido e gratuito de criar seu currículo profissional em 2026.
-            </p>
-            <a href="gerador.html" class="btn-primary btn-lg">Começar meu currículo</a>
-            <br><br>
-            <button onclick="toggleNovidades()" style="background:none; border:none; color:var(--primary); cursor:pointer; font-weight:600;">
-                ✨ Ver Novidades v2.0.0
-            </button>
-        </header>
+<h1 class="site-title">CVFLASH</h1>
 
-        <section class="card">
-            <h3 style="margin-bottom: 15px;">Apoio para desenvolvimento da v2.0.0</h3>
-            <div class="meta-bar-bg">
-                <div id="meta-bar-fill" class="meta-bar-fill"></div>
-            </div>
-            <div style="display:flex; justify-content:space-between; font-weight:600;">
-                <span id="valor-arrecadado">R$ 0,00</span>
-                <span>Meta: R$ 50,00</span>
-            </div>
-            <p style="margin-top:15px; font-size:0.9rem;">
-                Chave PIX (Apoie o projeto): <br>
-                <code style="background:var(--card); padding:5px; border-radius:5px; color:var(--primary);">
-                    0df8fcd3-dffc-4265-8464-5a60badef88c
-                </code>
-            </p>
-        </section>
+<div class="card">
+<p>Crie seu currículo profissional rápido e grátis.</p>
+<br>
+<a href="gerador.html"><button class="btn">Criar currículo</button></a>
+</div>
 
-        <section class="card">
-            <h3>Política de Privacidade</h3>
-            <p>
-                Não coletamos nem armazenamos dados pessoais em servidores. 
-                As informações permanecem apenas no navegador do usuário. 
-                Não compartilhamos dados com terceiros. Para dúvidas, envie e-mail para
-                <strong>suporte.cvflash@gmail.com</strong>.
-            </p>
-        </section>
-    </div>
-
-    <footer class="footer-premium">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <h4>Empresa</h4>
-                <a href="index.html">Página Inicial</a>
-                <a href="gerador.html">Gerador</a>
-            </div>
-            <div class="footer-col">
-                <h4>Ajuda e Suporte</h4>
-                <a href="suporte.html">Central de Suporte</a>
-                <a href="suporte.html#faq">Perguntas Frequentes</a>
-                <a href="mailto:suporte.cvflash@gmail.com">Contato Direto</a>
-            </div>
-            <div class="footer-col">
-                <h4>Legal</h4>
-                <a href="privacidade.html">Política de Privacidade</a>
-                <a href="termos.html">Termos e Condições</a>
-            </div>
-            <div class="footer-col">
-                <h4>Sistema</h4>
-                <span>Versão 1.2.1</span>
-                <span>Status: Estável</span>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 CVFlash — versão 1.2.1 — Todos os direitos reservados</p>
-        </div>
-    </footer>
-
-    <section class="card">
-<h3>O que vem na versão 2.0.0</h3>
-
+<div class="card">
+<h3>Versão 2.0.0 (em desenvolvimento)</h3>
 <ul>
-<li>📄 Carta de apresentação automática</li>
-<li>🎨 10 modelos premium</li>
-<li>📸 Foto no currículo</li>
-<li>💡 Dicas inteligentes em tempo real</li>
-<li>📊 Avaliador profissional</li>
-<li>💾 Salvar rascunho automático</li>
-<li>📤 Exportar em PDF profissional real</li>
-<li>🧠 Sugestões automáticas de frases</li>
+<li>Carta de apresentação</li>
+<li>10 modelos premium</li>
+<li>Foto no currículo</li>
+<li>Dicas inteligentes</li>
+<li>Avaliador profissional</li>
+<li>Salvar rascunho</li>
 </ul>
-    </section>
-        </ul>
-        <button onclick="toggleNovidades()" class="btn-primary" style="width:100%">Entendi!</button>
-    </div>
+</div>
 
-    <script src="script.js"></script>
+</div>
+
+<footer>
+© 2026 CVFlash — versão 1.2.1
+</footer>
+
 </body>
 </html>
