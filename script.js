@@ -66,3 +66,79 @@ function gerarPDF(){
 window.onload = () => {
  atualizarMeta();
 };
+
+const camposObrigatorios = [
+"in-nome",
+"in-tel",
+"in-email",
+"in-formacao",
+"in-hab"
+];
+
+const todosCampos = [
+"in-nome","in-tel","in-email","in-formacao",
+"in-hab","in-exp","in-idiomas",
+"in-cursos","in-linkedin","in-bairro"
+];
+
+function validarEmail(email){
+return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function telefoneValido(tel){
+return tel.length >= 14;
+}
+
+function atualizarProgresso(){
+
+let preenchidos = 0;
+
+todosCampos.forEach(id=>{
+const el=document.getElementById(id);
+if(el && el.value.trim()!=="") preenchidos++;
+});
+
+let porcentagem=Math.round((preenchidos/todosCampos.length)*100);
+
+const email=document.getElementById("in-email").value;
+const tel=document.getElementById("in-tel").value;
+
+if(!validarEmail(email)) porcentagem-=10;
+if(!telefoneValido(tel)) porcentagem-=10;
+
+if(porcentagem<0) porcentagem=0;
+
+document.getElementById("progress-bar").style.width=porcentagem+"%";
+document.getElementById("progress-text").innerText=porcentagem+"%";
+
+gerarChecklist();
+avaliarCurriculo(porcentagem);
+}
+
+function gerarChecklist(){
+
+const lista=document.getElementById("checklist");
+lista.innerHTML="";
+
+camposObrigatorios.forEach(id=>{
+const el=document.getElementById(id);
+if(!el.value.trim()){
+const li=document.createElement("li");
+li.innerText="Falta preencher "+el.previousElementSibling.innerText;
+lista.appendChild(li);
+}
+});
+}
+
+function avaliarCurriculo(p){
+
+const box=document.getElementById("avaliacao");
+
+if(p<40) box.innerText="Currículo fraco — precisa melhorar";
+else if(p<70) box.innerText="Currículo bom — pode melhorar mais";
+else box.innerText="Currículo excelente!";
+}
+
+document.querySelectorAll("input, textarea").forEach(el=>{
+el.addEventListener("input", atualizarProgresso);
+});
