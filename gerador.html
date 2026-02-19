@@ -3,38 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador | CVFlash</title>
+    <title>CVFlash | Gerador de Currículo Profissional</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="no-print">
-        <div class="container">
-            <h1 class="site-title">CV<span>FLASH</span></h1>
-            <center><a href="index.html" style="color:var(--primary); text-decoration:none;">⬅ Voltar ao Início</a></center>
-            <br>
-            
-            <form id="cv-form" class="card form-section">
-                <h3>Informações do Currículo</h3>
-                <div class="input-group">
-                    <label>Nome Completo *</label>
-                    <input type="text" id="in-nome" placeholder="Seu nome">
-                </div>
-                <div class="input-group">
-                    <label>Telefone *</label>
-                    <input type="tel" id="in-tel" placeholder="(00) 00000-0000">
-                </div>
-                <div class="input-group">
-                    <label>Objetivo Profissional</label>
-                    <textarea id="in-obj" rows="3"></textarea>
-                </div>
-                <button type="button" onclick="window.print()" class="btn-primary btn-lg" style="width:100%">GERAR PDF AGORA</button>
-            </form>
-        </div>
+
+<button class="theme-toggle" onclick="toggleTheme()">🌙 / ☀</button>
+
+<div class="no-print">
+    <div class="container">
+        <h1 class="site-title">CV<span>FLASH</span></h1>
+        <center><a href="index.html" style="color:var(--primary); text-decoration:none;">⬅ Voltar ao Início</a></center>
+        <br>
+        <form id="cv-form" class="card form-section">
+            <h3>Informações do Currículo</h3>
+
+            <div class="input-group">
+                <label>Nome Completo *</label>
+                <input type="text" id="in-nome" placeholder="Seu nome">
+            </div>
+
+            <div class="input-group">
+                <label>Telefone *</label>
+                <input type="tel" id="in-tel" placeholder="(00) 00000-0000">
+            </div>
+
+            <div class="input-group">
+                <label>Objetivo Profissional</label>
+                <textarea id="in-obj" rows="3"></textarea>
+            </div>
+
+            <div class="input-group">
+                <label>Bairro</label>
+                <input type="text" id="in-bairro" placeholder="Seu bairro">
+            </div>
+
+            <button type="button" onclick="gerarPDF()" class="btn-primary btn-lg" style="width:100%">
+                GERAR PDF AGORA
+            </button>
+        </form>
     </div>
+</div>
 
-    <div class="print-only" id="cv-print">
-        </div>
+<div class="print-only" id="cv-print"></div>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
