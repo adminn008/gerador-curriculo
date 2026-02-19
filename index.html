@@ -3,125 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Flash | Gerador Profissional</title>
+    <title>CV Flash | Crie seu Futuro</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <header class="app-header no-print">
-        <div class="header-container">
+    <nav class="navbar">
+        <div class="container nav-content">
             <div class="logo">CV<span>FLASH</span></div>
-            <button id="theme-toggle" aria-label="Alternar modo escuro">
-                <span class="icon-sun">☀️</span>
-                <span class="icon-moon">🌙</span>
-            </button>
+            <button id="theme-toggle" class="btn-icon">🌓</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <span class="badge">100% Gratuito e Profissional</span>
+            <h1>Crie um currículo impecável em <span class="text-gradient">minutos.</span></h1>
+            <p>Destaque-se nos processos seletivos com um layout aprovado por recrutadores. Sem cadastros, sem taxas, direto ao ponto.</p>
+            <a href="gerador.html" class="btn-primary btn-lg">Começar meu currículo</a>
         </div>
     </header>
 
-    <main class="main-container no-print">
-        <section class="roadmap-section card">
-            <h3>🚀 Atualizações Planejadas — Versão 2.0.0</h3>
-            <div class="meta-status">
-                <span>Meta Manutenção: <strong>R$ 0,00 / R$ 50,00</strong></span>
-                <div class="progress-bar"><div class="progress-fill" style="width: 10%"></div></div>
+    <section class="roadmap container">
+        <div class="section-header">
+            <h2>Próxima versão — <span class="primary-color">v2.0.0</span></h2>
+            <p>O que estamos preparando para você</p>
+        </div>
+        <div class="roadmap-grid">
+            <div class="roadmap-item"><span>📄</span> Carta de Apresentação</div>
+            <div class="roadmap-item"><span>🎨</span> +10 Modelos Premium</div>
+            <div class="roadmap-item"><span>📸</span> Currículo com Foto</div>
+            <div class="roadmap-item"><span>💡</span> Dicas de Preenchimento</div>
+            <div class="roadmap-item"><span>📊</span> Avaliador de Currículo</div>
+            <div class="roadmap-item"><span>💾</span> Salvar Rascunho</div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <div class="logo">CV<span>FLASH</span></div>
+                <p>© 2025 Gerador de Currículo — Todos os direitos reservados</p>
             </div>
-            <ul class="roadmap-grid">
-                <li class="done">✓ Exportar em PDF</li>
-                <li>⭕ Salvar na nuvem</li>
-                <li>⭕ Mais 10 modelos premium</li>
-                <li>⭕ Revisão por IA</li>
-                <li>⭕ Exportar para Word</li>
-            </ul>
-        </section>
-
-        <div class="model-selector">
-            <button class="btn-model active" onclick="setModelo('moderno', this)">Moderno</button>
-            <button class="btn-model" onclick="setModelo('classico', this)">Executivo</button>
-            <button class="btn-model" onclick="setModelo('limpo', this)">Minimalista</button>
-        </div>
-
-        <div class="editor-grid">
-            <section class="form-section card">
-                <h3>Dados Pessoais</h3>
-                <div class="input-group">
-                    <label for="in-nome">Nome Completo <span class="required">*</span></label>
-                    <input type="text" id="in-nome" class="required-field" placeholder="Ex: João Silva">
-                    <span class="error-msg">Este campo é obrigatório</span>
-                </div>
-
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>WhatsApp <span class="required">*</span> <span class="info-icon" title="Ex: (11) 99999-9999">ⓘ</span></label>
-                        <input type="tel" id="in-tel" class="required-field" placeholder="(00) 00000-0000" oninput="maskTel(this)">
-                    </div>
-                    <div class="input-group">
-                        <label>LinkedIn <span class="info-icon" title="Cole o link do seu perfil público">ⓘ</span></label>
-                        <input type="text" id="in-link" placeholder="linkedin.com/in/seuusuario">
-                    </div>
-                </div>
-
-                <div class="input-group">
-                    <label>Objetivo Profissional <span class="required">*</span></label>
-                    <textarea id="in-obj" class="required-field" placeholder="Clique em uma sugestão abaixo ou escreva..."></textarea>
-                    <div class="sugestoes" data-for="in-obj">
-                        <button onclick="sugerir('in-obj', 0)">Primeiro Emprego</button>
-                        <button onclick="sugerir('in-obj', 1)">Estágio</button>
-                        <button onclick="sugerir('in-obj', 2)">Administrativo</button>
-                        <button onclick="sugerir('in-obj', 3)">Tecnologia</button>
-                        <button onclick="sugerir('in-obj', 4)">Jovem Aprendiz</button>
-                    </div>
-                </div>
-            </section>
-
-            <section class="form-section card">
-                <h3>Experiência & Formação</h3>
-                <div class="input-group">
-                    <label>Experiência Profissional</label>
-                    <textarea id="in-exp" rows="6" placeholder="Nome da empresa, cargo e período..."></textarea>
-                </div>
-                <div class="input-group">
-                    <label>Formação Acadêmica</label>
-                    <textarea id="in-edu" rows="4" placeholder="Curso, Instituição e ano de conclusão..."></textarea>
-                </div>
-                
-                <button class="btn-generate" onclick="validarEGerar()">✨ GERAR E SALVAR PDF</button>
-            </section>
-        </div>
-    </main>
-
-    <footer class="app-footer no-print">
-        <div class="footer-content">
-            <p>© 2025 Gerador de Currículo — Todos os direitos reservados</p>
-            <nav class="footer-nav">
+            <nav class="footer-links">
                 <a href="#">Termos e Condições</a>
                 <a href="#">Privacidade</a>
-                <a href="#">Contato</a>
+                <a href="mailto:contato@cvflash.com">Contato</a>
             </nav>
         </div>
     </footer>
-
-    <div id="cv-render" class="modelo-moderno print-only">
-        <div class="cv-header">
-            <h1 id="out-nome"></h1>
-            <p id="out-contato"></p>
-        </div>
-        <div class="cv-content">
-            <div class="cv-section">
-                <h4>OBJETIVO</h4>
-                <p id="out-obj"></p>
-            </div>
-            <div class="cv-section">
-                <h4>EXPERIÊNCIA</h4>
-                <div id="out-exp" class="pre-wrap"></div>
-            </div>
-            <div class="cv-section">
-                <h4>FORMAÇÃO</h4>
-                <div id="out-edu" class="pre-wrap"></div>
-            </div>
-        </div>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
