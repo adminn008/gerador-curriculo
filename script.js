@@ -1,95 +1,109 @@
-// DADOS DAS SUGESTÕES
-const sugestoes_objetivo = [
-    "Busco minha primeira oportunidade profissional para desenvolver minhas habilidades e contribuir com a empresa.",
-    "Procuro estágio na área para aplicar os conhecimentos acadêmicos e crescer profissionalmente.",
-    "Atuar na área administrativa, auxiliando na organização de processos e atendimento ao cliente.",
-    "Desenvolvedor focado em tecnologias modernas, buscando criar soluções inovadoras e eficientes.",
-    "Jovem Aprendiz focado em aprender novas funções e ingressar no mercado de trabalho com dedicação."
-];
+// 1. MÁSCARA DE TELEFONE
+const telInput = document.getElementById('in-tel');
+if(telInput) {
+    telInput.addEventListener('input', (e) => {
+        let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+        e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+    });
+}
 
-// 1. GESTÃO DE TEMA (DARK MODE)
-const themeToggle = document.getElementById('theme-toggle');
-const currentTheme = localStorage.getItem('theme');
+// 2. MODO DARK
+const themeBtn = document.getElementById('theme-toggle');
+themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+    const isDark = document.body.classList.contains('dark-theme');
+    localStorage.setItem('cvflash-theme', isDark ? 'dark' : 'light');
+});
 
-if (currentTheme === 'dark') {
+if(localStorage.getItem('cvflash-theme') === 'dark') {
     document.body.classList.add('dark-theme');
 }
 
-themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-theme');
-    let theme = 'light';
-    if (document.body.classList.contains('dark-theme')) {
-        theme = 'dark';
-    }
-    localStorage.setItem('theme', theme);
+// 3. SISTEMA DE SUGESTÕES
+const sugestoes = {
+    'in-obj': [
+        "Procuro minha primeira oportunidade de trabalho para aplicar meus conhecimentos e crescer profissionalmente.",
+        "Atuar na área administrativa, buscando eficiência em processos e atendimento ao público.",
+        "Desenvolvedor júnior focado em criar soluções eficientes e aprender novas tecnologias.",
+        "Estagiário dedicado buscando aprendizado prático e contribuição para os projetos da empresa.",
+        "Jovem Aprendiz focado em desenvolvimento de competências e auxílio operacional."
+    ]
+};
+
+document.querySelectorAll('.tag').forEach(button => {
+    button.addEventListener('click', function() {
+        const targetId = this.parentElement.getAttribute('data-target');
+        const textIndex = Array.from(this.parentElement.children).indexOf(this);
+        document.getElementById(targetId).value = sugestoes[targetId][textIndex];
+        atualizarQualidade();
+    });
 });
 
-// 2. FUNÇÃO DE SUGESTÃO
-function sugerir(campoId, index) {
-    const campo = document.getElementById(campoId);
-    campo.value = sugestoes_objetivo[index];
-    validarCampo(campo); // Atualiza visual
-}
+// 4. CHECKLIST E QUALIDADE (ATUALIZAÇÃO EM TEMPO REAL)
+const inputsParaValidar = ['in-nome', 'in-tel', 'in-obj'];
 
-// 3. MÁSCARA DE TELEFONE
-function maskTel(i) {
-    let v = i.value.replace(/\D/g, '');
-    v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
-    v = v.replace(/(\d)(\d{4})$/, "$1-$2");
-    i.value = v;
-}
-
-// 4. VALIDAÇÃO DE CAMPOS
-function validarCampo(input) {
-    const errorMsg = input.parentElement.querySelector('.error-msg');
-    if (input.value.trim() === "") {
-        input.classList.add('input-error');
-        if (errorMsg) errorMsg.style.display = 'block';
-        return false;
-    } else {
-        input.classList.remove('input-error');
-        if (errorMsg) errorMsg.style.display = 'none';
-        return true;
-    }
-}
-
-// 5. GERAR PDF COM VALIDAÇÃO
-function validarEGerar() {
-    const obrigatorios = document.querySelectorAll('.required-field');
-    let valido = true;
-
-    obrigatorios.forEach(campo => {
-        if (!validarCampo(campo)) {
-            valido = false;
+function atualizarQualidade() {
+    let preenchidos = 0;
+    
+    inputsParaValidar.forEach(id => {
+        const el = document.getElementById(id);
+        const checkItem = document.querySelector(`li[data-field="${id}"]`);
+        
+        if (el && el.value.length > 3) {
+            preenchidos++;
+            checkItem.classList.add('ok');
+            checkItem.innerHTML = `✔ ${checkItem.innerText.substring(2)}`;
+        } else if (checkItem) {
+            checkItem.classList.remove('ok');
+            checkItem.innerHTML = `❌ ${checkItem.innerText.substring(2)}`;
         }
     });
 
-    if (!valido) {
-        alert("Ops! Por favor, preencha os campos obrigatórios marcados em vermelho.");
+    const percent = Math.round((preenchidos / inputsParaValidar.length) * 100);
+    const scoreFill = document.getElementById('score-fill');
+    if(scoreFill) {
+        scoreFill.style.width = percent + '%';
+        document.getElementById('score-text').innerText = percent + '% completo';
+    }
+}
+
+document.querySelectorAll('input, textarea').forEach(el => {
+    el.addEventListener('input', atualizarQualidade);
+});
+
+// 5. VALIDAÇÃO E GERAÇÃO DE PDF
+function gerarPDF() {
+    let erros = 0;
+    
+    inputsParaValidar.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.value || el.value.length < 3) {
+            el.classList.add('input-error');
+            erros++;
+            
+            if(!el.nextElementSibling?.classList.contains('error-text')) {
+                const msg = document.createElement('span');
+                msg.className = 'error-text';
+                msg.innerText = 'Preencha este campo obrigatório';
+                el.after(msg);
+            }
+        } else {
+            el.classList.remove('input-error');
+            if(el.nextElementSibling?.classList.contains('error-text')) {
+                el.nextElementSibling.remove();
+            }
+        }
+    });
+
+    if (erros > 0) {
+        alert("Ops! Alguns campos obrigatórios estão vazios.");
         return;
     }
 
-    // Mapeamento para o PDF
+    // Preencher saída para o PDF
     document.getElementById('out-nome').innerText = document.getElementById('in-nome').value;
+    document.getElementById('out-contato').innerText = `${document.getElementById('in-tel').value} | ${document.getElementById('in-bairro').value}`;
     document.getElementById('out-obj').innerText = document.getElementById('in-obj').value;
-    document.getElementById('out-exp').innerText = document.getElementById('in-exp').value;
-    document.getElementById('out-edu').innerText = document.getElementById('in-edu').value;
-    
-    const contato = `${document.getElementById('in-tel').value} | ${document.getElementById('in-link').value}`;
-    document.getElementById('out-contato').innerText = contato;
 
     window.print();
-}
-
-// Adiciona validação ao sair do campo (onblur)
-document.querySelectorAll('.required-field').forEach(input => {
-    input.addEventListener('blur', () => validarCampo(input));
-});
-
-// 6. TROCA DE MODELOS (Exemplo simples)
-function setModelo(modelo, btn) {
-    document.querySelectorAll('.btn-model').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const render = document.getElementById('cv-render');
-    render.className = `modelo-${modelo} print-only`;
 }
