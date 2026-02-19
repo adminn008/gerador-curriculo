@@ -8,14 +8,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
+
+    <button class="theme-toggle" onclick="toggleTheme()">🌙 / ☀</button>
+
     <div class="container">
         <h1 class="site-title">CV<span>FLASH</span></h1>
-        
         <header style="text-align: center; margin-bottom: 50px;">
-            <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px;">O jeito mais rápido e gratuito de criar seu currículo profissional em 2026.</p>
+            <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px;">
+                O jeito mais rápido e gratuito de criar seu currículo profissional em 2026.
+            </p>
             <a href="gerador.html" class="btn-primary btn-lg">Começar meu currículo</a>
             <br><br>
-            <button onclick="toggleNovidades()" style="background:none; border:none; color:var(--primary); cursor:pointer; font-weight:600;">✨ Ver Novidades v2.0.0</button>
+            <button onclick="toggleNovidades()" style="background:none; border:none; color:var(--primary); cursor:pointer; font-weight:600;">
+                ✨ Ver Novidades v2.0.0
+            </button>
         </header>
 
         <section class="card">
@@ -27,8 +33,21 @@
                 <span id="valor-arrecadado">R$ 0,00</span>
                 <span>Meta: R$ 50,00</span>
             </div>
-            <p style="margin-top:15px; font-size:0.9rem;">Chave PIX (Apoie o projeto): <br>
-                <code style="background:var(--bg); padding:5px; border-radius:5px; color:var(--primary);">0df8fcd3-dffc-4265-8464-5a60badef88c</code>
+            <p style="margin-top:15px; font-size:0.9rem;">
+                Chave PIX (Apoie o projeto): <br>
+                <code style="background:var(--card); padding:5px; border-radius:5px; color:var(--primary);">
+                    0df8fcd3-dffc-4265-8464-5a60badef88c
+                </code>
+            </p>
+        </section>
+
+        <section class="card">
+            <h3>Política de Privacidade</h3>
+            <p>
+                Não coletamos nem armazenamos dados pessoais em servidores. 
+                As informações permanecem apenas no navegador do usuário. 
+                Não compartilhamos dados com terceiros. Para dúvidas, envie e-mail para
+                <strong>suporte.cvflash@gmail.com</strong>.
             </p>
         </section>
     </div>
@@ -43,7 +62,7 @@
             <div class="footer-col">
                 <h4>Ajuda e Suporte</h4>
                 <a href="suporte.html">Central de Suporte</a>
-                <a href="suporte.html">Perguntas Frequentes</a>
+                <a href="suporte.html#faq">Perguntas Frequentes</a>
                 <a href="mailto:suporte.cvflash@gmail.com">Contato Direto</a>
             </div>
             <div class="footer-col">
