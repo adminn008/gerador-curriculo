@@ -59,7 +59,44 @@ function gerarPDF(){
    alert("Preencha o nome e um telefone válido.");
    return;
  }
- window.print();
+ function gerarPDF(){
+
+const modelo=document.querySelector('input[name="modelo"]:checked').value;
+const nome=document.getElementById("in-nome").value;
+const tel=document.getElementById("in-tel").value;
+const obj=document.getElementById("in-obj").value;
+
+let html="";
+
+if(modelo==="moderno"){
+html=`
+<h1 style="color:#3b82f6">${nome}</h1>
+<p>${tel}</p>
+<hr>
+<h3>Objetivo</h3>
+<p>${obj}</p>
+`;
+}
+
+if(modelo==="classico"){
+html=`
+<h1>${nome}</h1>
+<p>${tel}</p>
+<h3>Objetivo Profissional</h3>
+<p>${obj}</p>
+`;
+}
+
+if(modelo==="minimalista"){
+html=`
+<h2>${nome}</h2>
+<p>${obj}</p>
+`;
+}
+
+document.getElementById("cv-print").innerHTML=html;
+window.print();
+ }
 }
 
 // INICIALIZAÇÃO
