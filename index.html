@@ -14,16 +14,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
   
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Estilos para Labels e Dicas v2.0 */
-        .input-group { margin-bottom: 15px; text-align: left; }
-        .input-group label { display: block; font-size: 13px; font-weight: bold; color: #444; margin-bottom: 4px; font-family: sans-serif; }
-        .input-group label span { color: red; }
-        .helper-text { display: none; font-size: 11px; color: #007bff; margin-top: 4px; font-style: italic; font-family: sans-serif; }
-        input:focus + .helper-text, textarea:focus + .helper-text { display: block; }
-        .pix-container { text-align: center; margin-top: 30px; padding: 20px; background: #f0fff4; border-radius: 10px; border: 2px dashed #28a745; max-width: 800px; margin-left: auto; margin-right: auto; }
-        .pix-key { background: #fff; padding: 10px; border: 1px solid #ddd; display: block; margin: 10px 0; font-family: monospace; word-break: break-all; color: #333; }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
     <button id="dark-mode-toggle" class="no-print" onclick="toggleDarkMode()">🌙</button>
@@ -68,27 +59,28 @@
                         <small class="helper-text">Digite seu nome completo sem abreviações.</small>
                     </div>
 
-                    <div style="display: flex; gap: 10px;">
-                        <div class="input-group" style="flex: 1;">
-                            <label>Nascimento <span>*</span></label>
-                            <input type="date" id="in-nascimento" oninput="atualizar()">
+                    <div class="input-group">
+                        <label>Nascimento <span>*</span></label>
+                        <div style="display: flex; gap: 5px;">
+                            <input type="number" id="dia-nasc" placeholder="Dia" min="1" max="31" oninput="atualizar()">
+                            <input type="number" id="mes-nasc" placeholder="Mês" min="1" max="12" oninput="atualizar()">
+                            <input type="number" id="ano-nasc" placeholder="Ano" min="1950" max="2012" oninput="atualizar()">
                         </div>
-                        <div class="input-group" style="flex: 1;">
-                            <label>Estado Civil</label>
-                            <input type="text" id="in-civil" placeholder="Ex: Solteiro" oninput="atualizar()">
-                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Estado Civil</label>
+                        <input type="text" id="in-civil" placeholder="Ex: Solteiro" oninput="atualizar()">
                     </div>
 
                     <div class="input-group">
                         <label>Cargo ou Profissão <span>*</span></label>
                         <input type="text" id="in-cargo" placeholder="Seu Cargo ou Profissão" oninput="atualizar()">
-                        <small class="helper-text">Ex: Atendente de Loja, Auxiliar Administrativo...</small>
                     </div>
 
                     <div class="input-group">
                         <label>E-mail <span>*</span></label>
                         <input type="email" id="in-email" placeholder="E-mail de contato" oninput="atualizar()">
-                        <small class="helper-text">Use um e-mail profissional.</small>
                     </div>
 
                     <div class="input-group">
@@ -120,19 +112,16 @@
                             <button onclick="sugerirResumo()" style="background: none; border: none; color: #007bff; font-size: 10px; cursor: pointer; text-decoration: underline;">Sugerir Texto</button>
                         </div>
                         <textarea id="in-resumo" placeholder="Resumo Profissional..." oninput="atualizar()"></textarea>
-                        <small class="helper-text">Conte brevemente suas principais qualidades.</small>
                     </div>
 
                     <div class="input-group">
                         <label>Experiências Profissionais</label>
                         <textarea id="in-exp" placeholder="Experiências Profissionais..." oninput="atualizar()"></textarea>
-                        <small class="helper-text">Coloque o nome da empresa, cargo e período.</small>
                     </div>
 
                     <div class="input-group">
                         <label>Formação Acadêmica</label>
                         <textarea id="in-edu" placeholder="Formação Acadêmica..." oninput="atualizar()"></textarea>
-                        <small class="helper-text">Cursos, escola ou faculdade.</small>
                     </div>
                 </div>
             </div>
@@ -141,7 +130,7 @@
 
             <div style="display: flex; gap: 10px; margin-top: 15px; justify-content: center;">
                 <button onclick="alert('Funcionalidade Carta de Apresentação em breve na v2.0!')" style="background: #6c757d; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: bold;">📄 CARTA DE APRESENTAÇÃO</button>
-                <button onclick="window.print()" style="background: #6c757d; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: bold;">🖼️ BAIXAR IMAGEM</button>
+                <button onclick="baixarImagemReal()" style="background: #28a745; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: bold;">🖼️ BAIXAR COMO IMAGEM</button>
             </div>
 
             <article class="seo-content">
@@ -165,7 +154,7 @@
         </footer>
     </div>
 
-    <div id="cv-render" class="modelo-moderno print-only">
+    <div id="cv-render" class="modelo-moderno print-only" style="background: white;">
         <div class="cv-head">
             <h1 id="out-nome">NOME</h1>
             <h2 id="out-cargo">CARGO</h2>
@@ -178,17 +167,6 @@
         </div>
     </div>
 
-    <script>
-        function copiarPix() {
-            const chave = document.getElementById('chavePix').innerText;
-            navigator.clipboard.writeText(chave).then(() => { alert("Chave PIX copiada! 🙏"); });
-        }
-        function sugerirResumo() {
-            const frase = "Profissional dedicado, com facilidade de aprendizado e focado em resultados. Busco aplicar minhas habilidades para contribuir com o crescimento da empresa.";
-            document.getElementById('in-resumo').value = frase;
-            atualizar();
-        }
-    </script>
     <script src="script.js"></script>
 </body>
 </html>
