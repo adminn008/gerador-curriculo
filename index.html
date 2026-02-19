@@ -4,9 +4,8 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7811150237322772" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Flash | Gerador de Currículo v1.1.0</title>
+    <title>CV Flash | Gerador de Currículo</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
     <button id="dark-mode-toggle" class="no-print" onclick="toggleDarkMode()">🌙</button>
@@ -14,19 +13,10 @@
     <div class="no-print main-wrapper">
         <header class="top-header">
             <h1>CV <span>FLASH</span></h1>
-            <p>Seu currículo profissional em minutos.</p>
+            <p>Design profissional em segundos.</p>
         </header>
 
-        <div class="meta-container">
-            <p>🚀 Meta Manutenção (v2.0): <strong>R$ 0,00 / R$ 50,00</strong></p>
-            <div class="meta-bar-bg">
-                <div class="meta-bar-fill" style="width: 2%;"></div>
-            </div>
-            <p><small>Já somos <strong>77 usuários</strong> hoje!</small></p>
-        </div>
-
         <div class="model-picker">
-            <p>Escolha o Modelo:</p>
             <div class="btn-group">
                 <button class="btn-opt active" onclick="setModelo('moderno', this)">Moderno</button>
                 <button class="btn-opt" onclick="setModelo('classico', this)">Executivo</button>
@@ -38,85 +28,35 @@
             <div class="form-grid">
                 <div class="box">
                     <h3>Dados de Contato</h3>
-                    <div class="input-group">
-                        <label>Nome Completo <span class="required">*</span></label>
-                        <input type="text" id="in-nome" placeholder="Nome" oninput="atualizar()">
-                    </div>
-                    <div class="input-group">
-                        <label>Nascimento <span class="required">*</span></label>
-                        <div class="date-row">
-                            <input type="number" id="dia-nasc" placeholder="Dia" oninput="atualizar()">
-                            <input type="number" id="mes-nasc" placeholder="Mês" oninput="atualizar()">
-                            <input type="number" id="ano-nasc" placeholder="Ano" oninput="atualizar()">
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <label>Estado Civil</label>
-                        <input type="text" id="in-civil" placeholder="Solteiro, Casado..." oninput="atualizar()">
-                    </div>
-                    <div class="input-group">
-                        <label>Cargo Desejado <span class="required">*</span></label>
-                        <input type="text" id="in-cargo" placeholder="Ex: Vendedor" oninput="atualizar()">
-                    </div>
-                    <div class="input-group">
-                        <label>E-mail <span class="required">*</span></label>
-                        <input type="email" id="in-email" placeholder="email@exemplo.com" oninput="atualizar()">
-                    </div>
-                    <div class="input-group">
-                        <label>WhatsApp / Tel <span class="required">*</span></label>
-                        <input type="tel" id="in-tel" placeholder="(00) 00000-0000" oninput="atualizar()">
-                    </div>
-                    <div class="input-group">
-                        <label>Cidade e Estado <span class="required">*</span></label>
-                        <input type="text" id="in-cidade" placeholder="Cidade - UF" oninput="atualizar()">
-                    </div>
-                    <div class="input-group">
-                        <label>LinkedIn</label>
-                        <input type="text" id="in-linkedin" placeholder="link" oninput="atualizar()">
-                    </div>
-                    <div class="input-group">
-                        <label>Idiomas / Outros</label>
-                        <input type="text" id="in-extra-info" placeholder="Inglês, CNH..." oninput="atualizar()">
-                    </div>
+                    <input type="text" id="in-nome" placeholder="Nome Completo" oninput="atualizar()">
+                    <input type="text" id="in-cargo" placeholder="Cargo" oninput="atualizar()">
+                    <input type="email" id="in-email" placeholder="E-mail" oninput="atualizar()">
+                    <input type="tel" id="in-tel" placeholder="Telefone" oninput="atualizar()">
+                    <input type="text" id="in-cidade" placeholder="Cidade/Estado" oninput="atualizar()">
                 </div>
-
                 <div class="box">
-                    <h3>Experiência e Resumo</h3>
-                    <div class="input-group">
-                        <div class="label-row">
-                            <label>Resumo Profissional <span class="required">*</span></label>
-                            <button onclick="sugerirResumo()" class="btn-sugerir">💡 Sugerir Texto</button>
-                        </div>
-                        <textarea id="in-resumo" placeholder="Sobre você..." oninput="atualizar()"></textarea>
+                    <h3>Conteúdo Profissional</h3>
+                    <div class="textarea-header">
+                        <textarea id="in-resumo" placeholder="Resumo..." oninput="atualizar()"></textarea>
+                        <button class="btn-suggest" onclick="sugerirTexto()">💡 Sugerir Frases</button>
                     </div>
-                    <div class="input-group">
-                        <label>Experiências</label>
-                        <textarea id="in-exp" placeholder="Empresa e cargo..." oninput="atualizar()"></textarea>
-                    </div>
-                    <div class="input-group">
-                        <label>Educação</label>
-                        <textarea id="in-edu" placeholder="Escola ou faculdade..." oninput="atualizar()"></textarea>
-                    </div>
+                    <textarea id="in-exp" placeholder="Experiências..." oninput="atualizar()"></textarea>
+                    <textarea id="in-edu" placeholder="Formação..." oninput="atualizar()"></textarea>
                 </div>
             </div>
             
             <button class="main-btn" onclick="gerar()">GERAR E SALVAR EM PDF</button>
 
-            <div class="extra-actions">
-                <button onclick="alert('Breve!')" class="btn-secondary">📄 CARTA</button>
-                <button onclick="baixarImagemReal()" class="btn-secondary green">🖼️ BAIXAR IMAGEM</button>
-            </div>
-
-            <div class="pix-card">
-                <p>🚀 Gostou do CV Flash? Ajude o projeto!</p>
+            <div class="pix-container">
+                <p>🚀 <strong>77 usuários</strong> já criaram hoje!</p>
                 <span class="pix-key" id="chavePix">0df8fcd3-dffc-4265-8464-5a60badef88c</span>
-                <button onclick="copiarPix()" class="btn-copy-pix">COPIAR CHAVE PIX</button>
+                <button onclick="copiarPix()" class="btn-copy">COPIAR CHAVE PIX</button>
             </div>
         </div>
 
         <footer class="site-footer">
-            <a href="mailto:suporte.cvflash@gmail.com" class="btn-sugestao-real">💡 Sugerir Melhoria</a>
-            <p class="copyright-text">&copy; 2026 <strong>CV Flash v1.1.0</strong> | <a href="privacy.html">Privacidade</a></p>
+            <a href="mailto:suporte.cvflash@gmail.com" class="btn-fix">Sugerir Melhoria</a>
+            <p>&copy; 2026 <strong>CV Flash v1.1.0</strong> | <a href="privacy.html">Privacidade</a></p>
         </footer>
     </div>
 
@@ -124,10 +64,10 @@
         <div class="cv-head">
             <h1 id="out-nome">NOME</h1>
             <h2 id="out-cargo">CARGO</h2>
-            <p id="out-contato">contato</p>
+            <p id="out-contato">E-mail | Telefone | Cidade</p>
         </div>
         <div class="cv-body">
-            <div class="cv-sec"><h3>Resumo Profissional</h3><p id="out-resumo"></p></div>
+            <div class="cv-sec"><h3>Resumo Profissional</h3><p id="out-resumo" class="pre-wrap"></p></div>
             <div class="cv-sec"><h3>Experiência Profissional</h3><div id="out-exp" class="pre-wrap"></div></div>
             <div class="cv-sec"><h3>Educação e Formação</h3><div id="out-edu" class="pre-wrap"></div></div>
         </div>
