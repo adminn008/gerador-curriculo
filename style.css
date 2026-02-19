@@ -1,49 +1,38 @@
-/* Novos estilos da Home e Rodapé */
-.hero-features {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--success);
-}
+/* DESIGN ATRAENTE */
+:root { --primary: #2563eb; --primary-dark: #1d4ed8; --success: #10b981; --bg: #f8fafc; --text: #0f172a; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
 
-.btn-start {
-    max-width: 400px;
-    margin: 20px auto;
-    display: block;
-    animation: pulse 2s infinite;
-}
+/* HERO SECTION */
+.hero { padding: 80px 20px; text-align: center; background: radial-gradient(circle at top, #eef2ff 0%, #f8fafc 100%); }
+.badge { display: inline-block; background: #dbeafe; color: var(--primary); padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; margin-bottom: 20px; }
+.hero h1 { font-size: 4rem; font-weight: 800; letter-spacing: -2px; }
+.subtitle { font-size: 1.2rem; color: #64748b; margin-bottom: 30px; }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
+/* BALÕES (FEATURES) */
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1000px; margin: -40px auto 50px; padding: 0 20px; }
+.feature-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: left; transition: 0.3s; border: 1px solid #f1f5f9; }
+.feature-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+.feature-card .icon { font-size: 2rem; margin-bottom: 15px; }
+.feature-card h4 { margin-bottom: 10px; font-size: 1.1rem; }
+.feature-card p { font-size: 0.9rem; color: #64748b; line-height: 1.6; }
 
-.footer-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    text-align: left;
-    margin-bottom: 30px;
-    border-top: 1px solid #eee;
-    padding-top: 30px;
-}
+/* BOTÃO CTA */
+.cta-button { background: var(--primary); color: white; padding: 20px 40px; border-radius: 12px; border: none; font-size: 1.1rem; font-weight: 800; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2); }
+.cta-button:hover { background: var(--primary-dark); transform: scale(1.02); }
 
-.footer-box h4 {
-    margin-bottom: 15px;
-    color: var(--primary);
-}
+/* NAVEGAÇÃO INTERNA */
+.nav-gerador { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; }
+.btn-back { background: none; border: 1px solid #cbd5e1; padding: 8px 15px; border-radius: 8px; cursor: pointer; }
 
-.footer-box p, .footer-box li {
-    font-size: 13px;
-    line-height: 1.6;
-    color: #666;
-}
+/* REGRAS DO FORMULÁRIO (Igual ao seu anterior, mas com ajustes) */
+.form-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 20px; }
+input, textarea { margin-bottom: 15px; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; width: 100%; font-family: inherit; }
 
-.footer-box ul { list-style: none; }
+/* DARK MODE */
+body.dark-theme { --bg: #0f172a; --text: #f8fafc; }
+body.dark-theme .feature-card { background: #1e293b; border-color: #334155; }
+body.dark-theme .hero { background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%); }
 
-body.dark-theme .footer-box p, body.dark-theme .footer-box li { color: #aaa; }
-body.dark-theme .footer-grid { border-top-color: #333; }
+/* REGRAS DE IMPRESSÃO */
+.print-only { display: none !important; }
+@media print { .print-only { display: block !important; } .main-wrapper { display: none !important; } }
