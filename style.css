@@ -1,61 +1,45 @@
 :root { --primary: #2563eb; --bg: #f8fafc; --success: #28a745; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background: var(--bg); color: #1e293b; transition: 0.3s; }
-
-/* DARK MODE */
-body.dark-theme { background: #121212; color: #f1f5f9; }
-body.dark-theme .container, body.dark-theme .meta-container { background: #1e1e1e; border-color: #333; }
-body.dark-theme input, body.dark-theme textarea { background: #2d2d2d; color: white; border-color: #444; }
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: #1e293b; }
 
 .main-wrapper { padding: 40px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
 
-/* BARRA DE META CENTRALIZADA */
-.meta-container { background: #f8f9fa; border: 1px solid #007bff; padding: 15px; border-radius: 12px; margin-bottom: 25px; }
-.meta-bar-bg { background: #ddd; border-radius: 10px; height: 10px; width: 100%; max-width: 600px; margin: 10px auto; overflow: hidden; }
-.meta-bar-fill { background: var(--success); height: 100%; border-radius: 10px; }
+/* META E PICKER */
+.meta-container { background: #fff; border: 1px solid #007bff; padding: 15px; border-radius: 12px; margin-bottom: 20px; }
+.meta-bar-bg { background: #eee; border-radius: 10px; height: 10px; margin: 10px auto; overflow: hidden; max-width: 500px; }
+.meta-bar-fill { background: var(--success); height: 100%; }
 
-/* LAYOUT */
-.container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-.form-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 30px; text-align: left; }
+.btn-group { display: flex; gap: 10px; justify-content: center; margin: 10px 0 25px; }
+.btn-opt { padding: 8px 15px; border: 1px solid #ddd; border-radius: 20px; cursor: pointer; background: white; font-weight: bold; }
+.btn-opt.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-@media (max-width: 768px) {
-    .form-grid { grid-template-columns: 1fr; }
+/* FORMULÁRIO */
+.container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.form-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 20px; text-align: left; }
+@media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
+
+.input-group { margin-bottom: 15px; }
+.input-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; }
+.required { color: red; }
+.date-row { display: flex; gap: 5px; }
+
+input, textarea { width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; outline: none; }
+
+/* BOTÕES RODAPÉ */
+.btn-sugestao-real { display: inline-block; background: var(--primary); color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 14px; margin-bottom: 15px; transition: 0.3s; }
+.btn-sugestao-real:hover { transform: scale(1.05); background: #1d4ed8; }
+.copyright-text { font-size: 12px; color: #888; margin-top: 5px; }
+
+/* RENDER - FORÇAR FUNDO BRANCO E TAMANHO FOLHA NA IMAGEM */
+#cv-render { 
+    background: white !important; 
+    width: 800px; /* Largura fixa para a imagem sair bonita */
+    min-height: 1130px; /* Altura proporcional ao A4 */
+    padding: 50px;
+    box-sizing: border-box;
 }
-
-/* CAMPOS E LABELS */
-.input-group { margin-bottom: 18px; }
-.input-group label { display: block; font-size: 13px; font-weight: 700; color: #444; margin-bottom: 6px; }
-.required { color: #ff0000; }
-.date-row { display: flex; gap: 8px; }
-.label-row { display: flex; justify-content: space-between; align-items: center; }
-
-/* DICAS */
-.helper-text { display: none; font-size: 11px; color: var(--primary); margin-top: 4px; font-style: italic; }
-input:focus ~ .helper-text, textarea:focus ~ .helper-text { display: block; }
-
-input, textarea { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; outline: none; }
-textarea { height: 120px; font-family: inherit; }
-
-/* BOTÕES */
-.main-btn { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 800; cursor: pointer; margin-top: 20px; }
-.extra-actions { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
-.btn-secondary { padding: 10px 20px; border-radius: 8px; border: none; background: #6c757d; color: white; font-weight: bold; cursor: pointer; font-size: 12px; }
-.btn-secondary.green { background: var(--success); }
-.btn-sugerir { background: none; border: none; color: var(--primary); font-size: 11px; cursor: pointer; text-decoration: underline; font-weight: bold; }
-
-/* PIX CENTRALIZADO */
-.pix-card { margin-top: 35px; padding: 20px; background: #f0fff4; border-radius: 10px; border: 2px dashed #28a745; display: inline-block; width: 100%; }
-.pix-key { display: block; background: white; padding: 10px; margin: 10px auto; border: 1px solid #ddd; max-width: 400px; font-family: monospace; }
-.btn-copy-pix { background: var(--success); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; }
-
-/* FOOTER */
-.site-footer { margin-top: 50px; padding: 30px; border-top: 1px solid #eee; }
-.site-footer a { color: var(--primary); text-decoration: none; }
-
-/* RENDER */
 .print-only { display: none !important; }
-@media print {
-    .no-print { display: none !important; }
-    .print-only { display: block !important; position: static; width: 100%; }
-}
-#dark-mode-toggle { position: fixed; top: 20px; right: 20px; border: none; background: var(--primary); color: white; padding: 10px; border-radius: 50%; cursor: pointer; font-size: 20px; z-index: 9999; }
+@media print { .print-only { display: block !important; width: 100%; } }
+
+.cv-head { border-left: 10px solid var(--primary); padding-left: 20px; margin-bottom: 30px; background: #f8fafc; padding: 30px; }
+.pre-wrap { white-space: pre-wrap; margin-top: 10px; }
