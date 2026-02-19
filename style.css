@@ -20,6 +20,50 @@ body.dark-theme .btn-opt { background: #2d2d2d; color: #ccc; border-color: #444;
 .meta-bar-bg { background: #eee; border-radius: 10px; height: 12px; margin: 10px auto; overflow: hidden; max-width: 500px; border: 1px solid #ccc; }
 .meta-bar-fill { background: var(--success); height: 100%; }
 
+/* BLOCO DE ROADMAP v2.0.0 (O que você pediu) */
+.roadmap-box {
+    margin-top: 20px;
+    background: #f1f5f9;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+}
+
+.roadmap-title, .roadmap-footer {
+    font-size: 11px;
+    font-weight: 800;
+    color: #94a3b8;
+    letter-spacing: 2px;
+    margin: 5px 0;
+}
+
+.roadmap-title { color: #2563eb; } 
+
+.roadmap-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 10px 0;
+    text-align: left;
+}
+
+.item {
+    font-size: 12px;
+    font-weight: 600;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+body.dark-theme .roadmap-box { background: #2d2d2d; border-color: #444; }
+body.dark-theme .item { color: #cbd5e1; }
+body.dark-theme .roadmap-title { color: #60a5fa; }
+
+@media (max-width: 480px) {
+    .roadmap-list { grid-template-columns: 1fr; }
+}
+
 /* MODELOS */
 .btn-group { display: flex; gap: 10px; justify-content: center; margin-bottom: 25px; }
 .btn-opt { padding: 8px 18px; border: 1px solid #ddd; border-radius: 20px; cursor: pointer; background: white; font-weight: bold; }
@@ -36,10 +80,17 @@ body.dark-theme .btn-opt { background: #2d2d2d; color: #ccc; border-color: #444;
 input, textarea { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; outline: none; }
 .date-row { display: flex; gap: 8px; }
 
+/* DESTAQUE AZUL DO TÍTULO */
+.highlight-blue {
+    color: #2563eb;
+    font-weight: 900;
+}
+body.dark-theme .highlight-blue { color: #60a5fa; }
+
 /* BOTÕES E PIX */
 .main-btn { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 800; cursor: pointer; margin-top: 20px; font-size: 1.1rem; }
 .pix-card { margin-top: 35px; padding: 25px; background: #f0fff4; border-radius: 10px; border: 2px dashed #28a745; color: #1e293b; }
-body.dark-theme .pix-card { color: #1e293b; } /* Mantém legível no dark */
+body.dark-theme .pix-card { background: #f0fff4; color: #1e293b; } 
 
 .pix-key { display: block; background: white; padding: 10px; margin: 15px auto; border: 1px solid #ddd; max-width: 400px; font-family: monospace; color: #333; }
 .btn-copy-pix { background: var(--success); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; }
