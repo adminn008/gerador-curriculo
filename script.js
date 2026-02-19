@@ -1,4 +1,4 @@
-const obrigatorios=["nome","tel","email"];
+const obrigatorios=["nome","tel","email","cargo"];
 
 const sugestoes=[
 "Busco minha primeira oportunidade profissional.",
@@ -58,8 +58,16 @@ let feito=total-faltam;
 let p=Math.round((feito/total)*100);
 
 document.getElementById("bar").style.width=p+"%";
-document.getElementById("status").innerText=
-faltam>0 ? "Faltam "+faltam+" campos obrigatórios" : "Tudo pronto!";
+
+let status=document.getElementById("status");
+
+if(faltam>0){
+status.className="status-warn";
+status.innerText="Faltam "+faltam+" campos obrigatórios";
+}else{
+status.className="status-ok";
+status.innerText="Tudo pronto para gerar ✔";
+}
 }
 
 function gerar(){
@@ -68,6 +76,22 @@ if(document.querySelectorAll(".error").length>0){
 alert("Preencha os campos obrigatórios");
 return;
 }
+
+const modelo=document.getElementById("modelo").value;
+
+document.getElementById("print").innerHTML=`
+<h1>${document.getElementById("nome").value}</h1>
+<p><b>Cargo:</b> ${document.getElementById("cargo").value}</p>
+<p><b>Telefone:</b> ${document.getElementById("tel").value}</p>
+<p><b>Email:</b> ${document.getElementById("email").value}</p>
+<p><b>Objetivo:</b> ${document.getElementById("obj").value}</p>
+<p><b>Experiência:</b> ${document.getElementById("exp").value}</p>
+<p><b>Escolaridade:</b> ${document.getElementById("edu").value}</p>
+<p><b>Habilidades:</b> ${document.getElementById("hab").value}</p>
+<hr>
+<p>Modelo escolhido: ${modelo}</p>
+`;
+
 window.print();
 }
 
