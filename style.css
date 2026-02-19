@@ -1,78 +1,76 @@
+/* VARIÁVEIS E TEMA */
 :root {
     --primary: #3b82f6;
     --success: #22c55e;
     --danger: #ef4444;
-    --bg: #ffffff;
-    --card: #ffffff;
-    --text: #1e293b;
-    --border: #e2e8f0;
-    --toggle-bg: #e2e8f0;
-}
-
-<h1 class="site-title">CV<span>FLASH</span></h1>
-
-.site-title {
-    font-family: 'Inter', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 800;
-    text-align: center;
-    margin: 20px 0;
-    width: 100%;
-    display: block;
-    color: var(--text);
-}
-.site-title span { color: var(--primary); }
-
-
-/* TEMA DARK (PADRÃO) */
-body.dark-theme {
-    --bg: #0f172a;
+    --bg: #0f172a; /* Padrão Escuro */
     --card: #1e293b;
     --text: #f1f5f9;
+    --text-muted: #94a3b8;
     --border: #334155;
-    --toggle-bg: #334155;
+    --radius: 12px;
+}
+
+body.light-theme {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: var(--bg); 
+    color: var(--text); 
+    transition: background 0.4s, color 0.4s; 
+    line-height: 1.6;
+}
 
-/* Toggle Premium */
-.theme-toggle { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-.toggle-track { width: 50px; height: 26px; background: var(--toggle-bg); border-radius: 20px; position: relative; border: 1px solid var(--border); }
-.toggle-ball { width: 20px; height: 20px; background: var(--primary); border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: 0.3s; }
-.dark-theme .toggle-ball { left: 26px; background: #fbbf24; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+.card { background: var(--card); border-radius: var(--radius); padding: 25px; border: 1px solid var(--border); margin-bottom: 25px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
 
-/* Meta Financeira */
-.meta-financeira { text-align: center; border: 2px solid var(--primary); }
-.progress-bar-bg { width: 100%; height: 12px; background: #cbd5e1; border-radius: 10px; overflow: hidden; margin: 10px 0; }
-.progress-bar-fill { height: 100%; width: 0%; transition: width 1s ease-in-out; }
-.progress-bar-fill.success { background: var(--success); }
-#meta-fill { background: linear-gradient(90deg, var(--primary), var(--success)); }
+/* PADRONIZAÇÃO DO TÍTULO */
+.site-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 30px 0;
+    letter-spacing: -1px;
+}
+.site-title span { color: var(--primary); }
 
-/* Formulário Vertical */
-.vertical-fields { display: flex; flex-direction: column; gap: 20px; }
-.input-group { display: flex; flex-direction: column; gap: 8px; }
-input, textarea { padding: 12px; border: 2px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text); transition: 0.2s; }
-input:focus { border-color: var(--primary); outline: none; }
-.input-error { border-color: var(--danger) !important; animation: shake 0.3s; }
+/* BOTÕES */
+.btn-primary { background: var(--primary); color: white; padding: 12px 24px; border-radius: 8px; border: none; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-block; transition: 0.3s; }
+.btn-primary:hover { filter: brightness(1.1); transform: translateY(-2px); }
+.btn-lg { padding: 18px 36px; font-size: 1.1rem; }
 
-/* Checklist Inteligente */
-.smart-checklist { list-style: none; margin-top: 15px; }
-.smart-checklist li { padding: 5px 0; font-size: 0.9rem; transition: 0.3s; }
-.smart-checklist li.valid { color: var(--success); font-weight: 600; }
+/* META FINANCEIRA V2 */
+.meta-bar-bg { width: 100%; height: 12px; background: #334155; border-radius: 10px; overflow: hidden; margin: 10px 0; }
+.meta-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary), var(--success)); transition: width 1s ease-in-out; }
 
-/* Modais */
-.modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
-.modal-content { background: var(--card); margin: 10% auto; padding: 30px; border-radius: 15px; width: 80%; max-width: 600px; position: relative; animation: slideDown 0.4s; }
-@keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+/* ACCORDION SUPORTE */
+.acc-item { border-bottom: 1px solid var(--border); }
+.acc-btn { width: 100%; padding: 15px; background: none; border: none; color: var(--text); text-align: left; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; }
+.acc-content { padding: 0 15px 15px; display: none; color: var(--text-muted); font-size: 0.95rem; }
 
-/* Dicas */
-.tip-box { display: none; background: var(--primary); color: white; padding: 10px; border-radius: 8px; font-size: 0.8rem; margin-bottom: 5px; }
-.info-icon { cursor: pointer; color: var(--primary); margin-left: 5px; }
+/* RODAPÉ PREMIUM */
+.footer-premium { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); background: var(--card); }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px; }
+.footer-col h4 { color: var(--primary); margin-bottom: 15px; }
+.footer-col a, .footer-col span { display: block; color: var(--text-muted); text-decoration: none; margin-bottom: 8px; font-size: 0.9rem; transition: 0.2s; }
+.footer-col a:hover { color: var(--primary); padding-left: 5px; }
+.footer-bottom { text-align: center; padding: 20px; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-muted); }
 
-/* Botões */
-.btn-primary { background: var(--primary); color: white; padding: 15px 30px; border-radius: 10px; border: none; font-weight: 800; cursor: pointer; transition: 0.3s; }
-.btn-primary:hover { filter: brightness(1.2); transform: translateY(-2px); }
-.btn-full { width: 100%; }
+/* BALÃO NOVIDADES */
+.modal-news { position: fixed; bottom: 20px; right: 20px; width: 300px; background: var(--card); border: 2px solid var(--primary); border-radius: 15px; display: none; flex-direction: column; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 9999; }
+.modal-news h3 { color: var(--primary); margin-bottom: 10px; }
+.modal-news ul { list-style: none; font-size: 0.85rem; margin-bottom: 15px; }
+
+/* GERADOR - CAMPOS VERTICAIS */
+.form-section { display: flex; flex-direction: column; gap: 15px; }
+.input-group { display: flex; flex-direction: column; gap: 5px; }
+input, textarea { padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
 
 @media print { .no-print { display: none; } .print-only { display: block; } }
