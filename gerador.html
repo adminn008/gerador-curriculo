@@ -3,111 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador | CV Flash</title>
-    <meta name="robots" content="noindex, nofollow">
+    <title>Gerador | CVFlash</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
-<body class="dark-theme">
-    <nav class="navbar no-print">
-        <div class="container nav-content">
-            <a href="index.html" class="logo">CV<span>FLASH</span></a>
-            <div class="theme-toggle" onclick="toggleTheme()">
-                <div class="toggle-track"><div class="toggle-ball"></div></div>
-            </div>
-        </div>
-    </nav>
-
-    <main class="container app-grid no-print">
-        <div class="editor-column">
-            <form id="cv-form">
-                <section class="card">
-                    <h3>Dados Pessoais</h3>
-                    <div class="vertical-fields">
-                        <div class="input-group">
-                            <label for="in-nome">Nome Completo <span class="req">*</span></label>
-                            <input type="text" id="in-nome" class="val-req" data-label="Nome">
-                        </div>
-                        <div class="input-group">
-                            <label for="in-email">E-mail <span class="req">*</span></label>
-                            <input type="email" id="in-email" class="val-email" data-label="Email">
-                        </div>
-                        <div class="input-group">
-                            <label for="in-tel">Telefone <span class="req">*</span></label>
-                            <input type="tel" id="in-tel" class="val-tel" placeholder="(00) 00000-0000">
-                        </div>
-                        <div class="input-group">
-                            <label>Estado Civil <i class="info-icon" onclick="toggleTip('tip-civil')">ⓘ</i></label>
-                            <div id="tip-civil" class="tip-box">Ex: Solteiro, Casado...</div>
-                            <input type="text" id="in-civil">
-                        </div>
-                        <div class="input-group">
-                            <label>Nacionalidade</label>
-                            <input type="text" id="in-nasc">
-                        </div>
-                        <div class="input-group">
-                            <label>Habilitação (CNH)</label>
-                            <input type="text" id="in-cnh" placeholder="Ex: Categoria AB">
-                        </div>
-                        <div class="input-group">
-                            <label>Idiomas <i class="info-icon" onclick="toggleTip('tip-idioma')">ⓘ</i></label>
-                            <div id="tip-idioma" class="tip-box">Ex: Inglês - Avançado, Espanhol - Básico</div>
-                            <textarea id="in-idiomas" rows="2"></textarea>
-                        </div>
-                        <div class="input-group">
-                            <label>Pretensão Salarial</label>
-                            <input type="text" id="in-salario">
-                        </div>
-                    </div>
-                </section>
-                
-                <section class="card">
-                    <h3>Qualificações & Links</h3>
-                    <div class="vertical-fields">
-                        <div class="input-group">
-                            <label>Certificações</label>
-                            <textarea id="in-cert"></textarea>
-                        </div>
-                        <div class="input-group">
-                            <label>Portfólio / Redes Sociais</label>
-                            <input type="text" id="in-portfolio">
-                        </div>
-                    </div>
-                </section>
-
-                <button type="button" onclick="gerarPDF()" class="btn-primary btn-full">✨ Gerar PDF Profissional</button>
+<body>
+    <div class="no-print">
+        <div class="container">
+            <h1 class="site-title">CV<span>FLASH</span></h1>
+            <center><a href="index.html" style="color:var(--primary); text-decoration:none;">⬅ Voltar ao Início</a></center>
+            <br>
+            
+            <form id="cv-form" class="card form-section">
+                <h3>Informações do Currículo</h3>
+                <div class="input-group">
+                    <label>Nome Completo *</label>
+                    <input type="text" id="in-nome" placeholder="Seu nome">
+                </div>
+                <div class="input-group">
+                    <label>Telefone *</label>
+                    <input type="tel" id="in-tel" placeholder="(00) 00000-0000">
+                </div>
+                <div class="input-group">
+                    <label>Objetivo Profissional</label>
+                    <textarea id="in-obj" rows="3"></textarea>
+                </div>
+                <button type="button" onclick="window.print()" class="btn-primary btn-lg" style="width:100%">GERAR PDF AGORA</button>
             </form>
         </div>
+    </div>
 
-        <aside class="sidebar-column">
-            <div class="card sticky-sidebar">
-                <h3>Checklist de Qualidade</h3>
-                <div class="progress-status">
-                    <div class="progress-bar-bg">
-                        <div id="cv-progress" class="progress-bar-fill success"></div>
-                    </div>
-                    <span id="cv-percent">0% completo</span>
-                </div>
-                <ul id="checklist" class="smart-checklist">
-                    <li id="chk-nome">❌ Nome completo</li>
-                    <li id="chk-email">❌ E-mail válido</li>
-                    <li id="chk-tel">❌ Telefone válido</li>
-                </ul>
-            </div>
-        </aside>
-    </main>
-
-    <footer class="main-footer no-print">
-        <div class="container footer-content">
-            <p>© 2026 Gerador de Currículo — Todos os direitos reservados</p>
-            <nav class="footer-links">
-                <a href="javascript:void(0)" onclick="openModal('termos')">Termos</a>
-                <a href="javascript:void(0)" onclick="openModal('privacidade')">Privacidade</a>
-                <a href="javascript:void(0)" onclick="openModal('contato')">Contato</a>
-            </nav>
+    <div class="print-only" id="cv-print">
         </div>
-    </footer>
 
-    <div id="cv-print" class="print-only"></div> <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
