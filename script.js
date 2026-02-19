@@ -1,22 +1,8 @@
-let modeloSelecionado = 'modelo-moderno';
-
-function setModelo(tipo, btn) {
-    const render = document.getElementById('cv-render');
-    if (render) {
-        document.querySelectorAll('.btn-opt').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        modeloSelecionado = 'modelo-' + tipo;
-        render.className = modeloSelecionado + ' print-only';
-    }
-}
-
 function atualizar() {
     const preencher = (idIn, idOut, fallback = "") => {
         const input = document.getElementById(idIn);
         const output = document.getElementById(idOut);
-        if (input && output) {
-            output.innerText = input.value || fallback;
-        }
+        if (input && output) output.innerText = input.value || fallback;
     };
 
     preencher('in-nome', 'out-nome', "NOME");
@@ -25,7 +11,6 @@ function atualizar() {
     preencher('in-exp', 'out-exp');
     preencher('in-edu', 'out-edu');
 
-    // Data de Nascimento Veloz
     const dia = document.getElementById('dia-nasc')?.value || "";
     const mes = document.getElementById('mes-nasc')?.value || "";
     const ano = document.getElementById('ano-nasc')?.value || "";
@@ -34,67 +19,61 @@ function atualizar() {
     const email = document.getElementById('in-email')?.value || "";
     const tel = document.getElementById('in-tel')?.value || "";
     const cidade = document.getElementById('in-cidade')?.value || "";
-    const civil = document.getElementById('in-civil')?.value || "";
     const linkedin = document.getElementById('in-linkedin')?.value || "";
-    const extra = document.getElementById('in-extra-info')?.value || "";
 
     const outContato = document.getElementById('out-contato');
     if (outContato) {
-        const partes = [nascimento, civil, email, tel, cidade, linkedin, extra].filter(Boolean);
+        const partes = [nascimento, email, tel, cidade, linkedin].filter(Boolean);
         outContato.innerText = partes.join(' | ');
     }
 }
 
 function gerar() {
-    const nome = document.getElementById('in-nome').value;
-    if(!nome) {
-        alert("⚠️ Por favor, digite seu nome.");
+    // VALIDAÇÃO REAL: Só deixa passar se preencher os obrigatórios
+    const obrigatorios = ['in-nome', 'in-cargo', 'in-email', 'in-tel', 'in-cidade', 'dia-nasc', 'mes-nasc', 'ano-nasc'];
+    let faltam = [];
+    
+    obrigatorios.forEach(id => {
+        if (!document.getElementById(id).value) faltam.push(id);
+    });
+
+    if (faltam.length > 0) {
+        alert("⚠️ Calma! Você esqueceu de preencher alguns campos obrigatórios (*)");
         return;
     }
+
     atualizar();
     window.print();
 }
 
-// FUNÇÃO BAIXAR IMAGEM REAL (Usando html2canvas)
-function baixarImagemReal() {
-    const nome = document.getElementById('in-nome').value || 'curriculo';
-    atualizar();
-    
-    const container = document.getElementById('cv-render');
-    container.classList.remove('print-only'); // Mostra para capturar
-    
-    html2canvas(container, {
-        scale: 2, // Melhor qualidade
-        useCORS: true,
-        logging: false
-    }).then(canvas => {
-        const link = document.createElement('a');
-        link.download = `CV_Flash_${nome.replace(/\s+/g, '_')}.png`;
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-        container.classList.add('print-only'); // Oculta de novo
-    });
-}
-
 function sugerirResumo() {
-    const frase = "Profissional dedicado, com facilidade de aprendizado e focado em resultados. Busco aplicar minhas habilidades para contribuir com o crescimento da empresa através de dedicação e aprendizado contínuo.";
-    document.getElementById('in-resumo').value = frase;
+    const cargo = document.getElementById('in-cargo').value || "profissional";
+    const sugestoes = [
+        `Sou um ${cargo} dedicado, com facilidade em aprender novas funções e focado em entregar resultados com qualidade e agilidade.`,
+        `Busco minha primeira oportunidade como ${cargo} para aplicar meus conhecimentos e contribuir com o crescimento da empresa.`,
+        `Experiência na área de ${cargo}, com foco em atendimento ao cliente, organização e trabalho em equipe.`
+    ];
+    
+    // Escolhe uma sugestão aleatória
+    const escolhida = sugestoes[Math.floor(Math.random() * sugestoes.length)];
+    document.getElementById('in-resumo').value = escolhida;
     atualizar();
 }
 
-function copiarPix() {
-    const chave = document.getElementById('chavePix')?.innerText;
-    if (chave) {
-        navigator.clipboard.writeText(chave).then(() => {
-            alert("Chave PIX copiada! 🙏");
-        });
-    }
+function baixarImagemReal() {
+    atualizar();
+    const cv = document.getElementById('cv-render');
+    cv.classList.remove('print-only');
+    
+    html2canvas(cv, { scale: 2 }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'meu-curriculo.png';
+        link.href = canvas.toDataURL();
+        link.click();
+        cv.classList.add('print-only');
+    });
 }
 
 function toggleDarkMode() {
     document.body.classList.toggle('dark-theme');
-    const btn = document.getElementById('dark-mode-toggle');
-    if (btn) {
-        btn.innerText = document.body.classList.contains('dark-theme') ? '☀️' : '🌙';
-    }
 }
