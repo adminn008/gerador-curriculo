@@ -38,6 +38,80 @@
                 <input type="text" id="in-bairro" placeholder="Seu bairro">
             </div>
 
+<hr>
+
+<h3>Modelo do Currículo *</h3>
+<div class="model-selector">
+<label><input type="radio" name="modelo" value="moderno" checked> Moderno</label>
+<label><input type="radio" name="modelo" value="classico"> Clássico</label>
+<label><input type="radio" name="modelo" value="minimalista"> Minimalista</label>
+</div>
+
+<hr>
+
+<h3>Informações Pessoais</h3>
+
+<div class="input-group">
+<label>Email *</label>
+<input type="email" id="in-email" placeholder="seuemail@gmail.com">
+</div>
+
+<div class="input-group">
+<label>Bairro</label>
+<input type="text" id="in-bairro">
+</div>
+
+<div class="input-group">
+<label>Cidade</label>
+<input type="text" id="in-cidade">
+</div>
+
+<div class="input-group">
+<label>Estado</label>
+<input type="text" id="in-estado">
+</div>
+
+<div class="input-group">
+<label>LinkedIn</label>
+<input type="text" id="in-linkedin" placeholder="linkedin.com/in/...">
+</div>
+
+<div class="input-group">
+<label>Data de Nascimento</label>
+<input type="date" id="in-nascimento">
+</div>
+
+<hr>
+
+<h3>Formação Acadêmica *</h3>
+<textarea id="in-formacao" rows="3"></textarea>
+
+<h3>Experiência Profissional</h3>
+<textarea id="in-exp" rows="3"></textarea>
+
+<h3>Habilidades *</h3>
+<textarea id="in-hab" rows="3"></textarea>
+
+<h3>Idiomas</h3>
+<textarea id="in-idiomas" rows="2"></textarea>
+
+<h3>Cursos Extras</h3>
+<textarea id="in-cursos" rows="2"></textarea>
+
+<hr>
+
+<h3>Qualidade do Currículo</h3>
+<div class="progress-box">
+<div class="progress-bar-bg">
+<div id="progress-bar" class="progress-bar-fill"></div>
+</div>
+<span id="progress-text">0%</span>
+</div>
+
+<ul id="checklist"></ul>
+
+<div id="avaliacao" class="avaliacao-box"></div>
+            
             <button type="button" onclick="gerarPDF()" class="btn-primary btn-lg" style="width:100%">
                 GERAR PDF AGORA
             </button>
