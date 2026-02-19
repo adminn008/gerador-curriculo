@@ -3,66 +3,53 @@
 
 body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); text-align: center; transition: 0.3s; }
 
-/* ESTILOS DARK MODE */
-body.dark-theme { 
-    --bg: #121212; 
-    --text: #f1f5f9; 
-    --card: #1e1e1e; 
+/* FIX DO BOTÃO DARK MODE */
+#dark-mode-toggle { 
+    position: fixed; 
+    top: 20px; 
+    right: 20px; 
+    width: 50px; 
+    height: 50px; 
+    border: none; 
+    background: var(--primary); 
+    color: white; 
+    border-radius: 50%; 
+    cursor: pointer; 
+    z-index: 9999; 
+    font-size: 22px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
+
+/* ESTILOS DARK MODE */
+body.dark-theme { --bg: #121212; --text: #f1f5f9; --card: #1e1e1e; }
 body.dark-theme .container, body.dark-theme .meta-container { background: var(--card); border-color: #333; }
 body.dark-theme input, body.dark-theme textarea { background: #2d2d2d; color: white; border-color: #444; }
 body.dark-theme .btn-opt { background: #2d2d2d; color: #ccc; border-color: #444; }
+body.dark-theme .roadmap-box { background: #2d2d2d; border-color: #444; }
 
 .main-wrapper { padding: 40px 20px; max-width: 900px; margin: 0 auto; }
 
-/* BARRA DE META */
+/* TÍTULO E DESTAQUE */
+.top-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+.highlight-blue { color: #2563eb; font-weight: 900; }
+body.dark-theme .highlight-blue { color: #60a5fa; }
+
+/* BARRA DE META E ROADMAP */
 .meta-container { background: var(--card); border: 1px solid #007bff; padding: 15px; border-radius: 12px; margin-bottom: 25px; }
 .meta-bar-bg { background: #eee; border-radius: 10px; height: 12px; margin: 10px auto; overflow: hidden; max-width: 500px; border: 1px solid #ccc; }
 .meta-bar-fill { background: var(--success); height: 100%; }
 
-/* BLOCO DE ROADMAP v2.0.0 (O que você pediu) */
-.roadmap-box {
-    margin-top: 20px;
-    background: #f1f5f9;
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid #e2e8f0;
-}
-
-.roadmap-title, .roadmap-footer {
-    font-size: 11px;
-    font-weight: 800;
-    color: #94a3b8;
-    letter-spacing: 2px;
-    margin: 5px 0;
-}
-
-.roadmap-title { color: #2563eb; } 
-
-.roadmap-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    padding: 10px 0;
-    text-align: left;
-}
-
-.item {
-    font-size: 12px;
-    font-weight: 600;
-    color: #334155;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-body.dark-theme .roadmap-box { background: #2d2d2d; border-color: #444; }
+.roadmap-box { margin-top: 20px; background: #f1f5f9; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0; }
+.roadmap-title, .roadmap-footer { font-size: 11px; font-weight: 800; color: #94a3b8; letter-spacing: 2px; margin: 5px 0; }
+.roadmap-title { color: #2563eb; }
+.roadmap-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px 0; text-align: left; }
+.item { font-size: 12px; font-weight: 600; color: #334155; display: flex; align-items: center; gap: 8px; }
 body.dark-theme .item { color: #cbd5e1; }
-body.dark-theme .roadmap-title { color: #60a5fa; }
 
-@media (max-width: 480px) {
-    .roadmap-list { grid-template-columns: 1fr; }
-}
+@media (max-width: 480px) { .roadmap-list { grid-template-columns: 1fr; } }
 
 /* MODELOS */
 .btn-group { display: flex; gap: 10px; justify-content: center; margin-bottom: 25px; }
@@ -80,70 +67,19 @@ body.dark-theme .roadmap-title { color: #60a5fa; }
 input, textarea { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; outline: none; }
 .date-row { display: flex; gap: 8px; }
 
-/* DESTAQUE AZUL DO TÍTULO */
-.highlight-blue {
-    color: #2563eb;
-    font-weight: 900;
-}
-body.dark-theme .highlight-blue { color: #60a5fa; }
-
-/* BOTÕES E PIX */
-.main-btn { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 800; cursor: pointer; margin-top: 20px; font-size: 1.1rem; }
+/* PIX */
 .pix-card { margin-top: 35px; padding: 25px; background: #f0fff4; border-radius: 10px; border: 2px dashed #28a745; color: #1e293b; }
-body.dark-theme .pix-card { background: #f0fff4; color: #1e293b; } 
-
 .pix-key { display: block; background: white; padding: 10px; margin: 15px auto; border: 1px solid #ddd; max-width: 400px; font-family: monospace; color: #333; }
 .btn-copy-pix { background: var(--success); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; }
 
-/* RODAPÉ */
-.site-footer { margin-top: 50px; padding: 30px; border-top: 1px solid #eee; }
-.btn-sugestao-real { display: inline-block; background: var(--primary); color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-bottom: 10px; }
-.copyright-text { font-size: 12px; color: #888; }
-
-/* RENDER PDF */
-/* --- ESTILOS DOS MODELOS NO PDF --- */
+/* PDF RENDER */
 .print-only { display: none !important; }
-@media print { 
-    .print-only { display: block !important; } 
-    .no-print { display: none !important; } 
-}
+@media print { .print-only { display: block !important; } .no-print { display: none !important; } }
+#cv-render { background: white !important; color: black !important; padding: 0; text-align: left; width: 800px; min-height: 1100px; font-family: serif; }
 
-#cv-render { 
-    background: white !important; 
-    color: black !important; 
-    padding: 0; 
-    text-align: left; 
-    width: 800px; 
-    min-height: 1100px;
-    font-family: 'serif';
-}
-
-/* 1. MODELO MODERNO (Com borda lateral estilizada) */
-.modelo-moderno .cv-head { 
-    border-left: 15px solid var(--primary); 
-    padding: 30px; 
-    background: #f1f5f9; 
-}
-.modelo-moderno .cv-sec h3 { 
-    color: var(--primary); 
-    border-bottom: 2px solid #ddd; 
-    margin-bottom: 10px; 
-    padding-top: 15px;
-}
-
-/* 2. MODELO CLASSICO (Centralizado e Elegante) */
+.modelo-moderno .cv-head { border-left: 15px solid var(--primary); padding: 30px; background: #f1f5f9; }
 .modelo-classico { padding: 50px !important; text-align: center !important; }
-.modelo-classico .cv-head { border: none; background: none; margin-bottom: 30px; }
-.modelo-classico .cv-head h1 { border-bottom: 1px solid #000; display: inline-block; padding: 0 20px; }
-.modelo-classico .cv-sec { text-align: left; margin-top: 20px; }
-.modelo-classico .cv-sec h3 { text-transform: uppercase; font-size: 14px; background: #eee; padding: 5px; }
+.modelo-limpo { padding: 40px !important; font-family: Arial, sans-serif !important; }
 
-/* 3. MODELO LIMPO (Simples e Direto) */
-.modelo-limpo { padding: 40px !important; font-family: 'Arial', sans-serif !important; }
-.modelo-limpo .cv-head { border: none; background: none; padding: 0; margin-bottom: 20px; }
-.modelo-limpo .cv-head h1 { font-size: 24px; color: #333; }
-.modelo-limpo .cv-sec h3 { font-size: 16px; color: #555; border-left: 4px solid #555; padding-left: 10px; }
-
-/* Ajustes Gerais de espaçamento dentro do PDF */
 .cv-sec { margin-bottom: 15px; padding: 0 20px; }
 .pre-wrap { white-space: pre-wrap; font-size: 13px; line-height: 1.5; color: #333; }
