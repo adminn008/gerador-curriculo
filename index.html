@@ -2,17 +2,9 @@
 <html lang="pt-br">
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7811150237322772" crossorigin="anonymous"></script>
-    <meta name="google-site-verification" content="HK2BDXPIDVlkbhjXylKVSRBBvqajRkJHAatHOZsiaZQ" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>CV Flash | Gerador de Currículo Grátis e Rápido em PDF</title>
-    <meta name="description" content="Crie seu currículo profissional grátis em minutos. Modelos modernos, download em PDF pronto para imprimir e totalmente seguro.">
-    <meta name="keywords" content="gerador de curriculo, curriculo gratis, fazer cv, curriculo pdf pronto, currículo online rápido">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://adminn008.github.io/gerador-curriculo/">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
-  
+    <title>CV Flash | Gerador de Currículo v2.0</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
@@ -22,30 +14,13 @@
     <div class="no-print main-wrapper">
         <header class="top-header">
             <h1>CV <span>FLASH</span></h1>
-            <p>Preencha os dados e escolha o estilo do seu novo currículo profissional.</p>
+            <p>Seu currículo profissional em minutos.</p>
         </header>
 
-        <div style="background: #f8f9fa; border: 1px solid #007bff; padding: 12px; border-radius: 10px; margin: 10px auto 25px; max-width: 800px; text-align: center; font-family: sans-serif;">
-            <p style="margin: 0; font-size: 14px; color: #333; font-weight: bold;">🚀 Meta Manutenção (v2.0): R$ 0,00 / R$ 50,00</p>
-            <div style="background: #ddd; border-radius: 10px; height: 10px; width: 90%; margin: 8px auto; overflow: hidden; border: 1px solid #ccc;">
-                <div style="background: linear-gradient(90deg, #28a745, #34ce57); width: 2%; height: 100%; border-radius: 10px;"></div>
-            </div>
-            <p style="margin: 0; font-size: 12px; color: #666;">Já somos <strong>77 usuários</strong> hoje! Ajude o projeto a crescer.</p>
-        </div>
-
-        <div class="alert-banner" style="background: #e7f3ff; border-left: 5px solid #007bff; padding: 15px; margin: 10px auto 25px; border-radius: 8px; max-width: 800px; display: flex; align-items: center; gap: 15px; color: #0056b3; font-family: sans-serif; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-            <span style="font-size: 24px;">🛡️</span>
-            <div>
-                <strong>Sua privacidade em primeiro lugar:</strong> todos os dados preenchidos são processados e mantidos exclusivamente no seu navegador. Não coletamos, acessamos ou armazenamos suas informações em nossos servidores, garantindo que você tenha controle total sobre sua segurança.
-            </div>
-        </div>
-
-        <div class="model-picker">
-            <p>Escolha o Modelo de Currículo:</p>
-            <div class="btn-group">
-                <button class="btn-opt active" onclick="setModelo('moderno', this)">Moderno</button>
-                <button class="btn-opt" onclick="setModelo('classico', this)">Executivo</button>
-                <button class="btn-opt" onclick="setModelo('limpo', this)">Mínimo</button>
+        <div style="background: #f8f9fa; border: 1px solid #007bff; padding: 12px; border-radius: 10px; margin: 10px auto 25px; max-width: 800px; text-align: center;">
+            <p style="margin: 0; font-size: 14px; color: #333; font-weight: bold;">🚀 Meta Manutenção: R$ 0,00 / R$ 50,00 (77 usuários hoje)</p>
+            <div style="background: #ddd; border-radius: 10px; height: 10px; width: 90%; margin: 8px auto; overflow: hidden;">
+                <div style="background: #28a745; width: 2%; height: 100%;"></div>
             </div>
         </div>
 
@@ -54,107 +29,80 @@
                 <div class="box">
                     <h3>Dados de Contato</h3>
                     <div class="input-group">
-                        <label>Nome Completo <span>*</span></label>
-                        <input type="text" id="in-nome" placeholder="Nome Completo" oninput="atualizar()">
-                        <small class="helper-text">Digite seu nome completo sem abreviações.</small>
+                        <label>Nome Completo <span class="required">*</span></label>
+                        <input type="text" id="in-nome" placeholder="Ex: João Silva" oninput="atualizar()">
+                        <small class="helper-text">Clique para saber: Use seu nome completo oficial.</small>
                     </div>
 
                     <div class="input-group">
-                        <label>Nascimento <span>*</span></label>
+                        <label>Nascimento <span class="required">*</span></label>
                         <div style="display: flex; gap: 5px;">
-                            <input type="number" id="dia-nasc" placeholder="Dia" min="1" max="31" oninput="atualizar()">
-                            <input type="number" id="mes-nasc" placeholder="Mês" min="1" max="12" oninput="atualizar()">
-                            <input type="number" id="ano-nasc" placeholder="Ano" min="1950" max="2012" oninput="atualizar()">
+                            <input type="number" id="dia-nasc" placeholder="Dia" oninput="atualizar()">
+                            <input type="number" id="mes-nasc" placeholder="Mês" oninput="atualizar()">
+                            <input type="number" id="ano-nasc" placeholder="Ano" oninput="atualizar()">
                         </div>
                     </div>
 
                     <div class="input-group">
-                        <label>Estado Civil</label>
-                        <input type="text" id="in-civil" placeholder="Ex: Solteiro" oninput="atualizar()">
+                        <label>Cargo Desejado <span class="required">*</span></label>
+                        <input type="text" id="in-cargo" placeholder="Ex: Vendedor" oninput="atualizar()">
+                        <small class="helper-text">Dica: Coloque o cargo da vaga que você quer.</small>
                     </div>
 
                     <div class="input-group">
-                        <label>Cargo ou Profissão <span>*</span></label>
-                        <input type="text" id="in-cargo" placeholder="Seu Cargo ou Profissão" oninput="atualizar()">
+                        <label>E-mail <span class="required">*</span></label>
+                        <input type="email" id="in-email" placeholder="nome@email.com" oninput="atualizar()">
                     </div>
 
                     <div class="input-group">
-                        <label>E-mail <span>*</span></label>
-                        <input type="email" id="in-email" placeholder="E-mail de contato" oninput="atualizar()">
+                        <label>WhatsApp / Tel <span class="required">*</span></label>
+                        <input type="tel" id="in-tel" placeholder="(00) 00000-0000" oninput="atualizar()">
                     </div>
 
                     <div class="input-group">
-                        <label>WhatsApp / Tel <span>*</span></label>
-                        <input type="tel" id="in-tel" placeholder="Telefone / WhatsApp" oninput="atualizar()">
+                        <label>Cidade e Estado <span class="required">*</span></label>
+                        <input type="text" id="in-cidade" placeholder="Cidade - UF" oninput="atualizar()">
                     </div>
-
+                    
                     <div class="input-group">
-                        <label>Cidade e Estado <span>*</span></label>
-                        <input type="text" id="in-cidade" placeholder="Cidade e Estado" oninput="atualizar()">
-                    </div>
-
-                    <div class="input-group">
-                        <label>LinkedIn / Portfólio</label>
-                        <input type="text" id="in-linkedin" placeholder="Link do seu perfil" oninput="atualizar()">
-                    </div>
-
-                    <div class="input-group">
-                        <label>Idiomas / CNH</label>
-                        <input type="text" id="in-extra-info" placeholder="Ex: Inglês Básico / CNH B" oninput="atualizar()">
+                        <label>LinkedIn / Link</label>
+                        <input type="text" id="in-linkedin" placeholder="linkedin.com/in/perfil" oninput="atualizar()">
                     </div>
                 </div>
 
                 <div class="box">
                     <h3>Experiência e Resumo</h3>
                     <div class="input-group">
-                        <div style="display: flex; justify-content: space-between;">
-                            <label>Resumo Profissional <span>*</span></label>
-                            <button onclick="sugerirResumo()" style="background: none; border: none; color: #007bff; font-size: 10px; cursor: pointer; text-decoration: underline;">Sugerir Texto</button>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <label>Resumo Profissional <span class="required">*</span></label>
+                            <button onclick="sugerirResumo()" class="btn-sugerir">💡 Sugerir Texto</button>
                         </div>
-                        <textarea id="in-resumo" placeholder="Resumo Profissional..." oninput="atualizar()"></textarea>
+                        <textarea id="in-resumo" placeholder="Fale sobre você..." oninput="atualizar()"></textarea>
+                        <small class="helper-text">O resumo deve ter entre 3 e 4 linhas.</small>
                     </div>
 
                     <div class="input-group">
-                        <label>Experiências Profissionais</label>
-                        <textarea id="in-exp" placeholder="Experiências Profissionais..." oninput="atualizar()"></textarea>
+                        <label>Experiências</label>
+                        <textarea id="in-exp" placeholder="Empresa, Cargo e Data..." oninput="atualizar()"></textarea>
                     </div>
 
                     <div class="input-group">
-                        <label>Formação Acadêmica</label>
-                        <textarea id="in-edu" placeholder="Formação Acadêmica..." oninput="atualizar()"></textarea>
+                        <label>Formação</label>
+                        <textarea id="in-edu" placeholder="Escola ou Curso..." oninput="atualizar()"></textarea>
                     </div>
                 </div>
             </div>
             
-            <button class="main-btn" onclick="gerar()" style="width: 100%;">GERAR E SALVAR EM PDF</button>
+            <button class="main-btn" onclick="gerar()">GERAR E SALVAR EM PDF</button>
 
             <div style="display: flex; gap: 10px; margin-top: 15px; justify-content: center;">
-                <button onclick="alert('Funcionalidade Carta de Apresentação em breve na v2.0!')" style="background: #6c757d; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: bold;">📄 CARTA DE APRESENTAÇÃO</button>
-                <button onclick="baixarImagemReal()" style="background: #28a745; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: bold;">🖼️ BAIXAR COMO IMAGEM</button>
-            </div>
-
-            <article class="seo-content">
-                <h2 style="color: #222;">Como criar um currículo profissional de sucesso</h2>
-                <p>Use este <strong>gerador de currículo online</strong> para facilitar o processo.</p>
-            </article>
-
-            <div class="pix-container">
-                <p style="margin-bottom: 5px; color: #2d6a4f; font-family: sans-serif; font-weight: bold;">🚀 Gostou da ferramenta?</p>
-                <span class="pix-key" id="chavePix">0df8fcd3-dffc-4265-8464-5a60badef88c</span>
-                <button onclick="copiarPix()" style="background: #28a745; color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; max-width: 250px;">COPIAR CHAVE PIX</button>
+                <button onclick="alert('Carta de Apresentação disponível em breve!')" class="btn-extra">📄 CARTA</button>
+                <button onclick="baixarImagemReal()" class="btn-extra" style="background: #28a745;">🖼️ IMAGEM</button>
             </div>
         </div>
-
-        <footer class="site-footer" style="margin-top: 50px; text-align: center; padding: 40px 20px; font-family: sans-serif; background-color: #f9f9f9; border-top: 1px solid #eee;">
-            <div style="margin-bottom: 30px;">
-                <p style="margin-bottom: 15px; font-size: 16px; color: #444;">💡 Tem alguma ideia para deixar o CV Flash ainda melhor?</p>
-                <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão de Melhoria" style="display: inline-block; padding: 12px 28px; font-size: 16px; font-weight: bold; color: #ffffff; background-color: #007bff; border-radius: 50px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,123,255,0.2);">Sugerir Melhoria</a>
-            </div>
-            <p style="font-size: 14px; color: #888;">&copy; 2026 <strong>CV Flash</strong>. <a href="privacy.html" style="color: #007bff; text-decoration: none;"> | Políticas de Privacidade</a></p>
-        </footer>
     </div>
 
-    <div id="cv-render" class="modelo-moderno print-only" style="background: white;">
+    <div id="cv-render" class="modelo-moderno print-only">
         <div class="cv-head">
             <h1 id="out-nome">NOME</h1>
             <h2 id="out-cargo">CARGO</h2>
