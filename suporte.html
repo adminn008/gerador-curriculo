@@ -2,38 +2,42 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suporte | CVFlash</title>
-    <meta name="robots" content="noindex">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="dark-theme">
+<body>
     <div class="container">
-        <h1 class="site-title">CENTRAL DE <span>AJUDA</span></h1>
+        <h1 class="site-title">CENTRAL DE <span>SUPORTE</span></h1>
         
         <div class="card">
-            <h3>📩 Contato</h3>
-            <p>Se precisar de ajuda, envie um e-mail para: <strong>suporte.cvflash@gmail.com</strong></p>
-            <p><small>Respondemos mensagens em até 24 horas úteis.</small></p>
+            <h3>📩 Canais de Atendimento</h3>
+            <p>E-mail: <strong>suporte.cvflash@gmail.com</strong></p>
+            <p>Horário: Segunda a Sexta, das 09h às 18h.</p>
+            <p><small>Tempo médio de resposta: 24 horas úteis.</small></p>
         </div>
 
-        <h3>Perguntas Frequentes</h3>
-        <div class="accordion">
+        <h3>Perguntas Frequentes (FAQ)</h3>
+        <div class="card" style="padding:0;">
             <div class="acc-item">
-                <button class="acc-btn">Como gerar meu currículo? <span>+</span></button>
-                <div class="acc-content"><p>Basta clicar em "Começar", preencher os campos e clicar em Gerar PDF.</p></div>
+                <button class="acc-btn" onclick="toggleAcc(this)">Como gerar meu currículo? <span>+</span></button>
+                <div class="acc-content">Basta acessar o Gerador, preencher seus dados e clicar no botão "Gerar PDF" ao final da página.</div>
             </div>
             <div class="acc-item">
-                <button class="acc-btn">Meus dados ficam salvos? <span>+</span></button>
-                <div class="acc-content"><p>Não. Seus dados permanecem apenas no seu navegador por segurança.</p></div>
+                <button class="acc-btn" onclick="toggleAcc(this)">O serviço é realmente gratuito? <span>+</span></button>
+                <div class="acc-content">Sim! O CVFlash é um projeto focado em ajudar profissionais. Não cobramos por downloads.</div>
             </div>
+            <div class="acc-item">
+                <button class="acc-btn" onclick="toggleAcc(this)">Meus dados estão seguros? <span>+</span></button>
+                <div class="acc-content">Sim. Não salvamos nada em servidores. Seus dados morrem quando você fecha a aba do navegador.</div>
             </div>
-
-        <div class="card" style="margin-top:20px; font-size: 0.85rem;">
-            <h4>Termos e Condições (Resumo)</h4>
-            <p>Uso pessoal apenas. O usuário é responsável pelos dados. Serviço fornecido como está.</p>
-            <p><strong>Versão Atual: 1.2.1</strong></p>
         </div>
+
+        <div class="card" style="margin-top:30px;">
+            <h4>Informações do Sistema</h4>
+            <p>Versão: 1.2.1</p>
+            <p>Licença: Uso Pessoal Gratuito</p>
+        </div>
+        
         <center><a href="index.html" class="btn-primary">Voltar ao Início</a></center>
     </div>
     <script src="script.js"></script>
