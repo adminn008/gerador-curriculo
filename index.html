@@ -3,55 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Flash | Crie seu Futuro</title>
+    <title>CV Flash | Gerador de Currículo Profissional Grátis</title>
+    <meta name="description" content="Crie seu currículo profissional em minutos com o CV Flash. Grátis, rápido e sem cadastro.">
+    <link rel="canonical" href="https://seusite.com/">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
-<body>
-    <nav class="navbar">
+<body class="dark-theme"> <nav class="navbar">
         <div class="container nav-content">
             <div class="logo">CV<span>FLASH</span></div>
-            <button id="theme-toggle" class="btn-icon">🌓</button>
+            <div id="theme-switch" class="theme-toggle" onclick="toggleTheme()">
+                <span class="sun">☀️</span>
+                <div class="toggle-track"><div class="toggle-ball"></div></div>
+                <span class="moon">🌙</span>
+            </div>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="container">
-            <span class="badge">100% Gratuito e Profissional</span>
-            <h1>Crie um currículo impecável em <span class="text-gradient">minutos.</span></h1>
-            <p>Destaque-se nos processos seletivos com um layout aprovado por recrutadores. Sem cadastros, sem taxas, direto ao ponto.</p>
+    <main class="container">
+        <header class="hero">
+            <h1>O jeito mais rápido de criar seu <span class="highlight">Currículo.</span></h1>
+            <p>Layouts profissionais aprovados por recrutadores, agora com suporte a múltiplos idiomas e certificações.</p>
             <a href="gerador.html" class="btn-primary btn-lg">Começar meu currículo</a>
-        </div>
-    </header>
+        </header>
 
-    <section class="roadmap container">
-        <div class="section-header">
-            <h2>Próxima versão — <span class="primary-color">v2.0.0</span></h2>
-            <p>O que estamos preparando para você</p>
-        </div>
-        <div class="roadmap-grid">
-            <div class="roadmap-item"><span>📄</span> Carta de Apresentação</div>
-            <div class="roadmap-item"><span>🎨</span> +10 Modelos Premium</div>
-            <div class="roadmap-item"><span>📸</span> Currículo com Foto</div>
-            <div class="roadmap-item"><span>💡</span> Dicas de Preenchimento</div>
-            <div class="roadmap-item"><span>📊</span> Avaliador de Currículo</div>
-            <div class="roadmap-item"><span>💾</span> Salvar Rascunho</div>
-        </div>
-    </section>
+        <section class="meta-financeira card">
+            <h3>Apoio para Desenvolvimento v2.0.0</h3>
+            <p>Ajude-nos a manter o servidor e lançar novas funções!</p>
+            <div class="progress-container">
+                <div class="progress-bar-bg">
+                    <div id="meta-fill" class="progress-bar-fill"></div>
+                </div>
+                <div class="meta-values">
+                    <span id="arrecadado">R$ 0,00</span>
+                    <span>Meta: R$ 50,00</span>
+                </div>
+            </div>
+            <div class="pix-box">
+                <small>Chave PIX (E-mail):</small>
+                <code id="pix-key">0df8fcd3-dffc-4265-8464-5a60badef88c</code>
+                <button onclick="copyPix()" class="btn-copy">Copiar Chave</button>
+            </div>
+        </section>
+    </main>
 
     <footer class="main-footer">
-        <div class="container footer-grid">
-            <div class="footer-info">
-                <div class="logo">CV<span>FLASH</span></div>
-                <p>© 2026 Gerador de Currículo — Todos os direitos reservados</p>
-            </div>
+        <div class="container footer-content">
+            <p>© 2026 Gerador de Currículo — Todos os direitos reservados</p>
             <nav class="footer-links">
-                <a href="#">Termos e Condições</a>
-                <a href="#">Privacidade</a>
-                <a href="mailto:suporte.cvflash@gmail.com">Contato</a>
+                <a href="javascript:void(0)" onclick="openModal('termos')">Termos</a>
+                <a href="javascript:void(0)" onclick="openModal('privacidade')">Privacidade</a>
+                <a href="javascript:void(0)" onclick="openModal('contato')">Contato</a>
+                <a href="mailto:suporte.cvflash@gmail.com">Suporte</a>
             </nav>
         </div>
     </footer>
+
+    <div id="modal-container" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script>
+        // Configuração da Meta Financeira (v1.0.0)
+        updateMetaProgress(12.50); // Altere aqui o valor arrecadado
+    </script>
 </body>
 </html>
