@@ -3,21 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site em Manutenção</title>
+    <title>Manutenção</title>
     <style>
-        body { text-align: center; padding: 150px; font-family: Arial, sans-serif; }
-        h1 { font-size: 50px; }
-        body { font-size: 20px; color: #333; }
-        .container { margin: 0 auto; max-width: 600px; }
+        /* Remove qualquer margem e trava a rolagem */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #f4f4f4; /* Cor de fundo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+        }
+        .box {
+            text-align: center;
+            padding: 20px;
+        }
+        h1 { color: #333; font-size: 2.5rem; }
+        p { color: #666; font-size: 1.2rem; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Estamos Manutenção!</h1>
-        <p>Desculpe o transtorno. Estamos trabalhando para melhorar nosso site e voltaremos em breve.</p>
+    <div class="box">
+        <h1>🚧 Em Manutenção</h1>
+        <p>Estamos preparando novidades. Voltamos logo!</p>
     </div>
 </body>
 </html>
+
 
 
 <!DOCTYPE html>
