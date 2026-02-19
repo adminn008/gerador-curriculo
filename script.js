@@ -1,80 +1,79 @@
-:root { --primary: #2563eb; --bg: #f8fafc; --success: #28a745; --card: #ffffff; --text: #1e293b; }
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); text-align: center; transition: 0.3s; }
-
-/* BOTÃO DARK MODE */
-#dark-mode-toggle { 
-    position: fixed; top: 20px; right: 20px; width: 50px; height: 50px; border: none; 
-    background: var(--primary); color: white; border-radius: 50%; cursor: pointer; 
-    z-index: 9999; font-size: 22px; display: flex; align-items: center; justify-content: center; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+// Alterna entre a Home e o Gerador
+function iniciarGerador() {
+    document.getElementById('home-section').style.display = 'none';
+    document.getElementById('gerador-section').style.display = 'block';
+    window.scrollTo(0, 0);
 }
 
-/* ESTILOS DARK MODE */
-body.dark-theme { --bg: #121212; --text: #f1f5f9; --card: #1e1e1e; }
-body.dark-theme .container, body.dark-theme .meta-container { background: var(--card); border-color: #333; }
-body.dark-theme input, body.dark-theme textarea { background: #2d2d2d; color: white; border-color: #444; }
-body.dark-theme .btn-opt { background: #2d2d2d; color: #ccc; border-color: #444; }
-body.dark-theme .roadmap-box { background: #2d2d2d; border-color: #444; }
+// Troca de modelos
+function setModelo(tipo, btn) {
+    document.querySelectorAll('.btn-opt').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('cv-render').className = 'modelo-' + tipo + ' print-only';
+}
 
-.main-wrapper { padding: 40px 20px; max-width: 900px; margin: 0 auto; }
+// Atualiza o currículo
+function atualizar() {
+    const v = (id) => document.getElementById(id).value;
+    document.getElementById('out-nome').innerText = v('in-nome') || "NOME COMPLETO";
+    document.getElementById('out-cargo').innerText = v('in-cargo') || "CARGO";
+    document.getElementById('out-resumo').innerText = v('in-resumo');
+    document.getElementById('out-exp').innerText = v('in-exp');
+    document.getElementById('out-edu').innerText = v('in-edu');
 
-/* CABEÇALHO E HERO */
-.top-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
-.highlight-blue { color: #2563eb; font-weight: 900; }
-body.dark-theme .highlight-blue { color: #60a5fa; }
+    const nasc = (v('dia-nasc') && v('mes-nasc') && v('ano-nasc')) ? `${v('dia-nasc')}/${v('mes-nasc')}/${v('ano-nasc')}` : "";
+    const info = [nasc, v('in-civil'), v('in-email'), v('in-tel'), v('in-cidade'), v('in-linkedin'), v('in-extra-info')].filter(Boolean);
+    document.getElementById('out-contato').innerText = info.join(' | ');
+}
 
-.hero-features { display: flex; justify-content: center; gap: 15px; margin: 20px 0; font-size: 14px; font-weight: 600; color: var(--success); }
-.btn-start { max-width: 400px; margin: 20px auto; display: block; animation: pulse 2s infinite; }
-@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+// Máscara de Telefone Inteligente
+function formatarTel(input) {
+    let v = input.value.replace(/\D/g, "");
+    if (v.length > 11) v = v.slice(0, 11);
+    if (v.length >= 11) {
+        v = v.replace(/^(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+    } else if (v.length >= 7) {
+        v = v.replace(/^(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
+    } else if (v.length >= 3) {
+        v = v.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
+    } else if (v.length > 0) {
+        v = v.replace(/^(\d*)/, "($1");
+    }
+    input.value = v;
+    atualizar();
+}
 
-/* META E ROADMAP */
-.meta-container { background: var(--card); border: 1px solid #007bff; padding: 15px; border-radius: 12px; margin-bottom: 25px; }
-.meta-bar-bg { background: #eee; border-radius: 10px; height: 12px; margin: 10px auto; overflow: hidden; max-width: 500px; border: 1px solid #ccc; }
-.meta-bar-fill { background: var(--success); height: 100%; }
-.roadmap-box { margin-top: 20px; background: #f1f5f9; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0; }
-.roadmap-title, .roadmap-footer { font-size: 11px; font-weight: 800; color: #94a3b8; letter-spacing: 2px; margin: 5px 0; }
-.roadmap-title { color: #2563eb; }
-.roadmap-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px 0; text-align: left; }
-.item { font-size: 12px; font-weight: 600; color: #334155; display: flex; align-items: center; gap: 8px; }
-body.dark-theme .item { color: #cbd5e1; }
+function gerar() {
+    const obrigatorios = ['in-nome', 'in-cargo', 'in-email', 'in-tel', 'in-cidade', 'dia-nasc', 'mes-nasc', 'ano-nasc'];
+    let erro = false;
+    obrigatorios.forEach(id => {
+        const el = document.getElementById(id);
+        if(!el.value) { el.style.borderColor = "red"; erro = true; }
+        else { el.style.borderColor = "#e2e8f0"; }
+    });
+    if(erro) return alert("Preencha os campos obrigatórios (*)");
+    atualizar();
+    window.print();
+}
 
-/* MODELOS E FORMULÁRIO */
-.btn-group { display: flex; gap: 10px; justify-content: center; margin-bottom: 25px; }
-.btn-opt { padding: 8px 18px; border: 1px solid #ddd; border-radius: 20px; cursor: pointer; background: white; font-weight: bold; }
-.btn-opt.active { background: var(--primary); color: white; border-color: var(--primary); }
-.container { background: var(--card); padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-.form-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 30px; text-align: left; }
-@media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
-.input-group { margin-bottom: 15px; }
-.input-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; }
-.required { color: #ff0000 !important; }
-input, textarea { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; outline: none; }
-.date-row { display: flex; gap: 8px; }
-.btn-sugerir { background: none; border: none; color: var(--primary); cursor: pointer; font-size: 12px; font-weight: bold; }
-.main-btn { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: 800; cursor: pointer; margin-top: 20px; font-size: 1.1rem; }
+function sugerirResumo() {
+    const cargo = document.getElementById('in-cargo').value || "profissional";
+    const frases = [
+        `Sou um ${cargo} dedicado, focado em resultados e com facilidade para trabalhar em equipe.`,
+        `Procuro oportunidade como ${cargo} para aplicar minhas habilidades e crescer na carreira.`,
+        `Profissional comprometido, organizado e com grande motivação para atuar como ${cargo}.`,
+        `Tenho sólida vontade de aprender e contribuir para o sucesso da empresa na função de ${cargo}.`,
+        `Busco novos desafios na área de ${cargo}, focado em entregar qualidade e eficiência.`
+    ];
+    const aleatoria = frases[Math.floor(Math.random() * frases.length)];
+    document.getElementById('in-resumo').value = aleatoria;
+    atualizar();
+}
 
-/* PIX */
-.pix-card { margin-top: 35px; padding: 25px; background: #f0fff4; border-radius: 10px; border: 2px dashed #28a745; color: #1e293b; }
-.pix-key { display: block; background: white; padding: 10px; margin: 15px auto; border: 1px solid #ddd; max-width: 400px; font-family: monospace; color: #333; }
-.btn-copy-pix { background: var(--success); color: white; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; }
+function copiarPix() {
+    navigator.clipboard.writeText(document.getElementById('chavePix').innerText).then(() => alert("PIX Copiado! 🙏"));
+}
 
-/* NOVO RODAPÉ */
-.site-footer { margin-top: 50px; padding: 30px; }
-.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: left; border-top: 1px solid #eee; padding-top: 30px; }
-.footer-box h4 { margin-bottom: 15px; color: var(--primary); }
-.footer-box p, .footer-box li, .footer-box a { font-size: 13px; line-height: 1.6; color: #666; text-decoration: none; }
-.footer-box ul { list-style: none; }
-body.dark-theme .footer-box p, body.dark-theme .footer-box li, body.dark-theme .footer-box a { color: #aaa; }
-body.dark-theme .footer-grid { border-top-color: #333; }
-
-/* PDF RENDER */
-.print-only { display: none !important; }
-@media print { .print-only { display: block !important; } .no-print { display: none !important; } }
-#cv-render { background: white !important; color: black !important; padding: 0; text-align: left; width: 800px; min-height: 1100px; font-family: serif; }
-.modelo-moderno .cv-head { border-left: 15px solid var(--primary); padding: 30px; background: #f1f5f9; }
-.modelo-classico { padding: 50px !important; text-align: center !important; }
-.modelo-limpo { padding: 40px !important; font-family: Arial, sans-serif !important; }
-.cv-sec { margin-bottom: 15px; padding: 0 20px; }
-.pre-wrap { white-space: pre-wrap; font-size: 13px; line-height: 1.5; color: #333; }
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-theme');
+}
