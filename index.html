@@ -2,90 +2,75 @@
 <html lang="pt-br">
 <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7811150237322772" crossorigin="anonymous"></script>
-    <meta name="google-site-verification" content="HK2BDXPIDVlkbhjXylKVSRBBvqajRkJHAatHOZsiaZQ" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>CV Flash | Gerador de Currículo Grátis e Rápido em PDF</title>
-    <meta name="description" content="Crie seu currículo profissional grátis em minutos. Modelos modernos, download em PDF pronto para imprimir e totalmente seguro.">
-    <meta name="keywords" content="gerador de curriculo, curriculo gratis, fazer cv, curriculo pdf pronto, currículo online rápido">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://adminn008.github.io/gerador-curriculo/">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
-  
+    <title>CV Flash | Gerador de Currículo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <button id="dark-mode-toggle" class="no-print" onclick="toggleDarkMode()">🌙</button>
 
     <div class="no-print main-wrapper">
+        <div class="goal-container">
+            <div class="goal-bar"><div class="goal-progress" style="width: 0%"></div></div>
+            <p>Meta do mês: <strong>R$ 0,00 / R$ 50,00</strong></p>
+        </div>
+
         <header class="top-header">
             <h1>CV <span>FLASH</span></h1>
             <p>Preencha os dados e escolha o estilo do seu novo currículo profissional.</p>
         </header>
 
         <div class="alert-banner">
-            <span style="font-size: 24px;">🛡️</span>
-            <div>
-                <strong>Sua privacidade é prioridade:</strong> Os dados preenchidos aqui permanecem apenas no seu navegador. Não armazenamos informações em servidores.
-            </div>
+            <span>🛡️</span>
+            <div><strong>Privacidade:</strong> Seus dados ficam apenas no seu navegador.</div>
         </div>
 
         <div class="model-picker">
-            <p>Escolha o Modelo de Currículo:</p>
             <div class="btn-group">
                 <button class="btn-opt active" onclick="setModelo('moderno', this)">Moderno</button>
                 <button class="btn-opt" onclick="setModelo('classico', this)">Executivo</button>
                 <button class="btn-opt" onclick="setModelo('limpo', this)">Mínimo</button>
             </div>
+            <p style="margin-top: 10px; font-size: 12px; color: #888;">📄 Carta de Apresentação (Em breve)</p>
         </div>
 
         <div class="container">
             <div class="form-grid">
                 <div class="box">
                     <h3>Dados de Contato</h3>
-                    <input type="text" id="in-nome" placeholder="Nome Completo" oninput="atualizar()">
-                    <input type="text" id="in-cargo" placeholder="Seu Cargo ou Profissão" oninput="atualizar()">
-                    <input type="email" id="in-email" placeholder="E-mail de contato" oninput="atualizar()">
-                    <input type="tel" id="in-tel" placeholder="Telefone / WhatsApp" oninput="atualizar()">
-                    <input type="text" id="in-cidade" placeholder="Cidade e Estado" oninput="atualizar()">
+                    <input type="text" id="in-nome" placeholder="Nome Completo*" oninput="atualizar()">
+                    <input type="text" id="in-cargo" placeholder="Seu Cargo*" oninput="atualizar()">
+                    <input type="email" id="in-email" placeholder="E-mail*" oninput="atualizar()">
+                    <input type="tel" id="in-tel" placeholder="WhatsApp*" oninput="atualizar()">
+                    <input type="text" id="in-cidade" placeholder="Cidade/Estado*" oninput="atualizar()">
                 </div>
                 <div class="box">
-                    <h3>Experiência e Resumo</h3>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-                        <span style="font-size: 0.9rem; font-weight: bold; color: #334155;">Resumo Profissional</span>
-                        <button class="btn-suggest" onclick="sugerirTexto()">💡 Sugerir Frase</button>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <h3>Resumo</h3>
+                        <button class="btn-suggest" onclick="sugerirTexto()">💡 Sugerir Nova Frase</button>
                     </div>
-                    <textarea id="in-resumo" placeholder="Conte um pouco sobre você..." oninput="atualizar()"></textarea>
-                    
-                    <h3 style="margin-top: 15px;">Experiências Profissionais</h3>
-                    <textarea id="in-exp" placeholder="Onde trabalhou e o que fez..." oninput="atualizar()"></textarea>
-                    
-                    <h3 style="margin-top: 15px;">Formação Acadêmica</h3>
-                    <textarea id="in-edu" placeholder="Cursos e faculdade..." oninput="atualizar()"></textarea>
+                    <textarea id="in-resumo" placeholder="Sobre você..." oninput="atualizar()"></textarea>
+                    <h3>Experiências</h3>
+                    <textarea id="in-exp" placeholder="Experiências profissionais..." oninput="atualizar()"></textarea>
+                    <h3>Formação</h3>
+                    <textarea id="in-edu" placeholder="Educação..." oninput="atualizar()"></textarea>
                 </div>
             </div>
             
             <button class="main-btn" onclick="gerar()">GERAR E SALVAR EM PDF</button>
 
-            <article class="seo-content">
-                <h2>Como criar um currículo profissional de sucesso</h2>
-                <p>Use este <strong>gerador de currículo online</strong> para facilitar o processo, criando um documento profissional em poucos minutos.</p>
-            </article>
-
             <div class="pix-container">
-                <p style="margin-bottom: 5px; color: #2d6a4f; font-weight: bold;">🚀 Gostou da ferramenta? <strong>77 usuários</strong> já usaram hoje!</p>
+                <p>🚀 <strong>77 usuários</strong> já criaram hoje!</p>
                 <span class="pix-key" id="chavePix">0df8fcd3-dffc-4265-8464-5a60badef88c</span>
                 <button onclick="copiarPix()" class="pix-copy-btn">COPIAR CHAVE PIX</button>
             </div>
         </div>
 
         <footer class="site-footer">
-            <div style="margin-bottom: 30px;">
-                <p style="margin-bottom: 15px; font-size: 16px; color: #444; font-weight: 500;">💡 Tem alguma ideia para deixar o CV Flash ainda melhor?</p>
-                <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão" class="btn-mail">Sugerir Melhoria</a>
-            </div>
-            <p style="font-size: 14px; color: #888;">&copy; 2026 <strong>CV Flash v1.1.0</strong> | <a href="privacy.html" style="color: #007bff; text-decoration: none;">Privacidade</a></p>
+            <a href="mailto:suporte.cvflash@gmail.com" class="btn-mail">Sugerir Melhoria</a>
+            <p>&copy; 2026 <strong>CV Flash v1.1.0</strong></p>
+            <p><a href="privacy.html" style="color: #888; text-decoration: none; font-size: 12px;">Políticas de Privacidade</a></p>
         </footer>
     </div>
 
@@ -93,12 +78,12 @@
         <div class="cv-head">
             <h1 id="out-nome">NOME</h1>
             <h2 id="out-cargo">CARGO</h2>
-            <p id="out-contato">email | tel | cidade</p>
+            <p id="out-contato"></p>
         </div>
         <div class="cv-body">
-            <div class="cv-sec"><h3>Resumo Profissional</h3><p id="out-resumo" class="pre-wrap"></p></div>
-            <div class="cv-sec"><h3>Experiência Profissional</h3><div id="out-exp" class="pre-wrap"></div></div>
-            <div class="cv-sec"><h3>Educação e Formação</h3><div id="out-edu" class="pre-wrap"></div></div>
+            <div class="cv-sec"><h3>Resumo</h3><p id="out-resumo" class="pre-wrap"></p></div>
+            <div class="cv-sec"><h3>Experiência</h3><div id="out-exp" class="pre-wrap"></div></div>
+            <div class="cv-sec"><h3>Formação</h3><div id="out-edu" class="pre-wrap"></div></div>
         </div>
     </div>
 
