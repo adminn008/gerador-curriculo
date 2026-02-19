@@ -4,7 +4,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7811150237322772" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV Flash | Gerador de Currículo v2.0</title>
+    <title>CV Flash | Gerador de Currículo v1.1.0</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
@@ -14,7 +14,7 @@
     <div class="no-print main-wrapper">
         <header class="top-header">
             <h1>CV <span>FLASH</span></h1>
-            <p>Preencha os dados e escolha o estilo do seu novo currículo profissional.</p>
+            <p>Seu currículo profissional em minutos.</p>
         </header>
 
         <div class="meta-container">
@@ -22,11 +22,11 @@
             <div class="meta-bar-bg">
                 <div class="meta-bar-fill" style="width: 2%;"></div>
             </div>
-            <p><small>Já somos <strong>77 usuários</strong> hoje! Ajude o projeto a crescer.</small></p>
+            <p><small>Já somos <strong>77 usuários</strong> hoje!</small></p>
         </div>
 
         <div class="model-picker">
-            <p>Escolha o Modelo de Currículo:</p>
+            <p>Escolha o Modelo:</p>
             <div class="btn-group">
                 <button class="btn-opt active" onclick="setModelo('moderno', this)">Moderno</button>
                 <button class="btn-opt" onclick="setModelo('classico', this)">Executivo</button>
@@ -40,10 +40,8 @@
                     <h3>Dados de Contato</h3>
                     <div class="input-group">
                         <label>Nome Completo <span class="required">*</span></label>
-                        <input type="text" id="in-nome" placeholder="Seu nome" oninput="atualizar()">
-                        <small class="helper-text">Dica: Use seu nome completo oficial.</small>
+                        <input type="text" id="in-nome" placeholder="Nome" oninput="atualizar()">
                     </div>
-
                     <div class="input-group">
                         <label>Nascimento <span class="required">*</span></label>
                         <div class="date-row">
@@ -52,40 +50,33 @@
                             <input type="number" id="ano-nasc" placeholder="Ano" oninput="atualizar()">
                         </div>
                     </div>
-
                     <div class="input-group">
                         <label>Estado Civil</label>
-                        <input type="text" id="in-civil" placeholder="Ex: Solteiro" oninput="atualizar()">
+                        <input type="text" id="in-civil" placeholder="Solteiro, Casado..." oninput="atualizar()">
                     </div>
-
                     <div class="input-group">
-                        <label>Cargo ou Profissão <span class="required">*</span></label>
-                        <input type="text" id="in-cargo" placeholder="Ex: Atendente" oninput="atualizar()">
+                        <label>Cargo Desejado <span class="required">*</span></label>
+                        <input type="text" id="in-cargo" placeholder="Ex: Vendedor" oninput="atualizar()">
                     </div>
-
                     <div class="input-group">
                         <label>E-mail <span class="required">*</span></label>
-                        <input type="email" id="in-email" placeholder="seu@email.com" oninput="atualizar()">
+                        <input type="email" id="in-email" placeholder="email@exemplo.com" oninput="atualizar()">
                     </div>
-
                     <div class="input-group">
                         <label>WhatsApp / Tel <span class="required">*</span></label>
                         <input type="tel" id="in-tel" placeholder="(00) 00000-0000" oninput="atualizar()">
                     </div>
-
                     <div class="input-group">
                         <label>Cidade e Estado <span class="required">*</span></label>
                         <input type="text" id="in-cidade" placeholder="Cidade - UF" oninput="atualizar()">
                     </div>
-
                     <div class="input-group">
-                        <label>LinkedIn / Portfólio</label>
-                        <input type="text" id="in-linkedin" placeholder="link do perfil" oninput="atualizar()">
+                        <label>LinkedIn</label>
+                        <input type="text" id="in-linkedin" placeholder="link" oninput="atualizar()">
                     </div>
-
                     <div class="input-group">
-                        <label>Idiomas / CNH</label>
-                        <input type="text" id="in-extra-info" placeholder="Inglês, CNH B..." oninput="atualizar()">
+                        <label>Idiomas / Outros</label>
+                        <input type="text" id="in-extra-info" placeholder="Inglês, CNH..." oninput="atualizar()">
                     </div>
                 </div>
 
@@ -96,18 +87,15 @@
                             <label>Resumo Profissional <span class="required">*</span></label>
                             <button onclick="sugerirResumo()" class="btn-sugerir">💡 Sugerir Texto</button>
                         </div>
-                        <textarea id="in-resumo" placeholder="Conte sobre você..." oninput="atualizar()"></textarea>
-                        <small class="helper-text">Escreva de 3 a 5 linhas sobre sua carreira.</small>
+                        <textarea id="in-resumo" placeholder="Sobre você..." oninput="atualizar()"></textarea>
                     </div>
-
                     <div class="input-group">
-                        <label>Experiências Profissionais</label>
-                        <textarea id="in-exp" placeholder="Onde trabalhou..." oninput="atualizar()"></textarea>
+                        <label>Experiências</label>
+                        <textarea id="in-exp" placeholder="Empresa e cargo..." oninput="atualizar()"></textarea>
                     </div>
-
                     <div class="input-group">
-                        <label>Formação Acadêmica</label>
-                        <textarea id="in-edu" placeholder="Onde estudou..." oninput="atualizar()"></textarea>
+                        <label>Educação</label>
+                        <textarea id="in-edu" placeholder="Escola ou faculdade..." oninput="atualizar()"></textarea>
                     </div>
                 </div>
             </div>
@@ -115,20 +103,20 @@
             <button class="main-btn" onclick="gerar()">GERAR E SALVAR EM PDF</button>
 
             <div class="extra-actions">
-                <button onclick="alert('Carta de Apresentação em breve!')" class="btn-secondary">📄 CARTA</button>
+                <button onclick="alert('Breve!')" class="btn-secondary">📄 CARTA</button>
                 <button onclick="baixarImagemReal()" class="btn-secondary green">🖼️ BAIXAR IMAGEM</button>
             </div>
 
             <div class="pix-card">
-                <p>🚀 Gostou da ferramenta? Ajude-nos!</p>
+                <p>🚀 Gostou do CV Flash? Ajude o projeto!</p>
                 <span class="pix-key" id="chavePix">0df8fcd3-dffc-4265-8464-5a60badef88c</span>
                 <button onclick="copiarPix()" class="btn-copy-pix">COPIAR CHAVE PIX</button>
             </div>
         </div>
 
         <footer class="site-footer">
-            <p>💡 Ideias? <a href="mailto:suporte.cvflash@gmail.com">Sugerir Melhoria</a></p>
-            <p>&copy; 2026 CV Flash | <a href="privacy.html">Privacidade</a></p>
+            <a href="mailto:suporte.cvflash@gmail.com" class="btn-sugestao-real">💡 Sugerir Melhoria</a>
+            <p class="copyright-text">&copy; 2026 <strong>CV Flash v1.1.0</strong> | <a href="privacy.html">Privacidade</a></p>
         </footer>
     </div>
 
