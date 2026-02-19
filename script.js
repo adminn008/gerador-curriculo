@@ -30,9 +30,20 @@ function gerar() {
     window.print();
 }
 
+// AGORA COM VÁRIAS OPÇÕES DE TEXTO
 function sugerirResumo() {
     const cargo = document.getElementById('in-cargo').value || "profissional";
-    document.getElementById('in-resumo').value = `Sou um ${cargo} dedicado e focado em resultados, com facilidade para aprender e trabalhar em equipe.`;
+    const frases = [
+        `Sou um ${cargo} dedicado, focado em resultados e com facilidade para trabalhar em equipe.`,
+        `Procuro oportunidade como ${cargo} para aplicar minhas habilidades e crescer na carreira.`,
+        `Profissional comprometido, organizado e com grande motivação para atuar como ${cargo}.`,
+        `Tenho sólida vontade de aprender e contribuir para o sucesso da empresa na função de ${cargo}.`,
+        `Busco novos desafios na área de ${cargo}, focado em entregar qualidade e eficiência.`
+    ];
+    
+    // Escolhe uma frase aleatória
+    const aleatoria = frases[Math.floor(Math.random() * frases.length)];
+    document.getElementById('in-resumo').value = aleatoria;
     atualizar();
 }
 
