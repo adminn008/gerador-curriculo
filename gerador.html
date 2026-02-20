@@ -25,74 +25,58 @@
                 </div>
             </div>
 
-            <form id="cv-form">
-                <div class="card">
-                    <h3>👤 DADOS PESSOAIS</h3>
-                    <div class="field-group">
-                        <label>Nome Completo *</label>
-                        <input type="text" id="in-nome" class="val-req" placeholder="Ex: Welington Silva">
-                    </div>
-                    <div class="row">
-                        <div class="field-group">
-                            <label>WhatsApp/Telefone *</label>
-                            <input type="tel" id="in-tel" class="val-req" placeholder="(00) 00000-0000">
-                        </div>
-                        <div class="field-group">
-                            <label>E-mail Profissional *</label>
-                            <input type="email" id="in-email" class="val-req" placeholder="seu@email.com">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="field-group">
-                            <label>Cidade / Estado</label>
-                            <input type="text" id="in-local" placeholder="Ex: São Paulo, SP">
-                        </div>
-                        <div class="field-group">
-                            <label>Data de Nascimento</label>
-                            <input type="text" id="in-nasc" placeholder="DD/MM/AAAA">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="field-group">
-                            <label>LinkedIn</label>
-                            <input type="text" id="in-linkedin" placeholder="link">
-                        </div>
-                        <div class="field-group">
-                            <label>Portfólio / Site</label>
-                            <input type="text" id="in-site" placeholder="link">
-                        </div>
-                    </div>
-                </div>
+<div class="card">
+    <h3>👤 DADOS PESSOAIS COMPLETOS</h3>
+    <div class="field-group">
+        <label>Nome Completo *</label>
+        <input type="text" id="in-nome" class="val-req" placeholder="Ex: Welington Silva">
+    </div>
+    
+    <div class="row">
+        <div class="field-group">
+            <label>Nacionalidade</label>
+            <input type="text" id="in-nacionalidade" placeholder="Ex: Brasileiro">
+        </div>
+        <div class="field-group">
+            <label>Estado Civil</label>
+            <input type="text" id="in-civil" placeholder="Ex: Solteiro(a)">
+        </div>
+    </div>
 
-                <div class="card">
-                    <h3>💼 RESUMO E EXPERIÊNCIA</h3>
-                    <div class="field-group">
-                        <label>Objetivo Profissional *</label>
-                        <textarea id="in-obj" rows="3" class="val-req" placeholder="Ex: Atuar na área de vendas..."></textarea>
-                        <button type="button" class="btn-sugerir" onclick="sugerir('obj')">🪄 Sugerir Resumo</button>
-                    </div>
-                    <div class="field-group">
-                        <label>Experiência Profissional</label>
-                        <textarea id="in-exp" rows="6" placeholder="Empresa - Cargo (Ano-Ano)&#10;• Atividade 1..."></textarea>
-                        <button type="button" class="btn-sugerir" onclick="sugerir('exp')">🪄 Sugerir Experiência</button>
-                    </div>
-                </div>
+    <div class="row">
+        <div class="field-group">
+            <label>WhatsApp / Telefone *</label>
+            <input type="tel" id="in-tel" class="val-req" placeholder="(00) 00000-0000">
+        </div>
+        <div class="field-group">
+            <label>E-mail * (Validação Real)</label>
+            <input type="email" id="in-email" class="val-req" placeholder="exemplo@gmail.com">
+        </div>
+    </div>
 
-                <div class="card">
-                    <h3>🎓 FORMAÇÃO E SKILLS</h3>
-                    <div class="field-group">
-                        <label>Escolaridade</label>
-                        <textarea id="in-edu" rows="3" placeholder="Curso - Escola (Conclusão)"></textarea>
-                    </div>
-                    <div class="field-group">
-                        <label>Cursos Extras / Idiomas</label>
-                        <textarea id="in-extra" rows="2" placeholder="Inglês, Pacote Office..."></textarea>
-                    </div>
-                    <div class="field-group">
-                        <label>Habilidades (Hard & Soft Skills)</label>
-                        <input type="text" id="in-skills" placeholder="Ex: Proatividade, Excel, Gestão...">
-                    </div>
-                </div>
+    <div class="row">
+        <div class="field-group">
+            <label>Endereço / Residência</label>
+            <input type="text" id="in-local" placeholder="Rua, Bairro, Cidade - UF">
+        </div>
+        <div class="field-group">
+            <label>Data de Nascimento</label>
+            <input type="text" id="in-nasc" placeholder="DD/MM/AAAA">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="field-group">
+            <label>LinkedIn</label>
+            <input type="text" id="in-linkedin" placeholder="linkedin.com/in/voce">
+        </div>
+        <div class="field-group">
+            <label>Portfólio / Site</label>
+            <input type="text" id="in-site" placeholder="github.com/voce">
+        </div>
+    </div>
+</div>
+
 
                 <button type="button" id="btn-gerar" onclick="gerarPDF()" class="btn-primary" disabled style="opacity:0.5; cursor:not-allowed;">
                     🔒 COMPLETE O BÁSICO PARA GERAR
