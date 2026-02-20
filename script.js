@@ -1,97 +1,89 @@
-// 1. MÁSCARA DE TELEFONE AUTOMÁTICA
-function mascaraTelefone(input) {
-    let v = input.value.replace(/\D/g, ""); // Remove tudo que não é número
-    if (v.length > 11) v = v.slice(0, 11); // Limita a 11 dígitos
-    
-    if (v.length > 10) {
-        // Formato (00) 00000-0000
-        input.value = v.replace(/^(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
-    } else if (v.length > 5) {
-        // Formato (00) 0000-0000
-        input.value = v.replace(/^(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
-    } else if (v.length > 2) {
-        // Formato (00) 0
-        input.value = v.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
-    } else {
-        input.value = v;
-    }
-    update(); // Atualiza o preview e validação
+// 1. FUNÇÕES DE INTERFACE
+function toggleNovidades() {
+    const pop = document.getElementById('pop-novidades');
+    pop.style.display = (pop.style.display === 'none' || pop.style.display === '') ? 'block' : 'none';
 }
 
-// 2. VALIDAÇÃO DE E-MAIL REAL
-function validarEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
+function copyPix() {
+    const key = document.getElementById('pix-key').innerText;
+    navigator.clipboard.writeText(key);
+    alert("Chave PIX Copiada! Valeu pelo apoio! 🚀");
 }
 
-// 3. ATUALIZAÇÃO E VALIDAÇÃO DE MILHÕES
+// 2. MÁSCARA E VALIDAÇÃO
+function mascaraTelefone(i) {
+    let v = i.value.replace(/\D/g, "");
+    if (v.length > 11) v = v.slice(0, 11);
+    if (v.length > 10) i.value = v.replace(/^(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+    else if (v.length > 5) i.value = v.replace(/^(\d{2})(\d{4})(\d{0,4})/, "($1) $2-$3");
+    else if (v.length > 2) i.value = v.replace(/^(\d{2})(\d{0,5})/, "($1) $2");
+    else i.value = v;
+    update();
+}
+
+const sugestoes = {
+    obj: [
+        "Profissional dedicado em busca de novos desafios para aplicar competências técnicas e evoluir na carreira.",
+        "Foco em metas e resultados, buscando integrar o time de vendas para maximizar o faturamento e fidelização.",
+        "Objetivo de atuar no setor administrativo, organizando processos e otimizando o fluxo de trabalho da empresa."
+    ],
+    exp: ["Empresa X - Cargo Y (Ano-Ano)\n• Responsável por organizar X\n• Alcancei a meta de Y em 3 meses."]
+};
+
+function sugerirMulti(campo, index) {
+    document.getElementById('in-' + campo).value = sugestoes[campo][index];
+    update();
+}
+
+function setModel(tipo, btn) {
+    document.getElementById('preview-content').className = 'mode-' + tipo;
+    document.querySelectorAll('.model-card').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+}
+
+// 3. CORE UPDATE
 function update() {
-    // Pegando todos os valores (Campos novos inclusos)
     const nome = document.getElementById('in-nome').value;
     const tel = document.getElementById('in-tel').value;
     const email = document.getElementById('in-email').value;
     const obj = document.getElementById('in-obj').value;
     
-    // Preview em tempo real
+    // Preview
     document.getElementById('pre-nome').innerText = nome || "SEU NOME";
-    document.getElementById('pre-contato').innerText = 
-        `${tel} | ${email} | ${document.getElementById('in-local').value}`;
+    document.getElementById('pre-contato').innerText = `${tel} | ${email}`;
     document.getElementById('pre-obj').innerText = obj;
 
-    // Lógica de Bloqueio do Botão
+    // Dicas Dinâmicas
+    const dicas = [
+        "Dica: Um e-mail profissional (nome.sobrenome) passa mais confiança.",
+        "Dica: No objetivo, seja direto. O recrutador lê em 6 segundos.",
+        "Dica: Revise o WhatsApp, é por lá que vão te chamar!",
+        "Dica: Liste conquistas na experiência, não apenas tarefas."
+    ];
+    if(nome.length > 5) document.getElementById('dica-texto').innerText = dicas[Math.floor(Math.random()*dicas.length)];
+
+    // Validação
     const btn = document.getElementById('btn-gerar');
-    const emailValido = validarEmail(email);
-    const telCompleto = tel.replace(/\D/g, "").length >= 10; // Mínimo 10 dígitos
+    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const telValido = tel.replace(/\D/g, "").length >= 10;
 
-    let progresso = 0;
-    if (nome.length > 3) progresso += 25;
-    if (telCompleto) progresso += 25;
-    if (emailValido) progresso += 25;
-    if (obj.length > 10) progresso += 25;
-
-    document.getElementById('status-tag').innerText = `QUALIDADE: ${progresso}%`;
-
-    if (progresso === 100) {
+    if(nome.length > 3 && telValido && emailValido && obj.length > 10) {
         btn.disabled = false;
         btn.style.opacity = "1";
-        btn.innerHTML = "🚀 GERAR CURRÍCULO PROFISSIONAL";
+        btn.innerHTML = "🚀 GERAR CURRÍCULO AGORA";
+        document.getElementById('status-tag').innerText = "QUALIDADE: 100%";
     } else {
         btn.disabled = true;
         btn.style.opacity = "0.5";
-        btn.innerHTML = "🔒 DADOS INVÁLIDOS OU INCOMPLETOS";
+        btn.innerHTML = "🔒 DADOS INCOMPLETOS";
+        document.getElementById('status-tag').innerText = "QUALIDADE: 50%";
     }
-}
-
-// 4. FUNÇÕES DE APOIO
-function setModel(tipo) {
-    document.getElementById('preview-content').className = 'mode-' + tipo;
-}
-
-function sugerir(campo) {
-    const textos = {
-        obj: "Profissional proativo com foco em resultados, buscando integrar a equipe de [ÁREA] para aplicar competências técnicas e evoluir profissionalmente.",
-        exp: "• Gestão de rotinas administrativas\n• Atendimento ao cliente e resolução de conflitos\n• Batimento de metas mensais superiores a 15%"
-    };
-    document.getElementById('in-' + campo).value = textos[campo];
-    update();
 }
 
 function gerarPDF() {
+    document.getElementById('print-area').innerHTML = document.getElementById('live-preview').innerHTML;
     window.print();
 }
 
-function toggleNovidades() {
-    const modal = document.getElementById('pop-novidades');
-    modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
-}
-
-// Inicializa os ouvintes
-document.addEventListener('DOMContentLoaded', () => {
-    const telField = document.getElementById('in-tel');
-    if(telField) {
-        telField.addEventListener('input', () => mascaraTelefone(telField));
-    }
-    document.querySelectorAll('input, textarea').forEach(el => {
-        el.addEventListener('input', update);
-    });
-});
+// Listener geral
+document.querySelectorAll('input, textarea').forEach(el => el.addEventListener('input', update));
