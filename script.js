@@ -1,22 +1,4 @@
-// 1. FUNÇÕES DE INTERFACE
-function toggleNovidades() {
-    const pop = document.getElementById('pop-novidades');
-    if (pop) {
-        pop.style.display = (pop.style.display === 'none' || pop.style.display === '') ? 'block' : 'none';
-    }
-}
-
-function copyPix() {
-    const key = document.getElementById('pix-key').innerText;
-    navigator.clipboard.writeText(key).then(() => {
-        alert("🚀 Chave PIX copiada com sucesso! Obrigado por apoiar o CVFLASH!");
-    }).catch(err => {
-        alert("Erro ao copiar. Tente selecionar o texto manualmente.");
-    });
-}
-
-
-// 2. MÁSCARA DE TELEFONE ( ) 00000-0000
+// 1. MÁSCARA DE TELEFONE INTELIGENTE
 function mascaraTelefone(i) {
     let v = i.value.replace(/\D/g, "");
     if (v.length > 11) v = v.slice(0, 11);
@@ -27,33 +9,34 @@ function mascaraTelefone(i) {
     update();
 }
 
-// 3. SUGESTÕES (CONSERTADO)
-const textosSugestao = {
+// 2. SUGESTÕES DE TEXTO (FIXAS E FUNCIONAIS)
+const baseTextos = {
     obj: [
         "Profissional dedicado em busca de novos desafios para aplicar competências técnicas e evoluir na carreira.",
         "Foco em metas e resultados, buscando integrar o time de vendas para maximizar o faturamento e fidelização.",
-        "Objetivo de atuar no setor administrativo, organizando processos e otimizando o fluxo de trabalho."
+        "Objetivo de atuar no setor administrativo, organizando processos e otimizando o fluxo de trabalho da empresa."
     ],
     exp: [
-        "Nome da Empresa\nCargo Ocupado | Período: 2024 - Atual\n• Responsável por organizar fluxos de trabalho.\n• Atendimento ao cliente e suporte técnico.\n• Alcancei metas de produtividade em 20%."
+        "Nome da Empresa\nCargo Ocupado | Período: 2024 - Atual\n• Responsável por organizar fluxos de trabalho.\n• Atendimento ao cliente e resolução de problemas.\n• Alcancei metas de produtividade em 20%."
     ]
 };
 
 function sugerirMulti(campo, index) {
     const el = document.getElementById('in-' + campo);
-    if (el && textosSugestao[campo][index]) {
-        el.value = textosSugestao[campo][index];
+    if (el) {
+        el.value = baseTextos[campo][index];
         update();
     }
 }
 
+// 3. SELEÇÃO DE MODELOS
 function setModel(tipo, btn) {
     document.getElementById('preview-content').className = 'mode-' + tipo;
     document.querySelectorAll('.model-card').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 }
 
-// 4. CORE UPDATE
+// 4. ATUALIZAÇÃO E VALIDAÇÃO DE MILHÕES
 function update() {
     const nome = document.getElementById('in-nome').value;
     const tel = document.getElementById('in-tel').value;
@@ -62,34 +45,46 @@ function update() {
     const exp = document.getElementById('in-exp').value;
     
     // Preview
-    document.getElementById('pre-nome').innerText = nome || "SEU NOME";
-    document.getElementById('pre-contato').innerText = `${tel} | ${email}`;
+    document.getElementById('pre-nome').innerText = nome.toUpperCase() || "SEU NOME";
+    document.getElementById('pre-contato').innerText = `${tel} | ${email} | ${document.getElementById('in-local').value}`;
     document.getElementById('pre-obj').innerText = obj;
     document.getElementById('pre-exp').innerText = exp;
 
-    // Validação Real
-    const btn = document.getElementById('btn-gerar');
-    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    const telValido = tel.replace(/\D/g, "").length >= 10;
+    // Dicas Aleatórias de RH
+    const dicas = [
+        "Dica: Um e-mail com seu nome é muito mais profissional.",
+        "Dica: Use palavras-chave como 'Foco em Resultados' ou 'Liderança'.",
+        "Dica: Se a experiência for longa, foque nos últimos 5 anos.",
+        "Dica: O recrutador leva 6 segundos para decidir se lê seu currículo."
+    ];
+    if(nome.length > 5 && nome.length < 7) {
+        document.getElementById('dica-texto').innerText = dicas[Math.floor(Math.random() * dicas.length)];
+    }
 
-    if(nome.length > 3 && telValido && emailValido && obj.length > 10) {
+    // Lógica do Botão (Validação Real)
+    const btn = document.getElementById('btn-gerar');
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const telOk = tel.replace(/\D/g, "").length >= 10;
+
+    if(nome.length > 3 && telOk && emailOk && obj.length > 10) {
         btn.disabled = false;
         btn.style.opacity = "1";
-        btn.innerHTML = "🚀 GERAR CURRÍCULO AGORA";
+        btn.style.cursor = "pointer";
+        btn.innerHTML = "🚀 GERAR CURRÍCULO PROFISSIONAL";
         document.getElementById('status-tag').innerText = "QUALIDADE: 100%";
     } else {
         btn.disabled = true;
         btn.style.opacity = "0.5";
-        btn.innerHTML = "🔒 DADOS INCOMPLETOS";
+        btn.innerHTML = "🔒 DADOS INCOMPLETOS OU INVÁLIDOS";
         document.getElementById('status-tag').innerText = "QUALIDADE: 50%";
     }
 }
 
 function gerarPDF() {
-    const printContent = document.getElementById('live-preview').innerHTML;
-    document.getElementById('print-area').innerHTML = printContent;
+    const content = document.getElementById('live-preview').innerHTML;
+    document.getElementById('print-area').innerHTML = content;
     window.print();
 }
 
-// Listener geral
+// Ouvir digitais
 document.querySelectorAll('input, textarea').forEach(el => el.addEventListener('input', update));
