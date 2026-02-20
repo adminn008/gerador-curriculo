@@ -1,7 +1,7 @@
 // 1. FUNÇÕES DE INTERFACE
 function toggleNovidades() {
     const pop = document.getElementById('pop-novidades');
-    pop.style.display = (pop.style.display === 'none' || pop.style.display === '') ? 'block' : 'none';
+    if (pop) pop.style.display = (pop.style.display === 'none' || pop.style.display === '') ? 'block' : 'none';
 }
 
 function copyPix() {
@@ -10,7 +10,7 @@ function copyPix() {
     alert("Chave PIX Copiada! Valeu pelo apoio! 🚀");
 }
 
-// 2. MÁSCARA E VALIDAÇÃO
+// 2. MÁSCARA DE TELEFONE ( ) 00000-0000
 function mascaraTelefone(i) {
     let v = i.value.replace(/\D/g, "");
     if (v.length > 11) v = v.slice(0, 11);
@@ -21,18 +21,24 @@ function mascaraTelefone(i) {
     update();
 }
 
-const sugestoes = {
+// 3. SUGESTÕES (CONSERTADO)
+const textosSugestao = {
     obj: [
         "Profissional dedicado em busca de novos desafios para aplicar competências técnicas e evoluir na carreira.",
         "Foco em metas e resultados, buscando integrar o time de vendas para maximizar o faturamento e fidelização.",
-        "Objetivo de atuar no setor administrativo, organizando processos e otimizando o fluxo de trabalho da empresa."
+        "Objetivo de atuar no setor administrativo, organizando processos e otimizando o fluxo de trabalho."
     ],
-    exp: ["Empresa X - Cargo Y (Ano-Ano)\n• Responsável por organizar X\n• Alcancei a meta de Y em 3 meses."]
+    exp: [
+        "Nome da Empresa\nCargo Ocupado | Período: 2024 - Atual\n• Responsável por organizar fluxos de trabalho.\n• Atendimento ao cliente e suporte técnico.\n• Alcancei metas de produtividade em 20%."
+    ]
 };
 
 function sugerirMulti(campo, index) {
-    document.getElementById('in-' + campo).value = sugestoes[campo][index];
-    update();
+    const el = document.getElementById('in-' + campo);
+    if (el && textosSugestao[campo][index]) {
+        el.value = textosSugestao[campo][index];
+        update();
+    }
 }
 
 function setModel(tipo, btn) {
@@ -41,28 +47,21 @@ function setModel(tipo, btn) {
     btn.classList.add('active');
 }
 
-// 3. CORE UPDATE
+// 4. CORE UPDATE
 function update() {
     const nome = document.getElementById('in-nome').value;
     const tel = document.getElementById('in-tel').value;
     const email = document.getElementById('in-email').value;
     const obj = document.getElementById('in-obj').value;
+    const exp = document.getElementById('in-exp').value;
     
     // Preview
     document.getElementById('pre-nome').innerText = nome || "SEU NOME";
     document.getElementById('pre-contato').innerText = `${tel} | ${email}`;
     document.getElementById('pre-obj').innerText = obj;
+    document.getElementById('pre-exp').innerText = exp;
 
-    // Dicas Dinâmicas
-    const dicas = [
-        "Dica: Um e-mail profissional (nome.sobrenome) passa mais confiança.",
-        "Dica: No objetivo, seja direto. O recrutador lê em 6 segundos.",
-        "Dica: Revise o WhatsApp, é por lá que vão te chamar!",
-        "Dica: Liste conquistas na experiência, não apenas tarefas."
-    ];
-    if(nome.length > 5) document.getElementById('dica-texto').innerText = dicas[Math.floor(Math.random()*dicas.length)];
-
-    // Validação
+    // Validação Real
     const btn = document.getElementById('btn-gerar');
     const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const telValido = tel.replace(/\D/g, "").length >= 10;
@@ -81,7 +80,8 @@ function update() {
 }
 
 function gerarPDF() {
-    document.getElementById('print-area').innerHTML = document.getElementById('live-preview').innerHTML;
+    const printContent = document.getElementById('live-preview').innerHTML;
+    document.getElementById('print-area').innerHTML = printContent;
     window.print();
 }
 
