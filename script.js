@@ -15,6 +15,7 @@ function copyPix() {
     });
 }
 
+
 // 2. MÁSCARA DE TELEFONE ( ) 00000-0000
 function mascaraTelefone(i) {
     let v = i.value.replace(/\D/g, "");
