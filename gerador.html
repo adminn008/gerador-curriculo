@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Gerador Profissional | CVFLASH</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,16 +10,16 @@
     <nav class="navbar no-print">
         <div class="container nav-content">
             <a href="index.html" class="logo">CV<span>FLASH</span></a>
-            <div id="status-tag" style="color: var(--accent); font-weight: 800; font-size: 0.8rem; border: 1px solid var(--accent); padding: 5px 15px; border-radius: 20px;">QUALIDADE: 0%</div>
+            <div id="status-tag" style="color: var(--accent); font-weight: 800; font-size: 0.7rem; border: 1px solid var(--accent); padding: 5px 12px; border-radius: 20px;">QUALIDADE: 0%</div>
         </div>
     </nav>
 
-    <main class="container app-grid no-print" style="display: grid; grid-template-columns: 1fr 400px; gap: 30px; padding-top: 30px;">
+    <main class="container app-grid no-print">
         <div class="editor-column">
             
             <div class="card">
                 <h3>💎 MODELOS DE ELITE</h3>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                <div class="row">
                     <button class="model-card active" onclick="setModel('moderno', this)">Moderno</button>
                     <button class="model-card" onclick="setModel('minimalista', this)">Minimalista</button>
                     <button class="model-card" onclick="setModel('executivo', this)">Executivo</button>
@@ -31,7 +31,7 @@
                     <h3>👤 DADOS PESSOAIS COMPLETOS</h3>
                     <div class="field-group">
                         <label>Nome Completo *</label>
-                        <input type="text" id="in-nome" class="val-req" placeholder="Ex: João Pessoa">
+                        <input type="text" id="in-nome" class="val-req" placeholder="Ex: Welington Silva">
                     </div>
                     <div class="row">
                         <div class="field-group"><label>Nacionalidade</label><input type="text" id="in-nacionalidade" placeholder="Ex: Brasileiro"></div>
@@ -44,10 +44,10 @@
                         </div>
                         <div class="field-group">
                             <label>E-mail *</label>
-                            <input type="email" id="in-email" class="val-req" placeholder="seuemail@gmail.com">
+                            <input type="email" id="in-email" class="val-req" placeholder="voce@exemplo.com">
                         </div>
                     </div>
-                    <div class="field-group"><label>Endereço Completo</label><input type="text" id="in-local" placeholder="Rua, Bairro, Cidade - Estado"></div>
+                    <div class="field-group"><label>Endereço Completo</label><input type="text" id="in-local" placeholder="Rua, Bairro, Cidade - UF"></div>
                     <div class="row">
                         <div class="field-group"><label>LinkedIn</label><input type="text" id="in-linkedin" placeholder="link"></div>
                         <div class="field-group"><label>Data de Nascimento</label><input type="text" id="in-nasc" placeholder="DD/MM/AAAA"></div>
@@ -59,17 +59,16 @@
                     <div class="field-group">
                         <label>Objetivo Profissional *</label>
                         <textarea id="in-obj" rows="3" class="val-req"></textarea>
-                        <div style="display: flex; gap: 5px; flex-wrap: wrap;">
+                        <div style="display: flex; gap: 5px; flex-wrap: wrap; margin-top:5px;">
                             <button type="button" class="btn-sugerir" onclick="sugerirMulti('obj', 0)">Geral</button>
                             <button type="button" class="btn-sugerir" onclick="sugerirMulti('obj', 1)">Vendas</button>
-                            <button type="button" class="btn-sugerir" onclick="sugerirMulti('obj', 2)">Administrativo</button>
-                            <button type="button" class="btn-sugerir" onclick="sugerirMulti('obj', 3)">Jovem Aprendiz</button>
+                            <button type="button" class="btn-sugerir" onclick="sugerirMulti('obj', 2)">Adm</button>
                         </div>
                     </div>
                     <div class="field-group">
                         <label>Experiência Profissional</label>
-                        <textarea id="in-exp" rows="6" placeholder="Empresa, Cargo e o que você fazia..."></textarea>
-                        <button type="button" class="btn-sugerir" onclick="sugerirMulti('exp', 0)">🪄 Sugerir Formato</button>
+                        <textarea id="in-exp" rows="6" placeholder="Empresa, Cargo e Período..."></textarea>
+                        <button type="button" class="btn-sugerir" onclick="sugerirMulti('exp', 0)">🪄 Sugerir Formato Profissional</button>
                     </div>
                 </div>
 
@@ -88,10 +87,8 @@
         <aside class="sidebar-column">
             <div class="card" style="position: sticky; top: 90px; border-left: 4px solid var(--accent);">
                 <h4 style="color: var(--accent); margin-bottom: 10px;">💡 DICA DO RECRUTADOR</h4>
-                <p id="dica-texto" style="font-size: 0.85rem; color: var(--text-dim);">Comece preenchendo seu nome completo para ver a mágica acontecer no preview.</p>
-                
+                <p id="dica-texto" style="font-size: 0.85rem; color: var(--text-dim);">Dica: Revise o WhatsApp, é por lá que vão te chamar!</p>
                 <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
-                
                 <h4 style="margin-bottom: 10px;">👁️ PREVIEW AO VIVO</h4>
                 <div id="live-preview" style="background: white; color: #333; padding: 20px; border-radius: 4px; min-height: 400px; transform: scale(0.9); transform-origin: top;">
                     <div id="preview-content" class="mode-moderno">
@@ -101,6 +98,10 @@
                             <strong style="font-size: 0.7rem;">OBJETIVO</strong>
                             <p id="pre-obj" style="font-size: 0.75rem;"></p>
                         </div>
+                        <div style="margin-top: 10px;">
+                            <strong style="font-size: 0.7rem;">EXPERIÊNCIA</strong>
+                            <p id="pre-exp" style="font-size: 0.75rem; white-space: pre-line;"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -109,7 +110,12 @@
 
     <footer class="footer no-print">
         <div class="container">
-            <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão para o CVFlash v1.3.0" style="color: var(--accent); text-decoration: none;">💡 Sugerir para a v2.0</a>
+            <div class="footer-links">
+                <a href="faq.html">FAQ</a>
+                <a href="privacy.html">Privacidade</a>
+                <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão para o CVFlash v1.3.0">Sugerir Melhoria</a>
+            </div>
+            <p style="color: var(--text-dim); font-size: 0.7rem; margin-top: 10px;">© 2026 CVFLASH v1.3.0</p>
         </div>
     </footer>
 
