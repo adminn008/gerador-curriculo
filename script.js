@@ -116,49 +116,29 @@ function toggleNovidades() {
 
 // GARANTIA: Adiciona o evento de clique assim que o site abrir
 document.addEventListener('DOMContentLoaded', () => {
-    startCounter(); // Inicia o contador
-    const btnNovidades = document.querySelector('.btn-sugerir'); 
-    if (btnNovidades && btnNovidades.textContent.includes('mudou')) {
-        btnNovidades.addEventListener('click', toggleNovidades);
+    // ... suas outras funções (startCounter, etc)
+
+    const btnPix = document.getElementById('btn-copy-pix');
+    if (btnPix) {
+        btnPix.addEventListener('click', () => {
+            const pixText = document.getElementById('pix-key').innerText;
+            
+            // Tenta copiar
+            navigator.clipboard.writeText(pixText).then(() => {
+                alert("🚀 Chave PIX copiada! Valeu pelo apoio ao CVFLASH!");
+            }).catch(err => {
+                // Se der erro (em alguns celulares), tenta o método antigo
+                const area = document.createElement('textarea');
+                area.value = pixText;
+                document.body.appendChild(area);
+                area.select();
+                document.execCommand('copy');
+                document.body.removeChild(area);
+                alert("🚀 Chave PIX copiada!");
+            });
+        });
     }
 });
 
-function copyPix() {
-    // 1. Busca o elemento que contém a chave
-    const pixElement = document.getElementById('pix-key');
-    
-    if (!pixElement) {
-        console.error("Erro: Elemento pix-key não encontrado!");
-        return;
-    }
 
-    const textoParaCopiar = pixElement.innerText;
-
-    // 2. Tenta usar a API moderna de área de transferência
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(textoParaCopiar).then(() => {
-            alert("🚀 Chave PIX copiada! Valeu pelo apoio ao CVFLASH!");
-        }).catch(err => {
-            fallbackCopy(textoParaCopiar);
-        });
-    } else {
-        // 3. Fallback para navegadores antigos ou conexões não-seguras
-        fallbackCopy(textoParaCopiar);
-    }
-}
-
-// Função de segurança caso a API principal falhe
-function fallbackCopy(text) {
-    const textArea = document.createElement("textarea");
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.select();
-    try {
-        document.execCommand('copy');
-        alert("🚀 Chave PIX copiada!");
-    } catch (err) {
-        alert("Erro ao copiar. Por favor, selecione o texto manualmente.");
-    }
-    document.body.removeChild(textArea);
-}
 
