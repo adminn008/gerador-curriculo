@@ -3,78 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador Elite | CVFLASH</title>
+    <title>Gerador Profissional v1.3.0 | CVFLASH</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="dark-theme">
     <nav class="navbar no-print">
         <div class="container nav-content">
             <a href="index.html" class="logo">CV<span>FLASH</span></a>
-            <div id="status-tag" style="color:var(--accent); font-weight:800;">QUALIDADE: 0%</div>
+            <div id="status-tag" style="background: rgba(0, 242, 255, 0.1); border: 1px solid var(--accent); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 800; color: var(--accent);">
+                QUALIDADE: 0%
+            </div>
         </div>
     </nav>
 
     <main class="container app-grid no-print">
         <div class="editor-column">
             <div class="card">
-                <label>Selecione o Estilo do Currículo</label>
+                <h4 style="margin-bottom: 15px; color: var(--primary);">1. ESCOLHA O ESTILO</h4>
                 <div class="model-selector">
-                    <div class="model-card active" onclick="setModel('moderno', this)">Moderno</div>
-                    <div class="model-card" onclick="setModel('minimalista', this)">Minimalista</div>
-                    <div class="model-card" onclick="setModel('executivo', this)">Executivo</div>
+                    <div class="model-card active" onclick="setModel('moderno', this)">MODERNO</div>
+                    <div class="model-card" onclick="setModel('minimalista', this)">MINIMALISTA</div>
+                    <div class="model-card" onclick="setModel('executivo', this)">EXECUTIVO</div>
                 </div>
             </div>
 
             <form id="cv-form">
-                <section class="card">
-                    <h3>👤 Identificação</h3>
+                <div class="card">
+                    <h3>👤 IDENTIFICAÇÃO</h3>
                     <div class="input-group">
-                        <label>Nome Completo * <button type="button" class="info-btn" title="Coloque seu nome sem abreviações.">?</button></label>
-                        <input type="text" id="in-nome" class="val-req" oninput="updateLive()">
+                        <label>Nome Completo * <span class="info-dot" title="Introduza o seu nome completo sem abreviaturas.">?</span></label>
+                        <input type="text" id="in-nome" class="val-req" placeholder="Ex: Welington Silva">
                     </div>
-                    <div class="row">
+                    <div class="field-row">
                         <div class="input-group">
-                            <label>Telefone *</label>
-                            <input type="tel" id="in-tel" class="val-req" oninput="updateLive()">
+                            <label>WhatsApp/Telemóvel *</label>
+                            <input type="tel" id="in-tel" class="val-req" placeholder="(00) 00000-0000">
                         </div>
                         <div class="input-group">
                             <label>E-mail *</label>
-                            <input type="email" id="in-email" class="val-req" oninput="updateLive()">
+                            <input type="email" id="in-email" class="val-req" placeholder="exemplo@email.com">
                         </div>
                     </div>
-                </section>
-
-                <section class="card">
-                    <h3>💼 Carreira</h3>
-                    <div class="input-group">
-                        <label>Objetivo Profissional * <button type="button" class="info-btn" title="Diga o que você quer fazer na empresa.">?</button></label>
-                        <textarea id="in-obj" rows="3" class="val-req" oninput="updateLive()"></textarea>
-                        <button type="button" class="btn-sugerir" onclick="sugerir('obj')">🪄 Sugerir Resposta</button>
+                    <div class="field-row">
+                        <div class="input-group">
+                            <label>Cargo Desejado <span class="info-dot" title="A vaga que pretende ocupar.">?</span></label>
+                            <input type="text" id="in-cargo" placeholder="Ex: Vendedor, Motorista...">
+                        </div>
+                        <div class="input-group">
+                            <label>LinkedIn / Portfólio</label>
+                            <input type="text" id="in-link" placeholder="linkedin.com/in/perfil">
+                        </div>
                     </div>
                     <div class="input-group">
-                        <label>Experiência Profissional</label>
-                        <textarea id="in-exp" rows="5" oninput="updateLive()"></textarea>
-                        <button type="button" class="btn-sugerir" onclick="sugerir('exp')">🪄 Sugerir Resposta</button>
+                        <label>Cidade / Estado</label>
+                        <input type="text" id="in-local" placeholder="Ex: São Paulo, SP">
                     </div>
-                </section>
+                </div>
 
-                <button type="button" id="btn-gerar" onclick="validarEGerar()" class="btn btn-primary" style="width: 100%; opacity: 0.5;">
-                    🔒 PREENCHA OS OBRIGATÓRIOS
+                <div class="card">
+                    <h3>💼 TRAJETÓRIA PROFISSIONAL</h3>
+                    <div class="input-group">
+                        <label>Objetivo Profissional * <span class="info-dot" title="Breve resumo sobre quem é e o que procura.">?</span></label>
+                        <textarea id="in-obj" class="val-req" rows="3" placeholder="Fale sobre as suas intenções na empresa..."></textarea>
+                        <button type="button" class="btn-sugerir" onclick="sugerir('obj')">🪄 Sugerir Texto Profissional</button>
+                    </div>
+                    <div class="input-group">
+                        <label>Experiência de Trabalho <span class="info-dot" title="Liste as suas últimas empresas e o que fazia nelas.">?</span></label>
+                        <textarea id="in-exp" rows="6" placeholder="Empresa - Cargo (Ano)&#10;Descreva as suas funções..."></textarea>
+                        <button type="button" class="btn-sugerir" onclick="sugerir('exp')">🪄 Sugerir Modelo de Experiência</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>🎓 FORMAÇÃO E SKILLS</h3>
+                    <div class="input-group">
+                        <label>Educação / Escolaridade</label>
+                        <textarea id="in-edu" rows="3" placeholder="Curso - Instituição (Conclusão)"></textarea>
+                    </div>
+                    <div class="field-row">
+                        <div class="input-group">
+                            <label>Habilidades Técnicas</label>
+                            <input type="text" id="in-skills" placeholder="Ex: Excel, Vendas, Inglês...">
+                        </div>
+                        <div class="input-group">
+                            <label>Idiomas / Extras</label>
+                            <input type="text" id="in-extra" placeholder="Ex: Inglês Fluente, Carta de Condução...">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="btn-gerar" onclick="gerarPDF()" class="btn btn-primary" style="width: 100%; font-size: 1.2rem; padding: 20px; opacity: 0.5;" disabled>
+                    🔒 PREENCHA OS CAMPOS OBRIGATÓRIOS
                 </button>
             </form>
+
+            <footer style="margin: 40px 0; text-align: center;">
+                <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão para o CVFlash v1.3.0" class="footer-link">
+                    💡 Tem uma sugestão? Envie para nós!
+                </a>
+            </footer>
         </div>
 
         <aside class="sidebar-column">
             <div class="card sticky-sidebar">
-                <h4 style="margin-bottom:15px;">👁️ Pré-visualização</h4>
-                <div id="live-preview">
+                <h4 style="margin-bottom: 20px; color: var(--accent);">👁️ PREVIEW AO VIVO</h4>
+                <div id="live-preview" style="background: white; color: #333; min-height: 500px; padding: 30px; border-radius: 4px; border: 1px solid #ddd; overflow: hidden;">
                     <div id="preview-content" class="mode-moderno">
-                        <h2 id="pre-nome">Seu Nome</h2>
-                        <p id="pre-contato" style="font-size:0.8rem;"></p>
-                        <hr>
-                        <p id="pre-obj" style="margin-top:10px;"></p>
+                        <h2 id="pre-nome" style="margin-bottom: 5px;">SEU NOME</h2>
+                        <h4 id="pre-cargo" style="color: var(--primary); font-weight: 400; margin-bottom: 10px;">CARGO DESEJADO</h4>
+                        <p id="pre-contato" style="font-size: 0.8rem; border-bottom: 1px solid #eee; padding-bottom: 10px;"></p>
+                        
+                        <div style="margin-top: 15px;">
+                            <strong style="font-size: 0.9rem;">OBJETIVO</strong>
+                            <p id="pre-obj" style="font-size: 0.85rem; margin-top: 5px;"></p>
+                        </div>
+                        
+                        <div style="margin-top: 15px;">
+                            <strong style="font-size: 0.9rem;">EXPERIÊNCIA</strong>
+                            <p id="pre-exp" style="font-size: 0.85rem; white-space: pre-line; margin-top: 5px;"></p>
+                        </div>
                     </div>
                 </div>
+                <p style="text-align: center; margin-top: 15px; color: var(--text-dim); font-size: 0.8rem;">
+                    O seu currículo será impresso exatamente como o preview.
+                </p>
             </div>
         </aside>
     </main>
