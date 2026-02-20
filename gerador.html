@@ -10,88 +10,107 @@
     <nav class="navbar no-print">
         <div class="container nav-content">
             <a href="index.html" class="logo">CV<span>FLASH</span></a>
-            <div id="quality-tag" style="background:var(--primary); padding:5px 15px; border-radius:20px; font-weight:800; font-size:0.8rem;">CV 0% COMPLETO</div>
+            <div id="status-tag" style="background: rgba(59, 130, 246, 0.1); border: 1px solid var(--primary); padding: 8px 16px; border-radius: 30px; font-size: 0.8rem; font-weight: 800;">
+                QUALIDADE: 0%
+            </div>
         </div>
     </nav>
 
     <main class="container app-grid no-print">
-        <div class="editor-area">
+        <div class="editor-column">
             <form id="cv-form">
-                <div class="card">
-                    <h3>👤 Dados Pessoais</h3>
+                <section class="card">
+                    <h3 style="margin-bottom: 24px;">👤 Dados Pessoais</h3>
                     <div class="input-group">
                         <label>Nome Completo *</label>
-                        <input type="text" id="in-nome" class="val-req">
+                        <input type="text" id="in-nome" placeholder="Ex: Welington Silva">
                     </div>
-                    <div class="row">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;" class="mobile-stack">
                         <div class="input-group">
                             <label>Telefone *</label>
-                            <input type="tel" id="in-tel" class="val-req">
+                            <input type="tel" id="in-tel" placeholder="(00) 00000-0000">
                         </div>
                         <div class="input-group">
                             <label>E-mail *</label>
-                            <input type="email" id="in-email" class="val-req">
+                            <input type="email" id="in-email" placeholder="contato@exemplo.com">
                         </div>
                     </div>
-                    <div class="row">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;" class="mobile-stack">
                         <div class="input-group">
-                            <label>Cargo Atual / Área</label>
-                            <input type="text" id="in-cargo" placeholder="Ex: Vendedor, Auxiliar...">
+                            <label>Cidade / Estado</label>
+                            <input type="text" id="in-local" placeholder="Curitiba/PR">
                         </div>
                         <div class="input-group">
-                            <label>LinkedIn / Portfólio</label>
-                            <input type="text" id="in-link">
+                            <label>LinkedIn</label>
+                            <input type="text" id="in-linkedin" placeholder="linkedin.com/in/voce">
                         </div>
                     </div>
-                </div>
+                </section>
 
-                <div class="card dynamic-section">
-                    <h3>🎓 Formação Acadêmica</h3>
+                <section class="card">
+                    <h3 style="margin-bottom: 24px;">🎓 Formação & Experiência</h3>
                     <div class="input-group">
-                        <label>Instituição e Curso</label>
-                        <textarea id="in-edu" rows="3" placeholder="Ex: Ensino Médio Completo - Escola Estadual..."></textarea>
+                        <label>Resumo Profissional / Objetivo *</label>
+                        <textarea id="in-obj" rows="4" placeholder="Fale sobre suas principais conquistas..."></textarea>
                     </div>
-                </div>
-
-                <div class="card dynamic-section">
-                    <h3>💼 Experiência Profissional</h3>
                     <div class="input-group">
-                        <label>Descreva suas últimas experiências</label>
-                        <textarea id="in-exp" rows="5" placeholder="Nome da empresa, cargo e o que você fazia lá..."></textarea>
+                        <label>Experiência Profissional</label>
+                        <textarea id="in-exp" rows="6" placeholder="Empresa - Cargo (Ano)&#10;• Descreva suas tarefas..."></textarea>
                     </div>
-                </div>
-
-                <div class="card">
-                    <h3>🛠️ Habilidades & Extras</h3>
-                    <div class="row">
-                        <div class="input-group">
-                            <label>Habilidades (Hard/Soft Skills)</label>
-                            <input type="text" id="in-skills" placeholder="Ex: Excel, Proatividade...">
-                        </div>
-                        <div class="input-group">
-                            <label>Idiomas</label>
-                            <input type="text" id="in-idiomas" placeholder="Ex: Inglês Básico">
-                        </div>
+                    <div class="input-group">
+                        <label>Formação Acadêmica</label>
+                        <textarea id="in-edu" rows="3" placeholder="Curso - Instituição (Conclusão)"></textarea>
                     </div>
-                </div>
+                </section>
 
-                <button type="button" onclick="window.print()" class="btn-primary btn-lg" style="width:100%">GERAR CURRÍCULO PROFISSIONAL</button>
+                <section class="card">
+                    <h3 style="margin-bottom: 24px;">🛠️ Habilidades e Idiomas</h3>
+                    <div class="input-group">
+                        <label>Competências (Habilidades Técnicas)</label>
+                        <input type="text" id="in-skills" placeholder="Ex: Excel Avançado, Gestão de Pessoas, JavaScript">
+                    </div>
+                    <div class="input-group">
+                        <label>Idiomas</label>
+                        <input type="text" id="in-idiomas" placeholder="Inglês Fluente, Espanhol Básico">
+                    </div>
+                </section>
+
+                <button type="button" onclick="window.print()" class="btn btn-primary" style="width: 100%; font-size: 1.2rem; padding: 20px;">
+                    ✨ GERAR CURRÍCULO PROFISSIONAL
+                </button>
             </form>
         </div>
 
-        <aside class="no-print">
-            <div class="card sticky-sidebar" style="position: sticky; top: 100px;">
-                <h4>Pontuação do CV</h4>
-                <div class="meta-bar"><div id="cv-fill" class="meta-fill"></div></div>
-                <ul id="checklist" style="list-style:none; font-size:0.9rem; margin-top:15px;">
-                    <li id="chk-nome">❌ Nome completo</li>
-                    <li id="chk-tel">❌ Telefone</li>
-                    <li id="chk-email">❌ E-mail</li>
-                    <li id="chk-obj">❌ Experiência/Educação</li>
+        <aside class="sidebar-column">
+            <div class="card" style="position: sticky; top: 100px;">
+                <h4 style="margin-bottom: 16px;">Análise de IA</h4>
+                <div class="progress-track"><div id="cv-fill" class="progress-fill"></div></div>
+                <ul style="list-style: none; margin-top: 24px; font-size: 0.9rem;">
+                    <li id="chk-nome" style="margin-bottom: 12px; color: var(--text-dim);">✕ Nome preenchido</li>
+                    <li id="chk-tel" style="margin-bottom: 12px; color: var(--text-dim);">✕ Telefone válido</li>
+                    <li id="chk-email" style="margin-bottom: 12px; color: var(--text-dim);">✕ E-mail detectado</li>
+                    <li id="chk-obj" style="margin-bottom: 12px; color: var(--text-dim);">✕ Resumo profissional</li>
                 </ul>
+                <div style="margin-top: 30px; padding: 15px; background: rgba(59,130,246,0.05); border-radius: 12px; font-size: 0.8rem; color: var(--primary);">
+                    💡 <strong>Dica:</strong> Currículos com LinkedIn têm 40% mais chances de contratação.
+                </div>
             </div>
         </aside>
     </main>
+
+    <div id="print-area" class="print-only">
+        <h1 id="out-nome"></h1>
+        <p id="out-contato"></p>
+        <hr>
+        <h3>OBJETIVO</h3>
+        <p id="out-obj"></p>
+        <h3>EXPERIÊNCIA</h3>
+        <p id="out-exp"></p>
+        <h3>FORMAÇÃO</h3>
+        <p id="out-edu"></p>
+        <h3>HABILIDADES</h3>
+        <p id="out-skills"></p>
+    </div>
 
     <script src="script.js"></script>
 </body>
