@@ -1,31 +1,50 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sobre o CVFlash</title>
-<link rel="stylesheet" href="Style.css">
+    <meta charset="UTF-8">
+    <title>Institucional | CVFLASH</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">CV<span>FLASH</span></a>
+            <a href="index.html" class="btn-primary" style="padding:10px 20px;">Voltar</a>
+        </div>
+    </nav>
 
-<header class="topo">
-<h1>Institucional</h1>
-</header>
+    <main class="container" style="padding-top:50px;">
+        <section id="faq" style="margin-bottom:80px;">
+            <h2 class="site-title">Perguntas <span>Frequentes</span></h2>
+            <div class="card" style="padding:0; overflow:hidden;">
+                <div class="acc-item">
+                    <button class="acc-btn" onclick="toggleAcc(this)">O serviço é gratuito? <span>+</span></button>
+                    <div class="acc-content">Sim! O CVFlash é 100% gratuito. Aceitamos apenas doações voluntárias para manter o projeto.</div>
+                </div>
+                <div class="acc-item">
+                    <button class="acc-btn" onclick="toggleAcc(this)">Meus dados são salvos? <span>+</span></button>
+                    <div class="acc-content">Não. Tudo o que você digita fica apenas no seu navegador e é destruído ao fechar a aba.</div>
+                </div>
+            </div>
+        </section>
 
-<section class="pagina">
-<h2>Sobre nós</h2>
-<p>O CVFlash foi criado para facilitar a criação de currículos modernos e profissionais.</p>
+        <section id="suporte" class="card" style="text-align:center; margin-bottom:80px;">
+            <h2>Central de <span>Suporte</span></h2>
+            <p>Precisa de ajuda? Fale conosco diretamente pelo e-mail:</p>
+            <h3 style="color:var(--accent); margin:20px 0;">suporte.cvflash@gmail.com</h3>
+            <p><small>Atendimento em até 24h úteis.</small></p>
+        </section>
 
-<h2>Missão</h2>
-<p>Ajudar pessoas a conseguirem emprego com currículos melhores.</p>
+        <section id="termos" class="card">
+            <h2>Termos e <span>Privacidade</span></h2>
+            <div style="font-size:0.9rem; color:var(--text-muted); margin-top:20px;">
+                <p><strong>1. Privacidade:</strong> Não coletamos dados pessoais. O processamento é local.</p>
+                <p><strong>2. Uso:</strong> O uso do currículo gerado é de inteira responsabilidade do usuário.</p>
+                <p><strong>3. Versão:</strong> Sistema em versão estável 1.2.1 (2026).</p>
+            </div>
+        </section>
+    </main>
 
-<h2>Meta versão 2.0</h2>
-<div class="meta">
-<div class="metaBarra"></div>
-</div>
-<p>R$ 0,00 de R$ 50,00</p>
-<p>Chave PIX: 0df8fcd3-dffc-4265-8464-5a60badef88c</p>
-</section>
-
+    <script src="script.js"></script>
 </body>
 </html>
