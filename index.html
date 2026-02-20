@@ -1,43 +1,62 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CVFlash — Criador de Currículos</title>
-<link rel="stylesheet" href="Style.css">
+    <meta charset="UTF-8">
+    <title>CVFLASH | O Gerador de Currículos Perfeito</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">CV<span>FLASH</span></a>
+            <a href="gerador.html" class="btn-primary" style="padding: 10px 20px;">Criar Agora</a>
+        </div>
+    </nav>
 
-<header class="topo">
-<h1>CVFlash</h1>
-<p>Crie currículos profissionais em minutos</p>
-</header>
+    <header class="container" style="text-align:center; padding: 100px 0;">
+        <h1 style="font-size: 4rem; margin-bottom: 20px;">Currículo de <span style="color:var(--accent)">Elite</span> em Segundos.</h1>
+        <p style="color:var(--text-muted); font-size: 1.4rem; max-width: 700px; margin: 0 auto 40px;">Seja notado pelos recrutadores com o design mais moderno de 2026. Grátis, rápido e sem frescura.</p>
+        <a href="gerador.html" class="btn-primary btn-lg">Começar meu currículo agora</a>
+    </header>
 
-<section class="principal">
-<h2>Bem-vindo</h2>
-<p>Preencha seus dados e gere um currículo moderno e profissional.</p>
+    <section class="container">
+        <div class="meta-container">
+            <h3>🚀 Rumo à v2.0.0</h3>
+            <p>Sua ajuda faz o sistema crescer. Apoie o desenvolvimento!</p>
+            <div class="meta-bar"><div id="meta-fill" class="meta-fill"></div></div>
+            <div style="display:flex; justify-content:space-between; font-weight:bold;">
+                <span id="txt-arrecadado">R$ 0,00</span>
+                <span>Meta: R$ 50,00</span>
+            </div>
+            <div style="margin-top:20px; padding:15px; background:rgba(0,0,0,0.3); border-radius:10px; text-align:center;">
+                <small>Chave PIX (E-mail):</small><br>
+                <code style="color:var(--accent); font-size:1.1rem;">0df8fcd3-dffc-4265-8464-5a60badef88c</code>
+            </div>
+        </div>
+    </section>
 
-<a class="botao" href="gerador.html">Criar meu currículo</a>
-</section>
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <a href="#" class="logo">CV<span>FLASH</span></a>
+                <p style="margin-top:15px; color:var(--text-muted);">A ferramenta definitiva para sua carreira.</p>
+            </div>
+            <div>
+                <h4>Sistema</h4>
+                <a href="institucional.html#suporte">Suporte</a>
+                <a href="institucional.html#faq">Perguntas Frequentes</a>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <a href="institucional.html#termos">Termos de Uso</a>
+                <a href="institucional.html#privacidade">Privacidade</a>
+            </div>
+        </div>
+        <div class="container" style="text-align:center; margin-top:50px; border-top:1px solid var(--border); padding-top:20px;">
+            <p>© 2026 CVFlash — versão 1.2.1 — Todos os direitos reservados</p>
+        </div>
+    </footer>
 
-<section class="novidades">
-<h2>Novidades da versão 2.0.0</h2>
-<ul>
-<li>Carta de apresentação</li>
-<li>+10 modelos premium</li>
-<li>Currículo com foto</li>
-<li>Dicas de preenchimento</li>
-<li>Avaliador de currículo</li>
-<li>Salvar rascunho</li>
-</ul>
-</section>
-
-<footer>
-<a href="institucional.html">Institucional</a>
-<a href="suporte.html">Suporte</a>
-<a href="termos.html">Termos</a>
-<p>© 2026 CVFlash v1.2.1</p>
-</footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
