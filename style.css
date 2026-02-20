@@ -86,3 +86,11 @@ input:focus { border-color: var(--primary); outline: none; }
 .no-print { display: block; }
 .print-only { display: none; }
 @media print { .no-print { display: none !important; } .print-only { display: block !important; background: white; color: black; padding: 30px; } }
+
+@keyframes ping {
+    75%, 100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
