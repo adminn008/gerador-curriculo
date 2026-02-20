@@ -1,13 +1,18 @@
 // 1. FUNÇÕES DE INTERFACE
 function toggleNovidades() {
     const pop = document.getElementById('pop-novidades');
-    if (pop) pop.style.display = (pop.style.display === 'none' || pop.style.display === '') ? 'block' : 'none';
+    if (pop) {
+        pop.style.display = (pop.style.display === 'none' || pop.style.display === '') ? 'block' : 'none';
+    }
 }
 
 function copyPix() {
     const key = document.getElementById('pix-key').innerText;
-    navigator.clipboard.writeText(key);
-    alert("Chave PIX Copiada! Valeu pelo apoio! 🚀");
+    navigator.clipboard.writeText(key).then(() => {
+        alert("🚀 Chave PIX copiada com sucesso! Obrigado por apoiar o CVFLASH!");
+    }).catch(err => {
+        alert("Erro ao copiar. Tente selecionar o texto manualmente.");
+    });
 }
 
 // 2. MÁSCARA DE TELEFONE ( ) 00000-0000
