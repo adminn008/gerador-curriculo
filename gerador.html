@@ -3,39 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Gerador Profissional | CVFLASH</title>
+    <title>Gerador Profissional | CVFLASH Elite</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="navbar no-print">
         <div class="container nav-content">
             <a href="index.html" class="logo">CV<span>FLASH</span></a>
-            <div id="status-tag" style="color: var(--accent); font-weight: 800; font-size: 0.7rem; border: 1px solid var(--accent); padding: 5px 12px; border-radius: 20px;">QUALIDADE: 0%</div>
+            <div id="status-tag" style="color: var(--accent); font-weight: 800; font-size: 0.75rem; border: 1px solid var(--accent); padding: 5px 15px; border-radius: 20px; box-shadow: 0 0 10px rgba(0, 242, 255, 0.2);">QUALIDADE: 0%</div>
         </div>
     </nav>
 
-    <main class="container app-grid no-print">
+    <main class="container app-grid no-print" style="display: grid; grid-template-columns: 1fr 420px; gap: 40px; padding-top: 40px;">
+        
         <div class="editor-column">
             
-            <div class="card">
-                <h3>💎 MODELOS DE ELITE</h3>
-                <div class="row">
-                    <button class="model-card active" onclick="setModel('moderno', this)">Moderno</button>
-                    <button class="model-card" onclick="setModel('minimalista', this)">Minimalista</button>
-                    <button class="model-card" onclick="setModel('executivo', this)">Executivo</button>
+            <div class="card" style="border-bottom: 3px solid var(--primary);">
+                <h3>💎 MODELOS PROFISSIONAIS</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                    <button class="model-card active" onclick="setModel('moderno', this)">MODERNO</button>
+                    <button class="model-card" onclick="setModel('minimalista', this)">MINIMALISTA</button>
+                    <button class="model-card" onclick="setModel('executivo', this)">EXECUTIVO</button>
                 </div>
             </div>
 
             <form id="cv-form">
                 <div class="card">
-                    <h3>👤 DADOS PESSOAIS COMPLETOS</h3>
+                    <h3>👤 DADOS PESSOAIS</h3>
                     <div class="field-group">
                         <label>Nome Completo *</label>
-                        <input type="text" id="in-nome" class="val-req" placeholder="Ex: JoãoPessoa">
+                        <input type="text" id="in-nome" class="val-req" placeholder="Ex: Welington Silva">
                     </div>
                     <div class="row">
                         <div class="field-group"><label>Nacionalidade</label><input type="text" id="in-nacionalidade" placeholder="Ex: Brasileiro"></div>
-                        <div class="field-group"><label>Estado Civil</label><input type="text" id="in-civil" placeholder="Ex: Solteiro"></div>
+                        <div class="field-group"><label>Estado Civil</label><input type="text" id="in-civil" placeholder="Ex: Solteiro(a)"></div>
                     </div>
                     <div class="row">
                         <div class="field-group">
@@ -43,13 +44,13 @@
                             <input type="tel" id="in-tel" class="val-req" oninput="mascaraTelefone(this)" placeholder="(00) 00000-0000">
                         </div>
                         <div class="field-group">
-                            <label>E-mail *</label>
-                            <input type="email" id="in-email" class="val-req" placeholder="seu.email@exemplo.com">
+                            <label>E-mail Profissional *</label>
+                            <input type="email" id="in-email" class="val-req" placeholder="seuemail@gmail.com">
                         </div>
                     </div>
-                    <div class="field-group"><label>Endereço Completo</label><input type="text" id="in-local" placeholder="Rua, Bairro, Cidade - Estado"></div>
+                    <div class="field-group"><label>Endereço / Residência</label><input type="text" id="in-local" placeholder="Rua, Bairro, Cidade - UF"></div>
                     <div class="row">
-                        <div class="field-group"><label>LinkedIn</label><input type="text" id="in-linkedin" placeholder="link"></div>
+                        <div class="field-group"><label>LinkedIn</label><input type="text" id="in-linkedin" placeholder="linkedin.com/in/perfil"></div>
                         <div class="field-group"><label>Data de Nascimento</label><input type="text" id="in-nasc" placeholder="DD/MM/AAAA"></div>
                     </div>
                 </div>
@@ -58,49 +59,51 @@
                     <h3>💼 CARREIRA E EXPERIÊNCIA</h3>
                     <div class="field-group">
                         <label>Objetivo Profissional *</label>
-                        <textarea id="in-obj" rows="3" class="val-req"></textarea>
-                        <div style="display: flex; gap: 5px; flex-wrap: wrap; margin-top:5px;">
+                        <textarea id="in-obj" rows="3" class="val-req" placeholder="Conte o que você busca..."></textarea>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px;">
                             <button type="button" class="btn-sugerir" onclick="sugerirMulti('obj', 0)">Geral</button>
                             <button type="button" class="btn-sugerir" onclick="sugerirMulti('obj', 1)">Vendas</button>
-                            <button type="button" class="btn-sugerir" onclick="sugerirMulti('obj', 2)">Adm</button>
+                            <button type="button" class="btn-sugerir" onclick="sugerirMulti('obj', 2)">Administrativo</button>
                         </div>
                     </div>
                     <div class="field-group">
                         <label>Experiência Profissional</label>
-                        <textarea id="in-exp" rows="6" placeholder="Empresa, Cargo e Período..."></textarea>
+                        <textarea id="in-exp" rows="6" placeholder="Empresa - Cargo (Ano - Ano)&#10;• Descreva suas atividades aqui..."></textarea>
                         <button type="button" class="btn-sugerir" onclick="sugerirMulti('exp', 0)">🪄 Sugerir Formato Profissional</button>
                     </div>
                 </div>
 
                 <div class="card">
                     <h3>🎓 EDUCAÇÃO E SKILLS</h3>
-                    <div class="field-group"><label>Escolaridade</label><textarea id="in-edu" rows="3"></textarea></div>
-                    <div class="field-group"><label>Habilidades / Skills</label><input type="text" id="in-skills" placeholder="Ex: Excel, Liderança, Inglês"></div>
+                    <div class="field-group"><label>Escolaridade / Cursos</label><textarea id="in-edu" rows="3"></textarea></div>
+                    <div class="field-group"><label>Habilidades (Hard & Soft Skills)</label><input type="text" id="in-skills" placeholder="Ex: Excel Avançado, Liderança, Inglês"></div>
                 </div>
 
-                <button type="button" id="btn-gerar" onclick="gerarPDF()" class="btn-primary" style="width: 100%; padding: 20px; border-radius: 12px; font-size: 1.1rem; opacity: 0.5;" disabled>
-                    🔒 PREENCHA OS CAMPOS OBRIGATÓRIOS
+                <button type="button" id="btn-gerar" onclick="gerarPDF()" class="btn-primary" style="width: 100%; padding: 22px; border-radius: 15px; font-size: 1.2rem; margin-bottom: 40px; opacity: 0.5;" disabled>
+                    🔒 PREENCHA OS CAMPOS PARA LIBERAR
                 </button>
             </form>
         </div>
 
         <aside class="sidebar-column">
-            <div class="card" style="position: sticky; top: 90px; border-left: 4px solid var(--accent);">
-                <h4 style="color: var(--accent); margin-bottom: 10px;">💡 DICA DO RECRUTADOR</h4>
-                <p id="dica-texto" style="font-size: 0.85rem; color: var(--text-dim);">Dica: Revise o WhatsApp, é por lá que vão te chamar!</p>
+            <div class="card" style="position: sticky; top: 100px; border-left: 5px solid var(--accent); padding: 20px;">
+                <h4 style="color: var(--accent); letter-spacing: 1px;">💡 DICA DO RECRUTADOR</h4>
+                <p id="dica-texto" style="font-size: 0.85rem; color: var(--text-dim); margin-top: 5px;">Aguardando você começar para te dar dicas de ouro...</p>
+                
                 <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
-                <h4 style="margin-bottom: 10px;">👁️ PREVIEW AO VIVO</h4>
-                <div id="live-preview" style="background: white; color: #333; padding: 20px; border-radius: 4px; min-height: 400px; transform: scale(0.9); transform-origin: top;">
+                
+                <h4 style="margin-bottom: 10px; color: #fff;">👁️ PREVIEW VIVO</h4>
+                <div id="live-preview" style="background: white; color: #333; padding: 25px; border-radius: 4px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); transform: scale(0.9); transform-origin: top;">
                     <div id="preview-content" class="mode-moderno">
-                        <h2 id="pre-nome">SEU NOME</h2>
-                        <p id="pre-contato" style="font-size: 0.7rem; color: #666;"></p>
-                        <div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;">
-                            <strong style="font-size: 0.7rem;">OBJETIVO</strong>
-                            <p id="pre-obj" style="font-size: 0.75rem;"></p>
+                        <h2 id="pre-nome" style="font-size: 1.4rem;">SEU NOME</h2>
+                        <p id="pre-contato" style="font-size: 0.7rem; color: #666; margin-bottom: 15px;"></p>
+                        <div style="border-top: 1px solid #eee; padding-top: 10px;">
+                            <strong style="font-size: 0.7rem; color: var(--primary);">OBJETIVO</strong>
+                            <p id="pre-obj" style="font-size: 0.75rem; margin-top: 4px;"></p>
                         </div>
-                        <div style="margin-top: 10px;">
-                            <strong style="font-size: 0.7rem;">EXPERIÊNCIA</strong>
-                            <p id="pre-exp" style="font-size: 0.75rem; white-space: pre-line;"></p>
+                        <div style="margin-top: 15px;">
+                            <strong style="font-size: 0.7rem; color: var(--primary);">EXPERIÊNCIA</strong>
+                            <p id="pre-exp" style="font-size: 0.75rem; white-space: pre-line; margin-top: 4px;"></p>
                         </div>
                     </div>
                 </div>
@@ -111,11 +114,12 @@
     <footer class="footer no-print">
         <div class="container">
             <div class="footer-links">
+                <a href="index.html">Início</a>
                 <a href="faq.html">FAQ</a>
                 <a href="privacy.html">Privacidade</a>
-                <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão para o CVFlash v1.3.0">Sugerir Melhoria</a>
+                <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão para o CVFlash v1.3.0">Sugerir para a v2.0</a>
             </div>
-            <p style="color: var(--text-dim); font-size: 0.7rem; margin-top: 10px;">© 2026 CVFLASH v1.3.0</p>
+            <p style="color: var(--text-dim); font-size: 0.75rem; margin-top: 15px;">© 2026 CVFLASH — Do Brasil para o topo. 🚀</p>
         </div>
     </footer>
 
