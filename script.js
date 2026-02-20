@@ -123,3 +123,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+function copyPix() {
+    // 1. Busca o elemento que contém a chave
+    const pixElement = document.getElementById('pix-key');
+    
+    if (!pixElement) {
+        console.error("Erro: Elemento pix-key não encontrado!");
+        return;
+    }
+
+    const textoParaCopiar = pixElement.innerText;
+
+    // 2. Tenta usar a API moderna de área de transferência
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textoParaCopiar).then(() => {
+            alert("🚀 Chave PIX copiada! Valeu pelo apoio ao CVFLASH!");
+        }).catch(err => {
+            fallbackCopy(textoParaCopiar);
+        });
+    } else {
+        // 3. Fallback para navegadores antigos ou conexões não-seguras
+        fallbackCopy(textoParaCopiar);
+    }
+}
+
+// Função de segurança caso a API principal falhe
+function fallbackCopy(text) {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+        document.execCommand('copy');
+        alert("🚀 Chave PIX copiada!");
+    } catch (err) {
+        alert("Erro ao copiar. Por favor, selecione o texto manualmente.");
+    }
+    document.body.removeChild(textArea);
+}
+
