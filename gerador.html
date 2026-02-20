@@ -1,68 +1,67 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CVFlash — Criar Currículo</title>
-<link rel="stylesheet" href="Style.css">
+    <meta charset="UTF-8">
+    <title>Gerador Profissional | CVFLASH</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <nav class="navbar no-print">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">CV<span>FLASH</span></a>
+            <div id="quality-tag" style="background:var(--success); padding:5px 15px; border-radius:20px; font-weight:800; font-size:0.8rem;">CV 0% COMPLETO</div>
+        </div>
+    </nav>
 
-<header class="topo">
-<h1>CVFlash</h1>
-<p>Preencha seus dados</p>
-</header>
+    <main class="container no-print" style="padding-top:40px;">
+        <div style="display:grid; grid-template-columns: 1fr 350px; gap:30px;">
+            <div>
+                <form id="cv-form">
+                    <div class="card">
+                        <h3 style="color:var(--primary); margin-bottom:20px;">1. Dados Pessoais</h3>
+                        <div class="input-group">
+                            <label>Nome Completo *</label>
+                            <input type="text" id="in-nome" class="val-req" oninput="updateQuality()">
+                        </div>
+                        <div class="input-group">
+                            <label>Telefone *</label>
+                            <input type="tel" id="in-tel" class="val-req" placeholder="(00) 00000-0000">
+                        </div>
+                        <div class="input-group">
+                            <label>E-mail *</label>
+                            <input type="email" id="in-email" class="val-req">
+                        </div>
+                    </div>
 
-<section class="formulario">
+                    <div class="card">
+                        <h3 style="color:var(--primary); margin-bottom:20px;">2. Experiência & Objetivo</h3>
+                        <div class="input-group">
+                            <label>Objetivo Profissional *</label>
+                            <textarea id="in-obj" class="val-req" rows="4"></textarea>
+                        </div>
+                    </div>
 
-<div class="progresso">
-<div id="barra"></div>
-</div>
-<p id="faltando"></p>
+                    <button type="button" onclick="gerar()" class="btn-primary btn-lg" style="width:100%">Gerar e Salvar Currículo (PDF)</button>
+                </form>
+            </div>
 
-<form id="formCV">
+            <aside>
+                <div class="card" style="position:sticky; top:100px;">
+                    <h4>Checklist de Qualidade</h4>
+                    <ul style="list-style:none; margin-top:20px;" id="checklist">
+                        <li id="chk-nome">❌ Nome</li>
+                        <li id="chk-tel">❌ Telefone</li>
+                        <li id="chk-email">❌ E-mail</li>
+                        <li id="chk-obj">❌ Objetivo</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
 
-<label>Nome completo <span class="obg">*</span></label>
-<input required type="text" id="nome">
+    <div id="cv-preview" class="print-only">
+        </div>
 
-<label>Email <span class="obg">*</span></label>
-<input required type="email" id="email">
-
-<label>Telefone <span class="obg">*</span></label>
-<input required type="tel" id="telefone">
-
-<label>Cargo desejado</label>
-<input type="text">
-
-<label>Cidade</label>
-<input type="text">
-
-<label>Bairro</label>
-<input type="text">
-
-<label>Resumo profissional</label>
-<textarea></textarea>
-
-<label>Experiência profissional</label>
-<textarea></textarea>
-
-<label>Formação</label>
-<textarea></textarea>
-
-<label>Habilidades</label>
-<textarea></textarea>
-
-</form>
-
-</section>
-
-<footer>
-<a href="institucional.html">Institucional</a>
-<a href="suporte.html">Suporte</a>
-<a href="termos.html">Termos</a>
-<p>© 2026 CVFlash v1.2.1</p>
-</footer>
-
-<script src="Script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
