@@ -10,43 +10,62 @@
     <nav class="navbar">
         <div class="container nav-content">
             <a href="index.html" class="logo">CV<span>FLASH</span></a>
-            <a href="gerador.html" class="btn-primary" style="text-decoration:none; padding: 10px 20px;">CRIAR AGORA</a>
+            <a href="gerador.html" class="btn-primary" style="text-decoration:none; padding: 10px 20px; font-size: 0.8rem;">CRIAR AGORA</a>
         </div>
     </nav>
 
-    <header class="container" style="text-align: center; padding: 80px 0;">
-        <h1 style="font-size: 3.5rem; margin-bottom: 20px;">O Poder da <span>Elite</span> no seu Currículo.</h1>
+    <header class="container" style="text-align: center; padding: 100px 0 50px;">
+        <h1 style="font-size: 3.5rem; margin-bottom: 20px;">Seu Próximo Emprego Começa <span>Aqui.</span></h1>
+        <p style="color: var(--text-dim); margin-bottom: 40px;">O CVFLASH v1.3.0 é a ferramenta definitiva para currículos de alta performance.</p>
         <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-            <a href="gerador.html" class="btn-primary" style="text-decoration:none; padding: 18px 35px;">COMEÇAR JÁ</a>
+            <a href="gerador.html" class="btn-primary" style="text-decoration:none; padding: 18px 35px;">GERAR MEU CURRÍCULO</a>
             <button onclick="toggleNovidades()" class="btn-sugerir" style="padding: 15px 25px;">✨ O que mudou?</button>
         </div>
     </header>
 
-    <section class="container" style="margin-bottom: 50px;">
-        <div class="card" style="border: 1px solid var(--primary); text-align: center;">
-            <h3>META v2.0 (R$ 50,00)</h3>
-            <p style="color: var(--text-dim); margin-bottom: 15px;">Se batermos a meta, liberamos: <b>IA que escreve sozinha, +10 Modelos e Login com Nuvem.</b></p>
-            <div class="progress-track" style="background: #000; height: 10px; border-radius: 10px; margin-bottom: 20px;">
-                <div style="width: 15%; height: 100%; background: var(--accent); border-radius: 10px; box-shadow: 0 0 10px var(--accent);"></div>
+    <section class="container" style="margin-bottom: 80px;">
+        <div class="card" style="border: 1px solid var(--primary); text-align: center; background: linear-gradient(145deg, #0f1219, #05070a);">
+            <h3 style="color: var(--accent);">META v2.0.0 (R$ 50,00)</h3>
+            <p style="color: var(--text-dim); margin: 15px 0;">Ao atingirmos a meta, liberaremos as funções de milhões:</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; text-align: left;">
+                <div style="padding: 10px; border-left: 2px solid var(--primary); background: rgba(255,255,255,0.02);">🤖 <b>IA que escreve sozinha</b></div>
+                <div style="padding: 10px; border-left: 2px solid var(--primary); background: rgba(255,255,255,0.02);">📂 <b>+10 Modelos de Luxo</b></div>
+                <div style="padding: 10px; border-left: 2px solid var(--primary); background: rgba(255,255,255,0.02);">☁️ <b>Login e Salvamento em Nuvem</b></div>
+            </div>
+
+            <div class="progress-track" style="background: #000; height: 12px; border-radius: 10px; margin-bottom: 25px; border: 1px solid var(--border);">
+                <div style="width: 15%; height: 100%; background: var(--accent); border-radius: 10px; box-shadow: 0 0 15px var(--accent);"></div>
             </div>
             
-            <p style="font-size: 0.8rem; margin-bottom: 10px;">Chave PIX Aleatória:</p>
-            <div style="display: flex; gap: 10px; justify-content: center; align-items: center;">
-                <code id="pix-key" style="color: var(--accent); background: #000; padding: 10px; border-radius: 8px;">0df8fcd3-dffc-4265-8464-5a60badef88c</code>
-                <button onclick="copyPix()" class="btn-sugerir" style="margin:0;">Copiar</button>
+            <p style="font-size: 0.8rem; margin-bottom: 10px; color: var(--text-dim);">Chave PIX Aleatória (Clique para copiar):</p>
+            <div style="display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap;">
+                <code id="pix-key" style="color: var(--accent); background: #000; padding: 12px 20px; border-radius: 8px; border: 1px solid var(--border); font-size: 0.9rem;">0df8fcd3-dffc-4265-8464-5a60badef88c</code>
+                <button onclick="copyPix()" class="btn-primary" style="padding: 12px 25px;">COPIAR CHAVE</button>
             </div>
         </div>
     </section>
 
-    <div id="pop-novidades" class="card" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; width: 90%; max-width: 450px; border: 2px solid var(--primary); box-shadow: 0 0 50px #000;">
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="faq.html">FAQ</a>
+                <a href="privacy.html">Privacidade</a>
+                <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão para o CVFlash v1.3.0">Sugerir Melhoria</a>
+            </div>
+            <p style="color: var(--text-dim); font-size: 0.75rem; margin-top: 20px;">© 2026 CVFLASH — Tecnologia Brasileira 🚀</p>
+        </div>
+    </footer>
+
+    <div id="pop-novidades" class="card" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; width: 90%; max-width: 450px; border: 2px solid var(--primary); background: var(--surface);">
         <h2 style="color: var(--accent); margin-bottom: 15px;">Novidades v1.3.0</h2>
-        <ul style="color: var(--text-dim); text-align: left; padding-left: 20px;">
-            <li>✅ 3 Modelos: Moderno, Minimalista e Executivo.</li>
-            <li>✅ Verificação de E-mail e Máscara de Telefone.</li>
-            <li>✅ Painel de Dicas de RH em tempo real.</li>
-            <li>✅ Sugestões de texto variadas.</li>
+        <ul style="color: var(--text-dim); text-align: left; padding-left: 20px; line-height: 1.8;">
+            <li>✅ 3 Novos Modelos Profissionais</li>
+            <li>✅ Máscara de Telefone e Validação de E-mail</li>
+            <li>✅ Dicas de RH em tempo real no gerador</li>
+            <li>✅ Novo sistema de cópia de PIX e Metas v2.0</li>
         </ul>
-        <button onclick="toggleNovidades()" class="btn-primary" style="width: 100%; margin-top: 20px;">FECHAR</button>
+        <button onclick="toggleNovidades()" class="btn-primary" style="width: 100%; margin-top: 25px;">FECHAR</button>
     </div>
 
     <script src="script.js"></script>
