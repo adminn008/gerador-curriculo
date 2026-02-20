@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador Profissional | CVFLASH</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,94 +10,96 @@
     <nav class="navbar no-print">
         <div class="container nav-content">
             <a href="index.html" class="logo">CV<span>FLASH</span></a>
-            <div id="status-tag" style="color: var(--accent); font-weight: 800; font-size: 0.7rem;">QUALIDADE: 0%</div>
+            <div id="status-tag" style="color: var(--accent); font-weight: 800; font-size: 0.8rem; border: 1px solid var(--accent); padding: 5px 15px; border-radius: 20px;">QUALIDADE: 0%</div>
         </div>
     </nav>
 
-    <main class="container app-grid no-print">
+    <main class="container app-grid no-print" style="display: grid; grid-template-columns: 1fr 400px; gap: 30px; padding-top: 30px;">
         <div class="editor-column">
+            
             <div class="card">
                 <h3>💎 MODELOS DE ELITE</h3>
-                <div class="row">
-                    <button class="btn-sugerir" onclick="setModel('moderno')">Moderno</button>
-                    <button class="btn-sugerir" onclick="setModel('minimalista')">Minimalista</button>
-                    <button class="btn-sugerir" onclick="setModel('executivo')">Executivo</button>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                    <button class="model-card active" onclick="setModel('moderno', this)">Moderno</button>
+                    <button class="model-card" onclick="setModel('minimalista', this)">Minimalista</button>
+                    <button class="model-card" onclick="setModel('executivo', this)">Executivo</button>
                 </div>
             </div>
 
-<div class="card">
-    <h3>👤 DADOS PESSOAIS COMPLETOS</h3>
-    <div class="field-group">
-        <label>Nome Completo *</label>
-        <input type="text" id="in-nome" class="val-req" placeholder="Ex: Welington Silva">
-    </div>
-    
-    <div class="row">
-        <div class="field-group">
-            <label>Nacionalidade</label>
-            <input type="text" id="in-nacionalidade" placeholder="Ex: Brasileiro">
-        </div>
-        <div class="field-group">
-            <label>Estado Civil</label>
-            <input type="text" id="in-civil" placeholder="Ex: Solteiro(a)">
-        </div>
-    </div>
+            <form id="cv-form">
+                <div class="card">
+                    <h3>👤 DADOS PESSOAIS COMPLETOS</h3>
+                    <div class="field-group">
+                        <label>Nome Completo *</label>
+                        <input type="text" id="in-nome" class="val-req" placeholder="Ex: João Pessoa">
+                    </div>
+                    <div class="row">
+                        <div class="field-group"><label>Nacionalidade</label><input type="text" id="in-nacionalidade" placeholder="Ex: Brasileiro"></div>
+                        <div class="field-group"><label>Estado Civil</label><input type="text" id="in-civil" placeholder="Ex: Solteiro"></div>
+                    </div>
+                    <div class="row">
+                        <div class="field-group">
+                            <label>WhatsApp / Tel *</label>
+                            <input type="tel" id="in-tel" class="val-req" oninput="mascaraTelefone(this)" placeholder="(00) 00000-0000">
+                        </div>
+                        <div class="field-group">
+                            <label>E-mail *</label>
+                            <input type="email" id="in-email" class="val-req" placeholder="seuemail@gmail.com">
+                        </div>
+                    </div>
+                    <div class="field-group"><label>Endereço Completo</label><input type="text" id="in-local" placeholder="Rua, Bairro, Cidade - Estado"></div>
+                    <div class="row">
+                        <div class="field-group"><label>LinkedIn</label><input type="text" id="in-linkedin" placeholder="link"></div>
+                        <div class="field-group"><label>Data de Nascimento</label><input type="text" id="in-nasc" placeholder="DD/MM/AAAA"></div>
+                    </div>
+                </div>
 
-    <div class="row">
-        <div class="field-group">
-            <label>WhatsApp / Telefone *</label>
-            <input type="tel" id="in-tel" class="val-req" placeholder="(00) 00000-0000">
-        </div>
-        <div class="field-group">
-            <label>E-mail * (Validação Real)</label>
-            <input type="email" id="in-email" class="val-req" placeholder="exemplo@gmail.com">
-        </div>
-    </div>
+                <div class="card">
+                    <h3>💼 CARREIRA E EXPERIÊNCIA</h3>
+                    <div class="field-group">
+                        <label>Objetivo Profissional *</label>
+                        <textarea id="in-obj" rows="3" class="val-req"></textarea>
+                        <div style="display: flex; gap: 5px; flex-wrap: wrap;">
+                            <button type="button" class="btn-sugerir" onclick="sugerirMulti('obj', 0)">Geral</button>
+                            <button type="button" class="btn-sugerir" onclick="sugerirMulti('obj', 1)">Vendas</button>
+                            <button type="button" class="btn-sugerir" onclick="sugerirMulti('obj', 2)">Administrativo</button>
+                            <button type="button" class="btn-sugerir" onclick="sugerirMulti('obj', 3)">Jovem Aprendiz</button>
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <label>Experiência Profissional</label>
+                        <textarea id="in-exp" rows="6" placeholder="Empresa, Cargo e o que você fazia..."></textarea>
+                        <button type="button" class="btn-sugerir" onclick="sugerirMulti('exp', 0)">🪄 Sugerir Formato</button>
+                    </div>
+                </div>
 
-    <div class="row">
-        <div class="field-group">
-            <label>Endereço / Residência</label>
-            <input type="text" id="in-local" placeholder="Rua, Bairro, Cidade - UF">
-        </div>
-        <div class="field-group">
-            <label>Data de Nascimento</label>
-            <input type="text" id="in-nasc" placeholder="DD/MM/AAAA">
-        </div>
-    </div>
+                <div class="card">
+                    <h3>🎓 EDUCAÇÃO E SKILLS</h3>
+                    <div class="field-group"><label>Escolaridade</label><textarea id="in-edu" rows="3"></textarea></div>
+                    <div class="field-group"><label>Habilidades / Skills</label><input type="text" id="in-skills" placeholder="Ex: Excel, Liderança, Inglês"></div>
+                </div>
 
-    <div class="row">
-        <div class="field-group">
-            <label>LinkedIn</label>
-            <input type="text" id="in-linkedin" placeholder="linkedin.com/in/voce">
-        </div>
-        <div class="field-group">
-            <label>Portfólio / Site</label>
-            <input type="text" id="in-site" placeholder="github.com/voce">
-        </div>
-    </div>
-</div>
-
-
-                <button type="button" id="btn-gerar" onclick="gerarPDF()" class="btn-primary" disabled style="opacity:0.5; cursor:not-allowed;">
-                    🔒 COMPLETE O BÁSICO PARA GERAR
+                <button type="button" id="btn-gerar" onclick="gerarPDF()" class="btn-primary" style="width: 100%; padding: 20px; border-radius: 12px; font-size: 1.1rem; opacity: 0.5;" disabled>
+                    🔒 PREENCHA OS CAMPOS OBRIGATÓRIOS
                 </button>
             </form>
         </div>
 
         <aside class="sidebar-column">
-            <div class="card" style="position: sticky; top: 90px;">
-                <h3 style="color: var(--accent);">👁️ PREVIEW VIVO</h3>
-                <div id="live-preview">
+            <div class="card" style="position: sticky; top: 90px; border-left: 4px solid var(--accent);">
+                <h4 style="color: var(--accent); margin-bottom: 10px;">💡 DICA DO RECRUTADOR</h4>
+                <p id="dica-texto" style="font-size: 0.85rem; color: var(--text-dim);">Comece preenchendo seu nome completo para ver a mágica acontecer no preview.</p>
+                
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
+                
+                <h4 style="margin-bottom: 10px;">👁️ PREVIEW AO VIVO</h4>
+                <div id="live-preview" style="background: white; color: #333; padding: 20px; border-radius: 4px; min-height: 400px; transform: scale(0.9); transform-origin: top;">
                     <div id="preview-content" class="mode-moderno">
                         <h2 id="pre-nome">SEU NOME</h2>
                         <p id="pre-contato" style="font-size: 0.7rem; color: #666;"></p>
                         <div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;">
-                            <strong style="font-size: 0.8rem; color: var(--primary);">OBJETIVO</strong>
-                            <p id="pre-obj" style="font-size: 0.8rem; margin-top: 5px;"></p>
-                        </div>
-                        <div style="margin-top: 15px;">
-                            <strong style="font-size: 0.8rem; color: var(--primary);">EXPERIÊNCIA</strong>
-                            <p id="pre-exp" style="font-size: 0.8rem; white-space: pre-line;"></p>
+                            <strong style="font-size: 0.7rem;">OBJETIVO</strong>
+                            <p id="pre-obj" style="font-size: 0.75rem;"></p>
                         </div>
                     </div>
                 </div>
@@ -107,14 +109,7 @@
 
     <footer class="footer no-print">
         <div class="container">
-            <div class="footer-links">
-                <a href="index.html">Início</a>
-                <a href="faq.html">Ajuda</a>
-                <a href="privacy.html">Privacidade</a>
-                <a href="termos.html">Termos</a>
-                <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão para o CVFlash v1.3.0">Sugerir Melhoria</a>
-            </div>
-            <p style="color: var(--text-dim); font-size: 0.7rem;">© 2026 CVFLASH — Do Brasil para o mundo 🚀</p>
+            <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão para o CVFlash v1.3.0" style="color: var(--accent); text-decoration: none;">💡 Sugerir para a v2.0</a>
         </div>
     </footer>
 
