@@ -1,53 +1,33 @@
-*{box-sizing:border-box;font-family:Arial;margin:0;padding:0}
-
-body.dark{background:#111;color:white}
-body.light{background:white;color:black}
-
-.topo{display:flex;justify-content:center;align-items:center;gap:20px;padding:15px}
-
-.titulo{text-align:center}
-
-.btn-dark{font-size:22px;padding:10px 16px;border-radius:8px}
-
-.container{max-width:700px;margin:auto;padding:20px}
-
-input,textarea,select{
-width:100%;
-padding:12px;
-margin-bottom:10px;
-border-radius:8px;
-border:1px solid #555;
-background:#222;
-color:white;
+:root{
+--primary:#3b82f6;
+--success:#22c55e;
+--danger:#ef4444;
+--bg:#0f172a;
+--card:#1e293b;
+--text:#f1f5f9;
+--muted:#94a3b8;
+--border:#334155;
+--radius:16px;
+--shadow:0 20px 40px rgba(0,0,0,.35);
 }
 
-.req{color:red}
+*{margin:0;padding:0;box-sizing:border-box}
 
-.erro{color:red;font-size:12px}
+body{
+font-family:Inter,system-ui;
+background:var(--bg);
+color:var(--text);
+}
 
-.btn-principal{
-display:block;
-margin-top:15px;
-padding:14px;
-background:#00c853;
-border:none;
-border-radius:10px;
+.container{
+max-width:1100px;
+margin:auto;
+padding:20px;
+}
+
+.site-title{
 text-align:center;
+font-size:2.8rem;
+font-weight:900;
+margin:40px 0;
 }
-
-.progresso{
-width:100%;
-height:14px;
-background:#333;
-border-radius:10px;
-margin:15px 0;
-}
-
-#barraProgresso{
-height:100%;
-width:0%;
-background:#00e676;
-border-radius:10px;
-}
-
-footer{text-align:center;padding:25px}
