@@ -14,34 +14,34 @@
         </div>
     </nav>
 
-    <header class="container" style="text-align: center; padding: 120px 0 80px;">
-        <h1 class="logo" style="font-size: 3.5rem; margin-bottom: 20px;">CV<span>FLASH</span></h1>
-        <p style="font-size: 1.4rem; color: var(--text-dim); max-width: 800px; margin: 0 auto 40px;">
-            A plataforma definitiva para profissionais que não aceitam o básico. 
-            Design de elite, processamento instantâneo e 100% gratuito.
-        </p>
-        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-            <a href="gerador.html" class="btn btn-primary">Começar Agora</a>
-            <button onclick="toggleNovidades()" class="btn" style="background: rgba(255,255,255,0.05); color: #fff; border: 1px solid var(--border);">Ver Novidades v2.0</button>
-        </div>
-    </header>
+    <header class="container" style="text-align: center; padding: 100px 0;">
+    <h1 class="logo" style="font-size: 4rem;">CV<span>FLASH</span></h1>
+    <p class="v-tag">Versão 1.3.0 — A mais poderosa até agora</p>
+    <div style="margin-top: 40px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+        <a href="gerador.html" class="btn btn-primary">Começar Currículo</a>
+        <button onclick="toggleNovidades()" class="btn" style="border: 1px solid var(--border); color: white;">✨ O que há de novo?</button>
+    </div>
+</header>
 
-    <section class="container">
-        <div class="card" style="background: linear-gradient(145deg, #161b2c, #0f1219); border: 1px solid var(--primary);">
-            <h3 style="margin-bottom: 10px;">Suporte ao Desenvolvimento v2.0</h3>
-            <p style="color: var(--text-dim); font-size: 0.9rem;">Contribua com o projeto para mantermos a infraestrutura e novos modelos premium.</p>
-            <div class="progress-container">
-                <div class="progress-track"><div id="meta-fill" class="progress-fill"></div></div>
-                <div style="display: flex; justify-content: space-between; margin-top: 10px; font-weight: 800;">
-                    <span id="valor-atual">R$ 0,00</span>
-                    <span style="color: var(--primary);">META R$ 50,00</span>
-                </div>
-            </div>
-            <div style="background: rgba(0,0,0,0.2); padding: 16px; border-radius: 12px; border: 1px dashed var(--border); text-align: center;">
-                <small style="text-transform: uppercase; color: var(--text-dim);">Chave PIX E-mail</small><br>
-                <strong style="color: var(--accent); font-family: monospace; font-size: 1.1rem;">0df8fcd3-dffc-4265-8464-5a60badef88c</strong>
-            </div>
-        </div>
+<section class="container">
+    <div class="card" style="border: 1px solid var(--primary);">
+        <h3>Apoie a v2.0.0</h3>
+        <div class="progress-track"><div id="meta-fill" class="progress-fill" style="width: 0%"></div></div>
+        <p>PIX (Chave Aleatória): <br> <code style="color: var(--accent);">0df8fcd3-dffc-4265-8464-5a60badef88c</code></p>
+    </div>
+</section>
+
+<div id="pop-novidades" class="card" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; width: 90%; max-width: 400px; border: 2px solid var(--primary);">
+    <h2 style="color: var(--primary);">Novidades v1.3.0</h2>
+    <ul style="margin: 20px 0; text-align: left;">
+        <li>🚀 3 Novos Modelos de Elite</li>
+        <li>📱 Preview em Tempo Real corrigido</li>
+        <li>🪄 Sugestões Inteligentes de texto</li>
+        <li>🎯 Modo Foco para preenchimento</li>
+    </ul>
+    <button onclick="toggleNovidades()" class="btn btn-primary" style="width: 100%;">Fechar</button>
+</div>
+
     </section>
 
     <footer class="footer">
