@@ -3,73 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CVFlash - Criar currículo</title>
-<link rel="stylesheet" href="style.css">
+<title>CVFlash — Criar Currículo</title>
+<link rel="stylesheet" href="Style.css">
 </head>
-
-<body class="dark">
+<body>
 
 <header class="topo">
-<h1 class="titulo">CVFlash</h1>
-<button id="toggleDark" class="btn-dark">☀️</button>
+<h1>CVFlash</h1>
+<p>Preencha seus dados</p>
 </header>
 
-<main class="container">
-
-<h2>Preencher dados</h2>
+<section class="formulario">
 
 <div class="progresso">
-<div id="barraProgresso"></div>
+<div id="barra"></div>
 </div>
-<p id="statusProgresso"></p>
+<p id="faltando"></p>
 
-<form id="formCV">
-
-<label>Nome completo <span class="req">*</span></label>
-<input type="text" required>
-<small class="erro"></small>
-
-<label>Email <span class="req">*</span></label>
-<input type="email" required>
-<small class="erro"></small>
-
-<label>Telefone <span class="req">*</span></label>
-<input type="text" id="telefone" required>
-<small class="erro"></small>
-
-<label>Cargo desejado</label>
-<input list="cargos">
-<datalist id="cargos">
-<option>Atendente</option>
-<option>Auxiliar administrativo</option>
-<option>Vendedor</option>
-</datalist>
-
-<label>Bairro</label>
-<input type="text">
-
-<label>Resumo profissional</label>
-<textarea></textarea>
-<button type="button" class="sugestao">Sugerir texto</button>
-
-<h3>Modelo</h3>
-<select id="modelo">
-<option>Moderno</option>
-<option>Clássico</option>
-<option>Minimalista</option>
-</select>
-
-<button type="submit" class="btn-principal">Gerar PDF</button>
-
-</form>
-
-</main>
-
-<footer>
-<a href="institucional.html">Informações do site</a>
-<p>© 2026 CVFlash v1.2.1</p>
-</footer>
-
-<script src="script.js"></script>
-</body>
-</html>
+<form id="
