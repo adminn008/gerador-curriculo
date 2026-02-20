@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Gerador Profissional | CVFLASH</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,71 +10,129 @@
     <nav class="navbar no-print">
         <div class="container nav-content">
             <a href="index.html" class="logo">CV<span>FLASH</span></a>
-            <div id="status-tag" style="border: 1px solid var(--accent); color: var(--accent); padding: 5px 15px; border-radius: 20px; font-weight: 800;">QUALIDADE: 0%</div>
+            <div id="status-tag" style="color: var(--accent); font-weight: 800; font-size: 0.7rem;">QUALIDADE: 0%</div>
         </div>
     </nav>
 
-    <main class="container no-print" style="display: grid; grid-template-columns: 1fr 400px; gap: 40px; margin-top: 40px;">
-        <div class="editor-area">
+    <main class="container app-grid no-print">
+        <div class="editor-column">
             <div class="card">
-                <h4 style="margin-bottom: 15px; color: var(--primary);">MODELO DO CURRÍCULO</h4>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-                    <button class="btn" style="background: var(--border); color: white;" onclick="setModel('moderno')">Moderno</button>
-                    <button class="btn" style="background: var(--border); color: white;" onclick="setModel('minimalista')">Minimalista</button>
-                    <button class="btn" style="background: var(--border); color: white;" onclick="setModel('executivo')">Executivo</button>
+                <h3>💎 MODELOS DE ELITE</h3>
+                <div class="row">
+                    <button class="btn-sugerir" onclick="setModel('moderno')">Moderno</button>
+                    <button class="btn-sugerir" onclick="setModel('minimalista')">Minimalista</button>
+                    <button class="btn-sugerir" onclick="setModel('executivo')">Executivo</button>
                 </div>
             </div>
 
             <form id="cv-form">
                 <div class="card">
                     <h3>👤 DADOS PESSOAIS</h3>
-                    <input type="text" id="in-nome" placeholder="Nome Completo *" class="val-req">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                        <input type="tel" id="in-tel" placeholder="WhatsApp *" class="val-req">
-                        <input type="email" id="in-email" placeholder="E-mail *" class="val-req">
+                    <div class="field-group">
+                        <label>Nome Completo *</label>
+                        <input type="text" id="in-nome" class="val-req" placeholder="Ex: Welington Silva">
                     </div>
-                    <input type="text" id="in-cargo" placeholder="Cargo Desejado">
-                    <input type="text" id="in-local" placeholder="Cidade/Estado">
+                    <div class="row">
+                        <div class="field-group">
+                            <label>WhatsApp/Telefone *</label>
+                            <input type="tel" id="in-tel" class="val-req" placeholder="(00) 00000-0000">
+                        </div>
+                        <div class="field-group">
+                            <label>E-mail Profissional *</label>
+                            <input type="email" id="in-email" class="val-req" placeholder="seu@email.com">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="field-group">
+                            <label>Cidade / Estado</label>
+                            <input type="text" id="in-local" placeholder="Ex: São Paulo, SP">
+                        </div>
+                        <div class="field-group">
+                            <label>Data de Nascimento</label>
+                            <input type="text" id="in-nasc" placeholder="DD/MM/AAAA">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="field-group">
+                            <label>LinkedIn</label>
+                            <input type="text" id="in-linkedin" placeholder="link">
+                        </div>
+                        <div class="field-group">
+                            <label>Portfólio / Site</label>
+                            <input type="text" id="in-site" placeholder="link">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card">
-                    <h3>💼 CARREIRA</h3>
-                    <textarea id="in-obj" placeholder="Objetivo Profissional *" rows="3" class="val-req"></textarea>
-                    <button type="button" class="btn" style="font-size: 0.7rem; color: var(--accent);" onclick="sugerir('obj')">🪄 Sugerir Resumo</button>
-                    
-                    <textarea id="in-exp" placeholder="Experiências Profissionais" rows="5" style="margin-top: 20px;"></textarea>
-                    <button type="button" class="btn" style="font-size: 0.7rem; color: var(--accent);" onclick="sugerir('exp')">🪄 Sugerir Experiência</button>
+                    <h3>💼 RESUMO E EXPERIÊNCIA</h3>
+                    <div class="field-group">
+                        <label>Objetivo Profissional *</label>
+                        <textarea id="in-obj" rows="3" class="val-req" placeholder="Ex: Atuar na área de vendas..."></textarea>
+                        <button type="button" class="btn-sugerir" onclick="sugerir('obj')">🪄 Sugerir Resumo</button>
+                    </div>
+                    <div class="field-group">
+                        <label>Experiência Profissional</label>
+                        <textarea id="in-exp" rows="6" placeholder="Empresa - Cargo (Ano-Ano)&#10;• Atividade 1..."></textarea>
+                        <button type="button" class="btn-sugerir" onclick="sugerir('exp')">🪄 Sugerir Experiência</button>
+                    </div>
                 </div>
 
                 <div class="card">
-                    <h3>🎓 EDUCAÇÃO</h3>
-                    <textarea id="in-edu" placeholder="Formação Acadêmica" rows="3"></textarea>
+                    <h3>🎓 FORMAÇÃO E SKILLS</h3>
+                    <div class="field-group">
+                        <label>Escolaridade</label>
+                        <textarea id="in-edu" rows="3" placeholder="Curso - Escola (Conclusão)"></textarea>
+                    </div>
+                    <div class="field-group">
+                        <label>Cursos Extras / Idiomas</label>
+                        <textarea id="in-extra" rows="2" placeholder="Inglês, Pacote Office..."></textarea>
+                    </div>
+                    <div class="field-group">
+                        <label>Habilidades (Hard & Soft Skills)</label>
+                        <input type="text" id="in-skills" placeholder="Ex: Proatividade, Excel, Gestão...">
+                    </div>
                 </div>
 
-                <button type="button" id="btn-gerar" onclick="gerar()" class="btn btn-primary" style="width: 100%; opacity: 0.5;" disabled>🔒 PREENCHA OS OBRIGATÓRIOS</button>
+                <button type="button" id="btn-gerar" onclick="gerarPDF()" class="btn-primary" disabled style="opacity:0.5; cursor:not-allowed;">
+                    🔒 COMPLETE O BÁSICO PARA GERAR
+                </button>
             </form>
-
-            <center style="margin: 40px 0;">
-                <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão para o CVFlash v1.3.0" style="color: var(--accent); text-decoration: none;">💡 Enviar Sugestão de Melhoria</a>
-            </center>
         </div>
 
         <aside class="sidebar-column">
-            <div class="card" style="position: sticky; top: 100px;">
-                <h4 style="margin-bottom: 10px;">PREVIEW VIVO</h4>
+            <div class="card" style="position: sticky; top: 90px;">
+                <h3 style="color: var(--accent);">👁️ PREVIEW VIVO</h3>
                 <div id="live-preview">
                     <div id="preview-content" class="mode-moderno">
                         <h2 id="pre-nome">SEU NOME</h2>
-                        <p id="pre-contato"></p>
-                        <div style="margin-top: 20px;">
-                            <strong style="font-size: 0.8rem;">OBJETIVO</strong>
-                            <p id="pre-obj" style="font-size: 0.8rem;"></p>
+                        <p id="pre-contato" style="font-size: 0.7rem; color: #666;"></p>
+                        <div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;">
+                            <strong style="font-size: 0.8rem; color: var(--primary);">OBJETIVO</strong>
+                            <p id="pre-obj" style="font-size: 0.8rem; margin-top: 5px;"></p>
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <strong style="font-size: 0.8rem; color: var(--primary);">EXPERIÊNCIA</strong>
+                            <p id="pre-exp" style="font-size: 0.8rem; white-space: pre-line;"></p>
                         </div>
                     </div>
                 </div>
             </div>
         </aside>
     </main>
+
+    <footer class="footer no-print">
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Início</a>
+                <a href="faq.html">Ajuda</a>
+                <a href="privacy.html">Privacidade</a>
+                <a href="termos.html">Termos</a>
+                <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão para o CVFlash v1.3.0">Sugerir Melhoria</a>
+            </div>
+            <p style="color: var(--text-dim); font-size: 0.7rem;">© 2026 CVFLASH — Do Brasil para o mundo 🚀</p>
+        </div>
+    </footer>
 
     <div id="print-area" class="print-only"></div>
     <script src="script.js"></script>
