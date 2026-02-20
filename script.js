@@ -128,3 +128,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Função para mostrar/esconder o preview (Evita bugs no mobile)
+function togglePreview() {
+    const preview = document.getElementById('live-preview');
+    const btn = document.getElementById('btn-show-preview');
+    
+    if (preview.style.display === 'none' || preview.style.display === '') {
+        preview.style.display = 'block';
+        btn.innerText = 'OCULTAR PREVIEW';
+        btn.style.background = 'rgba(255,255,255,0.1)';
+        btn.style.border = '1px solid var(--text-dim)';
+    } else {
+        preview.style.display = 'none';
+        btn.innerText = 'MOSTRAR PREVIEW EM TEMPO REAL';
+        btn.style.background = 'linear-gradient(135deg, var(--primary), var(--accent))';
+    }
+}
+
