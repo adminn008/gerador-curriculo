@@ -106,3 +106,25 @@ function startCounter() {
 // Chame a função quando o documento carregar
 document.addEventListener('DOMContentLoaded', startCounter);
 
+// Função para abrir/fechar o modal
+function toggleNovidades() {
+    const pop = document.getElementById('pop-novidades');
+    if (pop) {
+        if (pop.style.display === 'none' || pop.style.display === '') {
+            pop.style.display = 'block';
+            pop.style.animation = 'fadeIn 0.3s ease'; // Efeito de milhões
+        } else {
+            pop.style.display = 'none';
+        }
+    }
+}
+
+// GARANTIA: Adiciona o evento de clique assim que o site abrir
+document.addEventListener('DOMContentLoaded', () => {
+    const btnNovidades = document.querySelector('.btn-sugerir'); // Seleciona o botão pela classe
+    if (btnNovidades && btnNovidades.textContent.includes('mudou')) {
+        btnNovidades.addEventListener('click', toggleNovidades);
+    }
+});
+
+
