@@ -1,72 +1,74 @@
-// 1. MÁSCARA DE TELEFONE
-const telInput = document.getElementById('in-tel');
-if(telInput) {
-    telInput.addEventListener('input', (e) => {
-        let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
-        e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-        analisarQualidade();
-    });
-}
+let modeloAtual = 'moderno';
 
-// 2. META FINANCEIRA (Configure o valor arrecadado aqui)
-const valorArrecadado = 0.00; 
-function initMeta() {
-    const meta = 50.00;
-    const porcentagem = (valorArrecadado / meta) * 100;
-    const fill = document.getElementById('meta-fill');
-    const txt = document.getElementById('valor-atual');
-    if(fill) fill.style.width = porcentagem + "%";
-    if(txt) txt.innerText = "R$ " + valorArrecadado.toFixed(2).replace('.', ',');
-}
+// 1. MODELOS E SUGESTÕES
+const sugestoes = {
+    obj: "Busco oportunidade na área de [ÁREA], onde possa aplicar meus conhecimentos em [HABILIDADE] e contribuir para o crescimento da empresa.",
+    exp: "Empresa X - Cargo: [NOME] (2023-2024)\nResponsável por [TAREFA 1] e [TAREFA 2], alcançando a meta de [RESULTADO]."
+};
 
-// 3. ANALISADOR DE QUALIDADE EM TEMPO REAL
-function analisarQualidade() {
-    const campos = {
-        'in-nome': 'chk-nome',
-        'in-tel': 'chk-tel',
-        'in-email': 'chk-email',
-        'in-obj': 'chk-obj'
-    };
-
-    let score = 0;
-    for(let id in campos) {
-        const input = document.getElementById(id);
-        const check = document.getElementById(campos[id]);
-        if(input && input.value.length > 5) {
-            score += 25;
-            check.style.color = "var(--success)";
-            check.innerText = "✓ " + check.innerText.replace("✓ ", "").replace("✕ ", "");
-        } else if(check) {
-            check.style.color = "var(--text-dim)";
-            check.innerText = "✕ " + check.innerText.replace("✓ ", "").replace("✕ ", "");
-        }
+function sugerir(campo) {
+    const el = document.getElementById('in-' + campo);
+    if(el) {
+        el.value = sugestoes[campo];
+        updateLive();
     }
+}
 
-    const fill = document.getElementById('cv-fill');
+function setModel(tipo, el) {
+    modeloAtual = tipo;
+    document.querySelectorAll('.model-card').forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('preview-content').className = 'mode-' + tipo;
+    updateLive();
+}
+
+// 2. ATUALIZAÇÃO EM TEMPO REAL
+function updateLive() {
+    const nome = document.getElementById('in-nome').value || "Seu Nome";
+    const tel = document.getElementById('in-tel').value;
+    const email = document.getElementById('in-email').value;
+    const obj = document.getElementById('in-obj').value;
+
+    document.getElementById('pre-nome').innerText = nome;
+    document.getElementById('pre-contato').innerText = `${tel} | ${email}`;
+    document.getElementById('pre-obj').innerText = obj;
+
+    verificarBloqueio();
+}
+
+// 3. VALIDAÇÃO PARA LIBERAR PDF
+function verificarBloqueio() {
+    const nome = document.getElementById('in-nome').value;
+    const tel = document.getElementById('in-tel').value;
+    const email = document.getElementById('in-email').value;
+    const obj = document.getElementById('in-obj').value;
+    
+    const btn = document.getElementById('btn-gerar');
+    
+    if(nome.length > 3 && tel.length > 8 && email.includes('@') && obj.length > 10) {
+        btn.style.opacity = "1";
+        btn.innerHTML = "🚀 GERAR PDF AGORA";
+        btn.disabled = false;
+        analisarQualidade(100);
+    } else {
+        btn.style.opacity = "0.5";
+        btn.innerHTML = "🔒 PREENCHA OS OBRIGATÓRIOS";
+        btn.disabled = true;
+        analisarQualidade(50);
+    }
+}
+
+function validarEGerar() {
+    const printArea = document.getElementById('print-area');
+    printArea.innerHTML = document.getElementById('live-preview').innerHTML;
+    window.print();
+}
+
+// Reutiliza a função de qualidade do script anterior
+function analisarQualidade(score) {
     const tag = document.getElementById('status-tag');
-    if(fill) fill.style.width = score + "%";
     if(tag) tag.innerText = "QUALIDADE: " + score + "%";
 }
 
-// 4. CONTROLE DO MODAL NOVIDADES
-function toggleNovidades() {
-    const pop = document.getElementById('pop-novidades');
-    pop.style.display = pop.style.display === 'none' ? 'block' : 'none';
-}
-
-// 5. PREPARAÇÃO DO PDF
-window.onbeforeprint = () => {
-    document.getElementById('out-nome').innerText = document.getElementById('in-nome').value;
-    document.getElementById('out-contato').innerText = 
-        `${document.getElementById('in-tel').value} | ${document.getElementById('in-email').value} | ${document.getElementById('in-local').value}`;
-    document.getElementById('out-obj').innerText = document.getElementById('in-obj').value;
-    document.getElementById('out-exp').innerText = document.getElementById('in-exp').value;
-    document.getElementById('out-edu').innerText = document.getElementById('in-edu').value;
-    document.getElementById('out-skills').innerText = document.getElementById('in-skills').value;
-};
-
-// Start
-document.addEventListener('DOMContentLoaded', () => {
-    initMeta();
-    document.querySelectorAll('input, textarea').forEach(el => el.addEventListener('input', analisarQualidade));
-});
+// Inicializa a máscara de telefone (conforme o código anterior)
+// ...
