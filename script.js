@@ -1,25 +1,65 @@
 let modeloAtual = 'moderno';
 
-// 1. MODELOS E SUGESTÕES
-const sugestoes = {
-    obj: "Busco oportunidade na área de [ÁREA], onde possa aplicar meus conhecimentos em [HABILIDADE] e contribuir para o crescimento da empresa.",
-    exp: "Empresa X - Cargo: [NOME] (2023-2024)\nResponsável por [TAREFA 1] e [TAREFA 2], alcançando a meta de [RESULTADO]."
+// CONTROLE DE NOVIDADES
+function toggleNovidades() {
+    const pop = document.getElementById('pop-novidades');
+    pop.style.display = (pop.style.display === 'none' || pop.style.display === '') ? 'block' : 'none';
+}
+
+// SUGESTÕES
+const textos = {
+    obj: "Profissional dedicado com experiência em [ÁREA], buscando novos desafios para aplicar minhas habilidades técnicas e contribuir com resultados sólidos para a equipe.",
+    exp: "• Liderança de processos operacionais\n• Redução de custos em 15% no primeiro semestre\n• Atendimento ao cliente com foco em fidelização"
 };
 
 function sugerir(campo) {
-    const el = document.getElementById('in-' + campo);
-    if(el) {
-        el.value = sugestoes[campo];
-        updateLive();
-    }
+    document.getElementById('in-' + campo).value = textos[campo];
+    validar();
 }
 
-function setModel(tipo, el) {
-    modeloAtual = tipo;
-    document.querySelectorAll('.model-card').forEach(c => c.classList.remove('active'));
-    el.classList.add('active');
-    document.getElementById('preview-content').className = 'mode-' + tipo;
+// MUDAR MODELO (3 MODELOS REAIS)
+function setModel(tipo) {
+    const preview = document.getElementById('preview-content');
+    preview.className = 'mode-' + tipo;
+    // O modelo 'executivo' muda a cor de fundo do preview para teste visual
+    if(tipo === 'executivo') preview.style.background = "#f0f0f0";
+    else if(tipo === 'minimalista') preview.style.background = "#fff";
+    else preview.style.background = "white";
+}
+
+// VALIDAÇÃO E BLOQUEIO
+function validar() {
+    const req = document.querySelectorAll('.val-req');
+    let preenchidos = 0;
+    req.forEach(input => { if(input.value.length > 5) preenchidos++; });
+
+    const btn = document.getElementById('btn-gerar');
+    if(preenchidos >= 4) {
+        btn.disabled = false;
+        btn.style.opacity = "1";
+        btn.innerHTML = "🚀 GERAR CURRÍCULO AGORA";
+    } else {
+        btn.disabled = true;
+        btn.style.opacity = "0.5";
+        btn.innerHTML = "🔒 PREENCHA OS CAMPOS OBRIGATÓRIOS";
+    }
     updateLive();
+}
+
+// UPDATE LIVE PREVIEW
+function updateLive() {
+    document.getElementById('pre-nome').innerText = document.getElementById('in-nome').value || "Seu Nome";
+    document.getElementById('pre-contato').innerText = 
+        `${document.getElementById('in-tel').value} | ${document.getElementById('in-email').value}`;
+}
+
+// ATIVAR VALIDAÇÃO EM TODOS OS INPUTS
+document.querySelectorAll('input, textarea').forEach(el => {
+    el.addEventListener('input', validar);
+});
+
+function gerarPDF() {
+    window.print();
 }
 
 // 2. ATUALIZAÇÃO EM TEMPO REAL
