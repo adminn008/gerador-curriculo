@@ -38,47 +38,42 @@ function setModel(tipo, btn) {
 
 // 4. ATUALIZAÇÃO E VALIDAÇÃO DE MILHÕES
 function update() {
+    // Captura dos dados
     const nome = document.getElementById('in-nome').value;
     const tel = document.getElementById('in-tel').value;
     const email = document.getElementById('in-email').value;
     const obj = document.getElementById('in-obj').value;
     const exp = document.getElementById('in-exp').value;
+    const local = document.getElementById('in-local').value;
     
-    // Preview
-    document.getElementById('pre-nome').innerText = nome.toUpperCase() || "SEU NOME";
-    document.getElementById('pre-contato').innerText = `${tel} | ${email} | ${document.getElementById('in-local').value}`;
-    document.getElementById('pre-obj').innerText = obj;
-    document.getElementById('pre-exp').innerText = exp;
+    // Atualiza os elementos invisíveis (que serão usados no PDF)
+    if(document.getElementById('pre-nome')) document.getElementById('pre-nome').innerText = nome.toUpperCase();
+    if(document.getElementById('pre-contato')) document.getElementById('pre-contato').innerText = `${tel} | ${email} | ${local}`;
+    if(document.getElementById('pre-obj')) document.getElementById('pre-obj').innerText = obj;
+    if(document.getElementById('pre-exp')) document.getElementById('pre-exp').innerText = exp;
 
-    // Dicas Aleatórias de RH
-    const dicas = [
-        "Dica: Um e-mail com seu nome é muito mais profissional.",
-        "Dica: Use palavras-chave como 'Foco em Resultados' ou 'Liderança'.",
-        "Dica: Se a experiência for longa, foque nos últimos 5 anos.",
-        "Dica: O recrutador leva 6 segundos para decidir se lê seu currículo."
-    ];
-    if(nome.length > 5 && nome.length < 7) {
-        document.getElementById('dica-texto').innerText = dicas[Math.floor(Math.random() * dicas.length)];
-    }
-
-    // Lógica do Botão (Validação Real)
+    // Validação Real para o Botão
     const btn = document.getElementById('btn-gerar');
     const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     const telOk = tel.replace(/\D/g, "").length >= 10;
+    const statusTag = document.getElementById('status-tag');
+    const statusTagG = document.getElementById('status-tag-grande');
 
     if(nome.length > 3 && telOk && emailOk && obj.length > 10) {
         btn.disabled = false;
         btn.style.opacity = "1";
-        btn.style.cursor = "pointer";
         btn.innerHTML = "🚀 GERAR CURRÍCULO PROFISSIONAL";
-        document.getElementById('status-tag').innerText = "QUALIDADE: 100%";
+        if(statusTag) statusTag.innerText = "QUALIDADE: 100%";
+        if(statusTagG) statusTagG.innerText = "QUALIDADE: 100%";
     } else {
         btn.disabled = true;
         btn.style.opacity = "0.5";
-        btn.innerHTML = "🔒 DADOS INCOMPLETOS OU INVÁLIDOS";
-        document.getElementById('status-tag').innerText = "QUALIDADE: 50%";
+        btn.innerHTML = "🔒 DADOS INCOMPLETOS";
+        if(statusTag) statusTag.innerText = "QUALIDADE: 50%";
+        if(statusTagG) statusTagG.innerText = "QUALIDADE: 50%";
     }
 }
+
 
 function gerarPDF() {
     const content = document.getElementById('live-preview').innerHTML;
@@ -127,21 +122,4 @@ document.addEventListener('DOMContentLoaded', () => {
         btnNovidades.addEventListener('click', toggleNovidades);
     }
 });
-
-// Função para mostrar/esconder o preview (Evita bugs no mobile)
-function togglePreview() {
-    const preview = document.getElementById('live-preview');
-    const btn = document.getElementById('btn-show-preview');
-    
-    if (preview.style.display === 'none' || preview.style.display === '') {
-        preview.style.display = 'block';
-        btn.innerText = 'OCULTAR PREVIEW';
-        btn.style.background = 'rgba(255,255,255,0.1)';
-        btn.style.border = '1px solid var(--text-dim)';
-    } else {
-        preview.style.display = 'none';
-        btn.innerText = 'MOSTRAR PREVIEW EM TEMPO REAL';
-        btn.style.background = 'linear-gradient(135deg, var(--primary), var(--accent))';
-    }
-}
 
