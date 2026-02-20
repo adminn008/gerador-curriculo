@@ -88,3 +88,21 @@ function gerarPDF() {
 
 // Ouvir digitais
 document.querySelectorAll('input, textarea').forEach(el => el.addEventListener('input', update));
+
+// Efeito de contador dinâmico para a Home
+function startCounter() {
+    const counterEl = document.getElementById('cv-counter');
+    if(!counterEl) return;
+
+    let baseValue = 1248; // Valor inicial
+    
+    setInterval(() => {
+        // Aumenta entre 1 e 3 currículos a cada poucos segundos
+        baseValue += Math.floor(Math.random() * 3);
+        counterEl.innerText = baseValue.toLocaleString('pt-BR');
+    }, 5000); // Atualiza a cada 5 segundos
+}
+
+// Chame a função quando o documento carregar
+document.addEventListener('DOMContentLoaded', startCounter);
+
