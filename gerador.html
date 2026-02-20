@@ -86,29 +86,35 @@
         </div>
 
         <aside class="sidebar-column">
-            <div class="card" style="position: sticky; top: 100px; border-left: 5px solid var(--accent); padding: 20px;">
-                <h4 style="color: var(--accent); letter-spacing: 1px;">💡 DICA DO RECRUTADOR</h4>
-                <p id="dica-texto" style="font-size: 0.85rem; color: var(--text-dim); margin-top: 5px;">Aguardando você começar para te dar dicas de ouro...</p>
-                
-                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
-                
-                <h4 style="margin-bottom: 10px; color: #fff;">👁️ PREVIEW VIVO</h4>
-                <div id="live-preview" style="background: white; color: #333; padding: 25px; border-radius: 4px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); transform: scale(0.9); transform-origin: top;">
-                    <div id="preview-content" class="mode-moderno">
-                        <h2 id="pre-nome" style="font-size: 1.4rem;">SEU NOME</h2>
-                        <p id="pre-contato" style="font-size: 0.7rem; color: #666; margin-bottom: 15px;"></p>
-                        <div style="border-top: 1px solid #eee; padding-top: 10px;">
-                            <strong style="font-size: 0.7rem; color: var(--primary);">OBJETIVO</strong>
-                            <p id="pre-obj" style="font-size: 0.75rem; margin-top: 4px;"></p>
-                        </div>
-                        <div style="margin-top: 15px;">
-                            <strong style="font-size: 0.7rem; color: var(--primary);">EXPERIÊNCIA</strong>
-                            <p id="pre-exp" style="font-size: 0.75rem; white-space: pre-line; margin-top: 4px;"></p>
-                        </div>
-                    </div>
+    <div class="card" style="position: sticky; top: 90px; border-left: 4px solid var(--accent);">
+        <h4 style="color: var(--accent); margin-bottom: 10px;">💡 DICA DO RECRUTADOR</h4>
+        <p id="dica-texto" style="font-size: 0.85rem; color: var(--text-dim);">Clique no botão abaixo para ver como seu currículo está ficando!</p>
+        
+        <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
+        
+        <h4 style="margin-bottom: 10px;">👁️ PREVIEW VIVO</h4>
+        
+        <button type="button" id="btn-show-preview" onclick="togglePreview()" class="btn-primary" style="padding: 10px; font-size: 0.8rem; margin-bottom: 15px;">
+            MOSTRAR PREVIEW EM TEMPO REAL
+        </button>
+
+        <div id="live-preview" style="display: none; background: white; color: #333; padding: 20px; border-radius: 4px; min-height: 400px; transform: scale(0.9); transform-origin: top;">
+            <div id="preview-content" class="mode-moderno">
+                <h2 id="pre-nome">SEU NOME</h2>
+                <p id="pre-contato" style="font-size: 0.7rem; color: #666;"></p>
+                <div style="margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px;">
+                    <strong style="font-size: 0.7rem;">OBJETIVO</strong>
+                    <p id="pre-obj" style="font-size: 0.75rem;"></p>
+                </div>
+                <div style="margin-top: 10px;">
+                    <strong style="font-size: 0.7rem;">EXPERIÊNCIA</strong>
+                    <p id="pre-exp" style="font-size: 0.75rem; white-space: pre-line;"></p>
                 </div>
             </div>
-        </aside>
+        </div>
+    </div>
+</aside>
+
     </main>
 
     <footer class="footer no-print">
