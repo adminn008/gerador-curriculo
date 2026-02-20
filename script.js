@@ -112,7 +112,7 @@ function toggleNovidades() {
     if (pop) {
         if (pop.style.display === 'none' || pop.style.display === '') {
             pop.style.display = 'block';
-            pop.style.animation = 'fadeIn 0.3s ease'; // Efeito de milhões
+            pop.style.animation = 'fadeIn 0.3s ease'; 
         } else {
             pop.style.display = 'none';
         }
@@ -121,10 +121,10 @@ function toggleNovidades() {
 
 // GARANTIA: Adiciona o evento de clique assim que o site abrir
 document.addEventListener('DOMContentLoaded', () => {
-    const btnNovidades = document.querySelector('.btn-sugerir'); // Seleciona o botão pela classe
+    startCounter(); // Inicia o contador
+    const btnNovidades = document.querySelector('.btn-sugerir'); 
     if (btnNovidades && btnNovidades.textContent.includes('mudou')) {
         btnNovidades.addEventListener('click', toggleNovidades);
     }
 });
-
 
