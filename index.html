@@ -10,71 +10,36 @@
     <nav class="navbar">
         <div class="container nav-content">
             <a href="index.html" class="logo">CV<span>FLASH</span></a>
-            <a href="gerador.html" class="btn btn-primary">Criar Currículo</a>
+            <a href="gerador.html" class="btn btn-primary">Criar Agora</a>
         </div>
     </nav>
 
-    <header class="container" style="text-align: center; padding: 100px 0;">
-    <h1 class="logo" style="font-size: 4rem;">CV<span>FLASH</span></h1>
-    <p class="v-tag">Versão 1.3.0 — A mais poderosa até agora</p>
-    <div style="margin-top: 40px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-        <a href="gerador.html" class="btn btn-primary">Começar Currículo</a>
-        <button onclick="toggleNovidades()" class="btn" style="border: 1px solid var(--border); color: white;">✨ O que há de novo?</button>
-    </div>
-</header>
+    <header class="container" style="text-align: center; padding: 120px 0;">
+        <h1 style="font-size: 4rem; margin-bottom: 20px;">CV<span>FLASH</span></h1>
+        <p style="color: var(--text-dim); font-size: 1.4rem;">Design de elite. Versão 1.3.0</p>
+        <div style="margin-top: 40px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+            <a href="gerador.html" class="btn btn-primary">Começar meu Currículo</a>
+            <button onclick="toggleNovidades()" class="btn" style="border: 1px solid var(--border); color: white;">✨ Novidades</button>
+        </div>
+    </header>
 
-<section class="container">
-    <div class="card" style="border: 1px solid var(--primary);">
-        <h3>Apoie a v2.0.0</h3>
-        <div class="progress-track"><div id="meta-fill" class="progress-fill" style="width: 0%"></div></div>
-        <p>PIX (Chave Aleatória): <br> <code style="color: var(--accent);">0df8fcd3-dffc-4265-8464-5a60badef88c</code></p>
-    </div>
-</section>
-
-<div id="pop-novidades" class="card" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; width: 90%; max-width: 400px; border: 2px solid var(--primary);">
-    <h2 style="color: var(--primary);">Novidades v1.3.0</h2>
-    <ul style="margin: 20px 0; text-align: left;">
-        <li>🚀 3 Novos Modelos de Elite</li>
-        <li>📱 Preview em Tempo Real corrigido</li>
-        <li>🪄 Sugestões Inteligentes de texto</li>
-        <li>🎯 Modo Foco para preenchimento</li>
-    </ul>
-    <button onclick="toggleNovidades()" class="btn btn-primary" style="width: 100%;">Fechar</button>
-</div>
-
+    <section class="container">
+        <div class="card" style="border: 1px solid var(--primary); text-align: center;">
+            <h3>Apoie o Projeto v2.0</h3>
+            <p style="margin: 15px 0;">Chave PIX Aleatória:</p>
+            <code style="background: #000; padding: 10px; border-radius: 8px; color: var(--accent); font-size: 1.2rem;">0df8fcd3-dffc-4265-8464-5a60badef88c</code>
+        </div>
     </section>
 
-    <footer class="footer">
-        <div class="container footer-grid">
-            <div>
-                <a href="index.html" class="logo">CV<span>FLASH</span></a>
-                <p style="margin-top: 16px; font-size: 0.9rem; color: var(--text-dim);">Elevando o padrão de busca por emprego desde 2025.</p>
-            </div>
-            <div>
-                <h4>Ajuda e Suporte</h4>
-                <a href="faq.html">Central de Ajuda</a>
-                <a href="mailto:suporte.cvflash@gmail.com">Contato suporte</a>
-            </div>
-            <div>
-                <h4>Legal</h4>
-                <a href="privacy.html">Privacidade</a>
-                <a href="termos.html">Termos e Condições</a>
-            </div>
-        </div>
-        <div class="container" style="text-align: center; margin-top: 60px; color: var(--text-dim); font-size: 0.85rem;">
-            © 2026 CVFlash — versão 1.2.1 — Todos os direitos reservados
-        </div>
-    </footer>
-
-    <div id="pop-novidades" style="display:none; position: fixed; bottom: 30px; right: 30px; width: 320px; z-index: 2000;" class="card">
-        <h4 style="color: var(--accent);">O que vem na v2.0.0?</h4>
-        <ul style="list-style: none; margin: 15px 0; font-size: 0.9rem;">
-            <li>✨ Carta de Apresentação</li>
-            <li>💎 +10 Modelos Premium</li>
-            <li>📸 Upload de Foto com AI</li>
-            <li>💾 Rascunhos Automáticos</li>
+    <div id="pop-novidades" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2000; width: 90%; max-width: 400px;" class="card">
+        <h3 style="color: var(--primary);">Novidades v1.3.0</h3>
+        <ul style="margin: 20px 0; color: var(--text-dim);">
+            <li>✅ 3 Modelos Profissionais (Moderno, Minimalista, Executivo)</li>
+            <li>✅ Novo sistema de Preview em tempo real</li>
+            <li>✅ Sugestões automáticas de texto</li>
+            <li>✅ Bloqueio de segurança anti-erro</li>
         </ul>
-        <button onclick="toggleNovidades()" class="btn btn-primary" style="width: 100%; padding: 10px;">Fechar</button>
+        <button onclick="toggleNovidades()" class="btn btn-primary" style="width: 100%;">Fechar</button>
     </div>
 
     <script src="script.js"></script>
