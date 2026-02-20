@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>CVFLASH | Elite Resume Builder</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,37 +10,58 @@
     <nav class="navbar">
         <div class="container nav-content">
             <a href="index.html" class="logo">CV<span>FLASH</span></a>
-            <a href="gerador.html" class="btn btn-primary">Criar Agora</a>
+            <a href="gerador.html" class="btn-primary" style="padding: 10px 20px; text-decoration: none; font-size: 0.8rem; border-radius: 8px;">CRIAR AGORA</a>
         </div>
     </nav>
 
-    <header class="container" style="text-align: center; padding: 120px 0;">
-        <h1 style="font-size: 4rem; margin-bottom: 20px;">CV<span>FLASH</span></h1>
-        <p style="color: var(--text-dim); font-size: 1.4rem;">Design de elite. Versão 1.3.0</p>
-        <div style="margin-top: 40px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-            <a href="gerador.html" class="btn btn-primary">Começar meu Currículo</a>
-            <button onclick="toggleNovidades()" class="btn" style="border: 1px solid var(--border); color: white;">✨ Novidades</button>
+    <header class="container" style="text-align: center; padding: 80px 0 40px;">
+        <div class="badge" style="display: inline-block; padding: 5px 15px; background: rgba(0, 242, 255, 0.1); border: 1px solid var(--accent); border-radius: 20px; color: var(--accent); font-size: 0.7rem; font-weight: 800; margin-bottom: 20px;">
+            VERSÃO 1.3.0 DISPONÍVEL
+        </div>
+        <h1 style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 20px;">O Currículo que te coloca no <span style="color: var(--primary);">Topo.</span></h1>
+        <p style="color: var(--text-dim); max-width: 600px; margin: 0 auto 40px; font-size: 1.1rem;">
+            Rápido, gratuito e profissional. O CVFLASH v1.3.0 foi redesenhado para quem busca a excelência.
+        </p>
+        
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <a href="gerador.html" class="btn-primary" style="padding: 18px 35px; text-decoration: none; border-radius: 12px;">COMEÇAR JÁ</a>
+            <button onclick="toggleNovidades()" class="btn-sugerir" style="padding: 15px 25px; font-size: 0.9rem;">✨ O que mudou?</button>
         </div>
     </header>
 
-    <section class="container">
-        <div class="card" style="border: 1px solid var(--primary); text-align: center;">
-            <h3>Apoie o Projeto v2.0</h3>
-            <p style="margin: 15px 0;">Chave PIX Aleatória:</p>
-            <code style="background: #000; padding: 10px; border-radius: 8px; color: var(--accent); font-size: 1.2rem;">0df8fcd3-dffc-4265-8464-5a60badef88c</code>
+    <section class="container" style="margin-bottom: 60px;">
+        <div class="card" style="border: 1px solid var(--primary); background: linear-gradient(145deg, #0f1219, #05070a); text-align: center;">
+            <h3 style="margin-bottom: 10px;">Apoie o Desenvolvimento</h3>
+            <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 20px;">Contribua para mantermos a infraestrutura gratuita.</p>
+            <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 15px; border: 1px dashed var(--border);">
+                <small style="color: var(--accent); text-transform: uppercase; font-weight: 800; letter-spacing: 1px;">Chave PIX Aleatória</small><br>
+                <code style="font-family: monospace; font-size: 1.1rem; color: #fff;">0df8fcd3-dffc-4265-8464-5a60badef88c</code>
+            </div>
         </div>
     </section>
 
-    <div id="pop-novidades" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2000; width: 90%; max-width: 400px;" class="card">
-        <h3 style="color: var(--primary);">Novidades v1.3.0</h3>
-        <ul style="margin: 20px 0; color: var(--text-dim);">
-            <li>✅ 3 Modelos Profissionais (Moderno, Minimalista, Executivo)</li>
-            <li>✅ Novo sistema de Preview em tempo real</li>
-            <li>✅ Sugestões automáticas de texto</li>
-            <li>✅ Bloqueio de segurança anti-erro</li>
+    <div id="pop-novidades" class="card" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2000; width: 90%; max-width: 450px; border: 2px solid var(--primary);">
+        <h2 style="color: var(--accent); margin-bottom: 15px;">Novidades v1.3.0</h2>
+        <ul style="list-style: none; color: var(--text-dim); font-size: 0.9rem;">
+            <li style="margin-bottom: 10px;">✅ <strong>3 Modelos:</strong> Moderno, Minimalista e Executivo.</li>
+            <li style="margin-bottom: 10px;">✅ <strong>Novos Campos:</strong> LinkedIn, Site, Nascimento e Skills.</li>
+            <li style="margin-bottom: 10px;">✅ <strong>Trava de Segurança:</strong> Só gera PDF com dados completos.</li>
+            <li style="margin-bottom: 10px;">✅ <strong>Sugestões:</strong> Textos prontos para o seu resumo.</li>
         </ul>
-        <button onclick="toggleNovidades()" class="btn btn-primary" style="width: 100%;">Fechar</button>
+        <button onclick="toggleNovidades()" class="btn-primary" style="margin-top: 20px;">ENTENDI!</button>
     </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="faq.html">FAQ</a>
+                <a href="privacy.html">Privacidade</a>
+                <a href="termos.html">Termos</a>
+                <a href="mailto:suporte.cvflash@gmail.com?subject=Sugestão para o CVFlash v1.3.0">Sugerir Melhoria</a>
+            </div>
+            <p style="color: var(--text-dim); font-size: 0.7rem;">© 2026 CVFLASH v1.3.0</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
