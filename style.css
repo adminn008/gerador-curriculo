@@ -382,3 +382,9 @@ input:focus { border-color: var(--primary); outline: none; }
     font-size: 0.8rem;
     font-weight: 600;
 }
+
+/* No seu preview de habilidades */
+#preview-habilidades {
+    line-height: 1.8; /* Aumenta o respiro entre as habilidades */
+    padding-left: 10px;
+}
