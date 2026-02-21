@@ -140,14 +140,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-function updateClock() {
-    const now = new Date();
-    const timeString = now.toLocaleTimeString('pt-BR');
-    document.getElementById('clock').textContent = timeString;
+function iniciarRelogio() {
+    const display = document.getElementById('clock');
+    
+    setInterval(() => {
+        const agora = new Date();
+        // Formata para o padrão brasileiro (HH:MM:SS)
+        display.textContent = agora.toLocaleTimeString('pt-BR');
+    }, 1000);
 }
 
-// Atualiza a cada 1 segundo
-setInterval(updateClock, 1000);
-updateClock(); // Inicia imediatamente
+// Rodar a função assim que a página carregar
+window.onload = iniciarRelogio;
 
 
