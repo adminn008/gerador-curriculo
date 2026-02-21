@@ -91,48 +91,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// 1. MÁSCARA DE DATA DE NASCIMENTO
-const dataInput = document.querySelector('input[type="text"][placeholder*="Data"], input#data_nascimento'); // Ajuste o seletor se tiver ID específico
+// 1. MÁSCARA DE DATA (SÓ NÚMEROS E BARRAS AUTOMÁTICAS)
+const campoData = document.getElementById('data_nascimento');
 
-if (dataInput) {
-    dataInput.addEventListener('input', (e) => {
-        let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não é número
+if (campoData) {
+    campoData.addEventListener('input', (e) => {
+        let v = e.target.value.replace(/\D/g, ""); // Remove tudo o que não é número
+        if (v.length > 8) v = v.slice(0, 8); // Limita a 8 números
         
-        if (value.length > 8) value = value.slice(0, 8); // Limita a 8 dígitos
-
-        // Aplica a máscara 00/00/0000
-        if (value.length > 4) {
-            value = value.replace(/^(\d{2})(\d{2})(\d{0,4})/, "$1/$2/$3");
-        } else if (value.length > 2) {
-            value = value.replace(/^(\d{2})(\d{0,2})/, "$1/$2");
+        // Adiciona as barras conforme digita
+        if (v.length >= 5) {
+            v = v.replace(/^(\d{2})(\d{2})(\d{0,4})/, "$1/$2/$3");
+        } else if (v.length >= 3) {
+            v = v.replace(/^(\d{2})(\d{0,2})/, "$1/$2");
         }
-        
-        e.target.value = value;
+        e.target.value = v;
     });
 }
 
-// 2. BULLET POINTS AUTOMÁTICOS NAS HABILIDADES
-const habilidadesInput = document.querySelector('textarea[placeholder*="Habilidades"], textarea#habilidades');
+// 2. BULLET POINTS NAS HABILIDADES (ENTER = •)
+const campoHabilidades = document.querySelector('textarea[placeholder*="Habilidades"], #habilidades');
 
-if (habilidadesInput) {
-    // Adiciona o primeiro bullet se o campo estiver vazio ao ganhar foco
-    habilidadesInput.addEventListener('focus', (e) => {
-        if (e.target.value === "") {
-            e.target.value = "• ";
+if (campoHabilidades) {
+    campoHabilidades.addEventListener('keydown', (e) => {
+        // Se o campo estiver vazio e começar a digitar, coloca o primeiro bullet
+        if (campoHabilidades.value === "") {
+            campoHabilidades.value = "• ";
         }
-    });
 
-    habilidadesInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-            e.preventDefault(); // Impede o enter padrão
+            e.preventDefault(); // Para o enter comum
             const start = e.target.selectionStart;
             const end = e.target.selectionEnd;
-            const value = e.target.value;
+            const text = e.target.value;
 
-            // Insere uma nova linha com o bullet
-            e.target.value = value.substring(0, start) + "\n• " + value.substring(end);
+            // Insere a quebra de linha + o bullet
+            e.target.value = text.substring(0, start) + "\n• " + text.substring(end);
 
-            // Move o cursor para depois do novo bullet
+            // Coloca o cursor no lugar certo após o bullet
             e.target.selectionStart = e.target.selectionEnd = start + 3;
         }
     });
