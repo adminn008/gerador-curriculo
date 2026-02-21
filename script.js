@@ -140,5 +140,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+function updateClock() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('pt-BR');
+    document.getElementById('clock').textContent = timeString;
+}
+
+// Atualiza a cada 1 segundo
+setInterval(updateClock, 1000);
+updateClock(); // Inicia imediatamente
 
 
