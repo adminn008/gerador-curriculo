@@ -140,31 +140,59 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-<!-- Bloco de Aviso -->
-<div id="aviso-manutencao" style="background: #161b22; color: #e6edf3; padding: 10px; text-align: center; font-family: sans-serif; font-size: 13px; border-bottom: 1px solid #30363d;">
-  <span>🛠️ <strong>Manutenção:</strong> Corrigindo bugs e estabilidade.</span>
-  <br>
-  <span>Próxima revisão: 25/02/2026 às <strong id="relogio-digital" style="color: #58a6ff;">00:00:00</strong></span>
-</div>
+(function() {
+    // 1. Configurações: Data do Evento (Ano, Mês-1, Dia, Hora, Min)
+    const dataAlvo = new Date(2026, 1, 25, 10, 0, 0).getTime();
 
-<!-- Título e Subtítulo -->
-<div style="text-align: center; margin-top: 20px; font-family: sans-serif;">
-  <h2 style="font-size: 1.4rem; color: #c9d1d9; margin-bottom: 5px;">Meu Projeto</h2>
-  <p style="font-size: 0.9rem; color: #8b949e; margin-top: 0;">Refatorando código e limpando logs de erro.</p>
-</div>
+    // 2. Criar e Injetar o CSS via JS
+    const style = document.createElement('style');
+    style.innerHTML = `
+        #ia-banner-top {
+            background: #161b22;
+            color: #e6edf3;
+            padding: 10px;
+            text-align: center;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 13px;
+            border-bottom: 1px solid #30363d;
+            width: 100%;
+            z-index: 9999;
+        }
+        #ia-countdown { color: #ff7b72; font-weight: bold; font-family: monospace; }
+        .ia-bug-text { color: #8b949e; display: block; font-size: 11px; margin-top: 3px; }
+    `;
+    document.head.appendChild(style);
 
-<script>
-  function atualizarTempo() {
-    const el = document.getElementById('relogio-digital');
-    if (el) {
-      const agora = new Date();
-      el.innerText = agora.toLocaleTimeString('pt-BR');
+    // 3. Criar o elemento HTML do Banner
+    const banner = document.createElement('div');
+    banner.id = 'ia-banner-top';
+    banner.innerHTML = `
+        <div>🛠️ Revisão do Site em: <span id="ia-countdown">--:--:--</span></div>
+        <span class="ia-bug-text">Status: Corrigindo bugs e otimizando performance para o GitHub.</span>
+    `;
+
+    // Inserir no topo do body
+    document.body.prepend(banner);
+
+    // 4. Lógica da Contagem Regressiva
+    function atualizarContador() {
+        const agora = new Date().getTime();
+        const diff = dataAlvo - agora;
+
+        if (diff < 0) {
+            document.getElementById('ia-countdown').innerHTML = "EM MANUTENÇÃO 🚧";
+            return;
+        }
+
+        const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const horas = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutos = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const segundos = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('ia-countdown').innerText = 
+            `${dias}d ${horas}h ${minutos}m ${segundos}s`;
     }
-  }
 
-  // Executa a cada segundo
-  setInterval(atualizarTempo, 1000);
-  // Executa uma vez agora para não esperar 1 segundo
-  atualizarTempo();
-</script>
-
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+})();
