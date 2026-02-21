@@ -353,3 +353,32 @@ input:focus { border-color: var(--primary); outline: none; }
     color: var(--text-dim);
     line-height: 1.5;
 }
+
+.card-exemplo {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-exemplo:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.icon-doc {
+    font-size: 1.5rem;
+}
+
+.card-exemplo p {
+    color: var(--text);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
