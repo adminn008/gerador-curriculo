@@ -157,3 +157,31 @@ input:focus { border-color: var(--primary); outline: none; }
     color: var(--accent);
 }
 
+/* BOTÃO DE SUPORTE PREMIUM */
+.btn-suporte-premium {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--text);
+    text-decoration: none;
+    padding: 20px 40px;
+    border-radius: 15px;
+    font-weight: 800;
+    font-size: 1rem;
+    border: 1px solid var(--primary);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-suporte-premium:hover {
+    background: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+    color: #fff;
+}
+
+.btn-suporte-premium:active {
+    transform: translateY(0);
+}
+
