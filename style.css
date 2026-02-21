@@ -99,22 +99,29 @@ input:focus { border-color: var(--primary); outline: none; }
     to { opacity: 1; transform: translate(-50%, -50%); }
 }
 
-/* ESTILO DO FAQ BALÃO */
+/* ESTILO DO FAQ BALÃO - VERSÃO ELITE */
+.faq-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
 .faq-item {
-    background: var(--surface);
+    background: rgba(15, 18, 25, 0.6); /* Efeito semi-transparente */
     border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    transition: 0.3s;
+    border-radius: 16px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
 .faq-question {
     width: 100%;
-    padding: 20px;
+    padding: 22px;
     background: none;
     border: none;
     color: var(--text);
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 600;
     text-align: left;
     display: flex;
@@ -123,39 +130,46 @@ input:focus { border-color: var(--primary); outline: none; }
     cursor: pointer;
 }
 
-.faq-question:hover {
-    background: rgba(59, 130, 246, 0.05);
-}
-
-.faq-icon {
-    color: var(--primary);
-    font-size: 1.2rem;
-    transition: 0.3s;
-}
-
+/* O SEGREDO ESTÁ AQUI: Resposta começa escondida */
 .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-    background: rgba(0, 0, 0, 0.2);
+    max-height: 0; /* Começa com altura zero */
+    overflow: hidden; /* Esconde o que vazar */
+    transition: max-height 0.4s cubic-bezier(0, 1, 0, 1); /* Animação suave */
+    background: rgba(0, 0, 0, 0.15);
 }
 
 .faq-answer p {
-    padding: 20px;
+    padding: 20px 25px;
     color: var(--text-dim);
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    border-top: 1px solid rgba(255,255,255,0.05);
 }
 
+/* Quando o balão estiver ativo */
 .faq-item.active {
     border-color: var(--primary);
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
+    background: rgba(59, 130, 246, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px; /* Um valor alto o suficiente para mostrar o texto */
+    transition: max-height 0.4s cubic-bezier(1, 0, 1, 0);
+}
+
+.faq-icon {
+    display: inline-block;
+    color: var(--primary);
+    font-size: 1.4rem;
+    transition: transform 0.3s ease;
 }
 
 .faq-item.active .faq-icon {
-    transform: rotate(45deg);
+    transform: rotate(45deg); /* O + vira um X */
     color: var(--accent);
 }
+
 
 /* BOTÃO DE SUPORTE PREMIUM */
 .btn-suporte-premium {
