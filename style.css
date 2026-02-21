@@ -388,3 +388,7 @@ input:focus { border-color: var(--primary); outline: none; }
     line-height: 1.8; /* Aumenta o respiro entre as habilidades */
     padding-left: 10px;
 }
+
+textarea {
+    line-height: 1.5; /* Dá mais espaço entre as linhas dos bullets */
+}
