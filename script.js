@@ -45,6 +45,31 @@ function update() {
     if(document.getElementById('pre-contato')) document.getElementById('pre-contato').innerText = `${tel} | ${email} | ${local}`;
     if(document.getElementById('pre-obj')) document.getElementById('pre-obj').innerText = obj;
     if(document.getElementById('pre-exp')) document.getElementById('pre-exp').innerText = exp;
+    function update() {
+    const nome = document.getElementById('in-nome').value;
+    const tel = document.getElementById('in-tel').value;
+    const email = document.getElementById('in-email').value;
+    const local = document.getElementById('in-local').value;
+    const obj = document.getElementById('in-obj').value;
+    const exp = document.getElementById('in-exp').value;
+    const edu = document.getElementById('in-edu').value; // Adicionado
+    const skills = document.getElementById('in-skills').value; // Adicionado
+
+    // Preenche o "molde" do PDF
+    if(document.getElementById('pre-nome')) document.getElementById('pre-nome').innerText = nome.toUpperCase() || "SEU NOME";
+    if(document.getElementById('pre-contato')) document.getElementById('pre-contato').innerText = `${tel} | ${email} | ${local}`;
+    if(document.getElementById('pre-obj')) document.getElementById('pre-obj').innerText = obj;
+    if(document.getElementById('pre-exp')) document.getElementById('pre-exp').innerText = exp;
+    if(document.getElementById('pre-edu')) document.getElementById('pre-edu').innerText = edu; // Adicionado
+    if(document.getElementById('pre-skills')) document.getElementById('pre-skills').innerText = skills; // Adicionado
+
+    // Mantém o botão ativo
+    const btn = document.getElementById('btn-gerar');
+    btn.disabled = false;
+    btn.style.opacity = "1";
+    btn.innerHTML = "🚀 GERAR CURRÍCULO PROFISSIONAL";
+}
+
 
     // --- NOVA LÓGICA DO BOTÃO (SEM TRAVA) ---
     const btn = document.getElementById('btn-gerar');
