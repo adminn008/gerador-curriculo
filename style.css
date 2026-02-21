@@ -199,3 +199,55 @@ input:focus { border-color: var(--primary); outline: none; }
     transform: translateY(0);
 }
 
+.next-update-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    animation: fadeInDown 0.8s ease;
+}
+
+.update-badge {
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    padding: 8px 18px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    backdrop-filter: blur(5px);
+}
+
+.update-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent);
+    animation: pulse-update 2s infinite;
+}
+
+.update-text {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: var(--text-dim);
+}
+
+.update-timer {
+    font-family: 'monospace';
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    min-width: 80px;
+}
+
+@keyframes pulse-update {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
