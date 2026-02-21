@@ -13,30 +13,64 @@
         </div>
     </nav>
 
-    <main class="container" style="padding: 60px 0; min-height: 80vh;">
-        <h1 class="logo" style="text-align: center; font-size: 2.5rem; margin-bottom: 40px;">PERGUNTAS <span>FREQUENTES</span></h1>
-        
-        <div class="card" style="max-width: 800px; margin: 0 auto;">
-            <div style="margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 20px;">
-                <h3 style="color: var(--primary); margin-bottom: 10px;">O CVFLASH é realmente gratuito?</h3>
-                <p style="color: var(--text-dim); font-size: 0.95rem;">Sim. O projeto foi criado para ser uma ferramenta social. Não cobramos taxas para gerar ou baixar o currículo em PDF. As doações via PIX são totalmente opcionais e servem para manter o site no ar e financiar a futura v2.0.</p>
-            </div>
-            
-            <div style="margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 20px;">
-                <h3 style="color: var(--primary); margin-bottom: 10px;">Meus dados ficam salvos no sistema?</h3>
-                <p style="color: var(--text-dim); font-size: 0.95rem;"><strong>Segurança máxima:</strong> NÃO salvamos nada. O CVFLASH processa os dados localmente no seu navegador. Quando você fecha a aba, os dados desaparecem para sempre. Você tem controle total.</p>
-            </div>
-            
-            <div style="margin-bottom: 40px;">
-                <h3 style="color: var(--primary); margin-bottom: 10px;">Como baixar o currículo pelo celular?</h3>
-                <p style="color: var(--text-dim); font-size: 0.95rem;">Ao clicar no botão de gerar, seu navegador abrirá a tela de impressão. No Android ou iPhone, basta selecionar a opção <strong>"Salvar como PDF"</strong>. O arquivo irá direto para a sua pasta de downloads.</p>
-            </div>
+    <main class="container" style="padding: 60px 0;">
+    <h1 style="text-align: center; margin-bottom: 40px;">Perguntas <span>Frequentes</span></h1>
 
-            <center>
-                <a href="index.html" class="btn-primary" style="text-decoration: none; padding: 15px 40px; border-radius: 12px; display: inline-block;">VOLTAR AO INÍCIO</a>
-            </center>
+    <div class="faq-container" style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
+        
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                O CVFLASH é realmente gratuito?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Sim! O CVFLASH é uma ferramenta 100% gratuita. Nosso objetivo é ajudar profissionais a alcançarem melhores oportunidades. Aceitamos doações via PIX apenas para manter os servidores e financiar a v2.0.</p>
+            </div>
         </div>
-    </main>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                Meus dados estão seguros?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Totalmente. Não salvamos nenhuma informação em bancos de dados. Seus dados ficam apenas no seu navegador enquanto você edita e são deletados ao fechar a página. Privacidade é nossa prioridade.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                O currículo passa nos sistemas de RH (ATS)?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Sim. Nossos modelos foram desenhados para serem "leituráveis" por robôs de recrutamento (ATS), garantindo que suas informações sejam indexadas corretamente pelas empresas.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                Consigo editar o currículo depois de pronto?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Como não exigimos login, os dados não ficam salvos para sempre. Recomendamos que você copie os textos importantes em um bloco de notas. Na v2.0, teremos a função de salvar rascunho.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                Como posso ajudar o projeto?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Você pode ajudar compartilhando o site no LinkedIn ou contribuindo com qualquer valor via PIX na nossa página inicial. Todo apoio conta muito para a evolução da ferramenta!</p>
+            </div>
+        </div>
+
+    </div>
+</main>
+
 
     <footer class="footer">
         <div class="container">
