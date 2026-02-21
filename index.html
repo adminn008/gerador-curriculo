@@ -70,18 +70,22 @@
         </div>
 
 
-    <section class="container" style="margin-bottom: 80px;">
+        <section class="container" style="margin-bottom: 80px;">
         <div class="card" style="border: 1px solid var(--primary); text-align: center; background: linear-gradient(145deg, #0f1219, #05070a);">
             <h3 style="color: var(--accent);">META v2.0.0 (R$00,00 - R$ 50,00)</h3>
-            <p style="color: var(--text-dim); margin: 15px 0;">O CVFLASH é um projeto gratuito. Sua contribuição via PIX ajuda a manter o servidor e criar novos modelos.</p>
+            <p style="color: var(--text-dim); margin: 15px 0;">O CVFLASH é um projeto independente e gratuito. Sua contribuição via PIX ajuda a manter nossos servidores no ar e financia o desenvolvimento de novos modelos. <strong>Nenhum dado seu é vendido, nossa única fonte de apoio é você.</strong></p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 30px; text-align: left;">
+                <div style="padding: 10px; border-left: 2px solid var(--primary); background: rgba(255,255,255,0.02);">📨 <b>Carta de Apresentação</b></div>
+                <div style="padding: 10px; border-left: 2px solid var(--primary); background: rgba(255,255,255,0.02);">📩 <b>+10 Modelos Premium</b></div>
+                <div style="padding: 10px; border-left: 2px solid var(--primary); background: rgba(255,255,255,0.02);">📷 <b>Currículo com Foto</b></div>
+                <div style="padding: 10px; border-left: 2px solid var(--primary); background: rgba(255,255,255,0.02);">💭 <b>Avaliador Automático</b></div>
+                <div style="padding: 10px; border-left: 2px solid var(--primary); background: rgba(255,255,255,0.02);">✍️ <b>Salvar Rascunho</b></div>
+            </div>
+
             <div class="progress-track" style="background: #000; height: 12px; border-radius: 10px; margin-bottom: 25px; border: 1px solid var(--border);">
-                <div style="width: 0%; height: 100%; background: var(--accent); border-radius: 10px;"></div>
+                <div style="width: 0%; height: 100%; background: var(--accent); border-radius: 10px; box-shadow: 0 0 15px var(--accent);"></div>
             </div>
-            <div style="display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap;">
-                <code id="pix-key" style="color: var(--accent); background: #000; padding: 12px 20px; border-radius: 8px; border: 1px solid var(--border);">0df8fcd3-dffc-4265-8464-5a60badef88c</code>
-                <button id="btn-copy-pix" class="btn-primary" style="padding: 12px 25px;">COPIAR CHAVE</button>
-            </div>
-        </div>
 
     <div id="pop-novidades" class="card" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; width: 90%; max-width: 450px; border: 2px solid var(--primary); background: var(--surface);">
         <h2 style="color: var(--accent); margin-bottom: 15px;">Novidades v1.3.0</h2>
@@ -95,11 +99,23 @@
         <button onclick="toggleNovidades()" class="btn-primary" style="width: 100%; margin-top: 25px;">FECHAR</button>
     </div>
 
-    <footer class="footer">
-        <div class="container" style="text-align: center;">
-            <p>© 2026 CVFLASH v.1.3.2 — Criado por <a href="sobre.html" style="color: var(--primary); text-decoration: none;">Welington Silva</a></p>
+<footer class="footer" style="padding: 40px 0; border-top: 1px solid var(--border); margin-top: 80px;">
+    <div class="container" style="text-align: center;">
+        <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
+            <a href="institucional.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.9rem;">Institucional</a>
+            <a href="faq.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.9rem;">FAQ</a>
+            <a href="privacy.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.9rem;">Privacidade</a>
+            <a href="mailto:suporte.cvflash@gmail.com" style="color: var(--text-dim); text-decoration: none; font-size: 0.9rem;">Sugerir Melhoria</a>
         </div>
-    </footer>
+        
+        <p style="color: var(--text-dim); font-size: 0.75rem;">© 2026 CVFLASH v.1.3.2 — Tecnologia Brasileira 🚀</p>
+
+        <p style="color: var(--text-dim); font-size: 0.8rem; margin-top: 10px;">
+            Criado com ⚡ por <a href="sobre.html" style="color: var(--primary); font-weight: 800; text-decoration: none; border-bottom: 1px dashed var(--primary);">Welington Silva</a>
+        </p>
+    </div>
+</footer>
+
 
     <script src="script.js"></script>
 </body>
