@@ -31,10 +31,17 @@ function sugerirMulti(campo, index) {
 
 // 3. SELEÇÃO DE MODELOS
 function setModel(tipo, btn) {
-    document.getElementById('preview-content').className = 'mode-' + tipo;
+    // Muda a classe do conteúdo do preview para mudar o design do PDF
+    const preview = document.getElementById('preview-content');
+    if(preview) preview.className = 'mode-' + tipo;
+
+    // Remove a classe 'active' de todos os botões de modelo
     document.querySelectorAll('.model-card').forEach(b => b.classList.remove('active'));
+
+    // Adiciona a classe 'active' apenas no botão que foi clicado
     btn.classList.add('active');
 }
+
 
 // 4. ATUALIZAÇÃO E VALIDAÇÃO DE MILHÕES
 function update() {
