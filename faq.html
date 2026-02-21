@@ -1,131 +1,97 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1116856125939176" crossorigin="anonymous"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CVFLASH | Gerador Otimizado v1.3.2</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <nav class="navbar">
-        <div class="container nav-content">
-            <a href="index.html" class="logo">CV<span>FLASH</span></a>
-            <a href="gerador.html" class="btn-primary" style="text-decoration:none; padding: 10px 20px; font-size: 0.8rem;">CRIAR AGORA</a>
-        </div>
-    </nav>
-
-    <header class="container" style="text-align: center; padding: 100px 0 50px;">
-        <div class="next-update-container">
-            <div class="update-badge">
-                <span class="update-dot"></span>
-                <span class="update-text">PRÓXIMA REVISÃO v1.4.0 EM:</span>
-                <span id="countdown-timer" class="update-timer">00:00:00:00</span>
+    <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                O currículo passa nos sistemas de RH (ATS)?
+                Por que PDF?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Sim. Nossos modelos foram desenhados para serem "leituráveis" por robôs de recrutamento (ATS), garantindo que suas informações sejam indexadas corretamente pelas empresas.</p>
+                <p>O PDF garante que o recrutador verá exatamente o que você desenhou, sem erros de fonte ou margem que acontecem no Word." Isso transforma uma "falta" em um "benefício".</p>
             </div>
         </div>
 
-        <h1 style="font-size: 3.5rem; margin-bottom: 20px;">Crie seu Currículo Profissional em menos de <span>5 MINUTOS</span></h1>
-        <p style="color: var(--text-dim); margin-bottom: 15px;">Sem cadastro. Sem complicação. 100% online.</p>
-        
-        <div style="display: inline-flex; align-items: center; gap: 10px; background: rgba(59, 130, 246, 0.05); border: 1px solid var(--border); padding: 8px 16px; border-radius: 50px; margin-bottom: 40px;">
-            <span style="font-size: 0.85rem; font-weight: 600; color: var(--text);">
-                <span style="color: var(--accent); font-family: monospace; font-size: 1rem;">v1.3.2 — </span> Sistema de Sugestões Ativo e Otimizado
-            </span>
-        </div>
-
-        <br>
-        <button class="btn-sugerir" id="btn-novidades" style="padding: 15px 25px; font-size: 0.9rem;">✨ O que mudou?</button>
-    </header>
-
-    <section class="container" style="margin: 40px auto; text-align: center;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-            <div class="step-card">
-                <div class="step-number">1</div>
-                <h4>Preencha</h4>
-                <p>Insira seus dados e use nossas sugestões inteligentes para destacar seu perfil.</p>
-            </div>
-
-            <div class="step-card">
-                <div class="step-number">2</div>
-                <h4>Escolha</h4>
-                <p>Modelos Minimalista, Moderno ou Executivo.</p>
-                <div style="display: flex; gap: 5px; justify-content: center; margin-top: 10px;">
-                    <div style="width: 20px; height: 25px; background: #fff; border-radius: 2px; opacity: 0.5;"></div>
-                    <div style="width: 20px; height: 25px; background: var(--primary); border-radius: 2px;"></div>
-                    <div style="width: 20px; height: 25px; background: #fff; border-radius: 2px; opacity: 0.5;"></div>
-                </div>
-            </div>
-
-            <div class="step-card">
-                <div class="step-number">3</div>
-                <h4>Brilhe</h4>
-                <p>Gere seu PDF na hora e esteja pronto para sua próxima entrevista em minutos.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="container" style="margin: 80px auto; text-align: center;">
-        <h2 style="margin-bottom: 10px;">Exemplos <span>Reais</span></h2>
-        <p style="color: var(--text-dim); margin-bottom: 40px;">Veja como ficam os currículos gerados em diferentes áreas profissionais.</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
-            <a href="exemplos/vendas.pdf" target="_blank" class="card-exemplo">
-                <span class="icon-doc">📄</span>
-                <p>Vendas & Comercial</p>
-            </a>
-            <a href="exemplos/administrativo.pdf" target="_blank" class="card-exemplo">
-                <span class="icon-doc">📄</span>
-                <p>Administrativo</p>
-            </a>
-            <a href="exemplos/logistica.pdf" target="_blank" class="card-exemplo">
-                <span class="icon-doc">📄</span>
-                <p>Logística</p>
-            </a>
-            <a href="exemplos/ti.pdf" target="_blank" class="card-exemplo">
-                <span class="icon-doc">📄</span>
-                <p>Tecnologia</p>
-            </a>
-            <a href="exemplos/atendimento.pdf" target="_blank" class="card-exemplo">
-                <span class="icon-doc">📄</span>
-                <p>Atendimento</p>
-            </a>
-        </div>
-    </section>
-
-    <section class="container" style="margin-bottom: 80px;">
-        <div class="card" style="border: 1px solid var(--primary); text-align: center; background: linear-gradient(145deg, #0f1219, #05070a);">
-            <h3 style="color: var(--accent);">META v2.0.0 (R$00,00 - R$ 50,00)</h3>
-            <p style="color: var(--text-dim); margin: 15px 0;">O CVFLASH é um projeto gratuito. Sua contribuição via PIX ajuda a manter o servidor e criar novos modelos.</p>
-            <div class="progress-track" style="background: #000; height: 12px; border-radius: 10px; margin-bottom: 25px; border: 1px solid var(--border);">
-                <div style="width: 0%; height: 100%; background: var(--accent); border-radius: 10px;"></div>
-            </div>
-            <div style="display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap;">
-                <code id="pix-key" style="color: var(--accent); background: #000; padding: 12px 20px; border-radius: 8px; border: 1px solid var(--border);">0df8fcd3-dffc-4265-8464-5a60badef88c</code>
-                <button id="btn-copy-pix" class="btn-primary" style="padding: 12px 25px;">COPIAR CHAVE</button>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                Consigo editar o currículo depois de pronto?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Como não exigimos login, os dados não ficam salvos para sempre. Recomendamos que você copie os textos importantes em um bloco de notas. Na v2.0, teremos a função de salvar rascunho.</p>
             </div>
         </div>
 
-        <div class="cta-final" style="padding: 80px 20px; text-align: center;">
-            <h2 style="margin-bottom: 20px;">Pronto para sua próxima vaga?</h2>
-            <a href="gerador.html" class="btn-primary" style="padding: 20px 60px; font-size: 1.2rem; text-decoration: none; border-radius: 50px;">🚀 CRIAR AGORA</a>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                Como posso ajudar o projeto?
+                <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+                <p>Você pode ajudar compartilhando o site no LinkedIn ou contribuindo com qualquer valor via PIX na nossa página inicial. Todo apoio conta muito para a evolução da ferramenta!</p>
+            </div>
         </div>
-    </section>
 
-    <div id="pop-novidades" class="card" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; width: 90%; max-width: 450px; border: 2px solid var(--primary); background: var(--surface);">
-        <h2 style="color: var(--accent); margin-bottom: 15px;">Novidades v1.3.2</h2>
-        <ul style="color: var(--text-dim); text-align: left; padding-left: 20px; line-height: 1.8;">
-            <li>✅ Exemplos de currículos reais adicionados</li>
-            <li>✅ Novo layout da Home v1.3.2</li>
-            <li>✅ Otimização de performance mobile</li>
-            <li>✅ Sistema de sugestões atualizado</li>
-        </ul>
-        <button onclick="toggleNovidades()" class="btn-primary" style="width: 100%; margin-top: 25px;">FECHAR</button>
     </div>
+</main>
 
-    <footer class="footer">
-        <div class="container" style="text-align: center;">
-            <p>© 2026 CVFLASH v.1.3.2 — Criado por <a href="sobre.html" style="color: var(--primary); text-decoration: none;">Welington Silva</a></p>
+<section style="margin-top: 80px; text-align: center; padding: 40px; background: linear-gradient(145deg, #0f1219, #05070a); border-radius: 24px; border: 1px solid var(--border);">
+    <h3 style="color: #fff; font-size: 1.5rem; margin-bottom: 10px;">Ainda tem alguma dúvida?</h3>
+    <p style="color: var(--text-dim); margin-bottom: 30px;">Nossa equipe de suporte está pronta para te ouvir e ajudar na sua jornada.</p>
+
+    <a href="mailto:suporte.cvflash@gmail.com?subject=Dúvida/Sugestão CVFLASH v1.3.0" class="btn-suporte-premium">
+        <span style="margin-right: 10px;">✉️</span> ENVIAR E-MAIL PARA O SUPORTE
+    </a>
+
+    <p style="margin-top: 25px; font-size: 0.8rem; color: var(--primary); letter-spacing: 1px; font-weight: 800;">RESPOSTA EM ATÉ 24 HORAS</p>
+</section>
+
+<footer class="footer no-print" style="background: #030406; border-top: 1px solid var(--border); padding: 60px 0 30px;">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: left; margin-bottom: 40px;">
+
+            <div>
+                <a href="index.html" class="logo" style="font-size: 1.8rem;">CV<span>FLASH</span></a>
+                <p style="color: var(--text-dim); font-size: 0.85rem; margin-top: 15px; line-height: 1.6;">
+                    A ferramenta v1.3.0 focada em levar você até a mesa de entrevista com design de elite e alta performance.
+                </p>
+            </div>
+
+            <div>
+                <h4 style="color: #fff; margin-bottom: 20px; font-size: 0.9rem; letter-spacing: 1px;">SISTEMA</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 10px;"><a href="gerador.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.85rem;">Gerador Elite</a></li>
+                    <li style="margin-bottom: 10px;"><a href="faq.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.85rem;">Perguntas Frequentes</a></li>
+                    <li style="margin-bottom: 10px;"><a href="#" style="color: var(--text-dim); text-decoration: none; font-size: 0.85rem;">Modelos v2.0</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 style="color: #fff; margin-bottom: 20px; font-size: 0.9rem; letter-spacing: 1px;">SUPORTE</h4>
+                <ul style="list-style: none; padding: 0;">
+    <li style="margin-bottom: 10px;"><a href="gerador.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.85rem;">Gerador Elite</a></li>
+    <li style="margin-bottom: 10px;"><a href="faq.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.85rem;">Perguntas Frequentes</a></li>
+    <li style="margin-bottom: 10px;"><a href="index.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.85rem;">Modelos v2.0</a></li>
+</ul>
+
+<ul style="list-style: none; padding: 0;">
+    <li style="margin-bottom: 10px;"><a href="faq.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.85rem;">Central de Ajuda</a></li>
+    <li style="margin-bottom: 10px;"><a href="privacy.html" style="color: var(--text-dim); text-decoration: none; font-size: 0.85rem;">Privacidade</a></li>
+    <li style="margin-bottom: 10px;"><a href="index.html" style="color: var(--accent); text-decoration: none; font-size: 0.85rem; font-weight: 800;">Apoiar Projeto</a></li>
+</ul>
+
+            </div>
         </div>
-    </footer>
+
+        <hr style="border: 0; border-top: 1px solid var(--border); margin-bottom: 30px;">
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <p style="color: var(--text-dim); font-size: 0.75rem;">© 2026 CVFLASH v1.3.2 — Tecnologia Brasileira. Todos os direitos reservados.</p>
+            <div style="display: flex; gap: 15px;">
+                <span style="color: var(--primary); font-size: 0.75rem; font-weight: 800;">STATUS: OPERACIONAL v1.3.0</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
 
     <script src="script.js"></script>
 </body>
