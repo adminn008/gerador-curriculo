@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Institucional | CVFLASH</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -9,42 +10,50 @@
     <nav class="navbar">
         <div class="container nav-content">
             <a href="index.html" class="logo">CV<span>FLASH</span></a>
-            <a href="index.html" class="btn-primary" style="padding:10px 20px;">Voltar</a>
+            <a href="index.html" class="btn-primary" style="text-decoration:none; padding: 10px 20px; font-size: 0.8rem;">VOLTAR</a>
         </div>
     </nav>
 
-    <main class="container" style="padding-top:50px;">
-        <section id="faq" style="margin-bottom:80px;">
-            <h2 class="site-title">Perguntas <span>Frequentes</span></h2>
-            <div class="card" style="padding:0; overflow:hidden;">
-                <div class="acc-item">
-                    <button class="acc-btn" onclick="toggleAcc(this)">O serviço é gratuito? <span>+</span></button>
-                    <div class="acc-content">Sim! O CVFlash é 100% gratuito. Aceitamos apenas doações voluntárias para manter o projeto.</div>
+    <main class="container" style="padding: 100px 20px 50px;">
+        
+        <section id="faq" style="margin-bottom: 60px;">
+            <h2 style="text-align: center; margin-bottom: 30px;">Perguntas <span>Frequentes</span></h2>
+            
+            <div style="display: grid; gap: 15px; max-width: 800px; margin: 0 auto;">
+                <div class="card" style="text-align: left;">
+                    <h4 style="color: var(--accent); margin-bottom: 10px;">O serviço é gratuito?</h4>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">Sim! O CVFlash é 100% gratuito. Aceitamos apenas doações voluntárias via PIX para manter os servidores ativos.</p>
                 </div>
-                <div class="acc-item">
-                    <button class="acc-btn" onclick="toggleAcc(this)">Meus dados são salvos? <span>+</span></button>
-                    <div class="acc-content">Não. Tudo o que você digita fica apenas no seu navegador e é destruído ao fechar a aba.</div>
+
+                <div class="card" style="text-align: left;">
+                    <h4 style="color: var(--accent); margin-bottom: 10px;">Meus dados são salvos?</h4>
+                    <p style="color: var(--text-dim); font-size: 0.9rem;">Não. Por segurança, os dados inseridos não passam pelo nosso servidor. Tudo é processado localmente no seu navegador.</p>
                 </div>
             </div>
         </section>
 
-        <section id="suporte" class="card" style="text-align:center; margin-bottom:80px;">
-            <h2>Central de <span>Suporte</span></h2>
-            <p>Precisa de ajuda? Fale conosco diretamente pelo e-mail:</p>
-            <h3 style="color:var(--accent); margin:20px 0;">suporte.cvflash@gmail.com</h3>
-            <p><small>Atendimento em até 24h úteis.</small></p>
-        </section>
-
-        <section id="termos" class="card">
-            <h2>Termos e <span>Privacidade</span></h2>
-            <div style="font-size:0.9rem; color:var(--text-muted); margin-top:20px;">
-                <p><strong>1. Privacidade:</strong> Não coletamos dados pessoais. O processamento é local.</p>
-                <p><strong>2. Uso:</strong> O uso do currículo gerado é de inteira responsabilidade do usuário.</p>
-                <p><strong>3. Versão:</strong> Sistema em versão estável 1.3.2 (2026).</p>
+        <section id="suporte" class="card" style="text-align: center; max-width: 800px; margin: 0 auto 60px; border: 1px solid var(--primary);">
+            <h2 style="margin-bottom: 10px;">Central de <span>Suporte</span></h2>
+            <p style="color: var(--text-dim);">Dúvidas ou problemas técnicos? Mande um e-mail para:</p>
+            <div style="background: #000; padding: 15px; border-radius: 8px; margin: 20px auto; display: inline-block; border: 1px solid var(--border);">
+                <code style="color: var(--accent); font-size: 1.1rem;">suporte.cvflash@gmail.com</code>
             </div>
         </section>
+
+        <section id="termos" style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <h2 style="margin-bottom: 20px;">Termos e <span>Privacidade</span></h2>
+            <div class="card" style="text-align: left; font-size: 0.85rem; line-height: 1.6; color: var(--text-dim);">
+                <p style="margin-bottom: 10px;"><strong>1. Privacidade:</strong> Respeitamos sua privacidade. O CVFLASH não utiliza cookies de rastreamento nem armazena informações pessoais em bancos de dados.</p>
+                <p style="margin-bottom: 10px;"><strong>2. Responsabilidade:</strong> O conteúdo dos currículos gerados é de total responsabilidade do usuário. O CVFLASH apenas fornece a ferramenta de formatação.</p>
+                <p><strong>3. Versão:</strong> Sistema operando em versão estável 1.3.2 (2026).</p>
+            </div>
+        </section>
+
     </main>
 
-    <script src="script.js"></script>
-</body>
+    <footer class="footer" style="text-align: center; padding: 40px 0;">
+        <p style="color: var(--text-dim); font-size: 0.75rem;">© 2026 CVFLASH — Tecnologia Brasileira</p>
+    </footer>
+
+    </body>
 </html>
