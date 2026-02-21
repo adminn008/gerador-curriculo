@@ -38,41 +38,31 @@ function setModel(tipo, btn) {
 
 // 4. ATUALIZAÇÃO E VALIDAÇÃO DE MILHÕES
 function update() {
-    // Captura dos dados
-    const nome = document.getElementById('in-nome').value;
-    const tel = document.getElementById('in-tel').value;
-    const email = document.getElementById('in-email').value;
-    const obj = document.getElementById('in-obj').value;
-    const exp = document.getElementById('in-exp').value;
-    const local = document.getElementById('in-local').value;
+    // ... (mantenha o código de captura de dados que já existe acima)
     
-    // Atualiza os elementos invisíveis (que serão usados no PDF)
+    // Atualiza os elementos invisíveis
     if(document.getElementById('pre-nome')) document.getElementById('pre-nome').innerText = nome.toUpperCase();
     if(document.getElementById('pre-contato')) document.getElementById('pre-contato').innerText = `${tel} | ${email} | ${local}`;
     if(document.getElementById('pre-obj')) document.getElementById('pre-obj').innerText = obj;
     if(document.getElementById('pre-exp')) document.getElementById('pre-exp').innerText = exp;
 
-    // Validação Real para o Botão
+    // --- NOVA LÓGICA DO BOTÃO (SEM TRAVA) ---
     const btn = document.getElementById('btn-gerar');
-    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    const telOk = tel.replace(/\D/g, "").length >= 10;
     const statusTag = document.getElementById('status-tag');
-    const statusTagG = document.getElementById('status-tag-grande');
 
-    if(nome.length > 3 && telOk && emailOk && obj.length > 10) {
-        btn.disabled = false;
-        btn.style.opacity = "1";
-        btn.innerHTML = "🚀 GERAR CURRÍCULO PROFISSIONAL";
-        if(statusTag) statusTag.innerText = "QUALIDADE: 100%";
-        if(statusTagG) statusTagG.innerText = "QUALIDADE: 100%";
+    // O botão fica sempre ativo agora
+    btn.disabled = false;
+    btn.style.opacity = "1";
+    btn.innerHTML = "🚀 GERAR CURRÍCULO AGORA";
+    
+    // Opcional: Apenas muda a cor da tag de qualidade para dar um feedback visual
+    if(nome.length > 3 && email.includes('@')) {
+        if(statusTag) statusTag.innerText = "QUALIDADE: EXCELENTE";
     } else {
-        btn.disabled = true;
-        btn.style.opacity = "0.5";
-        btn.innerHTML = "🔒 DADOS INCOMPLETOS";
-        if(statusTag) statusTag.innerText = "QUALIDADE: 50%";
-        if(statusTagG) statusTagG.innerText = "QUALIDADE: 50%";
+        if(statusTag) statusTag.innerText = "QUALIDADE: BÁSICA";
     }
 }
+
 
 
 function gerarPDF() {
