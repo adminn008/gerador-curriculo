@@ -140,17 +140,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-function iniciarRelogio() {
-    const display = document.getElementById('clock');
-    
-    setInterval(() => {
-        const agora = new Date();
-        // Formata para o padrão brasileiro (HH:MM:SS)
-        display.textContent = agora.toLocaleTimeString('pt-BR');
-    }, 1000);
-}
+<!-- Bloco de Aviso -->
+<div id="aviso-manutencao" style="background: #161b22; color: #e6edf3; padding: 10px; text-align: center; font-family: sans-serif; font-size: 13px; border-bottom: 1px solid #30363d;">
+  <span>🛠️ <strong>Manutenção:</strong> Corrigindo bugs e estabilidade.</span>
+  <br>
+  <span>Próxima revisão: 25/02/2026 às <strong id="relogio-digital" style="color: #58a6ff;">00:00:00</strong></span>
+</div>
 
-// Rodar a função assim que a página carregar
-window.onload = iniciarRelogio;
+<!-- Título e Subtítulo -->
+<div style="text-align: center; margin-top: 20px; font-family: sans-serif;">
+  <h2 style="font-size: 1.4rem; color: #c9d1d9; margin-bottom: 5px;">Meu Projeto</h2>
+  <p style="font-size: 0.9rem; color: #8b949e; margin-top: 0;">Refatorando código e limpando logs de erro.</p>
+</div>
 
+<script>
+  function atualizarTempo() {
+    const el = document.getElementById('relogio-digital');
+    if (el) {
+      const agora = new Date();
+      el.innerText = agora.toLocaleTimeString('pt-BR');
+    }
+  }
+
+  // Executa a cada segundo
+  setInterval(atualizarTempo, 1000);
+  // Executa uma vez agora para não esperar 1 segundo
+  atualizarTempo();
+</script>
 
