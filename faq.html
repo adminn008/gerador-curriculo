@@ -92,6 +92,23 @@
     </div>
 </footer>
 
+<script>
+// ESSA É A FUNÇÃO QUE ESTAVA FALTANDO PARA A MÁGICA VOLTAR
+function toggleFaq(button) {
+    const faqItem = button.parentElement;
+    
+    // Essa linha coloca a classe 'active' que ativa o seu CSS (balão, cor e animação)
+    faqItem.classList.toggle('active');
+    
+    // (Opcional) Fecha os outros balões quando abrir um novo
+    document.querySelectorAll('.faq-item').forEach(item => {
+        if (item !== faqItem) {
+            item.classList.remove('active');
+        }
+    });
+}
+</script>
+
 
     <script src="script.js"></script>
 </body>
