@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
     banner.id = 'ia-banner-top';
     banner.innerHTML = `
         <div>🛠️ Revisão do Site em: <span id="ia-countdown">--:--:--</span></div>
-        <span class="ia-bug-text">Status: Corrigindo bugs e otimizando performance para o GitHub.</span>
+        <span class="ia-bug-text">Status: Correção de bugs e melhoria de performance.</span>
     `;
 
     // Inserir no topo do body
