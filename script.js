@@ -202,3 +202,38 @@ function toggleFaq(btn) {
         answer.style.maxHeight = null;
     }
 }
+
+// CONFIGURAÇÃO DO CRONÔMETRO REGRESSIVO
+function startCountdown() {
+    // DEFINA A DATA DA PRÓXIMA ATUALIZAÇÃO AQUI (Ano, Mês-1, Dia, Hora, Minuto)
+    const targetDate = new Date("March 01, 2026 00:00:00").getTime();
+
+    setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        // Cálculos de tempo
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Formatação com zero à esquerda
+        const format = (n) => n < 10 ? "0" + n : n;
+
+        const timerEl = document.getElementById("countdown-timer");
+        if (timerEl) {
+            if (distance < 0) {
+                timerEl.innerHTML = "DISPONÍVEL!";
+            } else {
+                timerEl.innerHTML = `${format(days)}d ${format(hours)}h ${format(minutes)}m ${format(seconds)}s`;
+            }
+        }
+    }, 1000);
+}
+
+// Chame a função no seu DOMContentLoaded existente
+document.addEventListener('DOMContentLoaded', () => {
+    startCountdown();
+    // ... suas outras funções (startCounter, etc)
+});
