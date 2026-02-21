@@ -90,3 +90,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// 1. MÁSCARA DE DATA DE NASCIMENTO
+const dataInput = document.querySelector('input[type="text"][placeholder*="Data"], input#data_nascimento'); // Ajuste o seletor se tiver ID específico
+
+if (dataInput) {
+    dataInput.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\D/g, ""); // Remove tudo que não é número
+        
+        if (value.length > 8) value = value.slice(0, 8); // Limita a 8 dígitos
+
+        // Aplica a máscara 00/00/0000
+        if (value.length > 4) {
+            value = value.replace(/^(\d{2})(\d{2})(\d{0,4})/, "$1/$2/$3");
+        } else if (value.length > 2) {
+            value = value.replace(/^(\d{2})(\d{0,2})/, "$1/$2");
+        }
+        
+        e.target.value = value;
+    });
+}
+
+// 2. BULLET POINTS AUTOMÁTICOS NAS HABILIDADES
+const habilidadesInput = document.querySelector('textarea[placeholder*="Habilidades"], textarea#habilidades');
+
+if (habilidadesInput) {
+    // Adiciona o primeiro bullet se o campo estiver vazio ao ganhar foco
+    habilidadesInput.addEventListener('focus', (e) => {
+        if (e.target.value === "") {
+            e.target.value = "• ";
+        }
+    });
+
+    habilidadesInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault(); // Impede o enter padrão
+            const start = e.target.selectionStart;
+            const end = e.target.selectionEnd;
+            const value = e.target.value;
+
+            // Insere uma nova linha com o bullet
+            e.target.value = value.substring(0, start) + "\n• " + value.substring(end);
+
+            // Move o cursor para depois do novo bullet
+            e.target.selectionStart = e.target.selectionEnd = start + 3;
+        }
+    });
+}
