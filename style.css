@@ -83,9 +83,9 @@ input:focus { border-color: var(--primary); outline: none; }
     .row { grid-template-columns: 1fr; }
 }
 
-.no-print { display: block; }
-.print-only { display: none; }
-@media print { .no-print { display: none !important; } .print-only { display: block !important; background: white; color: black; padding: 30px; } }
+/* VOLTE PARA O MODO PROFISSIONAL APÓS GERAR OS EXEMPLOS */
+#live-preview { display: none; } 
+@media print { .print-only { display: block !important; } }
 
 @keyframes ping {
     75%, 100% {
