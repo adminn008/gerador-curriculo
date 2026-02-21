@@ -314,3 +314,42 @@ input:focus { border-color: var(--primary); outline: none; }
     justify-content: center;
 }
 
+.step-card {
+    background: var(--surface);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    transition: 0.3s;
+}
+
+.step-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+}
+
+.step-number {
+    background: var(--primary);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-weight: 800;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+}
+
+.step-card h4 {
+    margin-bottom: 10px;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.step-card p {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+}
