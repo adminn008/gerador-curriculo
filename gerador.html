@@ -17,10 +17,17 @@
         </div>
     </nav>
 
-    <main class="container app-grid no-print" style="display: grid; grid-template-columns: 1fr 420px; gap: 40px; padding-top: 40px;">
+        <main class="container app-grid no-print" style="display: block; max-width: 800px; padding-top: 40px;">
         
         <div class="editor-column">
-            
+            <div class="next-update-container">
+                <div class="update-badge">
+                    <span class="update-dot"></span>
+                    <span class="update-text">PRÓXIMA REVISÃO v1.4.0 EM:</span>
+                    <span id="countdown-timer" class="update-timer">00:00:00:00</span>
+                </div>
+            </div>
+
             <div class="card" style="border-bottom: 3px solid var(--primary);">
                 <h3>💎 MODELOS PROFISSIONAIS</h3>
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
@@ -88,35 +95,16 @@
             </form>
         </div>
 
-        <aside class="sidebar-column">
-    <div class="card" style="position: sticky; top: 90px; border-left: 4px solid var(--accent); min-height: 200px;">
-        <h4 style="color: var(--accent); margin-bottom: 10px; letter-spacing: 1px;">💡 DICAS DE ELITE</h4>
-        <p id="dica-texto" style="font-size: 0.9rem; color: var(--text-dim); line-height: 1.6;">
-            Preencha os campos obrigatórios (*) para liberar a geração do seu currículo de alta performance.
-        </p>
-        
-        <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--border);">
-        
-        <div style="text-align: center;">
-            <p style="font-size: 0.75rem; color: var(--text-dim); margin-bottom: 10px;">Status do Documento:</p>
-            <div id="status-tag-grande" style="display: inline-block; color: var(--accent); font-weight: 800; border: 1px solid var(--accent); padding: 10px 20px; border-radius: 30px; box-shadow: 0 0 15px rgba(0, 242, 255, 0.1);">
-                QUALIDADE: 0%
+        <div id="live-preview" style="display: none;">
+            <div id="preview-content">
+                <h2 id="pre-nome"></h2>
+                <p id="pre-contato"></p>
+                <p id="pre-obj"></p>
+                <p id="pre-exp"></p>
             </div>
         </div>
-    </div>
-</aside>
-
-<div id="live-preview" style="display: none;">
-    <div id="preview-content">
-        <h2 id="pre-nome"></h2>
-        <p id="pre-contato"></p>
-        <p id="pre-obj"></p>
-        <p id="pre-exp"></p>
-    </div>
-</div>
-
-
     </main>
+
 
     <footer class="footer no-print">
         <div class="container">
