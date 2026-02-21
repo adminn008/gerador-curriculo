@@ -1,4 +1,4 @@
-// 1. MÁSCARA DE TELEFONE INTELIGENTE
+// 1. MÁSCARA DE TELEFONE
 function mascaraTelefone(i) {
     let v = i.value.replace(/\D/g, "");
     if (v.length > 11) v = v.slice(0, 11);
@@ -9,27 +9,22 @@ function mascaraTelefone(i) {
     update();
 }
 
-// 2. SUGESTÕES DE TEXTO
+// 2. SUGESTÕES
 const baseTextos = {
     obj: [
-        "Profissional dedicado em busca de novos desafios para aplicar competências técnicas e evoluir na carreira.",
-        "Foco em metas e resultados, buscando integrar o time de vendas para maximizar o faturamento e fidelização.",
-        "Objetivo de atuar no setor administrativo, organizando processos e otimizando o fluxo de trabalho da empresa."
+        "Profissional dedicado em busca de novos desafios para aplicar competências técnicas.",
+        "Foco em metas e resultados, buscando integrar o time de vendas.",
+        "Objetivo de atuar no setor administrativo, organizando processos."
     ],
-    exp: [
-        "Nome da Empresa\nCargo Ocupado | Período: 2024 - Atual\n• Responsável por organizar fluxos de trabalho.\n• Atendimento ao cliente e resolução de problemas.\n• Alcancei metas de produtividade em 20%."
-    ]
+    exp: ["Empresa X\nCargo | 2024\n• Atendimento ao cliente.\n• Organização de fluxo."]
 };
 
 function sugerirMulti(campo, index) {
     const el = document.getElementById('in-' + campo);
-    if (el) {
-        el.value = baseTextos[campo][index];
-        update();
-    }
+    if (el) { el.value = baseTextos[campo][index]; update(); }
 }
 
-// 3. SELEÇÃO DE MODELOS
+// 3. MODELOS
 function setModel(tipo, btn) {
     const preview = document.getElementById('preview-content');
     if(preview) preview.className = 'mode-' + tipo;
@@ -37,114 +32,60 @@ function setModel(tipo, btn) {
     btn.classList.add('active');
 }
 
-// 4. FUNÇÃO DE ATUALIZAÇÃO (CORRIGIDA)
+// 4. ATUALIZAÇÃO DO PREVIEW
 function update() {
-    // Captura os valores dos inputs
-    const nome = document.getElementById('in-nome').value;
-    const tel = document.getElementById('in-tel').value;
-    const email = document.getElementById('in-email').value;
-    const local = document.getElementById('in-local').value;
-    const obj = document.getElementById('in-obj').value;
-    const exp = document.getElementById('in-exp').value;
-    const edu = document.getElementById('in-edu') ? document.getElementById('in-edu').value : "";
-    const skills = document.getElementById('in-skills') ? document.getElementById('in-skills').value : "";
-
-    // Preenche o "molde" do PDF (Preview)
-    if(document.getElementById('pre-nome')) document.getElementById('pre-nome').innerText = nome.toUpperCase() || "SEU NOME";
-    if(document.getElementById('pre-contato')) document.getElementById('pre-contato').innerText = `${tel} | ${email} | ${local}`;
-    if(document.getElementById('pre-obj')) document.getElementById('pre-obj').innerText = obj;
-    if(document.getElementById('pre-exp')) document.getElementById('pre-exp').innerText = exp;
-    if(document.getElementById('pre-edu')) document.getElementById('pre-edu').innerText = edu;
-    if(document.getElementById('pre-skills')) document.getElementById('pre-skills').innerText = skills;
-
-    // Lógica do Botão e Status Tag
-    const btn = document.getElementById('btn-gerar');
-    const statusTag = document.getElementById('status-tag');
-
-    if(btn) {
-        btn.disabled = false;
-        btn.style.opacity = "1";
-        btn.innerHTML = "🚀 GERAR CURRÍCULO AGORA";
-    }
-    
-    if(statusTag) {
-        if(nome.length > 3 && email.includes('@')) {
-            statusTag.innerText = "QUALIDADE: EXCELENTE";
-        } else {
-            statusTag.innerText = "QUALIDADE: BÁSICA";
+    const fields = ['nome', 'tel', 'email', 'local', 'obj', 'exp', 'edu', 'skills'];
+    fields.forEach(f => {
+        const input = document.getElementById('in-' + f);
+        const preview = document.getElementById('pre-' + f);
+        if (input && preview) {
+            preview.innerText = f === 'nome' ? input.value.toUpperCase() : input.value;
         }
-    }
+    });
 }
 
-// 5. GERAÇÃO DE PDF
+// 5. PDF
 function gerarPDF() {
     const content = document.getElementById('live-preview').innerHTML;
     document.getElementById('print-area').innerHTML = content;
     window.print();
 }
 
-// 6. CONTADOR DINÂMICO
-function startCounter() {
-    const counterEl = document.getElementById('cv-counter');
-    if(!counterEl) return;
-    let baseValue = 1248;
-    setInterval(() => {
-        baseValue += Math.floor(Math.random() * 3);
-        counterEl.innerText = baseValue.toLocaleString('pt-BR');
-    }, 5000);
-}
-
-// 7. CRONÔMETRO REGRESSIVO
+// 6. TIMER
 function startCountdown() {
     const targetDate = new Date("March 01, 2026 00:00:00").getTime();
     setInterval(() => {
         const now = new Date().getTime();
         const distance = targetDate - now;
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
         const format = (n) => n < 10 ? "0" + n : n;
+        const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((distance % (1000 * 60)) / 1000);
         const timerEl = document.getElementById("countdown-timer");
-        if (timerEl) {
-            if (distance < 0) timerEl.innerHTML = "DISPONÍVEL!";
-            else timerEl.innerHTML = `${format(days)}d ${format(hours)}h ${format(minutes)}m ${format(seconds)}s`;
-        }
+        if (timerEl) timerEl.innerHTML = distance < 0 ? "DISPONÍVEL!" : `${format(d)}d ${format(h)}h ${format(m)}m ${format(s)}s`;
     }, 1000);
 }
 
-// 8. FAQ TOGGLE
-function toggleFaq(btn) {
-    const item = btn.parentElement;
-    const answer = item.querySelector('.faq-answer');
-    document.querySelectorAll('.faq-item').forEach(i => {
-        if (i !== item) {
-            i.classList.remove('active');
-            i.querySelector('.faq-answer').style.maxHeight = null;
-        }
-    });
-    item.classList.toggle('active');
-    if (item.classList.contains('active')) answer.style.maxHeight = answer.scrollHeight + "px";
-    else answer.style.maxHeight = null;
+// 7. MODAL
+function toggleNovidades() {
+    const pop = document.getElementById('pop-novidades');
+    if (pop) pop.style.display = (pop.style.display === 'none' || pop.style.display === '') ? 'block' : 'none';
 }
 
-// INICIALIZAÇÃO GERAL
+// INICIALIZAÇÃO
 document.addEventListener('DOMContentLoaded', () => {
-    startCounter();
     startCountdown();
+    document.querySelectorAll('input, textarea').forEach(el => el.addEventListener('input', update));
+    
+    const btnNovidades = document.getElementById('btn-novidades');
+    if(btnNovidades) btnNovidades.addEventListener('click', toggleNovidades);
 
-    // Ouvir digitação em todos os campos
-    document.querySelectorAll('input, textarea').forEach(el => {
-        el.addEventListener('input', update);
-    });
-
-    // Configuração do PIX
     const btnPix = document.getElementById('btn-copy-pix');
     if (btnPix) {
         btnPix.addEventListener('click', () => {
-            const pixText = document.getElementById('pix-key').innerText;
-            navigator.clipboard.writeText(pixText).then(() => {
-                alert("🚀 Chave PIX copiada! Valeu pelo apoio!");
+            navigator.clipboard.writeText(document.getElementById('pix-key').innerText).then(() => {
+                alert("🚀 Chave PIX copiada!");
             });
         });
     }
