@@ -99,7 +99,49 @@ function startCounter() {
 }
 
 // Chame a função quando o documento carregar
-document.addEventListener('DOMContentLoaded', startCounter);
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Inicia o contador de currículos
+    startCounter();
+
+    // 2. CONFIGURAÇÃO DO BOTÃO "O QUE MUDOU?"
+    const btnNovidades = document.querySelector('.btn-sugerir'); 
+    if (btnNovidades && btnNovidades.textContent.includes('mudou')) {
+        btnNovidades.addEventListener('click', toggleNovidades);
+    }
+
+    // 3. CONFIGURAÇÃO DO BOTÃO PIX
+    const btnPix = document.getElementById('btn-copy-pix');
+    if (btnPix) {
+        btnPix.addEventListener('click', () => {
+            const pixText = document.getElementById('pix-key').innerText;
+            navigator.clipboard.writeText(pixText).then(() => {
+                alert("🚀 Chave PIX copiada! Valeu pelo apoio ao CVFLASH!");
+            }).catch(err => {
+                const area = document.createElement('textarea');
+                area.value = pixText;
+                document.body.appendChild(area);
+                area.select();
+                document.execCommand('copy');
+                document.body.removeChild(area);
+                alert("🚀 Chave PIX copiada!");
+            });
+        });
+    }
+});
+
+// A função toggleNovidades precisa estar fora para ser alcançada pelo botão de fechar
+function toggleNovidades() {
+    const pop = document.getElementById('pop-novidades');
+    if (pop) {
+        if (pop.style.display === 'none' || pop.style.display === '') {
+            pop.style.display = 'block';
+            pop.style.animation = 'fadeIn 0.3s ease'; 
+        } else {
+            pop.style.display = 'none';
+        }
+    }
+}
+
 
 // Função para abrir/fechar o modal
 function toggleNovidades() {
