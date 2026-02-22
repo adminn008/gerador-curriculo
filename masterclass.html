@@ -176,40 +176,62 @@
 
     <script>
         const lectureData = [
-            { text: "Conectando ao banco de dados global de RH...", p: 15 },
-            { text: "Módulo 1: O que o robô (ATS) procura primeiro?", p: 30 },
-            { text: "DICA: Use palavras-chave da descrição da vaga.", p: 45 },
-            { text: "Módulo 2: O segredo das métricas numéricas.", p: 60 },
-            { text: "EVITE: Gráficos de barra para medir habilidades.", p: 75 },
-            { text: "Módulo 3: Formatação limpa = Leitura rápida.", p: 90 },
-            { text: "AULA CONCLUÍDA. Aplique os conceitos no Gerador.", p: 100 }
-        ];
+    { text: "Sincronizando com banco de dados global de recrutamento...", p: 15 },
+    { text: "Módulo um: O que o robô procura primeiro no seu currículo?", p: 30 },
+    { text: "Dica de ouro: Use palavras-chave extraídas da descrição da vaga.", p: 45 },
+    { text: "Módulo dois: O segredo das métricas numéricas e resultados.", p: 60 },
+    { text: "Atenção: Evite gráficos de barra para medir as suas habilidades.", p: 75 },
+    { text: "Módulo três: Formatação limpa garante uma leitura rápida.", p: 90 },
+    { text: "Aula concluída com sucesso. Agora, aplique estes conceitos no seu gerador.", p: 100 }
+];
 
-        let index = 0;
+let index = 0;
+const synth = window.speechSynthesis; // Ativa a voz do navegador
 
-        function startMasterclass() {
-            const btn = document.getElementById('btn-play');
-            const term = document.getElementById('terminal');
-            const progress = document.getElementById('progress');
-            const percent = document.getElementById('percent');
-            const brain = document.getElementById('brain');
+function startMasterclass() {
+    const btn = document.getElementById('btn-play');
+    const term = document.getElementById('terminal');
+    const progress = document.getElementById('progress');
+    const percent = document.getElementById('percent');
+    const brain = document.getElementById('brain');
 
-            btn.style.display = 'none';
-            brain.style.animation = "pulse-border 0.5s infinite"; // Acelera o pulso
+    btn.style.display = 'none';
+    brain.style.animation = "pulse-border 0.5s infinite";
 
-            const runLecture = setInterval(() => {
-                if (index < lectureData.length) {
-                    term.innerText = lectureData[index].text;
-                    progress.style.width = lectureData[index].p + "%";
-                    percent.innerText = lectureData[index].p + "% Concluído";
-                    index++;
-                } else {
-                    clearInterval(runLecture);
-                    term.style.color = "#10b981";
-                    brain.style.animation = "none";
-                    document.getElementById('cursor').style.display = 'none';
-                    alert("Aula finalizada com sucesso! Você está pronto para a v1.10.0.");
-                }
+    function playNextStep() {
+        if (index < lectureData.length) {
+            const currentStep = lectureData[index];
+            
+            // 1. Atualiza o Texto e a Barra
+            term.innerText = currentStep.text;
+            progress.style.width = currentStep.p + "%";
+            percent.innerText = currentStep.p + "% Concluído";
+
+            // 2. Faz a IA Falar
+            const utterance = new SpeechSynthesisUtterance(currentStep.text);
+            utterance.lang = 'pt-BR'; // Define o idioma da voz
+            utterance.rate = 0.9;     // Velocidade da fala (0.9 é mais calmo e natural)
+            utterance.pitch = 1;      // Tom da voz
+
+            // 3. Só passa para o próximo quando a voz terminar
+            utterance.onend = () => {
+                index++;
+                setTimeout(playNextStep, 1000); // Pausa de 1 segundo entre slides
+            };
+
+            synth.speak(utterance);
+        } else {
+            // Finalização
+            term.style.color = "#10b981";
+            brain.style.animation = "none";
+            document.getElementById('cursor').style.display = 'none';
+            alert("Masterclass finalizada. O conhecimento foi transferido.");
+        }
+    }
+
+    playNextStep();
+}
+
             }, 4000); // 4 segundos por slide para dar tempo de ler
         }
     </script>
