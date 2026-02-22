@@ -3,174 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masterclass IA | CVFLASH Academy</title>
+    <title>Raio-X de Currículo | CVFLASH AI</title>
     <link rel="stylesheet" href="style.css">
     <style>
         body { background: #05070a; color: #fff; font-family: sans-serif; }
+        .container-scanner { max-width: 900px; margin: 50px auto; padding: 20px; }
         
-        .video-container {
-            max-width: 900px;
-            margin: 40px auto;
+        .scanner-box {
             background: #000;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-            overflow: hidden;
-            box-shadow: 0 0 50px rgba(59, 130, 246, 0.2);
-        }
-        
-        /* O segredo: Flexbox na vertical para nada ficar em cima de nada */
-        .video-placeholder {
-            aspect-ratio: 16 / 9;
-            background: radial-gradient(circle, #0f172a 0%, #05070a 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            border: 1px solid #1e293b;
+            border-radius: 24px;
             padding: 40px;
+            box-shadow: 0 0 50px rgba(59, 130, 246, 0.1);
             text-align: center;
         }
 
-        .masterclass-header {
-            margin-bottom: 20px;
-        }
-
-        .module-tag { 
-            color: #3b82f6; 
-            font-weight: 800; 
-            font-size: 0.7rem; 
-            text-transform: uppercase; 
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .ai-core { font-size: 3rem; margin-bottom: 15px; }
-
-        .terminal-text {
-            font-family: 'Courier New', monospace;
+        textarea {
+            width: 100%;
+            height: 200px;
+            background: #0a0d12;
+            border: 1px solid #1e293b;
+            border-radius: 15px;
             color: #3b82f6;
-            font-size: 1.2rem;
-            min-height: 60px;
-            margin-bottom: 25px;
-            max-width: 90%;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            resize: none;
+            outline: none;
         }
 
-        .lesson-info { padding: 30px; background: #0a0d12; border-top: 1px solid rgba(255,255,255,0.1); }
-
-        .progress-area {
-            width: 100%; background: #111; height: 6px;
-            border-radius: 10px; margin: 20px 0; overflow: hidden;
+        .scan-line {
+            width: 100%;
+            height: 2px;
+            background: #3b82f6;
+            box-shadow: 0 0 15px #3b82f6;
+            position: relative;
+            display: none;
+            animation: moveScan 2s infinite linear;
         }
-        #bar { width: 0%; height: 100%; background: #3b82f6; transition: 0.5s; }
 
-        .btn-primary {
+        @keyframes moveScan {
+            0% { top: -200px; }
+            100% { top: 0px; }
+        }
+
+        .results {
+            display: none;
+            margin-top: 30px;
+            text-align: left;
+            background: rgba(59, 130, 246, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .btn-scan {
             background: #3b82f6;
             color: white;
-            border: none;
             padding: 15px 40px;
+            border: none;
             border-radius: 50px;
             font-weight: bold;
             cursor: pointer;
-            font-size: 1rem;
+            transition: 0.3s;
         }
+
+        .btn-scan:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
     </style>
 </head>
 <body>
-    <nav class="navbar"><div class="container"><a href="site_cursos.html" class="logo">FLASH<span>AI</span></a></div></nav>
 
-    <main class="container">
-        <div class="video-container">
-            <div class="video-placeholder">
-                
-                <div class="masterclass-header">
-                    <span class="module-tag">Masterclass v1.10.0</span>
-                    <h2 style="margin: 0; font-size: 1.5rem;">Carreira Internacional com IA</h2>
-                </div>
+<div class="container-scanner">
+    <header style="text-align: center; margin-bottom: 40px;">
+        <span style="color: #3b82f6; font-weight: bold; text-transform: uppercase; font-size: 0.8rem;">Ferramenta v1.10.0</span>
+        <h1 style="font-size: 2.5rem; margin-top: 10px;">Raio-X de Currículo <span style="color: #3b82f6;">IA</span></h1>
+        <p style="color: #94a3b8;">Cole o texto do seu CV abaixo e veja se um robô de RH te aprovaria.</p>
+    </header>
 
-                <div class="ai-core" id="core">🤖</div>
-                
-                <div class="terminal-text" id="typewriter">
-                    SISTEMA PRONTO PARA TRANSMISSÃO
-                </div>
-                
-                <button class="btn-primary" id="play-btn" onclick="runMasterclass()">
-                    INICIAR AULA AGORA
-                </button>
-            </div>
-
-            <div class="lesson-info">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                    <ul style="color: #94a3b8; line-height: 1.6; font-size: 0.85rem; list-style: none; padding:0;">
-                        <li>✅ LinkedIn Global</li>
-                        <li>✅ Tradução Técnica</li>
-                        <li>✅ Verbos de Impacto</li>
-                    </ul>
-                    <ul style="color: #94a3b8; line-height: 1.6; font-size: 0.85rem; list-style: none; padding:0;">
-                        <li>✅ Simulação de Entrevistas</li>
-                        <li>✅ Hacks de Networking</li>
-                        <li>✅ Formato Americano</li>
-                    </ul>
-                </div>
-                
-                <div class="progress-area"><div id="bar"></div></div>
-                <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: #64748b;">
-                    <span id="status">STATUS: STANDBY</span>
-                    <span id="percent">0%</span>
-                </div>
-            </div>
+    <div class="scanner-box">
+        <div id="scanner-ui">
+            <textarea id="cv-text" placeholder="Cole aqui o seu currículo (apenas o texto)..."></textarea>
+            <div class="scan-line" id="line"></div>
+            <br>
+            <button class="btn-scan" onclick="startScan()">INICIAR ANÁLISE ATS</button>
         </div>
-    </main>
 
-    <script>
-        const content = [
-            "Bem-vindo à Masterclass. Vamos preparar o seu perfil para o mercado global.",
-            "Primeiro passo: O LinkedIn internacional exige palavras-chave específicas do seu setor.",
-            "Dica: Substitua 'trabalhei com' por verbos como 'Liderei', 'Implementei' ou 'Otimizei'.",
-            "Módulo dois: Resultados numéricos falam mais alto que descrições de tarefas.",
-            "Exemplo: Em vez de 'vendedor', coloque 'Aumento de 20 por cento na receita anual'.",
-            "Módulo três: Networking. A nossa IA gera convites de conexão personalizados.",
-            "Nunca peça emprego no primeiro contato. Peça uma breve conversa de mentoria.",
-            "Módulo quatro: Pratique a sua fala. Use ferramentas de voz para treinar a pronúncia técnica.",
-            "O CVFLASH v1.10.0 faz todo este trabalho pesado por você em segundos.",
-            "Masterclass concluída. Agora, utilize o gerador para aplicar estas melhorias."
-        ];
+        <div class="results" id="results-box">
+            <h3 id="score" style="color: #3b82f6;">Nota: 0%</h3>
+            <p id="feedback" style="color: #94a3b8; margin: 15px 0;"></p>
+            <hr style="border: 0; border-top: 1px solid #1e293b; margin: 20px 0;">
+            <a href="gerador.html" style="color: #fff; text-decoration: none; font-weight: bold;">🚀 Corrigir agora com o Gerador FLASH</a>
+        </div>
+    </div>
+</div>
 
-        let step = 0;
-        const synth = window.speechSynthesis;
-
-        function runMasterclass() {
-            // "Acorda" o áudio (alguns navegadores precisam desse cancel antes)
-            synth.cancel();
-
-            document.getElementById('play-btn').style.display = 'none';
-            document.getElementById('status').innerText = "STATUS: TRANSMITINDO";
-
-            function next() {
-                if (step < content.length) {
-                    const txt = content[step];
-                    
-                    document.getElementById('typewriter').innerText = txt;
-                    const progressValue = ((step + 1) / content.length * 100);
-                    document.getElementById('bar').style.width = progressValue + "%";
-                    document.getElementById('percent').innerText = Math.round(progressValue) + "%";
-
-                    const msg = new SpeechSynthesisUtterance(txt);
-                    msg.lang = 'pt-BR';
-                    msg.rate = 1.0; 
-
-                    msg.onend = () => {
-                        step++;
-                        setTimeout(next, 1000); 
-                    };
-
-                    synth.speak(msg);
-                } else {
-                    document.getElementById('typewriter').innerText = "TRANSMISSÃO CONCLUÍDA.";
-                    document.getElementById('status').innerText = "STATUS: FINALIZADO";
-                    document.getElementById('core').innerText = "🎯";
-                }
-            }
-            next();
+<script>
+    function startScan() {
+        const text = document.getElementById('cv-text').value;
+        if (text.length < 50) {
+            alert("Por favor, cole um texto de currículo mais completo.");
+            return;
         }
-    </script>
+
+        const line = document.getElementById('line');
+        const results = document.getElementById('results-box');
+        const scoreTxt = document.getElementById('score');
+        const feedback = document.getElementById('feedback');
+
+        line.style.display = 'block';
+        
+        // Simulação de "Pensamento" da IA
+        setTimeout(() => {
+            line.style.display = 'none';
+            results.style.display = 'block';
+            
+            // Lógica simples de nota (só para diversão)
+            let nota = 45; 
+            let msg = "Identificamos que seu currículo carece de palavras-chave técnicas e métricas de resultado. Um robô de RH (ATS) teria dificuldade em te classificar.";
+
+            if (text.toLowerCase().includes("liderança") || text.toLowerCase().includes("gerenciei")) {
+                nota += 20;
+            }
+
+            scoreTxt.innerText = "Nota de Compatibilidade: " + nota + "%";
+            feedback.innerText = msg;
+
+            // Voz da IA comentando o resultado
+            const synth = window.speechSynthesis;
+            const utterance = new SpeechSynthesisUtterance("Análise concluída. Sua pontuação é de " + nota + " por cento. Recomendamos otimização imediata.");
+            utterance.lang = 'pt-BR';
+            synth.speak(utterance);
+
+        }, 3000);
+    }
+</script>
+
 </body>
 </html>
