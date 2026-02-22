@@ -6,42 +6,6 @@
     <title>Raio-X de Currículo | CVFLASH AI</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Camada de Bloqueio */
-.locked-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(5, 7, 10, 0.8); /* Fundo escuro semi-transparente */
-    backdrop-filter: blur(8px); /* Efeito de vidro embaçado */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
-    border-radius: 24px;
-}
-
-.lock-card {
-    background: #0a0d12;
-    padding: 30px;
-    border: 1px solid #3b82f6;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
-}
-
-.version-badge {
-    background: #3b82f6;
-    color: white;
-    padding: 5px 12px;
-    border-radius: 50px;
-    font-size: 0.7rem;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
         body { background: #05070a; color: #fff; font-family: 'Segoe UI', sans-serif; }
         .container-scanner { max-width: 800px; margin: 50px auto; padding: 20px; }
         
@@ -52,7 +16,43 @@
             padding: 40px;
             box-shadow: 0 0 50px rgba(59, 130, 246, 0.1);
             text-align: center;
-            position: relative;
+            position: relative; /* Necessário para a overlay funcionar */
+            overflow: hidden;
+        }
+
+        /* Camada de Bloqueio v1.10.0 */
+        .locked-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 7, 10, 0.7);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .lock-card {
+            background: #0a0d12;
+            padding: 30px;
+            border: 1px solid #3b82f6;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .version-badge {
+            background: #3b82f6;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
         textarea {
@@ -68,27 +68,6 @@
             padding: 15px 40px; border-radius: 50px;
             font-weight: bold; cursor: pointer; transition: 0.3s;
         }
-
-        .progress-bar-container {
-            width: 100%; height: 8px; background: #111;
-            border-radius: 10px; margin: 20px 0; overflow: hidden;
-            display: none;
-        }
-
-        #bar { width: 0%; height: 100%; background: #3b82f6; transition: 0.3s; }
-
-        .result-card {
-            display: none; margin-top: 30px; padding: 20px;
-            background: rgba(239, 68, 68, 0.05);
-            border: 1px solid #ef4444; border-radius: 15px;
-        }
-
-        .score-circle {
-            width: 100px; height: 100px; border: 5px solid #ef4444;
-            border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; font-size: 1.5rem; font-weight: bold;
-            margin: 0 auto 20px; color: #ef4444;
-        }
     </style>
 </head>
 <body>
@@ -100,100 +79,26 @@
     </div>
 
     <div class="scanner-box">
-        <div class="scanner-box">
-    <div class="locked-overlay">
-        <div class="lock-card">
-            <span class="version-badge">Lançamento v1.10.0</span>
-            <h2 style="margin: 15px 0 10px 0;">Acesso Restrito</h2>
-            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px;">
-                O Diagnóstico de IA está sendo calibrado.<br> 
-                Disponível na próxima grande atualização.
-            </p>
-            <div style="font-size: 2rem;">🔒</div>
-        </div>
-    </div>
-
-    <div id="input-ui" style="opacity: 0.3; pointer-events: none;">
-        <p>Cole o texto do seu currículo para análise ATS:</p>
-        <textarea id="cv-input" placeholder="Bloqueado..."></textarea>
-        <button class="btn-scan">INICIAR VARREDURA</button>
-    </div>
-    
-    </div>
-
-        <div id="input-ui">
-            <p style="color: #94a3b8; margin-bottom: 20px;">Cole o texto do seu currículo para análise ATS:</p>
-            <textarea id="cv-input" placeholder="Ex: Engenheiro de Software com 5 anos de experiência..."></textarea>
-            <button class="btn-scan" onclick="fazerRaioX()">INICIAR VARREDURA</button>
-        </div>
-
-        <div id="loading-ui" style="display: none;">
-            <h3 id="status-text">Iniciando IA...</h3>
-            <div class="progress-bar-container" id="p-container" style="display: block;">
-                <div id="bar"></div>
+        <div class="locked-overlay">
+            <div class="lock-card">
+                <span class="version-badge">Lançamento v1.10.0</span>
+                <h2 style="margin: 15px 0 10px 0;">Acesso Restrito</h2>
+                <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px;">
+                    O Diagnóstico de IA está sendo calibrado.<br> 
+                    Disponível na próxima grande atualização.
+                </p>
+                <div style="font-size: 2rem;">🔒</div>
             </div>
         </div>
 
-        <div id="result-ui" class="result-card">
-            <div class="score-circle" id="nota-final">0%</div>
-            <h2 style="color: #ef4444; margin-bottom: 10px;">REPROVADO PELO SISTEMA</h2>
-            <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 20px;">
-                Identificamos baixo índice de palavras-chave e falta de métricas de impacto.
-            </p>
-            <a href="gerador.html" class="btn-scan" style="text-decoration: none; display: inline-block;">CORRIGIR COM CVFLASH</a>
+        <div id="input-ui" style="pointer-events: none; user-select: none;">
+            <p style="color: #94a3b8; margin-bottom: 20px;">Cole o texto do seu currículo para análise ATS:</p>
+            <textarea placeholder="Bloqueado para calibração..."></textarea>
+            <button class="btn-scan" style="background: #222;">INICIAR VARREDURA</button>
         </div>
-    </div>
+
+        </div>
 </div>
-
-<script>
-    function fazerRaioX() {
-        const texto = document.getElementById('cv-input').value;
-        if(texto.length < 20) {
-            alert("Por favor, cole um texto mais longo.");
-            return;
-        }
-
-        document.getElementById('input-ui').style.display = 'none';
-        document.getElementById('loading-ui').style.display = 'block';
-
-        const bar = document.getElementById('bar');
-        const status = document.getElementById('status-text');
-        const etapas = ["Lendo texto...", "Extraindo competências...", "Cruzando dados...", "Gerando nota..."];
-        let i = 0;
-
-        const loop = setInterval(() => {
-            if(i < etapas.length) {
-                status.innerText = etapas[i];
-                bar.style.width = ((i + 1) * 25) + "%";
-                i++;
-            } else {
-                clearInterval(loop);
-                exibirResultado();
-            }
-        }, 1000);
-    }
-
-    function exibirResultado() {
-        document.getElementById('loading-ui').style.display = 'none';
-        document.getElementById('result-ui').style.display = 'block';
-        
-        // Voz da IA
-        const synth = window.speechSynthesis;
-        const frase = new SpeechSynthesisUtterance("Análise completa. Sua nota é trinta e oito por cento. Currículo reprovado.");
-        frase.lang = 'pt-BR';
-        synth.speak(frase);
-
-        // Animação da Nota
-        let nota = 0;
-        const notaAlvo = 38;
-        const intervalNota = setInterval(() => {
-            if(nota <= notaAlvo) {
-                document.getElementById('nota-final').innerText = nota + "%";
-                nota++;
-            } else { clearInterval(intervalNota); }
-        }, 30);
-    }
-</script>
 
 </body>
 </html>
