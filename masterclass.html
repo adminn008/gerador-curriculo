@@ -6,8 +6,8 @@
     <title>Raio-X de Currículo | CVFLASH AI</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        body { background: #05070a; color: #fff; font-family: sans-serif; }
-        .container-scanner { max-width: 900px; margin: 50px auto; padding: 20px; }
+        body { background: #05070a; color: #fff; font-family: 'Segoe UI', sans-serif; }
+        .container-scanner { max-width: 800px; margin: 50px auto; padding: 20px; }
         
         .scanner-box {
             background: #000;
@@ -16,191 +16,125 @@
             padding: 40px;
             box-shadow: 0 0 50px rgba(59, 130, 246, 0.1);
             text-align: center;
+            position: relative;
         }
 
         textarea {
-            width: 100%;
-            height: 200px;
-            background: #0a0d12;
-            border: 1px solid #1e293b;
-            border-radius: 15px;
-            color: #3b82f6;
-            padding: 20px;
-            font-family: 'Courier New', monospace;
-            margin: 20px 0;
-            resize: none;
-            outline: none;
-        }
-
-        .scan-line {
-            width: 100%;
-            height: 2px;
-            background: #3b82f6;
-            box-shadow: 0 0 15px #3b82f6;
-            position: relative;
-            display: none;
-            animation: moveScan 2s infinite linear;
-        }
-
-        @keyframes moveScan {
-            0% { top: -200px; }
-            100% { top: 0px; }
-        }
-
-        .results {
-            display: none;
-            margin-top: 30px;
-            text-align: left;
-            background: rgba(59, 130, 246, 0.05);
-            padding: 20px;
-            border-radius: 15px;
-            border-left: 4px solid #3b82f6;
+            width: 100%; height: 180px;
+            background: #0a0d12; border: 1px solid #1e293b;
+            border-radius: 15px; color: #3b82f6;
+            padding: 20px; font-family: monospace;
+            margin-bottom: 20px; resize: none; outline: none;
         }
 
         .btn-scan {
-            background: #3b82f6;
-            color: white;
-            padding: 15px 40px;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
+            background: #3b82f6; color: white; border: none;
+            padding: 15px 40px; border-radius: 50px;
+            font-weight: bold; cursor: pointer; transition: 0.3s;
         }
 
-        .btn-scan:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(59, 130, 246, 0.4); }
+        .progress-bar-container {
+            width: 100%; height: 8px; background: #111;
+            border-radius: 10px; margin: 20px 0; overflow: hidden;
+            display: none;
+        }
+
+        #bar { width: 0%; height: 100%; background: #3b82f6; transition: 0.3s; }
+
+        .result-card {
+            display: none; margin-top: 30px; padding: 20px;
+            background: rgba(239, 68, 68, 0.05);
+            border: 1px solid #ef4444; border-radius: 15px;
+        }
+
+        .score-circle {
+            width: 100px; height: 100px; border: 5px solid #ef4444;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; font-size: 1.5rem; font-weight: bold;
+            margin: 0 auto 20px; color: #ef4444;
+        }
     </style>
 </head>
 <body>
 
 <div class="container-scanner">
-    <header style="text-align: center; margin-bottom: 40px;">
-        <span style="color: #3b82f6; font-weight: bold; text-transform: uppercase; font-size: 0.8rem;">Ferramenta v1.10.0</span>
-        <h1 style="font-size: 2.5rem; margin-top: 10px;">Raio-X de Currículo <span style="color: #3b82f6;">IA</span></h1>
-        <p style="color: #94a3b8;">Cole o texto do seu CV abaixo e veja se um robô de RH te aprovaria.</p>
-    </header>
+    <div style="text-align: center; margin-bottom: 30px;">
+        <a href="site_cursos.html" style="color: #3b82f6; text-decoration: none;">← Voltar para Academy</a>
+        <h1 style="margin-top: 20px;">Diagnóstico de Currículo <span style="color:#3b82f6">IA</span></h1>
+    </div>
 
     <div class="scanner-box">
-    <div id="input-area">
-        <textarea id="cv-text" placeholder="Cole o seu currículo completo aqui..."></textarea>
-        <br>
-        <button class="btn-scan" onclick="startScan()">ANALISAR COM IA</button>
-    </div>
+        <div id="input-ui">
+            <p style="color: #94a3b8; margin-bottom: 20px;">Cole o texto do seu currículo para análise ATS:</p>
+            <textarea id="cv-input" placeholder="Ex: Engenheiro de Software com 5 anos de experiência..."></textarea>
+            <button class="btn-scan" onclick="fazerRaioX()">INICIAR VARREDURA</button>
+        </div>
 
-    <div id="analyzing" style="display:none; padding: 40px;">
-        <div class="ai-core" style="animation: pulse 0.5s infinite alternate;">🔍</div>
-        <h3 id="loading-step">Iniciando Varredura...</h3>
-        <div class="progress-area"><div id="bar" style="width: 0%; height: 100%; background: #3b82f6;"></div></div>
-    </div>
-
-    <div id="results-box" style="display:none;">
-        <div style="display: flex; justify-content: center; gap: 30px; align-items: center; margin-bottom: 30px;">
-            <div id="grade-circle" style="width: 120px; height: 120px; border-radius: 50%; border: 8px solid #ef4444; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; color: #ef4444;">
-                0%
-            </div>
-            <div style="text-align: left;">
-                <h2 id="verdict">REPROVADO</h2>
-                <p style="color: #94a3b8;">Sua nota ATS está abaixo da média global.</p>
+        <div id="loading-ui" style="display: none;">
+            <h3 id="status-text">Iniciando IA...</h3>
+            <div class="progress-bar-container" id="p-container" style="display: block;">
+                <div id="bar"></div>
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left;">
-            <div style="background: rgba(239, 68, 68, 0.1); padding: 15px; border-radius: 10px; border: 1px solid #ef4444;">
-                <small style="color: #ef4444;">⚠️ FALHA DETECTADA</small>
-                <p style="font-size: 0.8rem; margin-top: 5px;">Ausência de métricas de desempenho (KPIs).</p>
-            </div>
-            <div style="background: rgba(239, 68, 68, 0.1); padding: 15px; border-radius: 10px; border: 1px solid #ef4444;">
-                <small style="color: #ef4444;">⚠️ RISCO ALTO</small>
-                <p style="font-size: 0.8rem; margin-top: 5px;">Palavras-chave técnicas não encontradas.</p>
-            </div>
+        <div id="result-ui" class="result-card">
+            <div class="score-circle" id="nota-final">0%</div>
+            <h2 style="color: #ef4444; margin-bottom: 10px;">REPROVADO PELO SISTEMA</h2>
+            <p style="font-size: 0.9rem; color: #94a3b8; margin-bottom: 20px;">
+                Identificamos baixo índice de palavras-chave e falta de métricas de impacto.
+            </p>
+            <a href="gerador.html" class="btn-scan" style="text-decoration: none; display: inline-block;">CORRIGIR COM CVFLASH</a>
         </div>
-        
-        <br>
-        <a href="gerador.html" class="btn-scan" style="text-decoration: none; display: inline-block; background: #10b981;">CORRIGIR AGORA</a>
     </div>
 </div>
 
 <script>
-    function startScan() {
-        const text = document.getElementById('cv-text').value;
-        if(text.length < 50) return alert("Texto muito curto para análise.");
-
-        document.getElementById('input-area').style.display = 'none';
-        document.getElementById('analyzing').style.display = 'block';
-
-        const steps = ["Quebrando criptografia...", "Analisando keywords...", "Comparando com vagas na Gringa...", "Finalizando relatório..."];
-        let currentStep = 0;
-
-        const interval = setInterval(() => {
-            if(currentStep < steps.length) {
-                document.getElementById('loading-step').innerText = steps[currentStep];
-                document.getElementById('bar').style.width = ((currentStep + 1) * 25) + "%";
-                currentStep++;
-            } else {
-                clearInterval(interval);
-                showFinalResult();
-            }
-        }, 1200);
-    }
-
-    function showFinalResult() {
-        document.getElementById('analyzing').style.display = 'none';
-        document.getElementById('results-box').style.display = 'block';
-        
-        // Efeito de som e voz
-        const synth = window.speechSynthesis;
-        const utter = new SpeechSynthesisUtterance("Análise completa. Sua nota é quarenta e dois por cento. Reprovado pelos critérios de recrutamento atuais.");
-        utter.lang = 'pt-BR';
-        synth.speak(utter);
-
-        // Animação da nota subindo
-        let n = 0;
-        const timer = setInterval(() => {
-            if(n <= 42) {
-                document.getElementById('grade-circle').innerText = n + "%";
-                n++;
-            } else { clearInterval(timer); }
-        }, 300);
-    }
-</script>
-
-    function startScan() {
-        const text = document.getElementById('cv-text').value;
-        if (text.length < 50) {
-            alert("Por favor, cole um texto de currículo mais completo.");
+    function fazerRaioX() {
+        const texto = document.getElementById('cv-input').value;
+        if(texto.length < 20) {
+            alert("Por favor, cole um texto mais longo.");
             return;
         }
 
-        const line = document.getElementById('line');
-        const results = document.getElementById('results-box');
-        const scoreTxt = document.getElementById('score');
-        const feedback = document.getElementById('feedback');
+        document.getElementById('input-ui').style.display = 'none';
+        document.getElementById('loading-ui').style.display = 'block';
 
-        line.style.display = 'block';
-        
-        // Simulação de "Pensamento" da IA
-        setTimeout(() => {
-            line.style.display = 'none';
-            results.style.display = 'block';
-            
-            // Lógica simples de nota (só para diversão)
-            let nota = 45; 
-            let msg = "Identificamos que seu currículo carece de palavras-chave técnicas e métricas de resultado. Um robô de RH (ATS) teria dificuldade em te classificar.";
+        const bar = document.getElementById('bar');
+        const status = document.getElementById('status-text');
+        const etapas = ["Lendo texto...", "Extraindo competências...", "Cruzando dados...", "Gerando nota..."];
+        let i = 0;
 
-            if (text.toLowerCase().includes("liderança") || text.toLowerCase().includes("gerenciei")) {
-                nota += 20;
+        const loop = setInterval(() => {
+            if(i < etapas.length) {
+                status.innerText = etapas[i];
+                bar.style.width = ((i + 1) * 25) + "%";
+                i++;
+            } else {
+                clearInterval(loop);
+                exibirResultado();
             }
+        }, 1000);
+    }
 
-            scoreTxt.innerText = "Nota de Compatibilidade: " + nota + "%";
-            feedback.innerText = msg;
+    function exibirResultado() {
+        document.getElementById('loading-ui').style.display = 'none';
+        document.getElementById('result-ui').style.display = 'block';
+        
+        // Voz da IA
+        const synth = window.speechSynthesis;
+        const frase = new SpeechSynthesisUtterance("Análise completa. Sua nota é trinta e oito por cento. Currículo reprovado.");
+        frase.lang = 'pt-BR';
+        synth.speak(frase);
 
-            // Voz da IA comentando o resultado
-            const synth = window.speechSynthesis;
-            const utterance = new SpeechSynthesisUtterance("Análise concluída. Sua pontuação é de " + nota + " por cento. Recomendamos otimização imediata.");
-            utterance.lang = 'pt-BR';
-            synth.speak(utterance);
-
-        }, 3000);
+        // Animação da Nota
+        let nota = 0;
+        const notaAlvo = 38;
+        const intervalNota = setInterval(() => {
+            if(nota <= notaAlvo) {
+                document.getElementById('nota-final').innerText = nota + "%";
+                nota++;
+            } else { clearInterval(intervalNota); }
+        }, 30);
     }
 </script>
 
