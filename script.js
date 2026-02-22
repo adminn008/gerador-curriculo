@@ -134,16 +134,3 @@ if (campoHabilidades) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const modeloNome = params.get('modelo');
-
-    if (modeloNome) {
-        // Exemplo: Se tiveres um botão com id="modelo-vendas", ele clica sozinho
-        const btn = document.getElementById('modelo-' + modeloNome);
-        if (btn) {
-            btn.click();
-            console.log("Layout de " + modeloNome + " aplicado!");
-        }
-    }
-});
