@@ -6,169 +6,49 @@
     <title>Masterclass IA | CVFLASH Academy</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        :root {
-            --terminal-green: #10b981;
-            --ai-blue: #3b82f6;
-        }
-
-        body { background: #05070a; color: #fff; }
-
-        .masterclass-wrapper {
-            max-width: 1100px;
-            margin: 50px auto;
-            padding: 20px;
-        }
-
-        /* Container do Player de IA */
-        .ai-player-container {
-            background: #000;
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 0 100px rgba(59, 130, 246, 0.15);
-        }
-
-        .screen-canvas {
-            aspect-ratio: 16 / 9;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(circle at center, #0f172a 0%, #05070a 100%);
-            padding: 40px;
-            position: relative;
-        }
-
-        /* Efeito de Scanline (TV Antiga/Hacker) */
-        .screen-canvas::before {
-            content: " ";
-            position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            background-size: 100% 4px, 3px 100%;
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        .ai-brain-visual {
-            width: 120px;
-            height: 120px;
-            border: 2px solid var(--ai-blue);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-            animation: pulse-border 2s infinite;
-        }
-
-        @keyframes pulse-border {
-            0% { transform: scale(1); box-shadow: 0 0 0px var(--ai-blue); }
-            50% { transform: scale(1.05); box-shadow: 0 0 30px var(--ai-blue); }
-            100% { transform: scale(1); box-shadow: 0 0 0px var(--ai-blue); }
-        }
-
-        .terminal-loader {
-            font-family: 'Courier New', monospace;
-            color: var(--ai-blue);
-            font-size: 1.4rem;
-            text-align: center;
-            min-height: 60px;
-        }
-
-        .status-bar {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            display: flex;
-            justify-content: space-between;
-            font-family: monospace;
-            font-size: 0.7rem;
-            color: var(--text-dim);
-            text-transform: uppercase;
-        }
-
-        .lesson-details {
-            padding: 40px;
-            background: var(--surface);
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
-            border-top: 1px solid var(--border);
-        }
-
-        .btn-start {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 50px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: 0.3s;
-            z-index: 20;
-        }
-
-        .btn-start:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4); }
-
-        .typing-cursor {
-            display: inline-block;
-            width: 10px;
-            height: 24px;
-            background: var(--ai-blue);
-            margin-left: 5px;
-            animation: blink 0.8s infinite;
-        }
-
+        :root { --terminal-green: #10b981; --ai-blue: #3b82f6; }
+        body { background: #05070a; color: #fff; font-family: sans-serif; }
+        .masterclass-wrapper { max-width: 1100px; margin: 50px auto; padding: 20px; }
+        .ai-player-container { background: #000; border: 1px solid var(--border); border-radius: 24px; overflow: hidden; position: relative; box-shadow: 0 0 100px rgba(59, 130, 246, 0.15); }
+        .screen-canvas { aspect-ratio: 16 / 9; display: flex; flex-direction: column; justify-content: center; align-items: center; background: radial-gradient(circle at center, #0f172a 0%, #05070a 100%); padding: 40px; position: relative; min-height: 400px; }
+        .ai-brain-visual { width: 100px; height: 100px; border: 2px solid var(--ai-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 30px; transition: 0.3s; }
+        .terminal-loader { font-family: 'Courier New', monospace; color: var(--ai-blue); font-size: 1.4rem; text-align: center; min-height: 80px; max-width: 80%; }
+        .btn-start { background: var(--primary); color: white; border: none; padding: 15px 40px; border-radius: 50px; font-weight: 800; cursor: pointer; transition: 0.3s; font-size: 1.1rem; }
+        .btn-start:hover { transform: scale(1.05); background: #2563eb; }
+        .typing-cursor { display: inline-block; width: 10px; height: 24px; background: var(--ai-blue); margin-left: 5px; animation: blink 0.8s infinite; }
         @keyframes blink { 50% { opacity: 0; } }
-
-        @media (max-width: 768px) { .lesson-details { grid-template-columns: 1fr; } }
+        @keyframes pulse-border { 0% { box-shadow: 0 0 0px var(--ai-blue); } 50% { box-shadow: 0 0 30px var(--ai-blue); } 100% { box-shadow: 0 0 0px var(--ai-blue); } }
+        .lesson-details { padding: 40px; background: #0a0d12; display: grid; grid-template-columns: 2fr 1fr; gap: 40px; border-top: 1px solid #1e293b; }
+        #progress-bar { width: 0%; height: 100%; background: var(--ai-blue); border-radius: 10px; transition: 0.5s; }
     </style>
 </head>
 <body>
 
     <div class="masterclass-wrapper">
-        <header style="margin-bottom: 40px;">
-            <a href="site_cursos.html" style="color: var(--primary); text-decoration: none; font-weight: bold;">← VOLTAR À ACADEMY</a>
-            <h1 style="font-size: 2.5rem; margin-top: 10px;">Masterclass: <span style="color: var(--ai-blue);">Algoritmos de Seleção</span></h1>
-            <p style="color: var(--text-dim);">Entenda como a IA dos recrutadores lê o seu currículo em 2026.</p>
+        <header style="margin-bottom: 30px;">
+            <a href="site_cursos.html" style="color: var(--primary); text-decoration: none;">← VOLTAR</a>
+            <h1 style="margin-top: 10px;">Masterclass <span style="color: var(--ai-blue);">AI Edition</span></h1>
         </header>
 
         <div class="ai-player-container">
-            <div class="screen-canvas" id="screen">
-                <div class="ai-brain-visual" id="brain">
-                    <span style="font-size: 2.5rem;">🤖</span>
-                </div>
-                
-                <div class="terminal-loader" id="terminal">
-                    SISTEMA PRONTO PARA INICIALIZAÇÃO
-                </div>
+            <div class="screen-canvas">
+                <div class="ai-brain-visual" id="brain">🤖</div>
+                <div class="terminal-loader" id="terminal">SISTEMA PRONTO</div>
                 <div class="typing-cursor" id="cursor"></div>
-
+                <br>
                 <button class="btn-start" id="btn-play" onclick="startMasterclass()">INICIAR AULA IA</button>
-
-                <div class="status-bar">
-                    <span>Stream: Encrypted 256-bit</span>
-                    <span>AI Model: CV-Flash-v1.10.0</span>
-                </div>
             </div>
 
             <div class="lesson-details">
                 <div>
-                    <h3>Sobre esta Masterclass</h3>
-                    <p style="color: var(--text-dim); margin-top: 15px; line-height: 1.6;">
-                        Nesta aula automatizada, nossa Inteligência Artificial decompõe as estruturas de currículos que foram aprovados em processos seletivos de alta complexidade. Aprenda a hierarquia de informações e o uso correto de verbos de impacto sem precisar de design complexo.
-                    </p>
+                    <h3>Conteúdo v1.10.0</h3>
+                    <p style="color: #94a3b8; margin-top: 10px;">Aprende como a nossa tecnologia de ponta analisa currículos em milissegundos.</p>
                 </div>
-                <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 15px;">
-                    <h4 style="margin-bottom: 10px;">Progresso</h4>
-                    <div style="width: 100%; background: #222; height: 8px; border-radius: 10px;">
-                        <div id="progress" style="width: 0%; background: var(--ai-blue); height: 100%; border-radius: 10px; transition: 1s;"></div>
+                <div>
+                    <div style="width: 100%; background: #1e293b; height: 10px; border-radius: 10px; overflow: hidden;">
+                        <div id="progress-bar"></div>
                     </div>
-                    <p id="percent" style="font-size: 0.8rem; margin-top: 10px; color: var(--text-dim);">0% Concluído</p>
+                    <p id="percent" style="font-size: 0.8rem; margin-top: 10px; color: #94a3b8;">Progresso: 0%</p>
                 </div>
             </div>
         </div>
@@ -176,63 +56,57 @@
 
     <script>
         const lectureData = [
-    { text: "Sincronizando com banco de dados global de recrutamento...", p: 15 },
-    { text: "Módulo um: O que o robô procura primeiro no seu currículo?", p: 30 },
-    { text: "Dica de ouro: Use palavras-chave extraídas da descrição da vaga.", p: 45 },
-    { text: "Módulo dois: O segredo das métricas numéricas e resultados.", p: 60 },
-    { text: "Atenção: Evite gráficos de barra para medir as suas habilidades.", p: 75 },
-    { text: "Módulo três: Formatação limpa garante uma leitura rápida.", p: 90 },
-    { text: "Aula concluída com sucesso. Agora, aplique estes conceitos no seu gerador.", p: 100 }
-];
+            { text: "Conectando ao banco de dados global de recrutamento...", p: 15 },
+            { text: "Módulo um: O que o robô procura primeiro no seu currículo?", p: 35 },
+            { text: "Dica de ouro: Use palavras-chave extraídas da descrição da vaga.", p: 55 },
+            { text: "Módulo dois: O segredo das métricas numéricas e resultados.", p: 75 },
+            { text: "Atenção: Evite gráficos de barra para medir as suas habilidades.", p: 90 },
+            { text: "Aula concluída com sucesso. Agora, aplique isto no seu gerador.", p: 100 }
+        ];
 
-let index = 0;
-const synth = window.speechSynthesis; // Ativa a voz do navegador
+        let index = 0;
+        const synth = window.speechSynthesis;
 
-function startMasterclass() {
-    const btn = document.getElementById('btn-play');
-    const term = document.getElementById('terminal');
-    const progress = document.getElementById('progress');
-    const percent = document.getElementById('percent');
-    const brain = document.getElementById('brain');
+        function startMasterclass() {
+            const btn = document.getElementById('btn-play');
+            const term = document.getElementById('terminal');
+            const progress = document.getElementById('progress-bar');
+            const percent = document.getElementById('percent');
+            const brain = document.getElementById('brain');
 
-    btn.style.display = 'none';
-    brain.style.animation = "pulse-border 0.5s infinite";
+            // Esconde o botão para começar
+            btn.style.display = 'none';
+            brain.style.animation = "pulse-border 1s infinite";
 
-    function playNextStep() {
-        if (index < lectureData.length) {
-            const currentStep = lectureData[index];
-            
-            // 1. Atualiza o Texto e a Barra
-            term.innerText = currentStep.text;
-            progress.style.width = currentStep.p + "%";
-            percent.innerText = currentStep.p + "% Concluído";
+            function playNextStep() {
+                if (index < lectureData.length) {
+                    const currentStep = lectureData[index];
+                    
+                    term.innerText = currentStep.text;
+                    progress.style.width = currentStep.p + "%";
+                    percent.innerText = "Progresso: " + currentStep.p + "%";
 
-            // 2. Faz a IA Falar
-            const utterance = new SpeechSynthesisUtterance(currentStep.text);
-            utterance.lang = 'pt-BR'; // Define o idioma da voz
-            utterance.rate = 0.9;     // Velocidade da fala (0.9 é mais calmo e natural)
-            utterance.pitch = 1;      // Tom da voz
+                    // Configura a voz
+                    const utterance = new SpeechSynthesisUtterance(currentStep.text);
+                    utterance.lang = 'pt-PT'; // Voz de Portugal para combinar contigo
+                    utterance.rate = 0.9;
 
-            // 3. Só passa para o próximo quando a voz terminar
-            utterance.onend = () => {
-                index++;
-                setTimeout(playNextStep, 1000); // Pausa de 1 segundo entre slides
-            };
+                    // Quando a voz acabar, passa para o próximo
+                    utterance.onend = () => {
+                        index++;
+                        setTimeout(playNextStep, 800);
+                    };
 
-            synth.speak(utterance);
-        } else {
-            // Finalização
-            term.style.color = "#10b981";
-            brain.style.animation = "none";
-            document.getElementById('cursor').style.display = 'none';
-            alert("Masterclass finalizada. O conhecimento foi transferido.");
-        }
-    }
+                    synth.speak(utterance);
+                } else {
+                    term.style.color = "#10b981";
+                    term.innerText = "MASTERCLASS CONCLUÍDA";
+                    brain.style.animation = "none";
+                    document.getElementById('cursor').style.display = 'none';
+                }
+            }
 
-    playNextStep();
-}
-
-            }, 4000); // 4 segundos por slide para dar tempo de ler
+            playNextStep();
         }
     </script>
 </body>
