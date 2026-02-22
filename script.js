@@ -136,18 +136,14 @@ if (campoHabilidades) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
-    const idModelo = params.get('modelo');
+    const modeloNome = params.get('modelo');
 
-    if (idModelo) {
-        // Exemplo: se você tiver botões de seleção de modelo no gerador
-        // com uma classe chamada .btn-layout
-        const todosModelos = document.querySelectorAll('.btn-layout');
-        
-        if (todosModelos[idModelo - 1]) {
-            todosModelos[idModelo - 1].click(); // Ativa o modelo correspondente (1 a 6)
-            
-            // Opcional: Avisar o usuário
-            console.log("Modelo " + idModelo + " carregado com sucesso!");
+    if (modeloNome) {
+        // Exemplo: Se tiveres um botão com id="modelo-vendas", ele clica sozinho
+        const btn = document.getElementById('modelo-' + modeloNome);
+        if (btn) {
+            btn.click();
+            console.log("Layout de " + modeloNome + " aplicado!");
         }
     }
 });
