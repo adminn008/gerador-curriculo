@@ -81,23 +81,89 @@
     </header>
 
     <div class="scanner-box">
-        <div id="scanner-ui">
-            <textarea id="cv-text" placeholder="Cole aqui o seu currículo (apenas o texto)..."></textarea>
-            <div class="scan-line" id="line"></div>
-            <br>
-            <button class="btn-scan" onclick="startScan()">INICIAR ANÁLISE ATS</button>
+    <div id="input-area">
+        <textarea id="cv-text" placeholder="Cole o seu currículo completo aqui..."></textarea>
+        <br>
+        <button class="btn-scan" onclick="startScan()">ANALISAR COM IA</button>
+    </div>
+
+    <div id="analyzing" style="display:none; padding: 40px;">
+        <div class="ai-core" style="animation: pulse 0.5s infinite alternate;">🔍</div>
+        <h3 id="loading-step">Iniciando Varredura...</h3>
+        <div class="progress-area"><div id="bar" style="width: 0%; height: 100%; background: #3b82f6;"></div></div>
+    </div>
+
+    <div id="results-box" style="display:none;">
+        <div style="display: flex; justify-content: center; gap: 30px; align-items: center; margin-bottom: 30px;">
+            <div id="grade-circle" style="width: 120px; height: 120px; border-radius: 50%; border: 8px solid #ef4444; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; color: #ef4444;">
+                0%
+            </div>
+            <div style="text-align: left;">
+                <h2 id="verdict">REPROVADO</h2>
+                <p style="color: #94a3b8;">Sua nota ATS está abaixo da média global.</p>
+            </div>
         </div>
 
-        <div class="results" id="results-box">
-            <h3 id="score" style="color: #3b82f6;">Nota: 0%</h3>
-            <p id="feedback" style="color: #94a3b8; margin: 15px 0;"></p>
-            <hr style="border: 0; border-top: 1px solid #1e293b; margin: 20px 0;">
-            <a href="gerador.html" style="color: #fff; text-decoration: none; font-weight: bold;">🚀 Corrigir agora com o Gerador FLASH</a>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left;">
+            <div style="background: rgba(239, 68, 68, 0.1); padding: 15px; border-radius: 10px; border: 1px solid #ef4444;">
+                <small style="color: #ef4444;">⚠️ FALHA DETECTADA</small>
+                <p style="font-size: 0.8rem; margin-top: 5px;">Ausência de métricas de desempenho (KPIs).</p>
+            </div>
+            <div style="background: rgba(239, 68, 68, 0.1); padding: 15px; border-radius: 10px; border: 1px solid #ef4444;">
+                <small style="color: #ef4444;">⚠️ RISCO ALTO</small>
+                <p style="font-size: 0.8rem; margin-top: 5px;">Palavras-chave técnicas não encontradas.</p>
+            </div>
         </div>
+        
+        <br>
+        <a href="gerador.html" class="btn-scan" style="text-decoration: none; display: inline-block; background: #10b981;">CORRIGIR AGORA</a>
     </div>
 </div>
 
 <script>
+    function startScan() {
+        const text = document.getElementById('cv-text').value;
+        if(text.length < 50) return alert("Texto muito curto para análise.");
+
+        document.getElementById('input-area').style.display = 'none';
+        document.getElementById('analyzing').style.display = 'block';
+
+        const steps = ["Quebrando criptografia...", "Analisando keywords...", "Comparando com vagas na Gringa...", "Finalizando relatório..."];
+        let currentStep = 0;
+
+        const interval = setInterval(() => {
+            if(currentStep < steps.length) {
+                document.getElementById('loading-step').innerText = steps[currentStep];
+                document.getElementById('bar').style.width = ((currentStep + 1) * 25) + "%";
+                currentStep++;
+            } else {
+                clearInterval(interval);
+                showFinalResult();
+            }
+        }, 1200);
+    }
+
+    function showFinalResult() {
+        document.getElementById('analyzing').style.display = 'none';
+        document.getElementById('results-box').style.display = 'block';
+        
+        // Efeito de som e voz
+        const synth = window.speechSynthesis;
+        const utter = new SpeechSynthesisUtterance("Análise completa. Sua nota é quarenta e dois por cento. Reprovado pelos critérios de recrutamento atuais.");
+        utter.lang = 'pt-BR';
+        synth.speak(utter);
+
+        // Animação da nota subindo
+        let n = 0;
+        const timer = setInterval(() => {
+            if(n <= 42) {
+                document.getElementById('grade-circle').innerText = n + "%";
+                n++;
+            } else { clearInterval(timer); }
+        }, 300);
+    }
+</script>
+
     function startScan() {
         const text = document.getElementById('cv-text').value;
         if (text.length < 50) {
