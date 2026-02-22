@@ -6,118 +6,42 @@
     <title>IA Mentor | Flash Cursos</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .chat-container {
-            max-width: 800px;
-            margin: 40px auto;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            height: 600px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-
-        .chat-header {
-            padding: 20px;
-            background: rgba(59, 130, 246, 0.1);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .ai-status {
-            width: 10px;
-            height: 10px;
-            background: #10b981;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #10b981;
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .message {
-            max-width: 80%;
-            padding: 12px 18px;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        .ai-msg {
-            background: rgba(255,255,255,0.05);
-            align-self: flex-start;
-            border-bottom-left-radius: 2px;
-            color: #fff;
-        }
-
-        .user-msg {
-            background: var(--primary);
-            align-self: flex-end;
-            border-bottom-right-radius: 2px;
-            color: #fff;
-        }
-
-        .chat-input-area {
-            padding: 20px;
-            border-top: 1px solid var(--border);
-            display: flex;
-            gap: 10px;
-        }
-
-        #user-input {
-            flex: 1;
-            background: rgba(0,0,0,0.2);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 12px;
-            color: #fff;
-            outline: none;
-        }
-
-        #user-input:focus { border-color: var(--primary); }
-
-        .typing { font-size: 0.8rem; color: var(--text-dim); margin-left: 20px; display: none; }
+        /* (Mantendo seus estilos de chat anteriores, mas adicionando melhorias) */
+        .chat-container { max-width: 800px; margin: 40px auto; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; display: flex; flex-direction: column; height: 600px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .chat-header { padding: 20px; background: rgba(59, 130, 246, 0.1); border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 15px; }
+        .chat-messages { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; background: #080a0f; }
+        .message { max-width: 85%; padding: 12px 18px; border-radius: 15px; font-size: 0.95rem; line-height: 1.5; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .ai-msg { background: #1a1f29; align-self: flex-start; border-bottom-left-radius: 2px; color: #e0e0e0; border: 1px solid var(--border); }
+        .user-msg { background: var(--primary); align-self: flex-end; border-bottom-right-radius: 2px; color: #fff; }
+        .chat-input-area { padding: 20px; border-top: 1px solid var(--border); display: flex; gap: 10px; background: var(--surface); }
+        #user-input { flex: 1; background: #000; border: 1px solid var(--border); border-radius: 10px; padding: 12px; color: #fff; outline: none; }
+        .typing { font-size: 0.8rem; color: var(--primary); margin: 0 0 10px 20px; display: none; font-weight: bold; }
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container nav-content">
-            <a href="site_cursos.html" class="logo">FLASH<span>AI</span></a>
-            <span style="color: var(--text-dim); font-size: 0.7rem;">CURSO: OTIMIZAÇÃO COM IA</span>
-        </div>
-    </nav>
 
     <main class="container">
         <div class="chat-container">
             <div class="chat-header">
-                <div class="ai-status"></div>
+                <div style="width: 10px; height: 10px; background: #10b981; border-radius: 50%; box-shadow: 0 0 10px #10b981;"></div>
                 <div>
-                    <h4 style="margin:0">Flash Mentor IA</h4>
-                    <small style="color: var(--text-dim)">Especialista em Recrutamento</small>
+                    <h4 style="margin:0">Flash Mentor v1.3.2</h4>
+                    <small style="color: var(--text-dim)">Analisando sua mensagem em tempo real...</small>
                 </div>
             </div>
 
             <div class="chat-messages" id="chat-box">
                 <div class="message ai-msg">
-                    Olá! Sou sua IA de mentoria. Hoje vamos aprender como usar Inteligência Artificial para melhorar seu currículo no CVFLASH. Qual sua maior dúvida hoje?
+                    Olá! Eu sou o Mentor IA do CVFLASH. Eu analiso o contexto do que você escreve. Pode me falar sobre sua profissão ou uma dúvida específica do seu currículo?
                 </div>
             </div>
 
-            <div class="typing" id="typing">IA está processando...</div>
+            <div class="typing" id="typing">O Mentor está digitando...</div>
 
             <div class="chat-input-area">
-                <input type="text" id="user-input" placeholder="Pergunte algo sobre seu currículo...">
-                <button class="btn-primary" onclick="sendMessage()" style="width: auto; padding: 0 20px;">ENVIAR</button>
+                <input type="text" id="user-input" placeholder="Ex: Sou vendedor e quero destacar minhas metas..." autocomplete="off">
+                <button class="btn-primary" onclick="sendMessage()" style="width: auto; padding: 0 25px;">ENVIAR</button>
             </div>
         </div>
     </main>
@@ -128,21 +52,21 @@
         const typing = document.getElementById('typing');
 
         function sendMessage() {
-            const text = userInput.value;
+            const text = userInput.value.trim();
             if (!text) return;
 
-            // Adiciona mensagem do usuário
             appendMessage(text, 'user-msg');
             userInput.value = '';
-
-            // Simula resposta da IA
-            typing.style.display = 'block';
             
+            typing.style.display = 'block';
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Simula o tempo de "pensamento" da IA
             setTimeout(() => {
                 typing.style.display = 'none';
-                const response = getAIResponse(text);
+                const response = processAI(text);
                 appendMessage(response, 'ai-msg');
-            }, 1500);
+            }, 1200);
         }
 
         function appendMessage(text, className) {
@@ -153,18 +77,42 @@
             chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        function getAIResponse(input) {
-            const lowInput = input.toLowerCase();
-            if (lowInput.includes('foto')) return "No Brasil, a recomendação é usar foto apenas se a vaga solicitar (como modelos ou recepção). Caso contrário, deixe o foco nas suas competências!";
-            if (lowInput.includes('venda')) return "Para vendas, use verbos de ação: 'Bati metas', 'Gerenciei carteira', 'Aumentei faturamento'. Isso brilha nos olhos do recrutador!";
-            if (lowInput.includes('obrigado')) return "De nada! Continue o curso e use o CVFLASH para colocar essas dicas em prática.";
-            return "Interessante! Para essa área, o CVFLASH v1.3.2 tem os melhores templates. Você já tentou quantificar seus resultados com números?";
+        // LÓGICA DE RESPOSTA DINÂMICA (IA MOCK)
+        function processAI(input) {
+            const msg = input.toLowerCase();
+            
+            // 1. Identifica a Profissão
+            let cargo = "na sua área";
+            if(msg.includes("venda") || msg.includes("vendedor")) cargo = "de Vendas";
+            if(msg.includes("adm") || msg.includes("administrativo")) cargo = "Administrativa";
+            if(msg.includes("ti") || msg.includes("tech") || msg.includes("programador")) cargo = "de Tecnologia";
+            if(msg.includes("logistica")) cargo = "de Logística";
+
+            // 2. Gera resposta baseada em palavras-chave dinâmicas
+            if (msg.includes("ola") || msg.includes("oi")) {
+                return "Olá! Como posso ajudar você a melhorar seu currículo hoje?";
+            }
+            
+            if (msg.includes("objetivo") || msg.includes("resumo")) {
+                return `Para um currículo ${cargo}, o segredo do resumo é focar no seu maior resultado. Você já tentou colocar uma frase como 'Especialista em reduzir custos em X%'?`;
+            }
+
+            if (msg.includes("experiencia") || msg.includes("trabalho")) {
+                return `Entendi que você quer falar sobre sua experiência ${cargo}. Tente usar verbos de impacto como 'Liderei', 'Implementei' ou 'Desenvolvi'. Quer que eu te ajude com uma frase específica?`;
+            }
+
+            if (msg.includes("competencia") || msg.includes("habilidade")) {
+                return `No setor ${cargo}, as habilidades mais buscadas hoje são adaptabilidade e domínio de ferramentas digitais. Quais softwares você domina?`;
+            }
+
+            // 3. Resposta de "Eco" (Faz parecer que ela entendeu o que você digitou)
+            const palavras = input.split(' ');
+            const ultimaPalavra = palavras[palavras.length - 1];
+            
+            return `Você mencionou '${ultimaPalavra}'. Isso é muito relevante para um perfil ${cargo}. No CVFLASH v1.3.2, temos templates que destacam justamente esse ponto. O que mais você gostaria de ajustar?`;
         }
 
-        // Enviar com Enter
-        userInput.addEventListener("keypress", (e) => {
-            if (e.key === "Enter") sendMessage();
-        });
+        userInput.addEventListener("keypress", (e) => { if (e.key === "Enter") sendMessage(); });
     </script>
 </body>
 </html>
