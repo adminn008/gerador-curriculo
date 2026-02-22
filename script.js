@@ -53,7 +53,7 @@ function gerarPDF() {
 
 // 6. TIMER
 function startCountdown() {
-    const targetDate = new Date("March 01, 2026 00:00:00").getTime();
+    const targetDate = new Date("March 22, 2026 00:00:00").getTime();
     setInterval(() => {
         const now = new Date().getTime();
         const distance = targetDate - now;
