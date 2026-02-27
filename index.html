@@ -3,96 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClockPro | Relógio Online, Cronômetro e Gestão de Tempo</title>
-    <meta name="description" content="Relógio online preciso com segundos, cronômetro profissional, timer pomodoro e alarmes configuráveis. A ferramenta definitiva para produtividade.">
+    <title>ClockPro | Relógio, Cronômetro e Timer Online</title>
+    <meta name="description" content="Relógio online preciso, cronômetro com voltas e timer pomodoro. A ferramenta gratuita definitiva para sua produtividade.">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 </head>
-<body class="light-theme">
-
+<body>
     <header>
         <nav class="container">
             <div class="logo">Clock<span>Pro</span></div>
             <ul class="nav-tabs">
-                <li class="tab-link active" data-tab="relogio-tab">Relógio</li>
-                <li class="tab-link" data-tab="cronometro-tab">Cronômetro</li>
-                <li class="tab-link" data-tab="timer-tab">Timer</li>
-                <li class="tab-link" data-tab="alarme-tab">Alarmes</li>
+                <li class="tab-link active" data-tab="relogio">Relógio</li>
+                <li class="tab-link" data-tab="cronometro">Cronômetro</li>
+                <li class="tab-link" data-tab="timer">Timer</li>
+                <li class="tab-link" data-tab="alarme">Alarmes</li>
             </ul>
-            <button id="theme-toggle" aria-label="Alternar Tema">🌓</button>
+            <button id="theme-toggle">🌓</button>
         </nav>
     </header>
 
     <main class="container">
-        <div class="ad-slot ad-top">
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-SEU-ID" data-ad-slot="12345" data-ad-format="auto"></ins>
-        </div>
+        <div class="ad-slot">Anúncio Recomendado</div>
 
-        <section id="main-content">
-            <div id="relogio-tab" class="tab-content active">
-                <div class="display-container">
-                    <h1 id="clock-display">00:00:00</h1>
-                    <p id="date-display">-- de -- de ----</p>
-                </div>
-                <div class="world-clocks" id="world-clocks">
-                    </div>
+        <section id="relogio" class="tab-content active">
+            <div class="display-card">
+                <h1 id="clock-display">00:00:00</h1>
+                <p id="date-display">Carregando data...</p>
             </div>
+        </section>
 
-            <div id="cronometro-tab" class="tab-content">
-                <div class="display-container">
-                    <h2 class="mono" id="chrono-display">00:00:00.00</h2>
-                    <div class="controls">
-                        <button id="chrono-start" class="btn-success">Iniciar</button>
-                        <button id="chrono-lap" class="btn-info">Volta</button>
-                        <button id="chrono-reset" class="btn-danger">Zerar</button>
-                    </div>
-                    <ul id="laps-list"></ul>
+        <section id="cronometro" class="tab-content">
+            <div class="display-card">
+                <h2 class="mono" id="chrono-display">00:00:00.00</h2>
+                <div class="controls">
+                    <button id="chrono-start" class="btn-primary">Iniciar</button>
+                    <button id="chrono-lap">Volta</button>
+                    <button id="chrono-reset" class="btn-danger">Zerar</button>
                 </div>
+                <ul id="laps-list"></ul>
             </div>
+        </section>
 
-            <div id="timer-tab" class="tab-content">
-                <div class="display-container">
-                    <h2 class="mono" id="timer-display">00:00:00</h2>
-                    <div class="timer-inputs">
-                        <input type="number" id="t-hour" placeholder="HH" min="0" max="23">
-                        <input type="number" id="t-min" placeholder="MM" min="0" max="59">
-                        <input type="number" id="t-sec" placeholder="SS" min="0" max="59">
-                    </div>
-                    <div class="controls">
-                        <button id="timer-start" class="btn-success">Iniciar</button>
-                        <button id="timer-reset" class="btn-danger">Zerar</button>
-                    </div>
+        <section id="timer" class="tab-content">
+            <div class="display-card">
+                <h2 class="mono" id="timer-display">00:00:00</h2>
+                <div class="inputs">
+                    <input type="number" id="t-min" placeholder="Minutos" min="0">
                 </div>
-            </div>
-
-            <div id="alarme-tab" class="tab-content">
-                <div class="display-container">
-                    <h2>Meus Alarmes</h2>
-                    <div class="alarm-form">
-                        <input type="time" id="alarm-time">
-                        <button id="add-alarm" class="btn-success">Adicionar</button>
-                    </div>
-                    <div id="alarms-list"></div>
+                <div class="controls">
+                    <button id="timer-start" class="btn-primary">Iniciar</button>
+                    <button id="timer-reset" class="btn-danger">Zerar</button>
                 </div>
             </div>
         </section>
 
-        <div class="ad-slot ad-bottom">
-            <p>Recomendado: <a href="#">Curso de Gestão de Tempo e Foco Profissional</a></p>
-        </div>
+        <section id="alarme" class="tab-content">
+            <div class="display-card">
+                <h2>Meus Alarmes</h2>
+                <div class="alarm-form">
+                    <input type="time" id="alarm-time">
+                    <button id="add-alarm" class="btn-primary">Adicionar</button>
+                </div>
+                <div id="alarms-list"></div>
+            </div>
+        </section>
+
+        <div class="ad-slot">Links de Afiliados</div>
     </main>
 
     <footer class="container">
-        <div class="footer-links">
-            <a href="pages/sobre.html">Sobre</a>
-            <a href="pages/contato.html">Contato</a>
-            <a href="pages/faq.html">FAQ</a>
-            <a href="pages/privacy.html">Privacidade</a>
-        </div>
-        <p>&copy; 2026 ClockPro - O seu tempo em boas mãos.</p>
+        <a href="privacy.html">Privacidade</a> | <a href="faq.html">FAQ</a>
+        <p>&copy; 2026 ClockPro</p>
     </footer>
 
-    <audio id="alarm-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3" preload="auto"></audio>
+    <audio id="alarm-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3"></audio>
     <script src="script.js"></script>
 </body>
 </html>
