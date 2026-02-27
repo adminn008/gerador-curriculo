@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.seusite.com/</loc>
+    <lastmod>2026-02-27</lastmod>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://www.seusite.com/blog/tecnica-pomodoro.html</loc>
+    <lastmod>2026-02-27</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.seusite.com/blog/importancia-do-sono.html</loc>
+    <lastmod>2026-02-27</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://www.seusite.com/pages/privacy.html</loc>
+    <lastmod>2026-02-27</lastmod>
+    <priority>0.30</priority>
+  </url>
+  <url>
+    <loc>https://www.seusite.com/pages/faq.html</loc>
+    <lastmod>2026-02-27</lastmod>
+    <priority>0.30</priority>
+  </url>
+</urlset>
