@@ -1,4 +1,4 @@
-// --- SISTEMA DE NAVEGAÇÃO ENTRE ABAS ---
+// NAVEGAÇÃO ENTRE ABAS
 const tabs = document.querySelectorAll('.tab-link');
 const contents = document.querySelectorAll('.tab-content');
 
@@ -11,82 +11,51 @@ tabs.forEach(tab => {
     });
 });
 
-// --- RELÓGIO PRINCIPAL ---
-function updateTime() {
+// RELÓGIO
+setInterval(() => {
     const now = new Date();
     document.getElementById('clock-display').innerText = now.toLocaleTimeString('pt-BR');
     document.getElementById('date-display').innerText = now.toLocaleDateString('pt-BR', { dateStyle: 'full' });
     checkAlarms(now);
-}
-setInterval(updateTime, 1000);
+}, 1000);
 
-// --- CRONÔMETRO ---
-let chronoTime = 0, chronoInterval;
-const chronoDisplay = document.getElementById('chrono-display');
-
+// CRONÔMETRO
+let chronoTime = 0, chronoInt;
 document.getElementById('chrono-start').onclick = function() {
-    if (this.innerText === "Iniciar") {
+    if(this.innerText === "Iniciar") {
         this.innerText = "Pausar";
-        chronoInterval = setInterval(() => {
-            chronoTime += 10;
-            let d = new Date(chronoTime);
-            chronoDisplay.innerText = d.toISOString().substr(11, 11);
-        }, 10);
+        chronoInt = setInterval(() => { chronoTime += 10; updateChrono(); }, 10);
     } else {
         this.innerText = "Iniciar";
-        clearInterval(chronoInterval);
+        clearInterval(chronoInt);
     }
 };
-
+function updateChrono() {
+    let d = new Date(chronoTime);
+    document.getElementById('chrono-display').innerText = d.toISOString().substr(11, 11);
+}
 document.getElementById('chrono-reset').onclick = () => {
-    clearInterval(chronoInterval);
-    chronoTime = 0;
-    chronoDisplay.innerText = "00:00:00.00";
+    clearInterval(chronoInt); chronoTime = 0; updateChrono();
     document.getElementById('chrono-start').innerText = "Iniciar";
 };
 
-// --- GESTÃO DE ALARMES (LocalStorage) ---
+// ALARMES
 let alarms = JSON.parse(localStorage.getItem('alarms')) || [];
-const alarmSound = document.getElementById('alarm-sound');
-
 document.getElementById('add-alarm').onclick = () => {
     const time = document.getElementById('alarm-time').value;
-    if (time) {
-        alarms.push({ time, active: true });
-        localStorage.setItem('alarms', JSON.stringify(alarms));
-        renderAlarms();
-    }
+    if(time) { alarms.push(time); localStorage.setItem('alarms', JSON.stringify(alarms)); renderAlarms(); }
 };
-
 function renderAlarms() {
-    const list = document.getElementById('alarms-list');
-    list.innerHTML = alarms.map((a, i) => `
-        <div class="alarm-item">
-            <span>${a.time}</span>
-            <button onclick="removeAlarm(${i})">Excluir</button>
-        </div>
-    `).join('');
+    document.getElementById('alarms-list').innerHTML = alarms.map((t, i) => 
+        `<div class="alarm-item"><span>${t}</span><button onclick="removeAlarm(${i})">X</button></div>`).join('');
 }
-
-function removeAlarm(i) {
-    alarms.splice(i, 1);
-    localStorage.setItem('alarms', JSON.stringify(alarms));
-    renderAlarms();
-}
+window.removeAlarm = (i) => { alarms.splice(i, 1); localStorage.setItem('alarms', JSON.stringify(alarms)); renderAlarms(); };
 
 function checkAlarms(now) {
-    const current = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-    alarms.forEach(a => {
-        if (a.time === current && a.active) {
-            alarmSound.play();
-            alert("ALARME!");
-            a.active = false; // Evita tocar repetidamente no mesmo minuto
-        }
-    });
+    const cur = now.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
+    if(alarms.includes(cur)) { document.getElementById('alarm-sound').play(); }
 }
 
-// --- TEMA E CARREGAMENTO ---
-document.getElementById('theme-toggle').onclick = () => {
-    document.body.classList.toggle('dark-theme');
-};
+// DARK MODE
+document.getElementById('theme-toggle').onclick = () => document.body.classList.toggle('dark-theme');
 renderAlarms();
