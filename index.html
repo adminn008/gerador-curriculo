@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1116856125939176"
-     crossorigin="anonymous"></script>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClockPro | Relógio, Cronômetro e Timer Online</title>
-    <meta name="description" content="Relógio online preciso, cronômetro com voltas e timer pomodoro. A ferramenta gratuita definitiva para sua produtividade.">
+    <title>ClockPro Premium | Gestão de Tempo</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 </head>
-<body>
-    <header>
+<body class="light-theme">
+    <div id="bg-overlay"></div>
+    
+    <header id="main-header">
         <nav class="container">
-            <div class="logo">Clock<span>Pro</span></div>
+            <div class="logo-group">
+                <div class="logo">Clock<span>Pro</span></div>
+                <span id="user-location">Detectando localização...</span>
+            </div>
             <ul class="nav-tabs">
                 <li class="tab-link active" data-tab="relogio">Relógio</li>
                 <li class="tab-link" data-tab="cronometro">Cronômetro</li>
                 <li class="tab-link" data-tab="timer">Timer</li>
                 <li class="tab-link" data-tab="alarme">Alarmes</li>
             </ul>
-            <button id="theme-toggle">🌓</button>
+            <div class="header-actions">
+                <button id="fullscreen-btn" title="Tela Cheia">📺</button>
+                <button id="theme-toggle">🌓</button>
+            </div>
         </nav>
     </header>
 
     <main class="container">
-        <div class="ad-slot">Anúncio Recomendado</div>
-
         <section id="relogio" class="tab-content active">
-            <div class="display-card">
+            <div class="display-card main-display">
                 <h1 id="clock-display">00:00:00</h1>
-                <p id="date-display">Carregando data...</p>
+                <p id="date-display">-- de -- de ----</p>
             </div>
         </section>
 
@@ -39,44 +41,40 @@
             <div class="display-card">
                 <h2 class="mono" id="chrono-display">00:00:00.00</h2>
                 <div class="controls">
-                    <button id="chrono-start" class="btn-primary">Iniciar</button>
-                    <button id="chrono-lap">Volta</button>
+                    <button id="chrono-start" class="btn-success">Iniciar</button>
                     <button id="chrono-reset" class="btn-danger">Zerar</button>
                 </div>
-                <ul id="laps-list"></ul>
             </div>
         </section>
 
-        <section id="timer" class="tab-content">
-            <div class="display-card">
-                <h2 class="mono" id="timer-display">00:00:00</h2>
-                <div class="inputs">
-                    <input type="number" id="t-min" placeholder="Minutos" min="0">
-                </div>
-                <div class="controls">
-                    <button id="timer-start" class="btn-primary">Iniciar</button>
-                    <button id="timer-reset" class="btn-danger">Zerar</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="alarme" class="tab-content">
-            <div class="display-card">
-                <h2>Meus Alarmes</h2>
-                <div class="alarm-form">
-                    <input type="time" id="alarm-time">
-                    <button id="add-alarm" class="btn-primary">Adicionar</button>
-                </div>
-                <div id="alarms-list"></div>
-            </div>
-        </section>
-
-        <div class="ad-slot">Links de Afiliados</div>
+        <div class="bg-selector-pill">
+            <span>Fundo:</span>
+            <button onclick="changeBG('none')">Limpo</button>
+            <button onclick="changeBG('nature')">Natureza</button>
+            <button onclick="changeBG('city')">Cidade</button>
+            <button onclick="changeBG('abstract')">Abstrato</button>
+        </div>
     </main>
 
-    <footer class="container">
-        <a href="privacy.html">Privacidade</a> | <a href="faq.html">FAQ</a>
-        <p>&copy; 2026 ClockPro</p>
+    <footer id="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4>Ferramentas</h4>
+                <a href="#" onclick="switchTab('relogio')">Hora Certa</a>
+                <a href="#" onclick="switchTab('timer')">Pomodoro</a>
+            </div>
+            <div class="footer-col">
+                <h4>Institucional</h4>
+                <a href="pages/sobre.html">Sobre Nós</a>
+                <a href="pages/privacy.html">Privacidade</a>
+            </div>
+            <div class="footer-col">
+                <h4>Suporte</h4>
+                <a href="pages/faq.html">Dúvidas</a>
+                <a href="pages/contato.html">Contato</a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2026 ClockPro Premium - Todos os direitos reservados.</p>
     </footer>
 
     <audio id="alarm-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3"></audio>
