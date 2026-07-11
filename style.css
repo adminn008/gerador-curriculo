@@ -1,0 +1,101 @@
+/* Configurações Globais e Cores */
+:root {
+  --primary: #2563eb;
+  --dark-bg: #0f172a;
+  --card-bg: #1e293b;
+  --input-bg: #0f172a;
+  --text-white: #f8fafc;
+  --text-muted: #94a3b8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+body { background-color: var(--dark-bg); color: var(--text-white); display: flex; flex-direction: column; min-height: 100vh; }
+
+/* Header e Abas de Navegação */
+.app-header { background-color: var(--card-bg); display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; border-bottom: 1px solid #334155; flex-wrap: wrap; gap: 15px; }
+.logo { font-size: 20px; font-weight: bold; color: var(--text-white); }
+.logo span { color: var(--primary); }
+.nav-tabs { display: flex; gap: 10px; }
+.tab-btn { background: transparent; border: none; color: var(--text-muted); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 14px; transition: 0.2s; }
+.tab-btn:hover, .tab-btn.active { color: var(--text-white); background-color: var(--primary); }
+
+/* Conteúdo Principal */
+.main-content { flex: 1; padding: 25px; display: flex; flex-direction: column; }
+.tab-content { display: none; width: 100%; height: 100%; }
+.tab-content.active { display: block; }
+
+/* Espaço de Trabalho (Editor + Preview) */
+.workspace { display: flex; gap: 25px; height: 100%; }
+.editor-side { width: 45%; display: flex; flex-direction: column; gap: 20px; }
+.preview-side { width: 55%; display: flex; justify-content: center; align-items: flex-start; overflow-y: auto; background-color: #334155; padding: 20px; border-radius: 12px; }
+
+/* Cards de Configuração */
+.card { background-color: var(--card-bg); padding: 20px; border-radius: 10px; border: 1px solid #334155; }
+h3 { font-size: 22px; }
+h4 { margin-bottom: 15px; border-left: 4px solid var(--primary); padding-left: 8px; font-size: 16px; }
+.subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 15px; }
+
+label { display: block; font-size: 12px; font-weight: bold; color: var(--text-muted); margin: 12px 0 6px; text-transform: uppercase; }
+input, textarea, select { width: 100%; padding: 12px; background-color: var(--input-bg); border: 1px solid #334155; color: white; border-radius: 6px; font-size: 14px; outline: none; }
+input:focus, textarea:focus { border-color: var(--primary); }
+
+/* Barras e Componentes Auxiliares */
+.meter-bg { background-color: #475569; height: 8px; border-radius: 4px; overflow: hidden; margin-top: 5px; }
+.meter-fill { background-color: #10b981; height: 100%; width: 10%; transition: width 0.3s; }
+.color-picker { display: flex; gap: 10px; }
+.color-dot { width: 28px; height: 28px; border-radius: 50%; border: 2px solid white; cursor: pointer; }
+.chips-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.chip { background-color: #334155; color: white; border: none; padding: 6px 12px; border-radius: 20px; font-size: 12px; cursor: pointer; }
+.chip:hover { background-color: var(--primary); }
+.terms-check { display: flex; align-items: flex-start; gap: 10px; margin-top: 10px; }
+.terms-check input { width: auto; margin-top: 3px; }
+.check-label { font-size: 13px; color: var(--text-muted); text-transform: none; font-weight: normal; }
+.check-label a { color: var(--primary); text-decoration: none; }
+
+.btn-main { background-color: var(--primary); color: white; border: none; padding: 15px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+.btn-main:hover { opacity: 0.9; }
+
+/* Páginas de Texto Limpo */
+.text-container { background-color: var(--card-bg); padding: 30px; border-radius: 12px; max-width: 800px; margin: 0 auto; line-height: 1.7; }
+.text-container h2 { margin-bottom: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 8px; }
+.text-container p { margin-bottom: 15px; color: #cbd5e1; }
+
+/* Layout da Aba Premium */
+.premium-layout { display: flex; gap: 30px; background-color: var(--card-bg); padding: 40px; border-radius: 12px; border: 2px solid #eab308; max-width: 1000px; margin: 0 auto; }
+.premium-info { width: 50%; }
+.premium-info h2 { color: #eab308; margin-bottom: 15px; }
+.benefit-list { list-style: none; margin: 20px 0; }
+.benefit-list li { margin-bottom: 12px; font-size: 15px; }
+.price-tag { font-size: 18px; font-weight: bold; }
+.price-tag span { color: #10b981; font-size: 24px; }
+.premium-pay { width: 50%; background-color: var(--dark-bg); padding: 25px; border-radius: 8px; }
+.steps { padding-left: 20px; line-height: 1.8; }
+.pix-key-box { background: black; color: #10b981; padding: 12px; font-family: monospace; border-radius: 6px; text-align: center; margin: 15px 0; cursor: pointer; font-size: 14px; border: 1px dashed #10b981; }
+
+/* --- FOLHA A4 DO CURRÍCULO --- */
+.a4-sheet { width: 210mm; min-height: 297mm; background: white; color: #333; padding: 40px; border-radius: 4px; display: flex; flex-direction: column; }
+.cv-header { border-bottom: 3px solid var(--primary); padding-bottom: 15px; margin-bottom: 20px; }
+.cv-name { font-size: 26px; font-weight: 800; color: #111; text-transform: uppercase; }
+.cv-title { font-size: 16px; color: var(--primary); font-weight: 600; margin-top: 4px; }
+.cv-contacts { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px; font-size: 12px; color: #555; }
+.cv-sec-title { font-size: 14px; font-weight: 700; color: var(--primary); text-transform: uppercase; margin: 20px 0 8px; border-bottom: 1px solid #e2e8f0; padding-bottom: 4px; }
+.cv-body { font-size: 13px; line-height: 1.6; color: #334155; white-space: pre-line; }
+
+/* RESPONSIVIDADE (Telas Menores / Celulares) */
+@media (max-width: 968px) {
+  .app-header { justify-content: center; text-align: center; }
+  .workspace { flex-direction: column; }
+  .editor-side { width: 100%; }
+  .preview-side { width: 100%; overflow-x: auto; display: block; }
+  .a4-sheet { width: 210mm; } /* Mantém formato A4 no scroll horizontal no celular */
+  .premium-layout { flex-direction: column; padding: 20px; }
+  .premium-info, .premium-pay { width: 100%; }
+}
+
+/* INTERCEPTAÇÃO DE IMPRESSÃO (PDF) */
+@media print {
+  body, .main-content, .workspace, .preview-side { background: white !important; padding: 0 !important; margin: 0 !important; display: block !important; }
+  .app-header, .editor-side { display: none !important; }
+  .a4-sheet { box-shadow: none !important; border: none !important; width: 100% !important; padding: 0 !important; }
+}
+
