@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criador de Currículos Ultra Pro</title>
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --bg-color: #0f172a;
+      --panel-bg: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); display: flex; height: 100vh; overflow: hidden; }
+
+    /* Layout Principal */
+    .container { display: flex; width: 100%; height: 100%; }
+    .editor-panel { width: 45%; padding: 25px; overflow-y: auto; background-color: var(--panel-bg); border-right: 1px solid #334155; }
+    .preview-panel { width: 55%; padding: 40px; overflow-y: auto; background-color: #334155; display: flex; justify-content: center; }
+
+    h2, h3 { margin-bottom: 15px; color: #fff; }
+    .section { background: #111827; padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 1px solid #374151; }
+    
+    label { display: block; margin: 10px 0 5px; font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+    input, textarea, select { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #4b5563; background: #1f2937; color: #fff; font-size: 14px; outline: none; }
+    input:focus, textarea:focus { border-color: var(--primary-color); }
+
+    /* Barra de Força do Currículo */
+    .strength-meter { margin-bottom: 20px; background: #475569; height: 10px; border-radius: 5px; overflow: hidden; }
+    .strength-bar { background: #10b981; height: 100%; width: 10%; transition: width 0.3s; }
+
+    /* Badges/Tags de Habilidades Rápidas */
+    .tag-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .tag-btn { background: #374151; color: #fff; border: none; padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 12px; transition: 0.2s; }
+    .tag-btn:hover { background: var(--primary-color); }
+
+    /* Customização de Cores */
+    .color-picker { display: flex; gap: 10px; margin-bottom: 15px; }
+    .color-opt { width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; }
+    .color-opt:hover { transform: scale(1.1); }
+
+    /* Botão IA Simulado */
+    .ai-btn { background: linear-gradient(135deg, #a855f7, #6366f1); color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; margin-top: 5px; font-weight: bold; width: 100%; }
+
+    /* Área VIP do PIX */
+    .vip-box { background: linear-gradient(135deg, #1e1b4b, #311042); border: 2px solid #eab308; padding: 20px; border-radius: 12px; margin-top: 25px; text-align: center; }
+    .vip-box h3 { color: #eab308; }
+    .pix-key { background: #000; padding: 10px; border-radius: 6px; font-family: monospace; color: #10b981; font-size: 15px; margin: 10px 0; word-break: break-all; }
+    .action-btn { background: #10b981; color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; font-size: 16px; margin-top: 10px; }
+    .action-btn:hover { background: #059669; }
+
+    /* --- ESTILO DO CURRÍCULO (FOLHA A4) --- */
+    .cv-sheet { width: 210mm; min-height: 297mm; background: white; color: #333; padding: 40px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); position: relative; }
+    .cv-header { border-bottom: 3px solid var(--primary-color); padding-bottom: 15px; margin-bottom: 20px; }
+    .cv-name { font-size: 28px; color: #111; text-transform: uppercase; font-weight: 800; }
+    .cv-title { font-size: 16px; color: var(--primary-color); font-weight: 600; margin-top: 5px; }
+    .cv-contacts { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px; font-size: 12px; color: #555; }
+    .cv-section-title { font-size: 16px; color: var(--primary-color); text-transform: uppercase; font-weight: 700; margin: 20px 0 10px; border-bottom: 1px solid #ddd; padding-bottom: 3px; }
+    .cv-text { font-size: 13px; line-height: 1.6; color: #444; white-space: pre-line; }
+
+    /* Regras de Impressão / Salvamento em PDF */
+    @media print {
+      body { background: white; }
+      .editor-panel { display: none; }
+      .preview-panel { width: 100%; padding: 0; background: white; }
+      .cv-sheet { box-shadow: none; width: 100%; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="editor-panel">
+      <h2>Curriculo PRO Maker 🚀</h2>
+      
+      <label>Força do Currículo</label>
+      <div class="strength-meter">
+        <div class="strength-bar" id="strengthBar"></div>
+      </div>
+
+      <div class="section">
+        <h3>1. Identidade Visual</h3>
+        <label>Cor de Destaque</label>
+        <div class="color-picker">
+          <div class="color-opt" style="background: #2563eb;" onclick="changeColor('#2563eb')"></div>
+          <div class="color-opt" style="background: #10b981;" onclick="changeColor('#10b981')"></div>
+          <div class="color-opt" style="background: #ef4444;" onclick="changeColor('#ef4444')"></div>
+          <div class="color-opt" style="background: #111827;" onclick="changeColor('#111827')"></div>
+          <div class="color-opt" style="background: #f59e0b;" onclick="changeColor('#f59e0b')"></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>2. Dados Pessoais</h3>
+        <label>Nome Completo</label>
+        <input type="text" id="inName" placeholder="Ex: Wellington Silva" oninput="updateCV()">
+        
+        <label>Profissão / Cargo Alvo</label>
+        <input type="text" id="inTitle" placeholder="Ex: Desenvolvedor Front-End" oninput="updateCV()">
+        
+        <label>E-mail</label>
+        <input type="email" id="inEmail" placeholder="seuemail@email.com" oninput="updateCV()">
+        
+        <label>Telefone</label>
+        <input type="text" id="inPhone" placeholder="(41) 99999-9999" oninput="updateCV()">
+
+        <label>Cidade/Estado</label>
+        <input type="text" id="inLocation" placeholder="São José dos Pinhais - PR" oninput="updateCV()">
+      </div>
+
+      <div class="section">
+        <h3>3. Resumo Profissional</h3>
+        <textarea id="inSummary" rows="4" placeholder="Fale um pouco sobre sua carreira..." oninput="updateCV()"></textarea>
+        <button class="ai-btn" onclick="generateAI()">&nbsp;✨ Otimizar Resumo com Modelo Inteligente</button>
+      </div>
+
+      <div class="section">
+        <h3>4. Experiência Profissional</h3>
+        <textarea id="inExp" rows="5" placeholder="Empresa - Cargo (Ano de Entrada - Saída)&#10;• Descreva o que você fazia lá..." oninput="updateCV()"></textarea>
+        
+        <label>Palavras-Chave Recomendadas para o RH (Clique para Adicionar):</label>
+        <div class="tag-container">
+          <button class="tag-btn" onclick="addText('inExp', '• Foco em resultados substanciais\n')">Foco em Resultados</button>
+          <button class="tag-btn" onclick="addText('inExp', '• Liderança ativa de projetos corporativos\n')">Liderança de Projetos</button>
+          <button class="tag-btn" onclick="addText('inExp', '• Otimização contínua de processos internos\n')">Otimização de Processos</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>5. Competências e Habilidades</h3>
+        <textarea id="inSkills" rows="3" placeholder="Digite suas competências separadas por vírgula..." oninput="updateCV()"></textarea>
+        
+        <label>Habilidades Populares Rápidas:</label>
+        <div class="tag-container">
+          <button class="tag-btn" onclick="addSkill('Excel Avançado')">+ Excel</button>
+          <button class="tag-btn" onclick="addSkill('JavaScript')">+ JavaScript</button>
+          <button class="tag-btn" onclick="addSkill('Comunicação Assertiva')">+ Comunicação</button>
+          <button class="tag-btn" onclick="addSkill('Trabalho em Equipe')">+ Equipe</button>
+        </div>
+      </div>
+
+      <button class="action-btn" style="background: #2563eb;" onclick="window.print()">📥 Baixar PDF Grátis</button>
+
+      <div class="vip-box">
+        <h3>👑 Serviço Premium: Revisão Humana Profissional</h3>
+        <p style="font-size: 13px; color: var(--text-muted); margin: 8px 0 15px;">
+          Quer que um especialista analise, reescreva e encaixe as melhores palavras-chave para você conseguir a vaga? Eu faço isso para você!
+        </p>
+        <div style="font-size: 14px; margin-bottom: 5px; font-weight: bold; color: #eab308;">Valor: R$ 15,00</div>
+        <label>Chave PIX para Pagamento (E-mail):</label>
+        <div class="pix-key">seu-email-pix@provedor.com</div>
+        <p style="font-size: 11px; color: #f43f5e; font-weight: bold; margin-top: 8px;">
+          ⚠️ IMPORTANTE: Após fazer o PIX, use o botão de baixar o PDF e envie o arquivo junto com o comprovante para o e-mail acima, informando o que você gostaria de mudar (ex: mudar o layout para uma vaga específica, ajustar o texto de experiências, etc).
+        </p>
+      </div>
+
+    </div>
+
+    <div class="preview-panel">
+      <div class="cv-sheet" id="cvSheet">
+        
+        <div class="cv-header">
+          <div class="cv-name" id="cvName">Seu Nome</div>
+          <div class="cv-title" id="cvTitle">Seu Cargo ou Profissão</div>
+          <div class="cv-contacts">
+            <span id="cvEmail">📧 email@exemplo.com</span>
+            <span id="cvPhone">📞 (00) 00000-0000</span>
+            <span id="cvLocation">📍 Sua Cidade - UF</span>
+          </div>
+        </div>
+
+        <div class="cv-section-title">Resumo Profissional</div>
+        <div class="cv-text" id="cvSummary">Área destinada ao resumo de suas principais qualificações e objetivos profissionais. Use o gerador assistido se precisar de ajuda.</div>
+
+        <div class="cv-section-title">Experiência Profissional</div>
+        <div class="cv-text" id="cvExp">Histórico de empresas onde trabalhou, cargos ocupados e principais atividades desempenhadas no dia a dia.</div>
+
+        <div class="cv-section-title">Principais Competências</div>
+        <div class="cv-text" id="cvSkills">Suas principais soft e hard skills listadas de forma clara para o recrutador.</div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Atualiza o Preview do Currículo em Tempo Real
+    function updateCV() {
+      document.getElementById('cvName').innerText = document.getElementById('inName').value || "Seu Nome";
+      document.getElementById('cvTitle').innerText = document.getElementById('inTitle').value || "Seu Cargo ou Profissão";
+      document.getElementById('cvEmail').innerText = document.getElementById('inEmail').value ? "📧 " + document.getElementById('inEmail').value : "📧 email@exemplo.com";
+      document.getElementById('cvPhone').innerText = document.getElementById('inPhone').value ? "📞 " + document.getElementById('inPhone').value : "📞 (00) 00000-0000";
+      document.getElementById('cvLocation').innerText = document.getElementById('inLocation').value ? "📍 " + document.getElementById('inLocation').value : "📍 Sua Cidade - UF";
+      document.getElementById('cvSummary').innerText = document.getElementById('inSummary').value || "Área destinada ao resumo...";
+      document.getElementById('cvExp').innerText = document.getElementById('inExp').value || "Histórico de empresas...";
+      document.getElementById('cvSkills').innerText = document.getElementById('inSkills').value || "Suas competências...";
+
+      calculateStrength();
+    }
+
+    // Altera a Identidade Visual do Currículo
+    function changeColor(color) {
+      document.documentElement.style.setProperty('--primary-color', color);
+    }
+
+    // Insere Textos Prontos nos Campos de Texto
+    function addText(fieldId, text) {
+      const field = document.getElementById(fieldId);
+      field.value += text;
+      updateCV();
+    }
+
+    // Insere Habilidades em Formato de Lista Separada por Vírgula
+    function addSkill(skill) {
+      const field = document.getElementById('inSkills');
+      if(field.value) {
+        field.value += ", " + skill;
+      } else {
+        field.value = skill;
+      }
+      updateCV();
+    }
+
+    // Gera um Perfil Inteligente Baseado no Cargo Digitado
+    function generateAI() {
+      const cargo = document.getElementById('inTitle').value;
+      if (!cargo) {
+        alert("Por favor, digite um cargo no campo de Dados Pessoais primeiro para a IA entender!");
+        return;
+      }
+      
+      const template = `Profissional dinâmico focado na área de ${cargo}, com sólida vivência na execução de processos estratégicos e melhoria de indicadores de desempenho. Capacidade comprovada para trabalhar em equipes multidisciplinares, visando sempre a excelência operacional e a entrega de resultados alinhados aos objetivos da empresa.`;
+      
+      document.getElementById('inSummary').value = template;
+      updateCV();
+    }
+
+    // Calcula a "Força" do Currículo de acordo com o preenchimento dos campos
+    function calculateStrength() {
+      let score = 10;
+      if(document.getElementById('inName').value) score += 15;
+      if(document.getElementById('inTitle').value) score += 15;
+      if(document.getElementById('inSummary').value.length > 30) score += 20;
+      if(document.getElementById('inExp').value.length > 40) score += 20;
+      if(document.getElementById('inSkills').value.length > 10) score += 20;
+
+      document.getElementById('strengthBar').style.width = score + "%";
+    }
+  </script>
+</body>
+</html>
+
